@@ -24,8 +24,6 @@ rel="canonical"
 href="https://www.rokkamedia.com/"
 >
 
-<!-- OPEN GRAPH -->
-
 <meta property="og:type" content="website">
 
 <meta
@@ -47,8 +45,6 @@ content="https://www.rokkamedia.com/"
 property="og:site_name"
 content="RokkaMedia"
 >
-
-<!-- SOCIAL -->
 
 <meta
 name="twitter:card"
@@ -93,7 +89,6 @@ content="Photography, video and social-first content for restaurants, bars and h
 <!-- ANIMATION LIBRARIES -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 
@@ -149,8 +144,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 
-background:
-linear-gradient(
+background:linear-gradient(
 to bottom,
 rgba(0,0,0,.5),
 transparent
@@ -161,28 +155,22 @@ transition:.4s ease;
 
 nav.scrolled{
 background:rgba(7,7,7,.82);
-
 backdrop-filter:blur(15px);
 -webkit-backdrop-filter:blur(15px);
-
 border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .logo img{
 width:130px;
 height:auto;
-
 filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));
 }
 
 .nav-button{
 font-size:12px;
 font-weight:700;
-
 border:1px solid rgba(255,255,255,.45);
-
 padding:11px 18px;
-
 border-radius:100px;
 
 transition:
@@ -204,7 +192,6 @@ transform:translateY(-2px);
 
 .hero{
 min-height:100vh;
-
 position:relative;
 overflow:hidden;
 
@@ -213,6 +200,12 @@ align-items:flex-end;
 
 padding:140px 5% 65px;
 }
+
+/*
+IMPORTANT:
+This is the simple hero-video setup from
+the original version.
+*/
 
 .hero-video{
 position:absolute;
@@ -231,14 +224,12 @@ position:absolute;
 inset:0;
 
 background:
-
 linear-gradient(
 to top,
 rgba(0,0,0,.96) 2%,
 rgba(0,0,0,.50) 48%,
 rgba(0,0,0,.12)
 ),
-
 linear-gradient(
 to right,
 rgba(0,0,0,.42),
@@ -249,17 +240,14 @@ transparent 65%
 .hero-content{
 position:relative;
 z-index:3;
-
 max-width:1050px;
 }
 
 .eyebrow{
 color:#FFD400;
-
 font-size:11px;
 letter-spacing:3px;
 font-weight:800;
-
 margin-bottom:18px;
 }
 
@@ -269,11 +257,8 @@ overflow:hidden;
 
 .hero h1{
 font-size:clamp(56px,10vw,125px);
-
 line-height:.87;
-
 letter-spacing:-5px;
-
 max-width:1000px;
 }
 
@@ -283,12 +268,9 @@ color:#FFD400;
 
 .hero p{
 margin-top:25px;
-
 max-width:610px;
-
 font-size:17px;
 line-height:1.65;
-
 color:#d0d0d0;
 }
 
@@ -296,20 +278,15 @@ color:#d0d0d0;
 display:flex;
 gap:12px;
 flex-wrap:wrap;
-
 margin-top:30px;
 }
 
 .button-primary{
 display:inline-block;
-
 background:#FFD400;
 color:#000;
-
 font-weight:800;
-
 padding:15px 23px;
-
 border-radius:100px;
 
 transition:
@@ -319,7 +296,6 @@ background .3s ease;
 
 .button-primary:hover{
 transform:translateY(-3px);
-
 background:#ffe033;
 }
 
@@ -334,11 +310,9 @@ padding:110px 5%;
 
 .section-label{
 color:#FFD400;
-
 font-size:11px;
 letter-spacing:3px;
 font-weight:800;
-
 margin-bottom:20px;
 }
 
@@ -348,22 +322,16 @@ overflow:hidden;
 
 .big-copy{
 font-size:clamp(42px,7vw,78px);
-
 line-height:.95;
-
 letter-spacing:-3px;
-
 max-width:900px;
 }
 
 .body-copy{
 color:#969696;
-
 font-size:17px;
 line-height:1.75;
-
 max-width:700px;
-
 margin-top:30px;
 }
 
@@ -378,38 +346,30 @@ margin-top:65px;
 
 .service{
 border-top:1px solid #292929;
-
 padding:30px 0;
 
 display:grid;
-
 grid-template-columns:60px 1fr 1fr;
 
 gap:20px;
-
 align-items:start;
 }
 
 .service-number{
 font-size:12px;
 color:#666;
-
 padding-top:7px;
 }
 
 .service h3{
 font-size:27px;
-
 letter-spacing:-1px;
 }
 
 .service p{
 color:#888;
-
 line-height:1.65;
-
 font-size:14px;
-
 max-width:430px;
 }
 
@@ -424,55 +384,38 @@ background:#0c0c0c;
 
 .work-intro{
 display:flex;
-
 justify-content:space-between;
-
 align-items:flex-end;
-
 gap:40px;
-
 margin-bottom:65px;
 }
 
 .work-intro p{
 max-width:440px;
-
 color:#8d8d8d;
-
 line-height:1.7;
 }
 
-
-/* LARGE PORTFOLIO IMAGE */
-
 .portfolio-main{
 height:min(72vw,780px);
-
 border-radius:22px;
-
 overflow:hidden;
-
 position:relative;
 }
 
 .portfolio-main img,
 .portfolio-card img{
 height:110%;
-
 object-fit:cover;
-
 position:absolute;
-
 top:-5%;
 left:0;
 }
 
 .image-label{
 position:absolute;
-
 bottom:22px;
 left:22px;
-
 z-index:3;
 
 background:rgba(0,0,0,.62);
@@ -483,53 +426,34 @@ backdrop-filter:blur(12px);
 -webkit-backdrop-filter:blur(12px);
 
 padding:11px 15px;
-
 border-radius:100px;
-
 font-size:12px;
 }
 
-
-/* PORTFOLIO PAIR */
-
 .portfolio-pair{
 display:grid;
-
 grid-template-columns:.8fr 1.2fr;
-
 gap:18px;
-
 margin-top:18px;
-
 align-items:start;
 }
 
 .portfolio-card{
 height:650px;
-
 border-radius:22px;
-
 overflow:hidden;
-
 position:relative;
 }
 
 .portfolio-card.offset{
 margin-top:100px;
-
 height:760px;
 }
 
-
-/* BOTTOM PORTFOLIO */
-
 .portfolio-bottom{
 margin-top:18px;
-
 display:grid;
-
 grid-template-columns:1.15fr .85fr;
-
 gap:18px;
 }
 
@@ -539,7 +463,6 @@ height:700px;
 
 .portfolio-bottom .portfolio-card:last-child{
 height:570px;
-
 margin-top:100px;
 }
 
@@ -550,17 +473,14 @@ margin-top:100px;
 
 .statement{
 background:#FFD400;
-
 color:#000;
 
 min-height:620px;
 
 display:flex;
-
 align-items:center;
 
 padding:100px 5%;
-
 overflow:hidden;
 }
 
@@ -574,21 +494,15 @@ color:#000;
 
 .statement h2{
 font-size:clamp(52px,9vw,110px);
-
 line-height:.86;
-
 letter-spacing:-5px;
-
 max-width:1050px;
 }
 
 .statement p{
 font-size:17px;
-
 line-height:1.7;
-
 max-width:650px;
-
 margin-top:30px;
 }
 
@@ -599,23 +513,16 @@ margin-top:30px;
 
 .process-grid{
 display:grid;
-
 grid-template-columns:repeat(4,1fr);
-
 gap:12px;
-
 margin-top:60px;
 }
 
 .process-card{
 background:#101010;
-
 border:1px solid #191919;
-
 padding:28px;
-
 border-radius:18px;
-
 min-height:230px;
 
 transition:
@@ -625,27 +532,22 @@ border-color .35s ease;
 
 .process-card:hover{
 transform:translateY(-5px);
-
 border-color:#333;
 }
 
 .process-card span{
 color:#FFD400;
-
 font-size:11px;
 }
 
 .process-card h3{
 font-size:23px;
-
 margin:35px 0 10px;
 }
 
 .process-card p{
 color:#818181;
-
 font-size:14px;
-
 line-height:1.6;
 }
 
@@ -656,26 +558,20 @@ line-height:1.6;
 
 .contact{
 padding:140px 5%;
-
 text-align:center;
-
 position:relative;
-
 overflow:hidden;
 }
 
 .contact-bg{
 position:absolute;
-
 left:50%;
 top:50%;
 
 transform:translate(-50%,-50%);
 
 font-size:clamp(160px,27vw,400px);
-
 font-weight:900;
-
 letter-spacing:-20px;
 
 color:rgba(255,255,255,.022);
@@ -685,45 +581,33 @@ pointer-events:none;
 
 .contact-inner{
 position:relative;
-
 z-index:2;
 }
 
 .contact h2{
 font-size:clamp(48px,8vw,95px);
-
 line-height:.9;
-
 letter-spacing:-4px;
-
 max-width:900px;
-
 margin:auto;
 }
 
 .contact p{
 color:#8d8d8d;
-
 max-width:600px;
-
 margin:25px auto;
-
 line-height:1.7;
 }
 
 .contact-button{
 display:inline-block;
-
 background:#FFD400;
-
 color:#000;
 
 padding:16px 25px;
 
 font-weight:800;
-
 border-radius:100px;
-
 margin-top:10px;
 
 transition:
@@ -733,39 +617,31 @@ background .3s ease;
 
 .contact-button:hover{
 transform:translateY(-3px);
-
 background:#ffe033;
 }
 
 
 /* =========================
-   WHATSAPP BUTTON
+   WHATSAPP
 ========================= */
 
 .whatsapp-button{
 position:fixed;
-
 right:22px;
 bottom:22px;
-
 z-index:9999;
 
 display:flex;
-
 align-items:center;
-
 gap:10px;
 
 background:#FFD400;
-
 color:#000;
 
 padding:13px 19px;
-
 border-radius:100px;
 
 font-size:13px;
-
 font-weight:800;
 
 box-shadow:0 10px 35px rgba(0,0,0,.35);
@@ -779,15 +655,12 @@ background .3s ease;
 .whatsapp-logo{
 width:22px;
 height:22px;
-
 flex-shrink:0;
 }
 
 .whatsapp-button:hover{
 transform:translateY(-3px);
-
 box-shadow:0 14px 40px rgba(0,0,0,.5);
-
 background:#ffe033;
 }
 
@@ -798,15 +671,12 @@ background:#ffe033;
 
 footer{
 padding:30px 5%;
-
 border-top:1px solid #222;
 
 display:flex;
-
 justify-content:space-between;
 
 color:#686868;
-
 font-size:12px;
 }
 
@@ -827,7 +697,6 @@ width:112px;
 
 .hero{
 min-height:100svh;
-
 padding-bottom:45px;
 }
 
@@ -837,7 +706,6 @@ letter-spacing:-3px;
 
 .hero p{
 font-size:15px;
-
 max-width:520px;
 }
 
@@ -851,9 +719,6 @@ padding:80px 5%;
 letter-spacing:-2.5px;
 }
 
-
-/* SERVICES */
-
 .service{
 grid-template-columns:45px 1fr;
 }
@@ -861,9 +726,6 @@ grid-template-columns:45px 1fr;
 .service p{
 grid-column:2;
 }
-
-
-/* WORK */
 
 .work-intro{
 display:block;
@@ -887,58 +749,38 @@ grid-template-columns:1fr;
 .portfolio-bottom .portfolio-card:first-child,
 .portfolio-bottom .portfolio-card:last-child{
 height:58vh;
-
 margin-top:0;
 }
 
 .portfolio-pair,
 .portfolio-bottom{
 gap:14px;
-
 margin-top:14px;
 }
-
-
-/* PROCESS */
 
 .process-grid{
 grid-template-columns:1fr;
 }
 
-
-/* STATEMENT */
-
 .statement{
 min-height:560px;
 }
 
-
-/* WHATSAPP */
-
 .whatsapp-button{
 right:15px;
-
 bottom:15px;
-
 padding:13px 17px;
-
 font-size:12px;
 }
 
 .whatsapp-logo{
 width:21px;
-
 height:21px;
 }
 
-
-/* FOOTER */
-
 footer{
 flex-direction:column;
-
 gap:8px;
-
 padding-bottom:85px;
 }
 
@@ -951,7 +793,6 @@ padding-bottom:85px;
 
 *{
 animation:none!important;
-
 transition:none!important;
 }
 
@@ -1004,13 +845,20 @@ LET'S TALK
 <section class="hero">
 
 
+<!--
+SIMPLE VIDEO SETUP:
+No poster.
+No preload.
+No controls.
+Same basic setup as the first draft.
+-->
+
 <video
 class="hero-video"
 autoplay
 muted
 loop
 playsinline
-preload="auto"
 >
 
 <source
@@ -1036,21 +884,15 @@ LONDON HOSPITALITY CONTENT STUDIO
 
 <div class="hero-title-mask">
 
-
 <h1>
 
 CREATE.<br>
 
 CAPTURE.<br>
 
-<span class="yellow">
-
-ELEVATE.
-
-</span>
+<span class="yellow">ELEVATE.</span>
 
 </h1>
-
 
 </div>
 
@@ -1066,7 +908,6 @@ build their presence and stop the scroll.
 
 <div class="buttons">
 
-
 <a
 href="#work"
 class="button-primary"
@@ -1076,12 +917,10 @@ View our work
 
 </a>
 
-
 </div>
 
 
 </div>
-
 
 </section>
 
@@ -1102,15 +941,12 @@ WHAT WE DO
 
 <div class="title-mask">
 
-
 <h2 class="big-copy reveal-title">
 
 Your food looks good.<br>
-
 Your content should too.
 
 </h2>
-
 
 </div>
 
@@ -1133,20 +969,11 @@ discover your venue.
 
 <div class="service">
 
-
-<div class="service-number">
-
-01
-
-</div>
-
+<div class="service-number">01</div>
 
 <h3>
-
 Short-form Social Content
-
 </h3>
-
 
 <p>
 
@@ -1155,26 +982,16 @@ bars and hospitality brands.
 
 </p>
 
-
 </div>
 
 
 <div class="service">
 
-
-<div class="service-number">
-
-02
-
-</div>
-
+<div class="service-number">02</div>
 
 <h3>
-
 Restaurant Photography
-
 </h3>
-
 
 <p>
 
@@ -1184,26 +1001,16 @@ stand out online.
 
 </p>
 
-
 </div>
 
 
 <div class="service">
 
-
-<div class="service-number">
-
-03
-
-</div>
-
+<div class="service-number">03</div>
 
 <h3>
-
 Hospitality Video Production
-
 </h3>
-
 
 <p>
 
@@ -1212,26 +1019,16 @@ promotional campaigns and branded content.
 
 </p>
 
-
 </div>
 
 
 <div class="service">
 
-
-<div class="service-number">
-
-04
-
-</div>
-
+<div class="service-number">04</div>
 
 <h3>
-
 Content Days
-
 </h3>
-
 
 <p>
 
@@ -1240,12 +1037,10 @@ photo and video content for your hospitality brand.
 
 </p>
 
-
 </div>
 
 
 </div>
-
 
 </section>
 
@@ -1265,28 +1060,20 @@ id="work"
 
 <div>
 
-
 <div class="section-label">
-
 SELECTED WORK
-
 </div>
 
-
 <div class="title-mask">
-
 
 <h2 class="big-copy reveal-title">
 
 Made for<br>
-
 the scroll.
 
 </h2>
 
-
 </div>
-
 
 </div>
 
@@ -1302,10 +1089,7 @@ to capture the food, atmosphere and experience behind each venue.
 </div>
 
 
-<!-- LARGE IMAGE -->
-
 <div class="portfolio-main portfolio-item">
-
 
 <img
 src="RK1.png"
@@ -1313,24 +1097,17 @@ alt="Restaurant food photography by RokkaMedia"
 loading="lazy"
 >
 
-
 <div class="image-label">
-
 Food Photography
+</div>
 
 </div>
 
-
-</div>
-
-
-<!-- SECOND ROW -->
 
 <div class="portfolio-pair">
 
 
 <div class="portfolio-card portfolio-item">
-
 
 <img
 src="RK4.png"
@@ -1338,19 +1115,14 @@ alt="Hospitality photography by RokkaMedia"
 loading="lazy"
 >
 
-
 <div class="image-label">
-
 Hospitality
-
 </div>
-
 
 </div>
 
 
 <div class="portfolio-card offset portfolio-item">
-
 
 <img
 src="RK5.png"
@@ -1358,27 +1130,20 @@ alt="Restaurant social media content by RokkaMedia"
 loading="lazy"
 >
 
-
 <div class="image-label">
-
 Social Content
+</div>
 
 </div>
 
 
 </div>
 
-
-</div>
-
-
-<!-- THIRD ROW -->
 
 <div class="portfolio-bottom">
 
 
 <div class="portfolio-card portfolio-item">
-
 
 <img
 src="RK2.png"
@@ -1386,19 +1151,14 @@ alt="Restaurant photography London by RokkaMedia"
 loading="lazy"
 >
 
-
 <div class="image-label">
-
 Photography
-
 </div>
-
 
 </div>
 
 
 <div class="portfolio-card portfolio-item">
-
 
 <img
 src="RK7.png"
@@ -1406,13 +1166,9 @@ alt="Food and drink photography by RokkaMedia"
 loading="lazy"
 >
 
-
 <div class="image-label">
-
 Food & Drink
-
 </div>
-
 
 </div>
 
@@ -1443,7 +1199,6 @@ ROKKAMEDIA
 <h2 class="statement-title">
 
 CONTENT THAT MAKES<br>
-
 PEOPLE HUNGRY.
 
 </h2>
@@ -1461,7 +1216,6 @@ customers a reason to stop scrolling and discover your venue.
 
 
 </div>
-
 
 </section>
 
@@ -1482,15 +1236,12 @@ HOW IT WORKS
 
 <div class="title-mask">
 
-
 <h2 class="big-copy reveal-title">
 
 Simple from<br>
-
 shoot to scroll.
 
 </h2>
-
 
 </div>
 
@@ -1500,20 +1251,11 @@ shoot to scroll.
 
 <div class="process-card">
 
-
-<span>
-
-01
-
-</span>
-
+<span>01</span>
 
 <h3>
-
 Let's Talk
-
 </h3>
-
 
 <p>
 
@@ -1521,26 +1263,16 @@ Tell us about your venue, your brand and what you want your content to achieve.
 
 </p>
 
-
 </div>
 
 
 <div class="process-card">
 
-
-<span>
-
-02
-
-</span>
-
+<span>02</span>
 
 <h3>
-
 We Shoot
-
 </h3>
-
 
 <p>
 
@@ -1548,26 +1280,16 @@ We come to your venue and capture the food, people, atmosphere and experience.
 
 </p>
 
-
 </div>
 
 
 <div class="process-card">
 
-
-<span>
-
-03
-
-</span>
-
+<span>03</span>
 
 <h3>
-
 We Create
-
 </h3>
-
 
 <p>
 
@@ -1575,26 +1297,16 @@ Your photography and video content is professionally edited and optimised for so
 
 </p>
 
-
 </div>
 
 
 <div class="process-card">
 
-
-<span>
-
-04
-
-</span>
-
+<span>04</span>
 
 <h3>
-
 We Post
-
 </h3>
-
 
 <p>
 
@@ -1602,12 +1314,10 @@ We get your content live and your hospitality brand looking its best across soci
 
 </p>
 
-
 </div>
 
 
 </div>
-
 
 </section>
 
@@ -1642,7 +1352,6 @@ LET'S CREATE
 <h2>
 
 READY TO MAKE YOUR<br>
-
 VENUE STAND OUT?
 
 </h2>
@@ -1670,7 +1379,6 @@ LET'S TALK →
 
 </div>
 
-
 </section>
 
 
@@ -1680,26 +1388,19 @@ LET'S TALK →
 
 <footer>
 
-
 <div>
-
 © 2026 RokkaMedia
-
 </div>
-
 
 <div>
-
 Hospitality Content Creation • London
-
 </div>
-
 
 </footer>
 
 
 <!-- =========================
-     WHATSAPP BUTTON
+     WHATSAPP
 ========================= -->
 
 <a
@@ -1717,22 +1418,17 @@ viewBox="0 0 32 32"
 aria-hidden="true"
 >
 
-
 <path
 fill="currentColor"
 d="M16.04 2.5c-7.45 0-13.5 6.05-13.5 13.5 0 2.38.62 4.7 1.8 6.74L2.43 29.7l7.13-1.87A13.45 13.45 0 0 0 16.04 29.5c7.45 0 13.5-6.05 13.5-13.5S23.49 2.5 16.04 2.5Zm0 24.72c-2.08 0-4.12-.57-5.9-1.65l-.42-.25-4.23 1.11 1.13-4.12-.27-.43A11.18 11.18 0 0 1 4.81 16c0-6.19 5.04-11.22 11.23-11.22S27.26 9.81 27.26 16 22.23 27.22 16.04 27.22Zm6.15-8.4c-.34-.17-1.99-.98-2.3-1.09-.31-.11-.54-.17-.76.17-.23.34-.88 1.09-1.08 1.31-.2.23-.4.25-.74.08-.34-.17-1.42-.52-2.71-1.67-1-.89-1.68-1.99-1.88-2.33-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.59.17-.2.23-.34.34-.57.11-.23.06-.42-.03-.59-.08-.17-.76-1.83-1.04-2.51-.27-.66-.55-.57-.76-.58h-.65c-.23 0-.59.08-.9.42-.31.34-1.18 1.15-1.18 2.81s1.21 3.26 1.38 3.49c.17.23 2.38 3.63 5.76 5.09.81.35 1.43.56 1.92.72.81.26 1.54.22 2.12.13.65-.1 1.99-.81 2.27-1.6.28-.79.28-1.46.2-1.6-.08-.14-.31-.22-.65-.39Z"
 />
 
-
 </svg>
 
 
 <span>
-
 WhatsApp us
-
 </span>
-
 
 </a>
 
@@ -1742,6 +1438,7 @@ WhatsApp us
 ========================= -->
 
 <script>
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1782,48 +1479,34 @@ heroTimeline
 .from(".hero h1",{
 
 yPercent:105,
-
 duration:1.15,
-
 ease:"power4.out"
 
 })
 
-
 .from(".eyebrow",{
 
 opacity:0,
-
 y:12,
-
 duration:.65,
-
 ease:"power3.out"
 
 },"-=.65")
 
-
 .from(".hero p",{
 
 opacity:0,
-
 y:18,
-
 duration:.75,
-
 ease:"power3.out"
 
 },"-=.45")
 
-
 .from(".buttons",{
 
 opacity:0,
-
 y:15,
-
 duration:.7,
-
 ease:"power3.out"
 
 },"-=.5");
@@ -1834,19 +1517,14 @@ ease:"power3.out"
 gsap.to(".hero-video",{
 
 yPercent:5,
-
 scale:1,
-
 ease:"none",
 
 scrollTrigger:{
 
 trigger:".hero",
-
 start:"top top",
-
 end:"bottom top",
-
 scrub:1.5
 
 }
@@ -1859,19 +1537,14 @@ scrub:1.5
 gsap.to(".hero-content",{
 
 y:30,
-
 opacity:.45,
-
 ease:"none",
 
 scrollTrigger:{
 
 trigger:".hero",
-
 start:"45% top",
-
 end:"bottom top",
-
 scrub:1.4
 
 }
@@ -1886,17 +1559,13 @@ gsap.utils.toArray(".reveal-title").forEach(title=>{
 gsap.from(title,{
 
 yPercent:105,
-
 duration:1.05,
-
 ease:"power4.out",
 
 scrollTrigger:{
 
 trigger:title,
-
 start:"top 88%",
-
 once:true
 
 }
@@ -1913,19 +1582,14 @@ gsap.utils.toArray(".reveal-copy").forEach(copy=>{
 gsap.from(copy,{
 
 opacity:0,
-
 y:22,
-
 duration:.9,
-
 ease:"power3.out",
 
 scrollTrigger:{
 
 trigger:copy,
-
 start:"top 90%",
-
 once:true
 
 }
@@ -1942,21 +1606,15 @@ gsap.utils.toArray(".service").forEach((service,index)=>{
 gsap.from(service,{
 
 opacity:0,
-
 y:22,
-
 duration:.8,
-
 delay:index*.04,
-
 ease:"power3.out",
 
 scrollTrigger:{
 
 trigger:service,
-
 start:"top 92%",
-
 once:true
 
 }
@@ -1973,21 +1631,15 @@ gsap.utils.toArray(".portfolio-item").forEach(item=>{
 gsap.from(item,{
 
 opacity:0,
-
 y:38,
-
 scale:.985,
-
 duration:1,
-
 ease:"power3.out",
 
 scrollTrigger:{
 
 trigger:item,
-
 start:"top 90%",
-
 once:true
 
 }
@@ -2004,17 +1656,13 @@ gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 gsap.to(image,{
 
 yPercent:7,
-
 ease:"none",
 
 scrollTrigger:{
 
 trigger:image.parentElement,
-
 start:"top bottom",
-
 end:"bottom top",
-
 scrub:1.8
 
 }
@@ -2029,19 +1677,14 @@ scrub:1.8
 gsap.from(".statement-inner",{
 
 opacity:0,
-
 y:35,
-
 duration:1,
-
 ease:"power3.out",
 
 scrollTrigger:{
 
 trigger:".statement",
-
 start:"top 72%",
-
 once:true
 
 }
@@ -2056,21 +1699,15 @@ gsap.utils.toArray(".process-card").forEach((card,index)=>{
 gsap.from(card,{
 
 opacity:0,
-
 y:25,
-
 duration:.8,
-
 delay:index*.07,
-
 ease:"power3.out",
 
 scrollTrigger:{
 
 trigger:card,
-
 start:"top 90%",
-
 once:true
 
 }
@@ -2085,19 +1722,14 @@ once:true
 gsap.from(".contact-inner",{
 
 opacity:0,
-
 y:35,
-
 duration:1,
-
 ease:"power3.out",
 
 scrollTrigger:{
 
 trigger:".contact",
-
 start:"top 72%",
-
 once:true
 
 }
@@ -2110,17 +1742,13 @@ once:true
 gsap.to(".contact-bg",{
 
 xPercent:-6,
-
 ease:"none",
 
 scrollTrigger:{
 
 trigger:".contact",
-
 start:"top bottom",
-
 end:"bottom top",
-
 scrub:2
 
 }
