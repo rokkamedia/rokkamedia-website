@@ -10,6 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -21,9 +22,9 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #050505;
+      background: #070707;
       color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
 
@@ -34,86 +35,93 @@
 
     img,
     video {
-      display: block;
       width: 100%;
+      display: block;
     }
 
-    .yellow {
-      color: #FFD400;
-    }
+    /* NAV */
 
     nav {
       position: fixed;
       z-index: 1000;
       top: 0;
-      left: 0;
       width: 100%;
-      padding: 18px 5%;
+      padding: 20px 5%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      mix-blend-mode: difference;
+      justify-content: space-between;
+      transition: background .4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(7,7,7,.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
 
     .logo img {
       width: 105px;
     }
 
-    .nav-cta {
-      border: 1px solid rgba(255,255,255,.7);
+    .nav-button {
+      border: 1px solid rgba(255,255,255,.4);
       padding: 11px 17px;
-      border-radius: 999px;
+      border-radius: 100px;
       font-size: 12px;
-      backdrop-filter: blur(10px);
+      letter-spacing: .5px;
+      transition: .3s ease;
+    }
+
+    .nav-button:hover {
+      background: white;
+      color: black;
     }
 
     /* HERO */
 
-    .hero-wrap {
-      height: 170vh;
-      position: relative;
-    }
-
     .hero {
-      position: sticky;
-      top: 0;
       height: 100vh;
+      position: relative;
       overflow: hidden;
       display: flex;
       align-items: flex-end;
-      padding: 0 5% 60px;
-      background: #000;
+      padding: 0 5% 65px;
     }
 
     .hero-video {
       position: absolute;
       inset: 0;
       width: 100%;
-      height: 100%;
+      height: 105%;
       object-fit: cover;
-      transform: scale(1.08);
+      transform: scale(1.04);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
+
       background:
-        linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.15) 65%),
-        linear-gradient(to right, rgba(0,0,0,.5), transparent 60%);
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.94) 0%,
+          rgba(0,0,0,.52) 40%,
+          rgba(0,0,0,.12) 75%
+        );
     }
 
     .hero-content {
       position: relative;
       z-index: 3;
-      max-width: 1200px;
+      max-width: 1050px;
     }
 
     .eyebrow {
       color: #FFD400;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 3px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .hero-line {
@@ -122,16 +130,19 @@
 
     .hero-word {
       display: block;
-      font-size: clamp(65px, 12vw, 155px);
-      line-height: .78;
-      letter-spacing: -7px;
+      font-size: clamp(60px, 10vw, 140px);
+      line-height: .82;
+      letter-spacing: -6px;
       font-weight: 900;
-      transform-origin: left center;
+    }
+
+    .yellow {
+      color: #FFD400;
     }
 
     .hero-sub {
-      max-width: 560px;
-      color: #d0d0d0;
+      max-width: 570px;
+      color: #d1d1d1;
       font-size: 17px;
       line-height: 1.65;
       margin-top: 28px;
@@ -144,360 +155,335 @@
       flex-wrap: wrap;
     }
 
-    .btn-yellow {
+    .btn-primary {
       background: #FFD400;
-      color: #000;
+      color: black;
       font-weight: 800;
       padding: 15px 23px;
-      border-radius: 999px;
+      border-radius: 100px;
+      transition: .3s ease;
     }
 
-    .btn-ghost {
-      border: 1px solid rgba(255,255,255,.5);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.35);
       padding: 15px 23px;
-      border-radius: 999px;
+      border-radius: 100px;
       backdrop-filter: blur(10px);
     }
 
-    /* KINETIC TEXT */
+    /* GENERAL */
 
-    .marquee-section {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #050505;
+    section {
+      padding: 120px 5%;
     }
 
-    .marquee-track {
-      display: flex;
-      white-space: nowrap;
-      gap: 60px;
-      will-change: transform;
-    }
-
-    .marquee-track span {
-      font-size: clamp(80px, 14vw, 220px);
-      line-height: .8;
-      font-weight: 900;
-      letter-spacing: -8px;
-    }
-
-    .outline {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,.3);
-    }
-
-    /* PINNED PHOTO SHOWCASE */
-
-    .showcase-wrap {
-      height: 400vh;
-      position: relative;
-      background: #090909;
-    }
-
-    .showcase {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .showcase-copy {
-      position: absolute;
-      z-index: 20;
-      left: 5%;
-      top: 10%;
-      max-width: 700px;
-    }
-
-    .showcase-label {
+    .section-label {
       color: #FFD400;
-      font-size: 12px;
-      letter-spacing: 2.5px;
+      font-size: 11px;
       font-weight: 800;
-      margin-bottom: 16px;
+      letter-spacing: 3px;
+      margin-bottom: 22px;
     }
 
-    .showcase-copy h2 {
-      font-size: clamp(48px, 8vw, 110px);
-      line-height: .85;
-      letter-spacing: -5px;
-    }
-
-    .showcase-caption {
-      margin-top: 22px;
-      color: #a0a0a0;
-      max-width: 460px;
-      line-height: 1.6;
-    }
-
-    .frame {
-      position: absolute;
+    .section-title-wrap {
       overflow: hidden;
-      border-radius: 26px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.45);
-      will-change: transform;
     }
 
-    .frame img {
+    .section-title {
+      font-size: clamp(48px, 7vw, 95px);
+      letter-spacing: -4px;
+      line-height: .9;
+      max-width: 1000px;
+    }
+
+    /* INTRO */
+
+    .intro {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intro-copy {
+      margin-top: 40px;
+      margin-left: auto;
+      max-width: 630px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #999;
+    }
+
+    /* PORTFOLIO */
+
+    .portfolio {
+      background: #0b0b0b;
+    }
+
+    .portfolio-grid {
+      margin-top: 70px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #111;
+      min-height: 620px;
+    }
+
+    .photo-card.wide {
+      grid-column: 1 / -1;
+      min-height: 720px;
+    }
+
+    .photo-card.tall {
+      min-height: 780px;
+    }
+
+    .photo-inner {
+      width: 100%;
+      height: 112%;
+      position: absolute;
+      top: -6%;
+    }
+
+    .photo-inner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .frame-1 {
-      width: 78vw;
-      height: 78vh;
-      left: 11vw;
-      top: 14vh;
-      z-index: 5;
-    }
-
-    .frame-2 {
-      width: 38vw;
-      height: 68vh;
-      right: 6vw;
-      top: 20vh;
-      z-index: 6;
-      transform: translateX(120%);
-    }
-
-    .frame-3 {
-      width: 34vw;
-      height: 58vh;
-      left: 7vw;
-      bottom: 10vh;
-      z-index: 7;
-      transform: translateY(130%);
-    }
-
-    .frame-4 {
-      width: 46vw;
-      height: 62vh;
-      left: 27vw;
-      top: 18vh;
-      z-index: 8;
-      transform: scale(.6);
-      opacity: 0;
-    }
-
-    /* YELLOW WIPE */
-
-    .wipe-wrap {
-      height: 170vh;
-      position: relative;
-      background: #050505;
-    }
-
-    .wipe-stage {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .wipe-yellow {
+    .photo-label {
       position: absolute;
-      inset: 0;
-      background: #FFD400;
-      transform: translateY(100%);
-    }
+      bottom: 22px;
+      left: 22px;
 
-    .wipe-content {
-      position: relative;
-      z-index: 2;
-      color: #000;
-      width: 100%;
-      padding: 0 5%;
-      opacity: 0;
-    }
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(12px);
 
-    .wipe-kicker {
-      font-size: 12px;
-      letter-spacing: 3px;
-      font-weight: 900;
-      margin-bottom: 20px;
-    }
+      border: 1px solid rgba(255,255,255,.12);
 
-    .wipe-heading {
-      font-size: clamp(64px, 11vw, 155px);
-      line-height: .8;
-      letter-spacing: -7px;
-      font-weight: 900;
-      max-width: 1100px;
-    }
+      padding: 11px 15px;
+      border-radius: 100px;
 
-    .wipe-copy {
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 600px;
-      margin-top: 30px;
-    }
-
-    /* SERVICES */
-
-    .services-section {
-      padding: 120px 5%;
-      background: #050505;
-    }
-
-    .section-label {
-      color: #FFD400;
-      font-size: 12px;
-      letter-spacing: 2.5px;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-
-    .section-title {
-      font-size: clamp(50px, 8vw, 105px);
-      line-height: .88;
-      letter-spacing: -5px;
-      max-width: 1000px;
-    }
-
-    .services-list {
-      margin-top: 70px;
-    }
-
-    .service-row {
-      display: grid;
-      grid-template-columns: 70px 1fr auto;
-      gap: 20px;
-      align-items: center;
-      border-top: 1px solid #282828;
-      padding: 30px 0;
-    }
-
-    .service-number {
-      color: #666;
       font-size: 12px;
     }
 
-    .service-row h3 {
-      font-size: clamp(28px, 4vw, 50px);
-      letter-spacing: -2px;
-    }
+    /* STATEMENT */
 
-    .service-row p {
-      color: #8c8c8c;
-      max-width: 350px;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    /* CTA */
-
-    .cta {
-      min-height: 100vh;
+    .statement {
+      min-height: 85vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 5%;
       position: relative;
       overflow: hidden;
     }
 
-    .cta-bg {
+    .statement-bg {
       position: absolute;
-      font-size: clamp(140px, 25vw, 400px);
+      left: -5%;
+      font-size: clamp(130px, 24vw, 350px);
       font-weight: 900;
       letter-spacing: -15px;
       color: rgba(255,255,255,.025);
       white-space: nowrap;
     }
 
-    .cta-content {
+    .statement-content {
       position: relative;
       z-index: 2;
     }
 
+    .statement h2 {
+      font-size: clamp(55px, 9vw, 125px);
+      max-width: 1100px;
+      line-height: .84;
+      letter-spacing: -6px;
+    }
+
+    .statement p {
+      margin-top: 30px;
+      max-width: 600px;
+      color: #929292;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* SERVICES */
+
+    .services {
+      background: #070707;
+    }
+
+    .service-list {
+      margin-top: 70px;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      align-items: center;
+      gap: 20px;
+
+      border-top: 1px solid #242424;
+      padding: 32px 0;
+
+      transition:
+        padding .35s ease,
+        background .35s ease;
+    }
+
+    .service-row:hover {
+      padding-left: 15px;
+      padding-right: 15px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .service-number {
+      color: #555;
+      font-size: 12px;
+    }
+
+    .service-row h3 {
+      font-size: clamp(27px, 3.5vw, 46px);
+      letter-spacing: -2px;
+    }
+
+    .service-row p {
+      max-width: 340px;
+      color: #858585;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* YELLOW CTA */
+
+    .cta-wrap {
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: #070707;
+    }
+
+    .cta-yellow {
+      min-height: 100vh;
+      background: #FFD400;
+      color: black;
+
+      display: flex;
+      align-items: center;
+
+      padding: 100px 5%;
+    }
+
+    .cta-inner {
+      width: 100%;
+    }
+
+    .cta-small {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
     .cta h2 {
-      font-size: clamp(60px, 10vw, 140px);
+      font-size: clamp(60px, 10vw, 135px);
       line-height: .82;
       letter-spacing: -6px;
-      max-width: 1050px;
+      max-width: 1100px;
     }
 
     .cta p {
-      max-width: 580px;
-      margin: 30px auto;
-      color: #989898;
-      line-height: 1.7;
-      font-size: 17px;
+      max-width: 600px;
+      margin-top: 28px;
+      font-size: 18px;
+      line-height: 1.65;
     }
 
     .cta a {
       display: inline-block;
-      background: #FFD400;
-      color: #000;
+      margin-top: 30px;
+      padding: 16px 25px;
+      background: black;
+      color: white;
+      border-radius: 100px;
       font-weight: 800;
-      padding: 17px 27px;
-      border-radius: 999px;
     }
 
+    /* FOOTER */
+
     footer {
-      border-top: 1px solid #222;
       padding: 30px 5%;
+      border-top: 1px solid #202020;
+
       display: flex;
       justify-content: space-between;
-      color: #6d6d6d;
+
+      color: #686868;
       font-size: 13px;
     }
+
+    /* MOBILE */
 
     @media (max-width: 800px) {
 
       nav {
-        padding: 15px 5%;
+        padding: 16px 5%;
       }
 
       .logo img {
         width: 90px;
       }
 
-      .hero-word,
-      .showcase-copy h2,
+      .hero {
+        height: 100svh;
+        padding-bottom: 42px;
+      }
+
+      .hero-word {
+        letter-spacing: -3px;
+      }
+
+      .hero-sub {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 85px 5%;
+      }
+
       .section-title,
-      .wipe-heading,
+      .statement h2,
       .cta h2 {
         letter-spacing: -3px;
       }
 
-      .showcase-copy {
-        top: 8%;
+      .intro {
+        min-height: auto;
       }
 
-      .frame-1 {
-        width: 82vw;
-        height: 55vh;
-        left: 9vw;
-        top: 31vh;
+      .intro-copy {
+        margin-left: 0;
       }
 
-      .frame-2 {
-        width: 56vw;
-        height: 52vh;
-        right: 4vw;
-        top: 35vh;
+      .portfolio-grid {
+        grid-template-columns: 1fr;
       }
 
-      .frame-3 {
-        width: 52vw;
-        height: 45vh;
-        left: 4vw;
-        bottom: 8vh;
-      }
-
-      .frame-4 {
-        width: 70vw;
-        height: 50vh;
-        left: 15vw;
-        top: 34vh;
+      .photo-card,
+      .photo-card.tall,
+      .photo-card.wide {
+        grid-column: auto;
+        min-height: 520px;
       }
 
       .service-row {
@@ -508,416 +494,715 @@
         grid-column: 2;
       }
 
+      .service-row:hover {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
       footer {
         flex-direction: column;
         gap: 8px;
       }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       * {
         animation: none !important;
         transition: none !important;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
 <nav>
+
   <a href="#" class="logo">
     <img src="ROKKA.png" alt="RokkaMedia">
   </a>
 
-  <a href="#contact" class="nav-cta">
+  <a href="#contact" class="nav-button">
     LET'S TALK
   </a>
+
 </nav>
 
-<div class="hero-wrap">
 
-  <section class="hero">
+<!-- HERO -->
 
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="annas-thai.mp4" type="video/mp4">
-    </video>
+<section class="hero">
 
-    <div class="hero-overlay"></div>
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="annas-thai.mp4" type="video/mp4">
+  </video>
 
-    <div class="hero-content">
+  <div class="hero-overlay"></div>
 
-      <div class="eyebrow">
-        HOSPITALITY CONTENT STUDIO
-      </div>
+  <div class="hero-content">
 
-      <div class="hero-line">
-        <span class="hero-word hero-create">CREATE.</span>
-      </div>
+    <div class="eyebrow">
+      HOSPITALITY CONTENT STUDIO
+    </div>
 
-      <div class="hero-line">
-        <span class="hero-word hero-capture">CAPTURE.</span>
-      </div>
+    <div class="hero-line">
+      <span class="hero-word">
+        CREATE.
+      </span>
+    </div>
 
-      <div class="hero-line">
-        <span class="hero-word hero-elevate yellow">ELEVATE.</span>
-      </div>
+    <div class="hero-line">
+      <span class="hero-word">
+        CAPTURE.
+      </span>
+    </div>
 
-      <p class="hero-sub">
-        Social-first photography and video for restaurants,
-        bars and hospitality brands that want content people
-        actually stop scrolling for.
-      </p>
+    <div class="hero-line">
+      <span class="hero-word yellow">
+        ELEVATE.
+      </span>
+    </div>
 
-      <div class="hero-buttons">
-        <a href="#work" class="btn-yellow">View our work</a>
-        <a href="#contact" class="btn-ghost">Book a free call</a>
-      </div>
+    <p class="hero-sub">
+
+      Social-first photography and video for restaurants,
+      bars and hospitality brands that want to stand out.
+
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#work" class="btn-primary">
+        View our work
+      </a>
+
+      <a href="#contact" class="btn-secondary">
+        Book a free call
+      </a>
 
     </div>
 
-  </section>
-
-</div>
-
-<section class="marquee-section">
-
-  <div class="marquee-track">
-    <span>WE MAKE PEOPLE STOP.</span>
-    <span class="outline">WE MAKE PEOPLE STOP.</span>
-    <span>WE MAKE PEOPLE STOP.</span>
   </div>
 
 </section>
 
-<div class="showcase-wrap" id="work">
 
-  <section class="showcase">
+<!-- INTRO -->
 
-    <div class="showcase-copy">
+<section class="intro">
 
-      <div class="showcase-label">
-        SELECTED WORK
+  <div class="section-label">
+    ROKKAMEDIA
+  </div>
+
+  <div class="section-title-wrap">
+
+    <h2 class="section-title">
+      GOOD FOOD DESERVES
+      GREAT CONTENT.
+    </h2>
+
+  </div>
+
+  <p class="intro-copy">
+
+    RokkaMedia creates visual content for hospitality brands
+    that want to look as good online as they do in person.
+
+    From photography and video to short-form social content,
+    every piece is created with one goal — making people stop.
+
+  </p>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+
+<section class="portfolio" id="work">
+
+  <div class="section-label">
+    SELECTED WORK
+  </div>
+
+  <div class="section-title-wrap">
+
+    <h2 class="section-title">
+      MADE TO BE
+      NOTICED.
+    </h2>
+
+  </div>
+
+  <div class="portfolio-grid">
+
+    <div class="photo-card wide">
+
+      <div class="photo-inner">
+        <img src="RK1.png" alt="RokkaMedia food photography">
       </div>
 
-      <h2>
-        MADE FOR
-        THE <span class="yellow">SCROLL.</span>
-      </h2>
-
-      <p class="showcase-caption">
-        Food, atmosphere and experience — captured in a way
-        that makes people want to see more.
-      </p>
-
-    </div>
-
-    <div class="frame frame-1">
-      <img src="RK1.png" alt="Food photography">
-    </div>
-
-    <div class="frame frame-2">
-      <img src="RK4.png" alt="Hospitality photography">
-    </div>
-
-    <div class="frame frame-3">
-      <img src="RK5.png" alt="Restaurant content">
-    </div>
-
-    <div class="frame frame-4">
-      <img src="RK7.png" alt="Food and drink photography">
-    </div>
-
-  </section>
-
-</div>
-
-<div class="wipe-wrap">
-
-  <section class="wipe-stage">
-
-    <div class="wipe-yellow"></div>
-
-    <div class="wipe-content">
-
-      <div class="wipe-kicker">
-        CREATE. CAPTURE. ELEVATE.
+      <div class="photo-label">
+        Food Photography
       </div>
 
-      <div class="wipe-heading">
-        MAKE THEM
-        STOP.
+    </div>
+
+
+    <div class="photo-card tall">
+
+      <div class="photo-inner">
+        <img src="RK4.png" alt="Hospitality photography">
       </div>
 
-      <p class="wipe-copy">
-        Your venue already has the story.
-        We create the content that makes people notice it.
-      </p>
+      <div class="photo-label">
+        Hospitality
+      </div>
 
     </div>
 
-  </section>
 
-</div>
+    <div class="photo-card">
 
-<section class="services-section">
+      <div class="photo-inner">
+        <img src="RK5.png" alt="Restaurant content">
+      </div>
+
+      <div class="photo-label">
+        Social Content
+      </div>
+
+    </div>
+
+
+    <div class="photo-card">
+
+      <div class="photo-inner">
+        <img src="RK2.png" alt="Food photography">
+      </div>
+
+      <div class="photo-label">
+        Photography
+      </div>
+
+    </div>
+
+
+    <div class="photo-card tall">
+
+      <div class="photo-inner">
+        <img src="RK7.png" alt="Food and drink photography">
+      </div>
+
+      <div class="photo-label">
+        Food & Drink
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STATEMENT -->
+
+<section class="statement">
+
+  <div class="statement-bg">
+    ROKKA
+  </div>
+
+  <div class="statement-content">
+
+    <div class="section-label">
+      THE IDEA
+    </div>
+
+    <h2>
+      PEOPLE EAT
+      WITH THEIR
+      <span class="yellow">EYES FIRST.</span>
+    </h2>
+
+    <p>
+
+      Your content is often someone's first interaction with
+      your venue.
+
+      We make that first impression count.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="services">
 
   <div class="section-label">
     WHAT WE DO
   </div>
 
-  <h2 class="section-title">
-    BUILT FOR HOSPITALITY.
-  </h2>
+  <div class="section-title-wrap">
 
-  <div class="services-list">
-
-    <div class="service-row">
-      <div class="service-number">01</div>
-      <h3>Short-form Content</h3>
-      <p>Reels, TikToks and social-first video built around your brand.</p>
-    </div>
-
-    <div class="service-row">
-      <div class="service-number">02</div>
-      <h3>Photography</h3>
-      <p>Food, drink, interiors and lifestyle photography.</p>
-    </div>
-
-    <div class="service-row">
-      <div class="service-number">03</div>
-      <h3>Video Production</h3>
-      <p>Cinematic venue showcases and branded campaigns.</p>
-    </div>
-
-    <div class="service-row">
-      <div class="service-number">04</div>
-      <h3>Content Days</h3>
-      <p>One shoot. A full bank of content ready for social.</p>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="cta" id="contact">
-
-  <div class="cta-bg">
-    ROKKA
-  </div>
-
-  <div class="cta-content">
-
-    <div class="section-label">
-      LET'S CREATE
-    </div>
-
-    <h2>
-      READY TO MAKE
-      SOME NOISE?
+    <h2 class="section-title">
+      BUILT FOR
+      HOSPITALITY.
     </h2>
 
-    <p>
-      Let's create content that makes your venue impossible
-      to scroll past.
-    </p>
+  </div>
 
-    <a href="mailto:hello@rokkamedia.com">
-      Book a free call →
-    </a>
+  <div class="service-list">
+
+    <div class="service-row">
+
+      <div class="service-number">
+        01
+      </div>
+
+      <h3>
+        Short-form Content
+      </h3>
+
+      <p>
+        Reels, TikToks and social-first video created around your brand.
+      </p>
+
+    </div>
+
+
+    <div class="service-row">
+
+      <div class="service-number">
+        02
+      </div>
+
+      <h3>
+        Photography
+      </h3>
+
+      <p>
+        Food, drink, interiors and lifestyle photography.
+      </p>
+
+    </div>
+
+
+    <div class="service-row">
+
+      <div class="service-number">
+        03
+      </div>
+
+      <h3>
+        Video Production
+      </h3>
+
+      <p>
+        Cinematic promotional content and venue showcases.
+      </p>
+
+    </div>
+
+
+    <div class="service-row">
+
+      <div class="service-number">
+        04
+      </div>
+
+      <h3>
+        Content Days
+      </h3>
+
+      <p>
+        One shoot. A complete library of content ready to use.
+      </p>
+
+    </div>
 
   </div>
 
 </section>
 
+
+<!-- CTA -->
+
+<div class="cta-wrap" id="contact">
+
+  <section class="cta-yellow cta">
+
+    <div class="cta-inner">
+
+      <div class="cta-small">
+        LET'S CREATE
+      </div>
+
+      <h2>
+        LET'S MAKE
+        SOMETHING
+        WORTH STOPPING FOR.
+      </h2>
+
+      <p>
+
+        Whether you need photography, video or a full content day,
+        let's talk about what we can create for your venue.
+
+      </p>
+
+      <a href="mailto:hello@rokkamedia.com">
+        Book a free call →
+      </a>
+
+    </div>
+
+  </section>
+
+</div>
+
+
 <footer>
-  <div>© 2026 RokkaMedia</div>
-  <div>Create. Capture. Elevate.</div>
+
+  <div>
+    © 2026 RokkaMedia
+  </div>
+
+  <div>
+    Create. Capture. Elevate.
+  </div>
+
 </footer>
 
+
 <script>
+
   gsap.registerPlugin(ScrollTrigger);
 
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+
+  const reduceMotion =
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  /* NAV */
+
+  window.addEventListener("scroll", () => {
+
+    const nav = document.querySelector("nav");
+
+    if (window.scrollY > 50) {
+
+      nav.classList.add("scrolled");
+
+    } else {
+
+      nav.classList.remove("scrolled");
+
+    }
+
+  });
+
 
   if (!reduceMotion) {
 
+
+    /* HERO OPENING */
+
     gsap.from(".hero-word", {
-      yPercent: 120,
-      duration: 1.15,
-      stagger: 0.12,
+
+      yPercent: 110,
+      duration: 1.25,
+      stagger: .1,
       ease: "power4.out"
+
     });
 
-    gsap.from(".hero-sub, .hero-buttons, .eyebrow", {
-      opacity: 0,
-      y: 30,
-      duration: 1,
-      stagger: 0.08,
-      delay: 0.45,
-      ease: "power3.out"
-    });
+
+    gsap.from(
+      ".eyebrow, .hero-sub, .hero-buttons",
+      {
+
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        stagger: .08,
+        delay: .45,
+        ease: "power3.out"
+
+      }
+    );
+
+
+    /* HERO PARALLAX */
 
     gsap.to(".hero-video", {
+
+      yPercent: 7,
       scale: 1,
-      scrollTrigger: {
-        trigger: ".hero-wrap",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.2
-      }
-    });
 
-    gsap.to(".hero-create", {
-      xPercent: -18,
-      scale: 1.2,
-      scrollTrigger: {
-        trigger: ".hero-wrap",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.2
-      }
-    });
-
-    gsap.to(".hero-capture", {
-      xPercent: 12,
-      scrollTrigger: {
-        trigger: ".hero-wrap",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.2
-      }
-    });
-
-    gsap.to(".hero-elevate", {
-      xPercent: -10,
-      scale: 1.3,
-      scrollTrigger: {
-        trigger: ".hero-wrap",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.2
-      }
-    });
-
-    gsap.to(".marquee-track", {
-      xPercent: -35,
       ease: "none",
-      scrollTrigger: {
-        trigger: ".marquee-section",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
-      }
-    });
 
-    const showcase = gsap.timeline({
       scrollTrigger: {
-        trigger: ".showcase-wrap",
+
+        trigger: ".hero",
         start: "top top",
-        end: "bottom bottom",
+        end: "bottom top",
         scrub: 1.2
+
       }
+
     });
 
-    showcase
-      .to(".frame-1", {
-        width: "42vw",
-        height: "62vh",
-        left: "5vw",
-        top: "28vh",
-        borderRadius: "30px"
-      }, 0)
 
-      .to(".frame-2", {
-        x: 0
-      }, .2)
+    gsap.to(".hero-content", {
 
-      .to(".frame-3", {
-        y: 0
-      }, .45)
+      y: 50,
+      opacity: .25,
 
-      .to(".frame-1", {
-        yPercent: -20,
-        scale: .88,
-        opacity: .55
-      }, .55)
+      ease: "none",
 
-      .to(".frame-2", {
-        xPercent: -35,
-        scale: .88
-      }, .65)
-
-      .to(".frame-3", {
-        xPercent: 55,
-        scale: .94
-      }, .7)
-
-      .to(".frame-4", {
-        scale: 1,
-        opacity: 1
-      }, .75)
-
-      .to(".showcase-copy", {
-        yPercent: -20,
-        opacity: .25
-      }, .7);
-
-    gsap.to(".wipe-yellow", {
-      y: 0,
       scrollTrigger: {
-        trigger: ".wipe-wrap",
-        start: "top top",
-        end: "65% top",
-        scrub: 1
-      }
-    });
 
-    gsap.to(".wipe-content", {
-      opacity: 1,
-      y: -20,
-      scrollTrigger: {
-        trigger: ".wipe-wrap",
-        start: "35% top",
-        end: "70% top",
-        scrub: 1
-      }
-    });
-
-    gsap.utils.toArray(".service-row").forEach((row, index) => {
-      gsap.from(row, {
-        opacity: 0,
-        x: index % 2 === 0 ? -60 : 60,
-        duration: .8,
-        scrollTrigger: {
-          trigger: row,
-          start: "top 88%"
-        }
-      });
-    });
-
-    gsap.to(".cta-bg", {
-      xPercent: -18,
-      scrollTrigger: {
-        trigger: ".cta",
-        start: "top bottom",
+        trigger: ".hero",
+        start: "30% top",
         end: "bottom top",
         scrub: 1
+
       }
+
     });
 
-    gsap.from(".cta-content", {
-      y: 80,
+
+    /* SECTION HEADINGS */
+
+    gsap.utils
+      .toArray(".section-title")
+      .forEach((title) => {
+
+        gsap.from(title, {
+
+          yPercent: 100,
+
+          duration: 1.15,
+          ease: "power4.out",
+
+          scrollTrigger: {
+
+            trigger: title,
+            start: "top 88%",
+            once: true
+
+          }
+
+        });
+
+      });
+
+
+    /* INTRO COPY */
+
+    gsap.from(".intro-copy", {
+
       opacity: 0,
+      y: 35,
+
       duration: 1,
+
+      ease: "power3.out",
+
       scrollTrigger: {
-        trigger: ".cta",
-        start: "top 70%"
+
+        trigger: ".intro-copy",
+        start: "top 88%"
+
       }
+
     });
+
+
+    /* PORTFOLIO CARDS */
+
+    gsap.utils
+      .toArray(".photo-card")
+      .forEach((card) => {
+
+        gsap.from(card, {
+
+          opacity: 0,
+          y: 50,
+          scale: .97,
+
+          duration: 1.1,
+
+          ease: "power3.out",
+
+          scrollTrigger: {
+
+            trigger: card,
+            start: "top 88%"
+
+          }
+
+        });
+
+      });
+
+
+    /* IMAGE PARALLAX */
+
+    gsap.utils
+      .toArray(".photo-inner")
+      .forEach((image) => {
+
+        gsap.fromTo(
+
+          image,
+
+          {
+            yPercent: -4
+          },
+
+          {
+            yPercent: 4,
+
+            ease: "none",
+
+            scrollTrigger: {
+
+              trigger: image.parentElement,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.4
+
+            }
+
+          }
+
+        );
+
+      });
+
+
+    /* STATEMENT */
+
+    gsap.from(".statement-content", {
+
+      opacity: 0,
+      y: 60,
+
+      duration: 1.2,
+
+      ease: "power3.out",
+
+      scrollTrigger: {
+
+        trigger: ".statement",
+        start: "top 70%"
+
+      }
+
+    });
+
+
+    gsap.to(".statement-bg", {
+
+      xPercent: -10,
+
+      ease: "none",
+
+      scrollTrigger: {
+
+        trigger: ".statement",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.5
+
+      }
+
+    });
+
+
+    /* SERVICES */
+
+    gsap.utils
+      .toArray(".service-row")
+      .forEach((row) => {
+
+        gsap.from(row, {
+
+          opacity: 0,
+          y: 30,
+
+          duration: .9,
+
+          ease: "power3.out",
+
+          scrollTrigger: {
+
+            trigger: row,
+            start: "top 90%"
+
+          }
+
+        });
+
+      });
+
+
+    /* CTA */
+
+    gsap.from(".cta-yellow", {
+
+      yPercent: 8,
+
+      ease: "none",
+
+      scrollTrigger: {
+
+        trigger: ".cta-wrap",
+        start: "top bottom",
+        end: "top top",
+        scrub: 1.3
+
+      }
+
+    });
+
+
+    gsap.from(".cta-inner", {
+
+      opacity: 0,
+      y: 50,
+
+      duration: 1.1,
+
+      ease: "power3.out",
+
+      scrollTrigger: {
+
+        trigger: ".cta-inner",
+        start: "top 80%"
+
+      }
+
+    });
+
   }
+
 </script>
 
 </body>
