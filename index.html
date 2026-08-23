@@ -48,7 +48,7 @@ property="og:site_name"
 content="RokkaMedia"
 >
 
-<!-- TWITTER / SOCIAL -->
+<!-- SOCIAL -->
 
 <meta
 name="twitter:card"
@@ -1010,7 +1010,7 @@ autoplay
 muted
 loop
 playsinline
-poster="RK1.png"
+preload="auto"
 >
 
 <source
@@ -1743,7 +1743,6 @@ WhatsApp us
 
 <script>
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -1755,24 +1754,17 @@ window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 window.addEventListener("scroll",()=>{
 
-
 const nav=document.querySelector("nav");
-
 
 if(window.scrollY>70){
 
-
 nav.classList.add("scrolled");
-
 
 }else{
 
-
 nav.classList.remove("scrolled");
 
-
 }
-
 
 });
 
@@ -1787,9 +1779,7 @@ const heroTimeline=gsap.timeline();
 
 heroTimeline
 
-
 .from(".hero h1",{
-
 
 yPercent:105,
 
@@ -1797,12 +1787,10 @@ duration:1.15,
 
 ease:"power4.out"
 
-
 })
 
 
 .from(".eyebrow",{
-
 
 opacity:0,
 
@@ -1812,12 +1800,10 @@ duration:.65,
 
 ease:"power3.out"
 
-
 },"-=.65")
 
 
 .from(".hero p",{
-
 
 opacity:0,
 
@@ -1827,12 +1813,10 @@ duration:.75,
 
 ease:"power3.out"
 
-
 },"-=.45")
 
 
 .from(".buttons",{
-
 
 opacity:0,
 
@@ -1842,15 +1826,12 @@ duration:.7,
 
 ease:"power3.out"
 
-
 },"-=.5");
 
 
-
-/* SUBTLE HERO PARALLAX */
+/* HERO PARALLAX */
 
 gsap.to(".hero-video",{
-
 
 yPercent:5,
 
@@ -1858,9 +1839,7 @@ scale:1,
 
 ease:"none",
 
-
 scrollTrigger:{
-
 
 trigger:".hero",
 
@@ -1870,18 +1849,14 @@ end:"bottom top",
 
 scrub:1.5
 
-
 }
 
-
 });
-
 
 
 /* HERO CONTENT FADE */
 
 gsap.to(".hero-content",{
-
 
 y:30,
 
@@ -1889,9 +1864,7 @@ opacity:.45,
 
 ease:"none",
 
-
 scrollTrigger:{
-
 
 trigger:".hero",
 
@@ -1901,21 +1874,16 @@ end:"bottom top",
 
 scrub:1.4
 
-
 }
 
-
 });
-
 
 
 /* HEADLINE REVEALS */
 
 gsap.utils.toArray(".reveal-title").forEach(title=>{
 
-
 gsap.from(title,{
-
 
 yPercent:105,
 
@@ -1923,9 +1891,7 @@ duration:1.05,
 
 ease:"power4.out",
 
-
 scrollTrigger:{
-
 
 trigger:title,
 
@@ -1933,24 +1899,18 @@ start:"top 88%",
 
 once:true
 
-
 }
 
-
 });
 
-
 });
-
 
 
 /* COPY REVEALS */
 
 gsap.utils.toArray(".reveal-copy").forEach(copy=>{
 
-
 gsap.from(copy,{
-
 
 opacity:0,
 
@@ -1960,9 +1920,7 @@ duration:.9,
 
 ease:"power3.out",
 
-
 scrollTrigger:{
-
 
 trigger:copy,
 
@@ -1970,24 +1928,18 @@ start:"top 90%",
 
 once:true
 
-
 }
 
-
 });
 
-
 });
-
 
 
 /* SERVICES */
 
 gsap.utils.toArray(".service").forEach((service,index)=>{
 
-
 gsap.from(service,{
-
 
 opacity:0,
 
@@ -1999,9 +1951,7 @@ delay:index*.04,
 
 ease:"power3.out",
 
-
 scrollTrigger:{
-
 
 trigger:service,
 
@@ -2009,24 +1959,18 @@ start:"top 92%",
 
 once:true
 
-
 }
 
-
 });
 
-
 });
-
 
 
 /* PORTFOLIO REVEALS */
 
 gsap.utils.toArray(".portfolio-item").forEach(item=>{
 
-
 gsap.from(item,{
-
 
 opacity:0,
 
@@ -2038,9 +1982,7 @@ duration:1,
 
 ease:"power3.out",
 
-
 scrollTrigger:{
-
 
 trigger:item,
 
@@ -2048,32 +1990,24 @@ start:"top 90%",
 
 once:true
 
-
 }
 
-
 });
 
-
 });
-
 
 
 /* PORTFOLIO PARALLAX */
 
 gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 
-
 gsap.to(image,{
-
 
 yPercent:7,
 
 ease:"none",
 
-
 scrollTrigger:{
-
 
 trigger:image.parentElement,
 
@@ -2083,21 +2017,16 @@ end:"bottom top",
 
 scrub:1.8
 
-
 }
 
-
 });
 
-
 });
-
 
 
 /* YELLOW STATEMENT */
 
 gsap.from(".statement-inner",{
-
 
 opacity:0,
 
@@ -2107,9 +2036,7 @@ duration:1,
 
 ease:"power3.out",
 
-
 scrollTrigger:{
-
 
 trigger:".statement",
 
@@ -2117,21 +2044,16 @@ start:"top 72%",
 
 once:true
 
-
 }
 
-
 });
-
 
 
 /* PROCESS CARDS */
 
 gsap.utils.toArray(".process-card").forEach((card,index)=>{
 
-
 gsap.from(card,{
-
 
 opacity:0,
 
@@ -2143,9 +2065,7 @@ delay:index*.07,
 
 ease:"power3.out",
 
-
 scrollTrigger:{
-
 
 trigger:card,
 
@@ -2153,21 +2073,16 @@ start:"top 90%",
 
 once:true
 
-
 }
 
-
 });
 
-
 });
-
 
 
 /* CONTACT */
 
 gsap.from(".contact-inner",{
-
 
 opacity:0,
 
@@ -2177,9 +2092,7 @@ duration:1,
 
 ease:"power3.out",
 
-
 scrollTrigger:{
-
 
 trigger:".contact",
 
@@ -2187,26 +2100,20 @@ start:"top 72%",
 
 once:true
 
-
 }
 
-
 });
-
 
 
 /* BACKGROUND ROKKA */
 
 gsap.to(".contact-bg",{
 
-
 xPercent:-6,
 
 ease:"none",
 
-
 scrollTrigger:{
-
 
 trigger:".contact",
 
@@ -2216,9 +2123,7 @@ end:"bottom top",
 
 scrub:2
 
-
 }
-
 
 });
 
