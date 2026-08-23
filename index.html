@@ -6,33 +6,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hospitality Content Creation & Restaurant Photography | RokkaMedia</title>
+<!-- =========================
+     SEO
+========================= -->
+
+<title>Hospitality Content Creation & Restaurant Photography London | RokkaMedia</title>
 
 <meta
 name="description"
-content="RokkaMedia creates photography, short-form video and social media content for restaurants, bars and hospitality brands in London."
+content="RokkaMedia is a London hospitality content studio creating restaurant photography, short-form video and social media content for restaurants, bars and venues."
 >
 
-<meta
-name="robots"
-content="index, follow"
->
+<meta name="robots" content="index, follow">
 
 <link
 rel="canonical"
 href="https://www.rokkamedia.com/"
 >
 
+<!-- OPEN GRAPH -->
+
 <meta property="og:type" content="website">
 
 <meta
 property="og:title"
-content="RokkaMedia | Hospitality Content Creation"
+content="RokkaMedia | Hospitality Content Creation London"
 >
 
 <meta
 property="og:description"
-content="Photography, video and social-first content for restaurants, bars and hospitality brands."
+content="Restaurant photography, short-form video and social media content for hospitality brands in London."
 >
 
 <meta
@@ -41,13 +44,59 @@ content="https://www.rokkamedia.com/"
 >
 
 <meta
+property="og:site_name"
+content="RokkaMedia"
+>
+
+<!-- TWITTER / SOCIAL -->
+
+<meta
 name="twitter:card"
 content="summary_large_image"
 >
 
+<meta
+name="twitter:title"
+content="RokkaMedia | Hospitality Content Creation"
+>
+
+<meta
+name="twitter:description"
+content="Photography, video and social-first content for restaurants, bars and hospitality brands."
+>
+
+<!-- STRUCTURED DATA -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "RokkaMedia",
+  "url": "https://www.rokkamedia.com/",
+  "email": "info@rokkamedia.com",
+  "description": "London hospitality content studio specialising in restaurant photography, short-form video, hospitality videography and social media content.",
+  "areaServed": {
+    "@type": "City",
+    "name": "London"
+  },
+  "serviceType": [
+    "Restaurant Photography",
+    "Hospitality Photography",
+    "Short-form Video Content",
+    "Hospitality Video Production",
+    "Social Media Content Creation",
+    "Content Days"
+  ]
+}
+</script>
+
+<!-- ANIMATION LIBRARIES -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
 <style>
 
 /* =========================
@@ -100,11 +149,19 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.5),
+transparent
+);
+
 transition:.4s ease;
 }
 
 nav.scrolled{
-background:rgba(7,7,7,.78);
+background:rgba(7,7,7,.82);
+
 backdrop-filter:blur(15px);
 -webkit-backdrop-filter:blur(15px);
 
@@ -112,24 +169,32 @@ border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .logo img{
-width:105px;
+width:130px;
+height:auto;
+
+filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));
 }
 
 .nav-button{
 font-size:12px;
+font-weight:700;
 
 border:1px solid rgba(255,255,255,.45);
 
-padding:11px 17px;
+padding:11px 18px;
 
 border-radius:100px;
 
-transition:.3s ease;
+transition:
+background .3s ease,
+color .3s ease,
+transform .3s ease;
 }
 
 .nav-button:hover{
 background:#fff;
 color:#000;
+transform:translateY(-2px);
 }
 
 
@@ -166,15 +231,17 @@ position:absolute;
 inset:0;
 
 background:
+
 linear-gradient(
 to top,
 rgba(0,0,0,.96) 2%,
-rgba(0,0,0,.48) 48%,
+rgba(0,0,0,.50) 48%,
 rgba(0,0,0,.12)
 ),
+
 linear-gradient(
 to right,
-rgba(0,0,0,.4),
+rgba(0,0,0,.42),
 transparent 65%
 );
 }
@@ -217,7 +284,7 @@ color:#FFD400;
 .hero p{
 margin-top:25px;
 
-max-width:550px;
+max-width:610px;
 
 font-size:17px;
 line-height:1.65;
@@ -234,37 +301,26 @@ margin-top:30px;
 }
 
 .button-primary{
+display:inline-block;
+
 background:#FFD400;
 color:#000;
 
 font-weight:800;
 
-padding:15px 22px;
+padding:15px 23px;
 
 border-radius:100px;
 
-transition:.3s ease;
+transition:
+transform .3s ease,
+background .3s ease;
 }
 
 .button-primary:hover{
-transform:translateY(-2px);
-}
+transform:translateY(-3px);
 
-.button-secondary{
-border:1px solid rgba(255,255,255,.4);
-
-padding:15px 22px;
-
-border-radius:100px;
-
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-
-transition:.3s ease;
-}
-
-.button-secondary:hover{
-background:rgba(255,255,255,.1);
+background:#ffe033;
 }
 
 
@@ -306,7 +362,7 @@ color:#969696;
 font-size:17px;
 line-height:1.75;
 
-max-width:640px;
+max-width:700px;
 
 margin-top:30px;
 }
@@ -323,7 +379,7 @@ margin-top:65px;
 .service{
 border-top:1px solid #292929;
 
-padding:28px 0;
+padding:30px 0;
 
 display:grid;
 
@@ -343,6 +399,7 @@ padding-top:7px;
 
 .service h3{
 font-size:27px;
+
 letter-spacing:-1px;
 }
 
@@ -353,7 +410,7 @@ line-height:1.65;
 
 font-size:14px;
 
-max-width:400px;
+max-width:430px;
 }
 
 
@@ -378,7 +435,7 @@ margin-bottom:65px;
 }
 
 .work-intro p{
-max-width:420px;
+max-width:440px;
 
 color:#8d8d8d;
 
@@ -386,7 +443,7 @@ line-height:1.7;
 }
 
 
-/* MAIN PORTFOLIO IMAGE */
+/* LARGE PORTFOLIO IMAGE */
 
 .portfolio-main{
 height:min(72vw,780px);
@@ -530,7 +587,7 @@ font-size:17px;
 
 line-height:1.7;
 
-max-width:600px;
+max-width:650px;
 
 margin-top:30px;
 }
@@ -561,7 +618,9 @@ border-radius:18px;
 
 min-height:230px;
 
-transition:.35s ease;
+transition:
+transform .35s ease,
+border-color .35s ease;
 }
 
 .process-card:hover{
@@ -637,7 +696,7 @@ line-height:.9;
 
 letter-spacing:-4px;
 
-max-width:850px;
+max-width:900px;
 
 margin:auto;
 }
@@ -645,7 +704,7 @@ margin:auto;
 .contact p{
 color:#8d8d8d;
 
-max-width:560px;
+max-width:600px;
 
 margin:25px auto;
 
@@ -667,11 +726,15 @@ border-radius:100px;
 
 margin-top:10px;
 
-transition:.3s ease;
+transition:
+transform .3s ease,
+background .3s ease;
 }
 
 .contact-button:hover{
 transform:translateY(-3px);
+
+background:#ffe033;
 }
 
 
@@ -759,7 +822,7 @@ padding:15px 5%;
 }
 
 .logo img{
-width:90px;
+width:112px;
 }
 
 .hero{
@@ -774,6 +837,8 @@ letter-spacing:-3px;
 
 .hero p{
 font-size:15px;
+
+max-width:520px;
 }
 
 section.content{
@@ -787,7 +852,7 @@ letter-spacing:-2.5px;
 }
 
 
-/* SERVICES MOBILE */
+/* SERVICES */
 
 .service{
 grid-template-columns:45px 1fr;
@@ -798,7 +863,7 @@ grid-column:2;
 }
 
 
-/* WORK MOBILE */
+/* WORK */
 
 .work-intro{
 display:block;
@@ -834,21 +899,21 @@ margin-top:14px;
 }
 
 
-/* PROCESS MOBILE */
+/* PROCESS */
 
 .process-grid{
 grid-template-columns:1fr;
 }
 
 
-/* STATEMENT MOBILE */
+/* STATEMENT */
 
 .statement{
 min-height:560px;
 }
 
 
-/* WHATSAPP MOBILE */
+/* WHATSAPP */
 
 .whatsapp-button{
 right:15px;
@@ -867,7 +932,7 @@ height:21px;
 }
 
 
-/* FOOTER MOBILE */
+/* FOOTER */
 
 footer{
 flex-direction:column;
@@ -906,11 +971,15 @@ transition:none!important;
 
 <nav>
 
-<a href="#" class="logo">
+<a
+href="/"
+class="logo"
+aria-label="RokkaMedia home"
+>
 
 <img
 src="ROKKA.png"
-alt="RokkaMedia"
+alt="RokkaMedia hospitality content studio"
 >
 
 </a>
@@ -941,6 +1010,7 @@ autoplay
 muted
 loop
 playsinline
+poster="RK1.png"
 >
 
 <source
@@ -959,12 +1029,13 @@ type="video/mp4"
 
 <div class="eyebrow">
 
-HOSPITALITY CONTENT STUDIO
+LONDON HOSPITALITY CONTENT STUDIO
 
 </div>
 
 
 <div class="hero-title-mask">
+
 
 <h1>
 
@@ -980,14 +1051,15 @@ ELEVATE.
 
 </h1>
 
+
 </div>
 
 
 <p>
 
-Social-first photography and video for restaurants,
-bars and hospitality brands that want content people
-actually stop scrolling for.
+Restaurant photography, short-form video and social media
+content for hospitality brands that want to stand out,
+build their presence and stop the scroll.
 
 </p>
 
@@ -1001,16 +1073,6 @@ class="button-primary"
 >
 
 View our work
-
-</a>
-
-
-<a
-href="mailto:info@rokkamedia.com?subject=RokkaMedia%20Enquiry"
-class="button-secondary"
->
-
-Let's talk
 
 </a>
 
@@ -1040,6 +1102,7 @@ WHAT WE DO
 
 <div class="title-mask">
 
+
 <h2 class="big-copy reveal-title">
 
 Your food looks good.<br>
@@ -1048,14 +1111,19 @@ Your content should too.
 
 </h2>
 
+
 </div>
 
 
 <p class="body-copy reveal-copy">
 
-RokkaMedia creates premium photo and video content for
-hospitality brands — designed specifically for the way
-people discover restaurants, bars and venues today.
+RokkaMedia is a London hospitality content studio specialising
+in restaurant photography, short-form video and social media
+content for restaurants, bars and hospitality brands.
+
+We create content designed to showcase your food, atmosphere
+and customer experience in a way that makes people want to
+discover your venue.
 
 </p>
 
@@ -1065,28 +1133,34 @@ people discover restaurants, bars and venues today.
 
 <div class="service">
 
+
 <div class="service-number">
 
 01
 
 </div>
 
+
 <h3>
 
-Short-form Content
+Short-form Social Content
 
 </h3>
 
+
 <p>
 
-Reels, TikToks and social-first video designed around your brand.
+Reels, TikToks and social-first video created for restaurants,
+bars and hospitality brands.
 
 </p>
+
 
 </div>
 
 
 <div class="service">
+
 
 <div class="service-number">
 
@@ -1094,22 +1168,28 @@ Reels, TikToks and social-first video designed around your brand.
 
 </div>
 
+
 <h3>
 
-Photography
+Restaurant Photography
 
 </h3>
 
+
 <p>
 
-Food, drinks, interiors and lifestyle photography created to make your venue stand out.
+Restaurant and hospitality photography covering food, drinks,
+interiors and lifestyle imagery — created to make your venue
+stand out online.
 
 </p>
+
 
 </div>
 
 
 <div class="service">
+
 
 <div class="service-number">
 
@@ -1117,22 +1197,27 @@ Food, drinks, interiors and lifestyle photography created to make your venue sta
 
 </div>
 
+
 <h3>
 
-Video Production
+Hospitality Video Production
 
 </h3>
 
+
 <p>
 
-Cinematic promotional videos and social campaigns built around your venue.
+Cinematic restaurant and hospitality videography for social media,
+promotional campaigns and branded content.
 
 </p>
+
 
 </div>
 
 
 <div class="service">
+
 
 <div class="service-number">
 
@@ -1140,17 +1225,21 @@ Cinematic promotional videos and social campaigns built around your venue.
 
 </div>
 
+
 <h3>
 
 Content Days
 
 </h3>
 
+
 <p>
 
-One shoot. A bank of polished content ready to use throughout the month.
+One focused shoot designed to create a bank of professional
+photo and video content for your hospitality brand.
 
 </p>
+
 
 </div>
 
@@ -1186,6 +1275,7 @@ SELECTED WORK
 
 <div class="title-mask">
 
+
 <h2 class="big-copy reveal-title">
 
 Made for<br>
@@ -1193,6 +1283,7 @@ Made for<br>
 the scroll.
 
 </h2>
+
 
 </div>
 
@@ -1202,8 +1293,8 @@ the scroll.
 
 <p>
 
-A selection of hospitality content created to capture
-the food, atmosphere and experience behind the venue.
+A selection of restaurant and hospitality content created
+to capture the food, atmosphere and experience behind each venue.
 
 </p>
 
@@ -1218,7 +1309,8 @@ the food, atmosphere and experience behind the venue.
 
 <img
 src="RK1.png"
-alt="RokkaMedia food photography"
+alt="Restaurant food photography by RokkaMedia"
+loading="lazy"
 >
 
 
@@ -1242,7 +1334,8 @@ Food Photography
 
 <img
 src="RK4.png"
-alt="RokkaMedia hospitality photography"
+alt="Hospitality photography by RokkaMedia"
+loading="lazy"
 >
 
 
@@ -1261,7 +1354,8 @@ Hospitality
 
 <img
 src="RK5.png"
-alt="RokkaMedia social content"
+alt="Restaurant social media content by RokkaMedia"
+loading="lazy"
 >
 
 
@@ -1288,7 +1382,8 @@ Social Content
 
 <img
 src="RK2.png"
-alt="RokkaMedia photography"
+alt="Restaurant photography London by RokkaMedia"
+loading="lazy"
 >
 
 
@@ -1307,7 +1402,8 @@ Photography
 
 <img
 src="RK7.png"
-alt="RokkaMedia food and drink content"
+alt="Food and drink photography by RokkaMedia"
+loading="lazy"
 >
 
 
@@ -1355,8 +1451,11 @@ PEOPLE HUNGRY.
 
 <p class="statement-copy">
 
-Hospitality is visual. We create content that captures
-the food, atmosphere and experience behind your brand.
+Hospitality is visual.
+
+We create photography and video that captures the food,
+atmosphere and experience behind your brand — giving potential
+customers a reason to stop scrolling and discover your venue.
 
 </p>
 
@@ -1418,7 +1517,7 @@ Let's Talk
 
 <p>
 
-Tell us about your venue, your brand and what you want to achieve.
+Tell us about your venue, your brand and what you want your content to achieve.
 
 </p>
 
@@ -1445,7 +1544,7 @@ We Shoot
 
 <p>
 
-We come to your venue and capture the food, people and atmosphere.
+We come to your venue and capture the food, people, atmosphere and experience.
 
 </p>
 
@@ -1472,7 +1571,7 @@ We Create
 
 <p>
 
-Your content is professionally edited and optimised for social.
+Your photography and video content is professionally edited and optimised for social.
 
 </p>
 
@@ -1499,7 +1598,7 @@ We Post
 
 <p>
 
-We get your content live and your brand looking its best across social.
+We get your content live and your hospitality brand looking its best across social.
 
 </p>
 
@@ -1551,8 +1650,10 @@ VENUE STAND OUT?
 
 <p>
 
-Whether you need a content day, photography or short-form
-video, let's create something worth stopping for.
+Looking for restaurant photography, hospitality video
+or short-form social content in London?
+
+Let's create something worth stopping for.
 
 </p>
 
@@ -1589,7 +1690,7 @@ LET'S TALK →
 
 <div>
 
-Create. Capture. Elevate.
+Hospitality Content Creation • London
 
 </div>
 
@@ -1958,7 +2059,7 @@ once:true
 
 
 
-/* PORTFOLIO IMAGE PARALLAX */
+/* PORTFOLIO PARALLAX */
 
 gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 
@@ -2094,7 +2195,7 @@ once:true
 
 
 
-/* BACKGROUND ROKKA MOVEMENT */
+/* BACKGROUND ROKKA */
 
 gsap.to(".contact-bg",{
 
