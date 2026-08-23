@@ -1,534 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>RokkaMedia | Hospitality Content Creation</title>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #070707;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img,
-    video {
-      width: 100%;
-      display: block;
-    }
-
-    /* NAV */
-
-    nav {
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      width: 100%;
-      padding: 20px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background .4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(7,7,7,.72);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .logo img {
-      width: 105px;
-    }
-
-    .nav-button {
-      border: 1px solid rgba(255,255,255,.4);
-      padding: 11px 17px;
-      border-radius: 100px;
-      font-size: 12px;
-      letter-spacing: .5px;
-      transition: .3s ease;
-    }
-
-    .nav-button:hover {
-      background: white;
-      color: black;
-    }
-
-    /* HERO */
-
-    .hero {
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      padding: 0 5% 65px;
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 105%;
-      object-fit: cover;
-      transform: scale(1.04);
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.94) 0%,
-          rgba(0,0,0,.52) 40%,
-          rgba(0,0,0,.12) 75%
-        );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      max-width: 1050px;
-    }
-
-    .eyebrow {
-      color: #FFD400;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      margin-bottom: 18px;
-    }
-
-    .hero-line {
-      overflow: hidden;
-    }
-
-    .hero-word {
-      display: block;
-      font-size: clamp(60px, 10vw, 140px);
-      line-height: .82;
-      letter-spacing: -6px;
-      font-weight: 900;
-    }
-
-    .yellow {
-      color: #FFD400;
-    }
-
-    .hero-sub {
-      max-width: 570px;
-      color: #d1d1d1;
-      font-size: 17px;
-      line-height: 1.65;
-      margin-top: 28px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #FFD400;
-      color: black;
-      font-weight: 800;
-      padding: 15px 23px;
-      border-radius: 100px;
-      transition: .3s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,.35);
-      padding: 15px 23px;
-      border-radius: 100px;
-      backdrop-filter: blur(10px);
-    }
-
-    /* GENERAL */
-
-    section {
-      padding: 120px 5%;
-    }
-
-    .section-label {
-      color: #FFD400;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      margin-bottom: 22px;
-    }
-
-    .section-title-wrap {
-      overflow: hidden;
-    }
-
-    .section-title {
-      font-size: clamp(48px, 7vw, 95px);
-      letter-spacing: -4px;
-      line-height: .9;
-      max-width: 1000px;
-    }
-
-    /* INTRO */
-
-    .intro {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .intro-copy {
-      margin-top: 40px;
-      margin-left: auto;
-      max-width: 630px;
-      font-size: 18px;
-      line-height: 1.7;
-      color: #999;
-    }
-
-    /* PORTFOLIO */
-
-    .portfolio {
-      background: #0b0b0b;
-    }
-
-    .portfolio-grid {
-      margin-top: 70px;
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-    }
-
-    .photo-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 22px;
-      background: #111;
-      min-height: 620px;
-    }
-
-    .photo-card.wide {
-      grid-column: 1 / -1;
-      min-height: 720px;
-    }
-
-    .photo-card.tall {
-      min-height: 780px;
-    }
-
-    .photo-inner {
-      width: 100%;
-      height: 112%;
-      position: absolute;
-      top: -6%;
-    }
-
-    .photo-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .photo-label {
-      position: absolute;
-      bottom: 22px;
-      left: 22px;
-
-      background: rgba(0,0,0,.6);
-      backdrop-filter: blur(12px);
-
-      border: 1px solid rgba(255,255,255,.12);
-
-      padding: 11px 15px;
-      border-radius: 100px;
-
-      font-size: 12px;
-    }
-
-    /* STATEMENT */
-
-    .statement {
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .statement-bg {
-      position: absolute;
-      left: -5%;
-      font-size: clamp(130px, 24vw, 350px);
-      font-weight: 900;
-      letter-spacing: -15px;
-      color: rgba(255,255,255,.025);
-      white-space: nowrap;
-    }
-
-    .statement-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .statement h2 {
-      font-size: clamp(55px, 9vw, 125px);
-      max-width: 1100px;
-      line-height: .84;
-      letter-spacing: -6px;
-    }
-
-    .statement p {
-      margin-top: 30px;
-      max-width: 600px;
-      color: #929292;
-      font-size: 18px;
-      line-height: 1.7;
-    }
-
-    /* SERVICES */
-
-    .services {
-      background: #070707;
-    }
-
-    .service-list {
-      margin-top: 70px;
-    }
-
-    .service-row {
-      display: grid;
-      grid-template-columns: 70px 1fr auto;
-      align-items: center;
-      gap: 20px;
-
-      border-top: 1px solid #242424;
-      padding: 32px 0;
-
-      transition:
-        padding .35s ease,
-        background .35s ease;
-    }
-
-    .service-row:hover {
-      padding-left: 15px;
-      padding-right: 15px;
-      background: rgba(255,255,255,.025);
-    }
-
-    .service-number {
-      color: #555;
-      font-size: 12px;
-    }
-
-    .service-row h3 {
-      font-size: clamp(27px, 3.5vw, 46px);
-      letter-spacing: -2px;
-    }
-
-    .service-row p {
-      max-width: 340px;
-      color: #858585;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    /* YELLOW CTA */
-
-    .cta-wrap {
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-      background: #070707;
-    }
-
-    .cta-yellow {
-      min-height: 100vh;
-      background: #FFD400;
-      color: black;
-
-      display: flex;
-      align-items: center;
-
-      padding: 100px 5%;
-    }
-
-    .cta-inner {
-      width: 100%;
-    }
-
-    .cta-small {
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-    }
-
-    .cta h2 {
-      font-size: clamp(60px, 10vw, 135px);
-      line-height: .82;
-      letter-spacing: -6px;
-      max-width: 1100px;
-    }
-
-    .cta p {
-      max-width: 600px;
-      margin-top: 28px;
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    .cta a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 16px 25px;
-      background: black;
-      color: white;
-      border-radius: 100px;
-      font-weight: 800;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 30px 5%;
-      border-top: 1px solid #202020;
-
-      display: flex;
-      justify-content: space-between;
-
-      color: #686868;
-      font-size: 13px;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      nav {
-        padding: 16px 5%;
-      }
-
-      .logo img {
-        width: 90px;
-      }
-
-      .hero {
-        height: 100svh;
-        padding-bottom: 42px;
-      }
-
-      .hero-word {
-        letter-spacing: -3px;
-      }
-
-      .hero-sub {
-        font-size: 15px;
-      }
-
-      section {
-        padding: 85px 5%;
-      }
-
-      .section-title,
-      .statement h2,
-      .cta h2 {
-        letter-spacing: -3px;
-      }
-
-      .intro {
-        min-height: auto;
-      }
-
-      .intro-copy {
-        margin-left: 0;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .photo-card,
-      .photo-card.tall,
-      .photo-card.wide {
-        grid-column: auto;
-        min-height: 520px;
-      }
-
-      .service-row {
-        grid-template-columns: 45px 1fr;
-      }
-
-      .service-row p {
-        grid-column: 2;
-      }
-
-      .service-row:hover {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      * {
-        animation: none !important;
-        transition: none !important;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RokkaMedia | Hospitality Content Creation</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#070707;
+color:#fff;
+overflow-x:hidden;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+img,video{
+display:block;
+width:100%;
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+padding:18px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+transition:.4s ease;
+}
+
+nav.scrolled{
+background:rgba(7,7,7,.78);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.logo img{
+width:105px;
+}
+
+.nav-button{
+font-size:12px;
+border:1px solid rgba(255,255,255,.45);
+padding:11px 17px;
+border-radius:100px;
+transition:.3s ease;
+}
+
+.nav-button:hover{
+background:#fff;
+color:#000;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+position:relative;
+overflow:hidden;
+display:flex;
+align-items:flex-end;
+padding:140px 5% 65px;
+}
+
+.hero-video{
+position:absolute;
+inset:0;
+width:100%;
+height:108%;
+object-fit:cover;
+transform:scale(1.03);
+}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+background:
+linear-gradient(to top,rgba(0,0,0,.96) 2%,rgba(0,0,0,.48) 48%,rgba(0,0,0,.12)),
+linear-gradient(to right,rgba(0,0,0,.4),transparent 65%);
+}
+
+.hero-content{
+position:relative;
+z-index:3;
+max-width:1050px;
+}
+
+.eyebrow{
+color:#FFD400;
+font-size:11px;
+letter-spacing:3px;
+font-weight:800;
+margin-bottom:18px;
+}
+
+.hero-title-mask{
+overflow:hidden;
+}
+
+.hero h1{
+font-size:clamp(56px,10vw,125px);
+line-height:.87;
+letter-spacing:-5px;
+max-width:1000px;
+}
+
+.yellow{
+color:#FFD400;
+}
+
+.hero p{
+margin-top:25px;
+max-width:550px;
+font-size:17px;
+line-height:1.65;
+color:#d0d0d0;
+}
+
+.buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.button-primary{
+background:#FFD400;
+color:#000;
+font-weight:800;
+padding:15px 22px;
+border-radius:100px;
+transition:.3s ease;
+}
+
+.button-primary:hover{
+transform:translateY(-2px);
+}
+
+.button-secondary{
+border:1px solid rgba(255,255,255,.4);
+padding:15px 22px;
+border-radius:100px;
+backdrop-filter:blur(10px);
+}
+
+/* SECTIONS */
+
+section.content{
+padding:110px 5%;
+}
+
+.section-label{
+color:#FFD400;
+font-size:11px;
+letter-spacing:3px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.title-mask{
+overflow:hidden;
+}
+
+.big-copy{
+font-size:clamp(42px,7vw,78px);
+line-height:.95;
+letter-spacing:-3px;
+max-width:900px;
+}
+
+.body-copy{
+color:#969696;
+font-size:17px;
+line-height:1.75;
+max-width:640px;
+margin-top:30px;
+}
+
+/* SERVICES */
+
+.services{
+margin-top:65px;
+}
+
+.service{
+border-top:1px solid #292929;
+padding:28px 0;
+display:grid;
+grid-template-columns:60px 1fr 1fr;
+gap:20px;
+align-items:start;
+}
+
+.service-number{
+font-size:12px;
+color:#666;
+padding-top:7px;
+}
+
+.service h3{
+font-size:27px;
+letter-spacing:-1px;
+}
+
+.service p{
+color:#888;
+line-height:1.65;
+font-size:14px;
+max-width:400px;
+}
+
+.service-line{
+height:1px;
+background:#FFD400;
+width:0%;
+margin-top:27px;
+}
+
+/* WORK */
+
+.work{
+background:#0c0c0c;
+}
+
+.work-intro{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:40px;
+margin-bottom:65px;
+}
+
+.work-intro p{
+max-width:420px;
+color:#8d8d8d;
+line-height:1.7;
+}
+
+/* EDITORIAL PORTFOLIO */
+
+.portfolio-main{
+height:min(72vw,780px);
+border-radius:22px;
+overflow:hidden;
+position:relative;
+}
+
+.portfolio-main img,
+.portfolio-card img{
+height:110%;
+object-fit:cover;
+position:absolute;
+top:-5%;
+left:0;
+}
+
+.image-label{
+position:absolute;
+bottom:22px;
+left:22px;
+z-index:3;
+background:rgba(0,0,0,.62);
+border:1px solid rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+padding:11px 15px;
+border-radius:100px;
+font-size:12px;
+}
+
+.portfolio-pair{
+display:grid;
+grid-template-columns:.8fr 1.2fr;
+gap:18px;
+margin-top:18px;
+align-items:start;
+}
+
+.portfolio-card{
+height:650px;
+border-radius:22px;
+overflow:hidden;
+position:relative;
+}
+
+.portfolio-card.offset{
+margin-top:100px;
+height:760px;
+}
+
+.portfolio-bottom{
+margin-top:18px;
+display:grid;
+grid-template-columns:1.15fr .85fr;
+gap:18px;
+}
+
+.portfolio-bottom .portfolio-card:first-child{
+height:700px;
+}
+
+.portfolio-bottom .portfolio-card:last-child{
+height:570px;
+margin-top:100px;
+}
+
+/* STATEMENT */
+
+.statement{
+background:#FFD400;
+color:#000;
+min-height:620px;
+display:flex;
+align-items:center;
+padding:100px 5%;
+overflow:hidden;
+}
+
+.statement-inner{
+width:100%;
+}
+
+.statement .section-label{
+color:#000;
+}
+
+.statement h2{
+font-size:clamp(52px,9vw,110px);
+line-height:.86;
+letter-spacing:-5px;
+max-width:1050px;
+}
+
+.statement p{
+font-size:17px;
+line-height:1.7;
+max-width:600px;
+margin-top:30px;
+}
+
+/* PROCESS */
+
+.process-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-top:60px;
+}
+
+.process-card{
+background:#101010;
+border:1px solid #191919;
+padding:28px;
+border-radius:18px;
+min-height:230px;
+transition:.35s ease;
+}
+
+.process-card:hover{
+transform:translateY(-5px);
+border-color:#333;
+}
+
+.process-card span{
+color:#FFD400;
+font-size:11px;
+}
+
+.process-card h3{
+font-size:23px;
+margin:35px 0 10px;
+}
+
+.process-card p{
+color:#818181;
+font-size:14px;
+line-height:1.6;
+}
+
+/* CTA */
+
+.contact{
+padding:140px 5%;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.contact-bg{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+font-size:clamp(160px,27vw,400px);
+font-weight:900;
+letter-spacing:-20px;
+color:rgba(255,255,255,.022);
+pointer-events:none;
+}
+
+.contact-inner{
+position:relative;
+z-index:2;
+}
+
+.contact h2{
+font-size:clamp(48px,8vw,95px);
+line-height:.9;
+letter-spacing:-4px;
+max-width:850px;
+margin:auto;
+}
+
+.contact p{
+color:#8d8d8d;
+max-width:560px;
+margin:25px auto;
+line-height:1.7;
+}
+
+.contact-button{
+display:inline-block;
+background:#FFD400;
+color:#000;
+padding:16px 25px;
+font-weight:800;
+border-radius:100px;
+margin-top:10px;
+transition:.3s ease;
+}
+
+.contact-button:hover{
+transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer{
+padding:30px 5%;
+border-top:1px solid #222;
+display:flex;
+justify-content:space-between;
+color:#686868;
+font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+nav{
+padding:15px 5%;
+}
+
+.logo img{
+width:90px;
+}
+
+.hero{
+min-height:100svh;
+padding-bottom:45px;
+}
+
+.hero h1{
+letter-spacing:-3px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+section.content{
+padding:80px 5%;
+}
+
+.big-copy,
+.statement h2,
+.contact h2{
+letter-spacing:-2.5px;
+}
+
+.service{
+grid-template-columns:45px 1fr;
+}
+
+.service p{
+grid-column:2;
+}
+
+.work-intro{
+display:block;
+}
+
+.work-intro p{
+margin-top:25px;
+}
+
+.portfolio-main{
+height:70vh;
+}
+
+.portfolio-pair,
+.portfolio-bottom{
+grid-template-columns:1fr;
+}
+
+.portfolio-card,
+.portfolio-card.offset,
+.portfolio-bottom .portfolio-card:first-child,
+.portfolio-bottom .portfolio-card:last-child{
+height:58vh;
+margin-top:0;
+}
+
+.portfolio-pair,
+.portfolio-bottom{
+gap:14px;
+margin-top:14px;
+}
+
+.process-grid{
+grid-template-columns:1fr;
+}
+
+.statement{
+min-height:560px;
+}
+
+footer{
+flex-direction:column;
+gap:8px;
+}
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+*{
+animation:none!important;
+transition:none!important;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
 <nav>
 
-  <a href="#" class="logo">
-    <img src="ROKKA.png" alt="RokkaMedia">
-  </a>
+<a href="#" class="logo">
+<img src="ROKKA.png" alt="RokkaMedia">
+</a>
 
-  <a href="#contact" class="nav-button">
-    LET'S TALK
-  </a>
+<a href="#contact" class="nav-button">
+LET'S TALK
+</a>
 
 </nav>
 
@@ -537,671 +588,594 @@
 
 <section class="hero">
 
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
-    <source src="annas-thai.mp4" type="video/mp4">
-  </video>
+<video class="hero-video" autoplay muted loop playsinline>
+<source src="annas-thai.mp4" type="video/mp4">
+</video>
 
-  <div class="hero-overlay"></div>
+<div class="hero-overlay"></div>
 
-  <div class="hero-content">
+<div class="hero-content">
 
-    <div class="eyebrow">
-      HOSPITALITY CONTENT STUDIO
-    </div>
+<div class="eyebrow">
+HOSPITALITY CONTENT STUDIO
+</div>
 
-    <div class="hero-line">
-      <span class="hero-word">
-        CREATE.
-      </span>
-    </div>
+<div class="hero-title-mask">
+<h1>
+CREATE.<br>
+CAPTURE.<br>
+<span class="yellow">ELEVATE.</span>
+</h1>
+</div>
 
-    <div class="hero-line">
-      <span class="hero-word">
-        CAPTURE.
-      </span>
-    </div>
+<p>
+Social-first photography and video for restaurants,
+bars and hospitality brands that want content people
+actually stop scrolling for.
+</p>
 
-    <div class="hero-line">
-      <span class="hero-word yellow">
-        ELEVATE.
-      </span>
-    </div>
+<div class="buttons">
 
-    <p class="hero-sub">
+<a href="#work" class="button-primary">
+View our work
+</a>
 
-      Social-first photography and video for restaurants,
-      bars and hospitality brands that want to stand out.
+<a href="#contact" class="button-secondary">
+Book a free call
+</a>
 
-    </p>
+</div>
 
-    <div class="hero-buttons">
-
-      <a href="#work" class="btn-primary">
-        View our work
-      </a>
-
-      <a href="#contact" class="btn-secondary">
-        Book a free call
-      </a>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- INTRO -->
+<!-- WHAT WE DO -->
 
-<section class="intro">
+<section class="content">
 
-  <div class="section-label">
-    ROKKAMEDIA
-  </div>
+<div class="section-label reveal-label">
+WHAT WE DO
+</div>
 
-  <div class="section-title-wrap">
+<div class="title-mask">
+<h2 class="big-copy reveal-title">
+Your food looks good.<br>
+Your content should too.
+</h2>
+</div>
 
-    <h2 class="section-title">
-      GOOD FOOD DESERVES
-      GREAT CONTENT.
-    </h2>
+<p class="body-copy reveal-copy">
+RokkaMedia creates premium photo and video content for
+hospitality brands — designed specifically for the way
+people discover restaurants, bars and venues today.
+</p>
 
-  </div>
+<div class="services">
 
-  <p class="intro-copy">
+<div class="service">
+<div class="service-number">01</div>
+<h3>Short-form Content</h3>
+<p>Reels, TikToks and social-first video designed around your brand.</p>
+</div>
 
-    RokkaMedia creates visual content for hospitality brands
-    that want to look as good online as they do in person.
+<div class="service">
+<div class="service-number">02</div>
+<h3>Photography</h3>
+<p>Food, drinks, interiors and lifestyle photography created to make your venue stand out.</p>
+</div>
 
-    From photography and video to short-form social content,
-    every piece is created with one goal — making people stop.
+<div class="service">
+<div class="service-number">03</div>
+<h3>Video Production</h3>
+<p>Cinematic promotional videos and social campaigns built around your venue.</p>
+</div>
 
-  </p>
+<div class="service">
+<div class="service-number">04</div>
+<h3>Content Days</h3>
+<p>One shoot. A bank of polished content ready to use throughout the month.</p>
+</div>
 
-</section>
-
-
-<!-- PORTFOLIO -->
-
-<section class="portfolio" id="work">
-
-  <div class="section-label">
-    SELECTED WORK
-  </div>
-
-  <div class="section-title-wrap">
-
-    <h2 class="section-title">
-      MADE TO BE
-      NOTICED.
-    </h2>
-
-  </div>
-
-  <div class="portfolio-grid">
-
-    <div class="photo-card wide">
-
-      <div class="photo-inner">
-        <img src="RK1.png" alt="RokkaMedia food photography">
-      </div>
-
-      <div class="photo-label">
-        Food Photography
-      </div>
-
-    </div>
-
-
-    <div class="photo-card tall">
-
-      <div class="photo-inner">
-        <img src="RK4.png" alt="Hospitality photography">
-      </div>
-
-      <div class="photo-label">
-        Hospitality
-      </div>
-
-    </div>
-
-
-    <div class="photo-card">
-
-      <div class="photo-inner">
-        <img src="RK5.png" alt="Restaurant content">
-      </div>
-
-      <div class="photo-label">
-        Social Content
-      </div>
-
-    </div>
-
-
-    <div class="photo-card">
-
-      <div class="photo-inner">
-        <img src="RK2.png" alt="Food photography">
-      </div>
-
-      <div class="photo-label">
-        Photography
-      </div>
-
-    </div>
-
-
-    <div class="photo-card tall">
-
-      <div class="photo-inner">
-        <img src="RK7.png" alt="Food and drink photography">
-      </div>
-
-      <div class="photo-label">
-        Food & Drink
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- STATEMENT -->
+<!-- WORK -->
 
-<section class="statement">
+<section class="content work" id="work">
 
-  <div class="statement-bg">
-    ROKKA
-  </div>
+<div class="work-intro">
 
-  <div class="statement-content">
+<div>
 
-    <div class="section-label">
-      THE IDEA
-    </div>
+<div class="section-label">
+SELECTED WORK
+</div>
 
-    <h2>
-      PEOPLE EAT
-      WITH THEIR
-      <span class="yellow">EYES FIRST.</span>
-    </h2>
+<div class="title-mask">
+<h2 class="big-copy reveal-title">
+Made for<br>the scroll.
+</h2>
+</div>
 
-    <p>
+</div>
 
-      Your content is often someone's first interaction with
-      your venue.
-
-      We make that first impression count.
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section class="services">
-
-  <div class="section-label">
-    WHAT WE DO
-  </div>
-
-  <div class="section-title-wrap">
-
-    <h2 class="section-title">
-      BUILT FOR
-      HOSPITALITY.
-    </h2>
-
-  </div>
-
-  <div class="service-list">
-
-    <div class="service-row">
-
-      <div class="service-number">
-        01
-      </div>
-
-      <h3>
-        Short-form Content
-      </h3>
-
-      <p>
-        Reels, TikToks and social-first video created around your brand.
-      </p>
-
-    </div>
-
-
-    <div class="service-row">
-
-      <div class="service-number">
-        02
-      </div>
-
-      <h3>
-        Photography
-      </h3>
-
-      <p>
-        Food, drink, interiors and lifestyle photography.
-      </p>
-
-    </div>
-
-
-    <div class="service-row">
-
-      <div class="service-number">
-        03
-      </div>
-
-      <h3>
-        Video Production
-      </h3>
-
-      <p>
-        Cinematic promotional content and venue showcases.
-      </p>
-
-    </div>
-
-
-    <div class="service-row">
-
-      <div class="service-number">
-        04
-      </div>
-
-      <h3>
-        Content Days
-      </h3>
-
-      <p>
-        One shoot. A complete library of content ready to use.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CTA -->
-
-<div class="cta-wrap" id="contact">
-
-  <section class="cta-yellow cta">
-
-    <div class="cta-inner">
-
-      <div class="cta-small">
-        LET'S CREATE
-      </div>
-
-      <h2>
-        LET'S MAKE
-        SOMETHING
-        WORTH STOPPING FOR.
-      </h2>
-
-      <p>
-
-        Whether you need photography, video or a full content day,
-        let's talk about what we can create for your venue.
-
-      </p>
-
-      <a href="mailto:hello@rokkamedia.com">
-        Book a free call →
-      </a>
-
-    </div>
-
-  </section>
+<p>
+A selection of hospitality content created to capture
+the food, atmosphere and experience behind the venue.
+</p>
 
 </div>
 
 
+<div class="portfolio-main portfolio-item">
+
+<img src="RK1.png" alt="RokkaMedia food photography">
+
+<div class="image-label">
+Food Photography
+</div>
+
+</div>
+
+
+<div class="portfolio-pair">
+
+<div class="portfolio-card portfolio-item">
+
+<img src="RK4.png" alt="RokkaMedia hospitality photography">
+
+<div class="image-label">
+Hospitality
+</div>
+
+</div>
+
+
+<div class="portfolio-card offset portfolio-item">
+
+<img src="RK5.png" alt="RokkaMedia social content">
+
+<div class="image-label">
+Social Content
+</div>
+
+</div>
+
+</div>
+
+
+<div class="portfolio-bottom">
+
+<div class="portfolio-card portfolio-item">
+
+<img src="RK2.png" alt="RokkaMedia photography">
+
+<div class="image-label">
+Photography
+</div>
+
+</div>
+
+
+<div class="portfolio-card portfolio-item">
+
+<img src="RK7.png" alt="RokkaMedia food and drink content">
+
+<div class="image-label">
+Food & Drink
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- YELLOW STATEMENT -->
+
+<section class="statement">
+
+<div class="statement-inner">
+
+<div class="section-label">
+ROKKAMEDIA
+</div>
+
+<h2 class="statement-title">
+CONTENT THAT MAKES
+PEOPLE <span>HUNGRY.</span>
+</h2>
+
+<p class="statement-copy">
+Hospitality is visual. We create content that captures
+the food, atmosphere and experience behind your brand.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PROCESS -->
+
+<section class="content">
+
+<div class="section-label">
+HOW IT WORKS
+</div>
+
+<div class="title-mask">
+<h2 class="big-copy reveal-title">
+Simple from<br>shoot to scroll.
+</h2>
+</div>
+
+<div class="process-grid">
+
+<div class="process-card">
+<span>01</span>
+<h3>Let's Talk</h3>
+<p>Tell us about your venue, your brand and what you want to achieve.</p>
+</div>
+
+<div class="process-card">
+<span>02</span>
+<h3>We Shoot</h3>
+<p>We come to your venue and capture the food, people and atmosphere.</p>
+</div>
+
+<div class="process-card">
+<span>03</span>
+<h3>We Create</h3>
+<p>Your content is professionally edited and optimised for social.</p>
+</div>
+
+<div class="process-card">
+<span>04</span>
+<h3>You Post</h3>
+<p>Receive polished content ready to publish across your channels.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<div class="contact-bg">
+ROKKA
+</div>
+
+<div class="contact-inner">
+
+<div class="section-label">
+LET'S CREATE
+</div>
+
+<h2>
+READY TO MAKE YOUR
+VENUE STAND OUT?
+</h2>
+
+<p>
+Whether you need a content day, photography or short-form
+video, let's create something worth stopping for.
+</p>
+
+<a href="mailto:hello@rokkamedia.com" class="contact-button">
+Book a free call →
+</a>
+
+</div>
+
+</section>
+
+
 <footer>
 
-  <div>
-    © 2026 RokkaMedia
-  </div>
+<div>
+© 2026 RokkaMedia
+</div>
 
-  <div>
-    Create. Capture. Elevate.
-  </div>
+<div>
+Create. Capture. Elevate.
+</div>
 
 </footer>
 
 
 <script>
 
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
+const reduceMotion =
+window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const reduceMotion =
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* NAV */
 
-  /* NAV */
+window.addEventListener("scroll",()=>{
 
-  window.addEventListener("scroll", () => {
+const nav=document.querySelector("nav");
 
-    const nav = document.querySelector("nav");
+if(window.scrollY>70){
+nav.classList.add("scrolled");
+}else{
+nav.classList.remove("scrolled");
+}
 
-    if (window.scrollY > 50) {
+});
 
-      nav.classList.add("scrolled");
 
-    } else {
+if(!reduceMotion){
 
-      nav.classList.remove("scrolled");
 
-    }
+/* HERO LOAD */
 
-  });
+const heroTimeline=gsap.timeline();
 
+heroTimeline
 
-  if (!reduceMotion) {
+.from(".hero h1",{
+yPercent:105,
+duration:1.15,
+ease:"power4.out"
+})
 
+.from(".eyebrow",{
+opacity:0,
+y:12,
+duration:.65,
+ease:"power3.out"
+},"-=.65")
 
-    /* HERO OPENING */
+.from(".hero p",{
+opacity:0,
+y:18,
+duration:.75,
+ease:"power3.out"
+},"-=.45")
 
-    gsap.from(".hero-word", {
+.from(".buttons",{
+opacity:0,
+y:15,
+duration:.7,
+ease:"power3.out"
+},"-=.5");
 
-      yPercent: 110,
-      duration: 1.25,
-      stagger: .1,
-      ease: "power4.out"
 
-    });
+/* VERY SUBTLE HERO PARALLAX */
 
+gsap.to(".hero-video",{
 
-    gsap.from(
-      ".eyebrow, .hero-sub, .hero-buttons",
-      {
+yPercent:5,
+scale:1,
 
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        stagger: .08,
-        delay: .45,
-        ease: "power3.out"
+ease:"none",
 
-      }
-    );
+scrollTrigger:{
+trigger:".hero",
+start:"top top",
+end:"bottom top",
+scrub:1.5
+}
 
+});
 
-    /* HERO PARALLAX */
 
-    gsap.to(".hero-video", {
+gsap.to(".hero-content",{
 
-      yPercent: 7,
-      scale: 1,
+y:30,
+opacity:.45,
 
-      ease: "none",
+ease:"none",
 
-      scrollTrigger: {
+scrollTrigger:{
+trigger:".hero",
+start:"45% top",
+end:"bottom top",
+scrub:1.4
+}
 
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.2
+});
 
-      }
 
-    });
+/* HEADLINE MASK REVEALS */
 
+gsap.utils.toArray(".reveal-title").forEach(title=>{
 
-    gsap.to(".hero-content", {
+gsap.from(title,{
 
-      y: 50,
-      opacity: .25,
+yPercent:105,
+duration:1.05,
+ease:"power4.out",
 
-      ease: "none",
+scrollTrigger:{
+trigger:title,
+start:"top 88%",
+once:true
+}
 
-      scrollTrigger: {
+});
 
-        trigger: ".hero",
-        start: "30% top",
-        end: "bottom top",
-        scrub: 1
+});
 
-      }
 
-    });
+/* SMALL COPY REVEALS */
 
+gsap.utils.toArray(".reveal-copy").forEach(copy=>{
 
-    /* SECTION HEADINGS */
+gsap.from(copy,{
 
-    gsap.utils
-      .toArray(".section-title")
-      .forEach((title) => {
+opacity:0,
+y:22,
+duration:.9,
+ease:"power3.out",
 
-        gsap.from(title, {
+scrollTrigger:{
+trigger:copy,
+start:"top 90%",
+once:true
+}
 
-          yPercent: 100,
+});
 
-          duration: 1.15,
-          ease: "power4.out",
+});
 
-          scrollTrigger: {
 
-            trigger: title,
-            start: "top 88%",
-            once: true
+/* SERVICES */
 
-          }
+gsap.utils.toArray(".service").forEach((service,index)=>{
 
-        });
+gsap.from(service,{
 
-      });
+opacity:0,
+y:22,
+duration:.8,
+delay:index*.04,
+ease:"power3.out",
 
+scrollTrigger:{
+trigger:service,
+start:"top 92%",
+once:true
+}
 
-    /* INTRO COPY */
+});
 
-    gsap.from(".intro-copy", {
+});
 
-      opacity: 0,
-      y: 35,
 
-      duration: 1,
+/* PORTFOLIO REVEAL */
 
-      ease: "power3.out",
+gsap.utils.toArray(".portfolio-item").forEach(item=>{
 
-      scrollTrigger: {
+gsap.from(item,{
 
-        trigger: ".intro-copy",
-        start: "top 88%"
+opacity:0,
+y:38,
+scale:.985,
+duration:1,
+ease:"power3.out",
 
-      }
+scrollTrigger:{
+trigger:item,
+start:"top 90%",
+once:true
+}
 
-    });
+});
 
+});
 
-    /* PORTFOLIO CARDS */
 
-    gsap.utils
-      .toArray(".photo-card")
-      .forEach((card) => {
+/* VERY LIGHT IMAGE PARALLAX */
 
-        gsap.from(card, {
+gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 
-          opacity: 0,
-          y: 50,
-          scale: .97,
+gsap.to(image,{
 
-          duration: 1.1,
+yPercent:7,
 
-          ease: "power3.out",
+ease:"none",
 
-          scrollTrigger: {
+scrollTrigger:{
+trigger:image.parentElement,
+start:"top bottom",
+end:"bottom top",
+scrub:1.8
+}
 
-            trigger: card,
-            start: "top 88%"
+});
 
-          }
+});
 
-        });
 
-      });
+/* YELLOW SECTION */
 
+gsap.from(".statement-inner",{
 
-    /* IMAGE PARALLAX */
+opacity:0,
+y:35,
+duration:1,
+ease:"power3.out",
 
-    gsap.utils
-      .toArray(".photo-inner")
-      .forEach((image) => {
+scrollTrigger:{
+trigger:".statement",
+start:"top 72%",
+once:true
+}
 
-        gsap.fromTo(
+});
 
-          image,
 
-          {
-            yPercent: -4
-          },
+/* PROCESS */
 
-          {
-            yPercent: 4,
+gsap.utils.toArray(".process-card").forEach((card,index)=>{
 
-            ease: "none",
+gsap.from(card,{
 
-            scrollTrigger: {
+opacity:0,
+y:25,
+duration:.8,
+delay:index*.07,
+ease:"power3.out",
 
-              trigger: image.parentElement,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.4
+scrollTrigger:{
+trigger:card,
+start:"top 90%",
+once:true
+}
 
-            }
+});
 
-          }
+});
 
-        );
 
-      });
+/* CONTACT */
 
+gsap.from(".contact-inner",{
 
-    /* STATEMENT */
+opacity:0,
+y:35,
+duration:1,
+ease:"power3.out",
 
-    gsap.from(".statement-content", {
+scrollTrigger:{
+trigger:".contact",
+start:"top 72%",
+once:true
+}
 
-      opacity: 0,
-      y: 60,
+});
 
-      duration: 1.2,
 
-      ease: "power3.out",
+/* BACKGROUND WORD */
 
-      scrollTrigger: {
+gsap.to(".contact-bg",{
 
-        trigger: ".statement",
-        start: "top 70%"
+xPercent:-6,
 
-      }
+ease:"none",
 
-    });
+scrollTrigger:{
+trigger:".contact",
+start:"top bottom",
+end:"bottom top",
+scrub:2
+}
 
+});
 
-    gsap.to(".statement-bg", {
-
-      xPercent: -10,
-
-      ease: "none",
-
-      scrollTrigger: {
-
-        trigger: ".statement",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.5
-
-      }
-
-    });
-
-
-    /* SERVICES */
-
-    gsap.utils
-      .toArray(".service-row")
-      .forEach((row) => {
-
-        gsap.from(row, {
-
-          opacity: 0,
-          y: 30,
-
-          duration: .9,
-
-          ease: "power3.out",
-
-          scrollTrigger: {
-
-            trigger: row,
-            start: "top 90%"
-
-          }
-
-        });
-
-      });
-
-
-    /* CTA */
-
-    gsap.from(".cta-yellow", {
-
-      yPercent: 8,
-
-      ease: "none",
-
-      scrollTrigger: {
-
-        trigger: ".cta-wrap",
-        start: "top bottom",
-        end: "top top",
-        scrub: 1.3
-
-      }
-
-    });
-
-
-    gsap.from(".cta-inner", {
-
-      opacity: 0,
-      y: 50,
-
-      duration: 1.1,
-
-      ease: "power3.out",
-
-      scrollTrigger: {
-
-        trigger: ".cta-inner",
-        start: "top 80%"
-
-      }
-
-    });
-
-  }
+}
 
 </script>
 
