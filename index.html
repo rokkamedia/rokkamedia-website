@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>RokkaMedia | Hospitality Content Creation</title>
 
@@ -19,9 +19,9 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #0a0a0a;
+      background: #050505;
       color: white;
-      line-height: 1.5;
+      overflow-x: hidden;
     }
 
     a {
@@ -29,262 +29,371 @@
       color: inherit;
     }
 
-    /* NAV */
+    img,
+    video {
+      display: block;
+      width: 100%;
+    }
 
     nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 6%;
-      position: absolute;
-      width: 100%;
-      z-index: 10;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
     }
 
-    .logo {
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: -1px;
-    }
-
-    .logo span {
-      color: #FFD400;
+    .logo img {
+      width: 115px;
+      height: auto;
     }
 
     .nav-button {
-      border: 1px solid white;
-      padding: 10px 16px;
-      border-radius: 50px;
-      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.65);
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: .5px;
+      backdrop-filter: blur(10px);
     }
-
-    /* HERO */
 
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 120px 6% 70px;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding: 140px 5% 70px;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(
-          to bottom,
-          rgba(0,0,0,.15),
-          rgba(0,0,0,.95)
-        ),
-        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
+        linear-gradient(to top, rgba(0,0,0,.95) 5%, rgba(0,0,0,.45) 55%, rgba(0,0,0,.15)),
+        linear-gradient(to right, rgba(0,0,0,.35), transparent);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1050px;
     }
 
     .eyebrow {
       color: #FFD400;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      font-weight: 800;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(48px, 10vw, 110px);
-      line-height: .9;
-      letter-spacing: -4px;
-      max-width: 1000px;
+      font-size: clamp(55px, 10vw, 125px);
+      line-height: .87;
+      letter-spacing: -5px;
+      max-width: 1050px;
     }
 
     .hero p {
-      margin-top: 25px;
-      max-width: 520px;
-      color: #d3d3d3;
+      color: #d1d1d1;
       font-size: 18px;
+      max-width: 590px;
+      margin-top: 26px;
+      line-height: 1.6;
     }
 
     .buttons {
       display: flex;
+      flex-wrap: wrap;
       gap: 12px;
       margin-top: 30px;
-      flex-wrap: wrap;
     }
 
     .button-primary {
       background: #FFD400;
       color: black;
       padding: 15px 22px;
-      border-radius: 50px;
-      font-weight: bold;
+      border-radius: 999px;
+      font-weight: 800;
     }
 
     .button-secondary {
-      border: 1px solid #555;
+      border: 1px solid rgba(255,255,255,.45);
       padding: 15px 22px;
-      border-radius: 50px;
+      border-radius: 999px;
     }
 
-    /* SECTIONS */
-
     section {
-      padding: 90px 6%;
+      padding: 100px 5%;
     }
 
     .section-label {
       color: #FFD400;
-      font-weight: bold;
       font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: 2.4px;
+      margin-bottom: 22px;
     }
 
-    .big-copy {
-      font-size: clamp(38px, 7vw, 70px);
-      line-height: 1;
-      letter-spacing: -2px;
-      max-width: 900px;
+    .section-title {
+      font-size: clamp(44px, 7vw, 90px);
+      letter-spacing: -3px;
+      line-height: .95;
+      max-width: 950px;
     }
 
-    /* SERVICES */
+    .intro {
+      max-width: 700px;
+      color: #aaa;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-top: 28px;
+    }
 
     .services {
-      margin-top: 60px;
+      margin-top: 70px;
     }
 
     .service {
-      border-top: 1px solid #333;
       padding: 28px 0;
+      border-top: 1px solid #2a2a2a;
       display: grid;
       grid-template-columns: 60px 1fr;
-      gap: 20px;
+      gap: 15px;
     }
 
     .service-number {
-      color: #777;
+      color: #626262;
+      font-size: 13px;
     }
 
     .service h3 {
-      font-size: 26px;
+      font-size: 27px;
       margin-bottom: 8px;
     }
 
     .service p {
-      color: #aaa;
-      max-width: 500px;
+      color: #979797;
+      line-height: 1.6;
+      max-width: 580px;
     }
 
-    /* WORK */
+    .work {
+      background: #0b0b0b;
+    }
 
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 50px;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      margin-top: 60px;
     }
 
-    .project {
-      height: 550px;
-      border-radius: 18px;
-      overflow: hidden;
+    .work-card {
       position: relative;
-      background: #222;
+      overflow: hidden;
+      border-radius: 20px;
+      min-height: 520px;
+      background: #151515;
     }
 
-    .project img {
+    .work-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: .4s ease;
+      transition: transform .5s ease;
     }
 
-    .project:hover img {
+    .work-card:hover img {
       transform: scale(1.03);
     }
 
-    .project-info {
+    .work-card.tall {
+      min-height: 680px;
+    }
+
+    .work-card.wide {
+      grid-column: 1 / -1;
+      min-height: 620px;
+    }
+
+    .work-caption {
       position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 25px;
-      background: linear-gradient(transparent, rgba(0,0,0,.9));
+      left: 22px;
+      bottom: 22px;
+      padding: 12px 15px;
+      background: rgba(0,0,0,.65);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      font-size: 13px;
     }
 
-    .project-info h3 {
-      font-size: 26px;
-    }
-
-    .project-info p {
-      color: #ccc;
-      font-size: 14px;
-    }
-
-    /* CTA */
-
-    .cta {
+    .statement {
       background: #FFD400;
       color: black;
-      min-height: 500px;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .cta h2 {
-      font-size: clamp(50px, 9vw, 100px);
-      line-height: .9;
-      max-width: 950px;
-      letter-spacing: -4px;
+    .statement h2 {
+      font-size: clamp(52px, 9vw, 115px);
+      max-width: 1100px;
+      letter-spacing: -5px;
+      line-height: .88;
     }
 
-    .cta a {
-      margin-top: 35px;
+    .statement p {
+      font-size: 18px;
+      max-width: 620px;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 60px;
+    }
+
+    .process-card {
+      background: #111;
+      padding: 28px;
+      border-radius: 18px;
+      min-height: 220px;
+    }
+
+    .process-card span {
+      color: #FFD400;
+      font-size: 12px;
+    }
+
+    .process-card h3 {
+      font-size: 23px;
+      margin: 25px 0 10px;
+    }
+
+    .process-card p {
+      color: #8f8f8f;
+      line-height: 1.5;
+    }
+
+    .contact {
+      padding-top: 130px;
+      padding-bottom: 130px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(48px, 8vw, 100px);
+      letter-spacing: -4px;
+      line-height: .9;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact p {
+      max-width: 600px;
+      color: #9c9c9c;
+      margin: 26px auto;
+      line-height: 1.7;
+    }
+
+    .contact a {
       display: inline-block;
-      background: black;
-      color: white;
+      background: #FFD400;
+      color: black;
+      font-weight: 800;
       padding: 16px 25px;
-      border-radius: 50px;
-      width: fit-content;
-      font-weight: bold;
+      border-radius: 999px;
+      margin-top: 10px;
     }
 
     footer {
-      padding: 40px 6%;
+      border-top: 1px solid #222;
+      padding: 30px 5%;
       display: flex;
       justify-content: space-between;
-      color: #777;
+      gap: 20px;
+      color: #6f6f6f;
       font-size: 13px;
     }
 
-    /* MOBILE */
-
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
 
       nav {
-        padding: 18px 5%;
+        padding: 16px 5%;
+      }
+
+      .logo img {
+        width: 90px;
       }
 
       .hero {
-        padding: 130px 5% 55px;
+        min-height: 100svh;
+        padding-bottom: 45px;
       }
 
       h1 {
-        letter-spacing: -2.5px;
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 16px;
       }
 
       section {
-        padding: 70px 5%;
+        padding: 75px 5%;
+      }
+
+      .section-title {
+        letter-spacing: -2px;
       }
 
       .work-grid {
         grid-template-columns: 1fr;
       }
 
-      .project {
-        height: 480px;
+      .work-card,
+      .work-card.tall,
+      .work-card.wide {
+        min-height: 480px;
+        grid-column: auto;
       }
 
-      .cta {
-        min-height: 450px;
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .statement {
+        min-height: 500px;
+      }
+
+      .statement h2 {
+        letter-spacing: -3px;
       }
 
       footer {
         flex-direction: column;
-        gap: 8px;
       }
     }
   </style>
@@ -293,43 +402,62 @@
 <body>
 
 <nav>
-  <div class="logo">ROKKA<span>MEDIA</span></div>
+  <a href="#" class="logo">
+    <img src="ROKKA.png" alt="RokkaMedia">
+  </a>
 
   <a href="#contact" class="nav-button">
     LET'S TALK
   </a>
 </nav>
 
-
 <section class="hero">
 
-  <div class="eyebrow">
-    HOSPITALITY CONTENT STUDIO
-  </div>
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="Annas thai.mov" type="video/quicktime">
+  </video>
 
-  <h1>
-    CONTENT THAT MAKES PEOPLE HUNGRY.
-  </h1>
+  <div class="hero-overlay"></div>
 
-  <p>
-    Social-first photo and video content for restaurants,
-    bars and hospitality brands that want to stand out.
-  </p>
+  <div class="hero-content">
 
-  <div class="buttons">
+    <div class="eyebrow">
+      HOSPITALITY CONTENT STUDIO
+    </div>
 
-    <a href="#work" class="button-primary">
-      View our work
-    </a>
+    <h1>
+      CREATE.
+      CAPTURE.
+      ELEVATE.
+    </h1>
 
-    <a href="#contact" class="button-secondary">
-      Book a free call
-    </a>
+    <p>
+      Social-first photography and video for restaurants,
+      bars and hospitality brands that want content people
+      actually stop scrolling for.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#work" class="button-primary">
+        View our work
+      </a>
+
+      <a href="#contact" class="button-secondary">
+        Book a free call
+      </a>
+
+    </div>
 
   </div>
 
 </section>
-
 
 <section>
 
@@ -337,19 +465,26 @@
     WHAT WE DO
   </div>
 
-  <h2 class="big-copy">
-    Your food looks good. Your content should too.
+  <h2 class="section-title">
+    Your venue deserves better than average content.
   </h2>
+
+  <p class="intro">
+    RokkaMedia creates premium photo and video content for
+    hospitality brands. From food photography to short-form
+    social content, everything is built to make your venue
+    look as good online as it does in person.
+  </p>
 
   <div class="services">
 
     <div class="service">
       <div class="service-number">01</div>
       <div>
-        <h3>Social Content</h3>
+        <h3>Short-form Content</h3>
         <p>
-          Short-form Reels and TikToks designed specifically
-          for restaurants, bars and hospitality brands.
+          Reels, TikToks and social-first video designed
+          around your brand and your audience.
         </p>
       </div>
     </div>
@@ -359,8 +494,8 @@
       <div>
         <h3>Photography</h3>
         <p>
-          Food, drinks, interiors and lifestyle photography
-          created to make your brand look its best.
+          Food, drink, interiors and lifestyle photography
+          for websites, menus, social media and campaigns.
         </p>
       </div>
     </div>
@@ -370,8 +505,8 @@
       <div>
         <h3>Video Production</h3>
         <p>
-          Cinematic promotional videos and social campaigns
-          built around your venue.
+          Cinematic venue showcases, promotional videos
+          and branded social campaigns.
         </p>
       </div>
     </div>
@@ -381,8 +516,8 @@
       <div>
         <h3>Content Days</h3>
         <p>
-          We visit your venue and create a bank of content
-          ready for you to use throughout the month.
+          One shoot. A complete bank of content ready
+          for your brand to use throughout the month.
         </p>
       </div>
     </div>
@@ -391,66 +526,142 @@
 
 </section>
 
-
-<section id="work">
+<section class="work" id="work">
 
   <div class="section-label">
     SELECTED WORK
   </div>
 
-  <h2 class="big-copy">
+  <h2 class="section-title">
     Made for the scroll.
   </h2>
 
   <div class="work-grid">
 
-    <div class="project">
-
-      <img
-        src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80"
-        alt="Restaurant content">
-
-      <div class="project-info">
-        <h3>Hospitality Content</h3>
-        <p>Food • Photography • Social</p>
+    <div class="work-card wide">
+      <img src="RK1.png" alt="RokkaMedia food photography">
+      <div class="work-caption">
+        Food Photography
       </div>
-
     </div>
 
-    <div class="project">
-
-      <img
-        src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80"
-        alt="Food content">
-
-      <div class="project-info">
-        <h3>Food & Drink</h3>
-        <p>Reels • Video • Photography</p>
+    <div class="work-card tall">
+      <img src="RK4.png" alt="RokkaMedia hospitality photography">
+      <div class="work-caption">
+        Hospitality
       </div>
+    </div>
 
+    <div class="work-card">
+      <img src="RK5.png" alt="RokkaMedia restaurant photography">
+      <div class="work-caption">
+        Social Content
+      </div>
+    </div>
+
+    <div class="work-card">
+      <img src="RK2.png" alt="RokkaMedia food photography">
+      <div class="work-caption">
+        Photography
+      </div>
+    </div>
+
+    <div class="work-card tall">
+      <img src="RK7.png" alt="RokkaMedia content creation">
+      <div class="work-caption">
+        Food & Drink
+      </div>
     </div>
 
   </div>
 
 </section>
 
-
-<section class="cta" id="contact">
+<section class="statement">
 
   <div class="section-label" style="color:black;">
+    ROKKAMEDIA
+  </div>
+
+  <h2>
+    CONTENT THAT MAKES PEOPLE HUNGRY.
+  </h2>
+
+  <p>
+    Hospitality is visual. We create content that captures
+    the food, atmosphere and experience behind your brand.
+  </p>
+
+</section>
+
+<section>
+
+  <div class="section-label">
+    HOW IT WORKS
+  </div>
+
+  <h2 class="section-title">
+    Simple from shoot to scroll.
+  </h2>
+
+  <div class="process-grid">
+
+    <div class="process-card">
+      <span>01</span>
+      <h3>Let's Talk</h3>
+      <p>
+        Tell us about your venue, goals and what you need.
+      </p>
+    </div>
+
+    <div class="process-card">
+      <span>02</span>
+      <h3>We Shoot</h3>
+      <p>
+        We come to your venue and capture your brand.
+      </p>
+    </div>
+
+    <div class="process-card">
+      <span>03</span>
+      <h3>We Create</h3>
+      <p>
+        Your content is edited and optimised for social.
+      </p>
+    </div>
+
+    <div class="process-card">
+      <span>04</span>
+      <h3>You Post</h3>
+      <p>
+        Receive polished content ready to publish.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="contact" id="contact">
+
+  <div class="section-label">
     LET'S CREATE
   </div>
 
   <h2>
-    MAKE YOUR VENUE WORTH STOPPING FOR.
+    READY TO MAKE YOUR VENUE STAND OUT?
   </h2>
 
+  <p>
+    Whether you need a content day, photography or a bank
+    of short-form videos, let's talk about what your venue needs.
+  </p>
+
   <a href="mailto:hello@rokkamedia.com">
-    Start a conversation →
+    Book a free call →
   </a>
 
 </section>
-
 
 <footer>
 
@@ -459,7 +670,7 @@
   </div>
 
   <div>
-    Hospitality Content Creation
+    Create. Capture. Elevate.
   </div>
 
 </footer>
