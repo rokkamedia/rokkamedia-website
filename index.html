@@ -6,6 +6,9 @@
 
   <title>RokkaMedia | Hospitality Content Creation</title>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <style>
     * {
       margin: 0;
@@ -20,7 +23,7 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: #050505;
-      color: white;
+      color: #fff;
       overflow-x: hidden;
     }
 
@@ -35,26 +38,29 @@
       width: 100%;
     }
 
+    .yellow {
+      color: #FFD400;
+    }
+
     nav {
       position: fixed;
+      z-index: 1000;
       top: 0;
       left: 0;
       width: 100%;
       padding: 18px 5%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      z-index: 100;
-      background: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
+      justify-content: space-between;
+      mix-blend-mode: difference;
     }
 
     .logo img {
-      width: 115px;
-      height: auto;
+      width: 105px;
     }
 
-    .nav-button {
-      border: 1px solid rgba(255,255,255,.65);
+    .nav-cta {
+      border: 1px solid rgba(255,255,255,.7);
       padding: 11px 17px;
       border-radius: 999px;
       font-size: 12px;
@@ -62,13 +68,22 @@
       backdrop-filter: blur(10px);
     }
 
+    /* HERO */
+
+    .hero-wrap {
+      height: 180vh;
+      position: relative;
+    }
+
     .hero {
-      min-height: 100vh;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: flex-end;
-      position: relative;
-      overflow: hidden;
-      padding: 140px 5% 70px;
+      padding: 0 5% 60px;
+      background: #000;
     }
 
     .hero-video {
@@ -77,255 +92,371 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
+      transform: scale(1.08);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(0,0,0,.95) 5%, rgba(0,0,0,.45) 55%, rgba(0,0,0,.15)),
-        linear-gradient(to right, rgba(0,0,0,.35), transparent);
-      z-index: 1;
+        linear-gradient(to top, rgba(0,0,0,.95) 2%, rgba(0,0,0,.25) 55%, rgba(0,0,0,.15)),
+        linear-gradient(to right, rgba(0,0,0,.5), transparent 60%);
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
-      max-width: 1050px;
+      z-index: 3;
+      max-width: 1200px;
     }
 
     .eyebrow {
       color: #FFD400;
       font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .hero-line {
+      overflow: hidden;
+    }
+
+    .hero-word {
+      display: block;
+      font-size: clamp(65px, 12vw, 155px);
+      line-height: .78;
+      letter-spacing: -7px;
+      font-weight: 900;
+      transform-origin: left center;
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      color: #d0d0d0;
+      font-size: 17px;
+      line-height: 1.65;
+      margin-top: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn-yellow {
+      background: #FFD400;
+      color: #000;
+      font-weight: 800;
+      padding: 15px 23px;
+      border-radius: 999px;
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,.5);
+      padding: 15px 23px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      right: 5%;
+      bottom: 60px;
+      z-index: 3;
+      color: #FFD400;
+      font-size: 11px;
+      letter-spacing: 3px;
+      writing-mode: vertical-rl;
+    }
+
+    /* INTRO */
+
+    .intro-section {
+      min-height: 100vh;
+      padding: 120px 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #050505;
+      overflow: hidden;
+    }
+
+    .massive-text {
+      font-size: clamp(58px, 10vw, 145px);
+      line-height: .86;
+      letter-spacing: -7px;
+      font-weight: 900;
+      max-width: 1200px;
+    }
+
+    .intro-copy {
+      margin-top: 40px;
+      color: #9d9d9d;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 620px;
+      margin-left: auto;
+    }
+
+    /* REEL FEATURE */
+
+    .reel-section {
+      height: 220vh;
+      position: relative;
+      background: #0a0a0a;
+    }
+
+    .reel-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .background-copy {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(70px, 15vw, 220px);
+      letter-spacing: -9px;
+      font-weight: 900;
+      line-height: .8;
+      color: rgba(255,255,255,.06);
+      white-space: nowrap;
+    }
+
+    .phone-reel {
+      width: min(33vw, 390px);
+      aspect-ratio: 9 / 16;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      z-index: 5;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .phone-reel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .side-copy {
+      position: absolute;
+      z-index: 6;
+      width: 300px;
+      left: 6%;
+      bottom: 12%;
+    }
+
+    .side-copy .small-label {
+      color: #FFD400;
+      font-size: 11px;
       letter-spacing: 2.5px;
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
-    h1 {
-      font-size: clamp(55px, 10vw, 125px);
-      line-height: .87;
-      letter-spacing: -5px;
-      max-width: 1050px;
+    .side-copy h3 {
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: .9;
+      letter-spacing: -3px;
     }
 
-    .hero p {
-      color: #d1d1d1;
-      font-size: 18px;
-      max-width: 590px;
-      margin-top: 26px;
-      line-height: 1.6;
-    }
+    /* PHOTO STORY */
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .button-primary {
-      background: #FFD400;
-      color: black;
-      padding: 15px 22px;
-      border-radius: 999px;
-      font-weight: 800;
-    }
-
-    .button-secondary {
-      border: 1px solid rgba(255,255,255,.45);
-      padding: 15px 22px;
-      border-radius: 999px;
-    }
-
-    section {
-      padding: 100px 5%;
+    .photo-story {
+      padding: 120px 5%;
+      background: #050505;
     }
 
     .section-label {
       color: #FFD400;
       font-size: 12px;
+      letter-spacing: 2.5px;
       font-weight: 800;
-      letter-spacing: 2.4px;
       margin-bottom: 22px;
     }
 
     .section-title {
-      font-size: clamp(44px, 7vw, 90px);
-      letter-spacing: -3px;
-      line-height: .95;
-      max-width: 950px;
+      font-size: clamp(50px, 8vw, 105px);
+      line-height: .88;
+      letter-spacing: -5px;
+      max-width: 1000px;
     }
 
-    .intro {
-      max-width: 700px;
-      color: #aaa;
-      font-size: 18px;
-      line-height: 1.7;
-      margin-top: 28px;
-    }
-
-    .services {
+    .photo-grid {
       margin-top: 70px;
-    }
-
-    .service {
-      padding: 28px 0;
-      border-top: 1px solid #2a2a2a;
       display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 15px;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
     }
 
-    .service-number {
-      color: #626262;
-      font-size: 13px;
-    }
-
-    .service h3 {
-      font-size: 27px;
-      margin-bottom: 8px;
-    }
-
-    .service p {
-      color: #979797;
-      line-height: 1.6;
-      max-width: 580px;
-    }
-
-    .work {
-      background: #0b0b0b;
-    }
-
-    .work-grid {
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 18px;
-      margin-top: 60px;
-    }
-
-    .work-card {
+    .photo-card {
       position: relative;
       overflow: hidden;
-      border-radius: 20px;
-      min-height: 520px;
-      background: #151515;
+      border-radius: 24px;
+      min-height: 600px;
+      background: #111;
     }
 
-    .work-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s ease;
+    .photo-card.tall {
+      min-height: 820px;
     }
 
-    .work-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .work-card.tall {
-      min-height: 680px;
-    }
-
-    .work-card.wide {
+    .photo-card.wide {
       grid-column: 1 / -1;
-      min-height: 620px;
+      min-height: 720px;
     }
 
-    .work-caption {
+    .photo-card img {
+      height: 115%;
+      object-fit: cover;
+      transform: translateY(-7%);
+    }
+
+    .photo-caption {
       position: absolute;
-      left: 22px;
-      bottom: 22px;
-      padding: 12px 15px;
+      bottom: 24px;
+      left: 24px;
       background: rgba(0,0,0,.65);
       border: 1px solid rgba(255,255,255,.15);
+      padding: 12px 16px;
       border-radius: 999px;
       backdrop-filter: blur(10px);
       font-size: 13px;
     }
 
-    .statement {
+    /* YELLOW WIPE */
+
+    .yellow-section {
+      min-height: 100vh;
       background: #FFD400;
-      color: black;
-      min-height: 600px;
+      color: #000;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      padding: 100px 5%;
+      overflow: hidden;
     }
 
-    .statement h2 {
-      font-size: clamp(52px, 9vw, 115px);
-      max-width: 1100px;
-      letter-spacing: -5px;
-      line-height: .88;
+    .yellow-inner {
+      width: 100%;
     }
 
-    .statement p {
+    .yellow-kicker {
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .yellow-heading {
+      font-size: clamp(64px, 11vw, 155px);
+      letter-spacing: -7px;
+      line-height: .8;
+      font-weight: 900;
+      max-width: 1200px;
+    }
+
+    .yellow-copy {
       font-size: 18px;
-      max-width: 620px;
+      max-width: 600px;
       margin-top: 30px;
       line-height: 1.6;
     }
 
-    .process-grid {
+    /* SERVICES */
+
+    .services-section {
+      padding: 120px 5%;
+    }
+
+    .services-list {
+      margin-top: 70px;
+    }
+
+    .service-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 60px;
+      grid-template-columns: 70px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      border-top: 1px solid #282828;
+      padding: 30px 0;
     }
 
-    .process-card {
-      background: #111;
-      padding: 28px;
-      border-radius: 18px;
-      min-height: 220px;
-    }
-
-    .process-card span {
-      color: #FFD400;
+    .service-number {
+      color: #666;
       font-size: 12px;
     }
 
-    .process-card h3 {
-      font-size: 23px;
-      margin: 25px 0 10px;
+    .service-row h3 {
+      font-size: clamp(28px, 4vw, 50px);
+      letter-spacing: -2px;
     }
 
-    .process-card p {
-      color: #8f8f8f;
-      line-height: 1.5;
+    .service-row p {
+      color: #8c8c8c;
+      max-width: 350px;
+      line-height: 1.6;
+      font-size: 14px;
     }
 
-    .contact {
-      padding-top: 130px;
-      padding-bottom: 130px;
+    /* CTA */
+
+    .cta {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 100px 5%;
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact h2 {
-      font-size: clamp(48px, 8vw, 100px);
-      letter-spacing: -4px;
-      line-height: .9;
-      max-width: 900px;
-      margin: 0 auto;
+    .cta-bg {
+      position: absolute;
+      font-size: clamp(140px, 25vw, 400px);
+      font-weight: 900;
+      letter-spacing: -15px;
+      color: rgba(255,255,255,.025);
+      white-space: nowrap;
+      pointer-events: none;
     }
 
-    .contact p {
-      max-width: 600px;
-      color: #9c9c9c;
-      margin: 26px auto;
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta h2 {
+      font-size: clamp(60px, 10vw, 140px);
+      line-height: .82;
+      letter-spacing: -6px;
+      max-width: 1050px;
+    }
+
+    .cta p {
+      max-width: 580px;
+      margin: 30px auto;
+      color: #989898;
       line-height: 1.7;
+      font-size: 17px;
     }
 
-    .contact a {
+    .cta a {
       display: inline-block;
       background: #FFD400;
-      color: black;
+      color: #000;
       font-weight: 800;
-      padding: 16px 25px;
+      padding: 17px 27px;
       border-radius: 999px;
-      margin-top: 10px;
     }
 
     footer {
@@ -333,15 +464,14 @@
       padding: 30px 5%;
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      color: #6f6f6f;
+      color: #6d6d6d;
       font-size: 13px;
     }
 
     @media (max-width: 800px) {
 
       nav {
-        padding: 16px 5%;
+        padding: 15px 5%;
       }
 
       .logo img {
@@ -349,51 +479,76 @@
       }
 
       .hero {
-        min-height: 100svh;
-        padding-bottom: 45px;
+        padding-bottom: 40px;
       }
 
-      h1 {
+      .hero-word {
+        letter-spacing: -4px;
+      }
+
+      .hero-sub {
+        font-size: 15px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+
+      .massive-text,
+      .section-title,
+      .yellow-heading,
+      .cta h2 {
         letter-spacing: -3px;
       }
 
-      .hero p {
-        font-size: 16px;
+      .reel-section {
+        height: 180vh;
       }
 
-      section {
-        padding: 75px 5%;
+      .phone-reel {
+        width: 66vw;
+        max-width: 320px;
       }
 
-      .section-title {
-        letter-spacing: -2px;
+      .background-copy {
+        font-size: 30vw;
       }
 
-      .work-grid {
+      .side-copy {
+        left: 5%;
+        bottom: 7%;
+        width: 80%;
+      }
+
+      .photo-grid {
         grid-template-columns: 1fr;
       }
 
-      .work-card,
-      .work-card.tall,
-      .work-card.wide {
-        min-height: 480px;
+      .photo-card,
+      .photo-card.tall,
+      .photo-card.wide {
         grid-column: auto;
+        min-height: 520px;
       }
 
-      .process-grid {
-        grid-template-columns: 1fr;
+      .service-row {
+        grid-template-columns: 45px 1fr;
       }
 
-      .statement {
-        min-height: 500px;
-      }
-
-      .statement h2 {
-        letter-spacing: -3px;
+      .service-row p {
+        grid-column: 2;
       }
 
       footer {
         flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -406,169 +561,152 @@
     <img src="ROKKA.png" alt="RokkaMedia">
   </a>
 
-  <a href="#contact" class="nav-button">
+  <a href="#contact" class="nav-cta">
     LET'S TALK
   </a>
 </nav>
 
-<section class="hero">
+<div class="hero-wrap">
 
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
-    <source src="Annas thai.mov" type="video/quicktime">
-  </video>
+  <section class="hero">
 
-  <div class="hero-overlay"></div>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="annas-thai.mp4" type="video/mp4">
+    </video>
 
-  <div class="hero-content">
+    <div class="hero-overlay"></div>
 
-    <div class="eyebrow">
-      HOSPITALITY CONTENT STUDIO
-    </div>
+    <div class="hero-content">
 
-    <h1>
-      CREATE.
-      CAPTURE.
-      ELEVATE.
-    </h1>
+      <div class="eyebrow">
+        HOSPITALITY CONTENT STUDIO
+      </div>
 
-    <p>
-      Social-first photography and video for restaurants,
-      bars and hospitality brands that want content people
-      actually stop scrolling for.
-    </p>
+      <div class="hero-line">
+        <span class="hero-word hero-create">CREATE.</span>
+      </div>
 
-    <div class="buttons">
+      <div class="hero-line">
+        <span class="hero-word hero-capture">CAPTURE.</span>
+      </div>
 
-      <a href="#work" class="button-primary">
-        View our work
-      </a>
+      <div class="hero-line">
+        <span class="hero-word hero-elevate yellow">ELEVATE.</span>
+      </div>
 
-      <a href="#contact" class="button-secondary">
-        Book a free call
-      </a>
+      <p class="hero-sub">
+        Social-first photography and video for restaurants,
+        bars and hospitality brands that want content people
+        actually stop scrolling for.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#work" class="btn-yellow">View our work</a>
+        <a href="#contact" class="btn-ghost">Book a free call</a>
+      </div>
 
     </div>
 
-  </div>
+    <div class="scroll-indicator">
+      SCROLL ↓
+    </div>
 
-</section>
+  </section>
 
-<section>
+</div>
+
+<section class="intro-section">
 
   <div class="section-label">
-    WHAT WE DO
+    ROKKAMEDIA
   </div>
 
-  <h2 class="section-title">
-    Your venue deserves better than average content.
-  </h2>
+  <div class="massive-text intro-big">
+    WE DON'T JUST
+    SHOOT CONTENT.
+  </div>
 
-  <p class="intro">
-    RokkaMedia creates premium photo and video content for
-    hospitality brands. From food photography to short-form
-    social content, everything is built to make your venue
-    look as good online as it does in person.
+  <p class="intro-copy">
+    We turn food, atmosphere and hospitality into visual content
+    designed to stop the scroll and make people want to experience
+    your venue for themselves.
   </p>
 
-  <div class="services">
+</section>
 
-    <div class="service">
-      <div class="service-number">01</div>
-      <div>
-        <h3>Short-form Content</h3>
-        <p>
-          Reels, TikToks and social-first video designed
-          around your brand and your audience.
-        </p>
-      </div>
+<section class="reel-section">
+
+  <div class="reel-stage">
+
+    <div class="background-copy">
+      STOP THE SCROLL.
     </div>
 
-    <div class="service">
-      <div class="service-number">02</div>
-      <div>
-        <h3>Photography</h3>
-        <p>
-          Food, drink, interiors and lifestyle photography
-          for websites, menus, social media and campaigns.
-        </p>
-      </div>
+    <div class="phone-reel">
+      <video autoplay muted loop playsinline>
+        <source src="annas-thai.mp4" type="video/mp4">
+      </video>
     </div>
 
-    <div class="service">
-      <div class="service-number">03</div>
-      <div>
-        <h3>Video Production</h3>
-        <p>
-          Cinematic venue showcases, promotional videos
-          and branded social campaigns.
-        </p>
+    <div class="side-copy">
+      <div class="small-label">
+        SHORT-FORM CONTENT
       </div>
-    </div>
 
-    <div class="service">
-      <div class="service-number">04</div>
-      <div>
-        <h3>Content Days</h3>
-        <p>
-          One shoot. A complete bank of content ready
-          for your brand to use throughout the month.
-        </p>
-      </div>
+      <h3>
+        BUILT TO
+        <span class="yellow">MOVE.</span>
+      </h3>
     </div>
 
   </div>
 
 </section>
 
-<section class="work" id="work">
+<section class="photo-story" id="work">
 
   <div class="section-label">
     SELECTED WORK
   </div>
 
   <h2 class="section-title">
-    Made for the scroll.
+    CONTENT THAT LOOKS
+    AS GOOD AS IT TASTES.
   </h2>
 
-  <div class="work-grid">
+  <div class="photo-grid">
 
-    <div class="work-card wide">
+    <div class="photo-card wide">
       <img src="RK1.png" alt="RokkaMedia food photography">
-      <div class="work-caption">
+      <div class="photo-caption">
         Food Photography
       </div>
     </div>
 
-    <div class="work-card tall">
+    <div class="photo-card tall">
       <img src="RK4.png" alt="RokkaMedia hospitality photography">
-      <div class="work-caption">
+      <div class="photo-caption">
         Hospitality
       </div>
     </div>
 
-    <div class="work-card">
-      <img src="RK5.png" alt="RokkaMedia restaurant photography">
-      <div class="work-caption">
+    <div class="photo-card">
+      <img src="RK5.png" alt="RokkaMedia restaurant content">
+      <div class="photo-caption">
         Social Content
       </div>
     </div>
 
-    <div class="work-card">
-      <img src="RK2.png" alt="RokkaMedia food photography">
-      <div class="work-caption">
+    <div class="photo-card">
+      <img src="RK2.png" alt="RokkaMedia food content">
+      <div class="photo-caption">
         Photography
       </div>
     </div>
 
-    <div class="work-card tall">
+    <div class="photo-card tall">
       <img src="RK7.png" alt="RokkaMedia content creation">
-      <div class="work-caption">
+      <div class="photo-caption">
         Food & Drink
       </div>
     </div>
@@ -577,64 +715,69 @@
 
 </section>
 
-<section class="statement">
+<section class="yellow-section">
 
-  <div class="section-label" style="color:black;">
-    ROKKAMEDIA
+  <div class="yellow-inner">
+
+    <div class="yellow-kicker">
+      CREATE. CAPTURE. ELEVATE.
+    </div>
+
+    <div class="yellow-heading">
+      MAKE THEM
+      STOP.
+    </div>
+
+    <p class="yellow-copy">
+      Your venue already has the story. We create the content
+      that makes people notice it.
+    </p>
+
   </div>
-
-  <h2>
-    CONTENT THAT MAKES PEOPLE HUNGRY.
-  </h2>
-
-  <p>
-    Hospitality is visual. We create content that captures
-    the food, atmosphere and experience behind your brand.
-  </p>
 
 </section>
 
-<section>
+<section class="services-section">
 
   <div class="section-label">
-    HOW IT WORKS
+    WHAT WE DO
   </div>
 
   <h2 class="section-title">
-    Simple from shoot to scroll.
+    BUILT FOR HOSPITALITY.
   </h2>
 
-  <div class="process-grid">
+  <div class="services-list">
 
-    <div class="process-card">
-      <span>01</span>
-      <h3>Let's Talk</h3>
+    <div class="service-row">
+      <div class="service-number">01</div>
+      <h3>Short-form Content</h3>
       <p>
-        Tell us about your venue, goals and what you need.
+        Reels, TikToks and social-first video built around your brand.
       </p>
     </div>
 
-    <div class="process-card">
-      <span>02</span>
-      <h3>We Shoot</h3>
+    <div class="service-row">
+      <div class="service-number">02</div>
+      <h3>Photography</h3>
       <p>
-        We come to your venue and capture your brand.
+        Food, drink, interior and lifestyle photography.
       </p>
     </div>
 
-    <div class="process-card">
-      <span>03</span>
-      <h3>We Create</h3>
+    <div class="service-row">
+      <div class="service-number">03</div>
+      <h3>Video Production</h3>
       <p>
-        Your content is edited and optimised for social.
+        Cinematic venue showcases and branded campaigns.
       </p>
     </div>
 
-    <div class="process-card">
-      <span>04</span>
-      <h3>You Post</h3>
+    <div class="service-row">
+      <div class="service-number">04</div>
+      <h3>Content Days</h3>
       <p>
-        Receive polished content ready to publish.
+        One shoot. A full bank of content ready for social.
       </p>
     </div>
 
@@ -642,38 +785,240 @@
 
 </section>
 
-<section class="contact" id="contact">
+<section class="cta" id="contact">
 
-  <div class="section-label">
-    LET'S CREATE
+  <div class="cta-bg">
+    ROKKA
   </div>
 
-  <h2>
-    READY TO MAKE YOUR VENUE STAND OUT?
-  </h2>
+  <div class="cta-content">
 
-  <p>
-    Whether you need a content day, photography or a bank
-    of short-form videos, let's talk about what your venue needs.
-  </p>
+    <div class="section-label">
+      LET'S CREATE
+    </div>
 
-  <a href="mailto:hello@rokkamedia.com">
-    Book a free call →
-  </a>
+    <h2>
+      READY TO MAKE
+      SOME NOISE?
+    </h2>
+
+    <p>
+      Let's create content that makes your venue impossible
+      to scroll past.
+    </p>
+
+    <a href="mailto:hello@rokkamedia.com">
+      Book a free call →
+    </a>
+
+  </div>
 
 </section>
 
 <footer>
-
-  <div>
-    © 2026 RokkaMedia
-  </div>
-
-  <div>
-    Create. Capture. Elevate.
-  </div>
-
+  <div>© 2026 RokkaMedia</div>
+  <div>Create. Capture. Elevate.</div>
 </footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (!reduceMotion) {
+
+    gsap.from(".hero-word", {
+      yPercent: 120,
+      duration: 1.2,
+      stagger: 0.12,
+      ease: "power4.out"
+    });
+
+    gsap.from(".hero-sub, .hero-buttons, .eyebrow", {
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      stagger: 0.08,
+      delay: 0.5,
+      ease: "power3.out"
+    });
+
+    gsap.to(".hero-video", {
+      scale: 1,
+      scrollTrigger: {
+        trigger: ".hero-wrap",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2
+      }
+    });
+
+    gsap.to(".hero-create", {
+      xPercent: -15,
+      scale: 1.25,
+      scrollTrigger: {
+        trigger: ".hero-wrap",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2
+      }
+    });
+
+    gsap.to(".hero-capture", {
+      xPercent: 10,
+      scale: 1.1,
+      scrollTrigger: {
+        trigger: ".hero-wrap",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2
+      }
+    });
+
+    gsap.to(".hero-elevate", {
+      xPercent: -6,
+      scale: 1.35,
+      scrollTrigger: {
+        trigger: ".hero-wrap",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2
+      }
+    });
+
+    gsap.from(".intro-big", {
+      y: 120,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: ".intro-section",
+        start: "top 75%"
+      }
+    });
+
+    gsap.from(".intro-copy", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".intro-copy",
+        start: "top 85%"
+      }
+    });
+
+    gsap.fromTo(".phone-reel",
+      {
+        scale: 1.6,
+        borderRadius: "0px"
+      },
+      {
+        scale: 1,
+        borderRadius: "32px",
+        scrollTrigger: {
+          trigger: ".reel-section",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.1
+        }
+      }
+    );
+
+    gsap.to(".background-copy", {
+      xPercent: -18,
+      scrollTrigger: {
+        trigger: ".reel-section",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1
+      }
+    });
+
+    gsap.from(".side-copy", {
+      x: -80,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: ".reel-section",
+        start: "20% top",
+        end: "45% top",
+        scrub: 1
+      }
+    });
+
+    gsap.utils.toArray(".photo-card img").forEach((img) => {
+      gsap.to(img, {
+        yPercent: 12,
+        ease: "none",
+        scrollTrigger: {
+          trigger: img.parentElement,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+    });
+
+    gsap.utils.toArray(".photo-card").forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 80,
+        scale: .96,
+        duration: 1,
+        delay: i * .03,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 88%"
+        }
+      });
+    });
+
+    gsap.from(".yellow-heading", {
+      xPercent: -30,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: ".yellow-section",
+        start: "top 65%",
+        end: "center center",
+        scrub: 1
+      }
+    });
+
+    gsap.utils.toArray(".service-row").forEach((row) => {
+      gsap.from(row, {
+        x: -70,
+        opacity: 0,
+        duration: .8,
+        scrollTrigger: {
+          trigger: row,
+          start: "top 85%"
+        }
+      });
+    });
+
+    gsap.to(".cta-bg", {
+      xPercent: -20,
+      scrollTrigger: {
+        trigger: ".cta",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
+
+    gsap.from(".cta-content", {
+      y: 80,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".cta",
+        start: "top 70%"
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
