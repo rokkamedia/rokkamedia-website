@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RokkaMedia | Hospitality Content Creation</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0a0a0a;
+      color: white;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAV */
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 6%;
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #FFD400;
+    }
+
+    .nav-button {
+      border: 1px solid white;
+      padding: 10px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 6% 70px;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.15),
+          rgba(0,0,0,.95)
+        ),
+        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+    }
+
+    .eyebrow {
+      color: #FFD400;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 10vw, 110px);
+      line-height: .9;
+      letter-spacing: -4px;
+      max-width: 1000px;
+    }
+
+    .hero p {
+      margin-top: 25px;
+      max-width: 520px;
+      color: #d3d3d3;
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button-primary {
+      background: #FFD400;
+      color: black;
+      padding: 15px 22px;
+      border-radius: 50px;
+      font-weight: bold;
+    }
+
+    .button-secondary {
+      border: 1px solid #555;
+      padding: 15px 22px;
+      border-radius: 50px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 90px 6%;
+    }
+
+    .section-label {
+      color: #FFD400;
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .big-copy {
+      font-size: clamp(38px, 7vw, 70px);
+      line-height: 1;
+      letter-spacing: -2px;
+      max-width: 900px;
+    }
+
+    /* SERVICES */
+
+    .services {
+      margin-top: 60px;
+    }
+
+    .service {
+      border-top: 1px solid #333;
+      padding: 28px 0;
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 20px;
+    }
+
+    .service-number {
+      color: #777;
+    }
+
+    .service h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .service p {
+      color: #aaa;
+      max-width: 500px;
+    }
+
+    /* WORK */
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 50px;
+    }
+
+    .project {
+      height: 550px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      background: #222;
+    }
+
+    .project img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .4s ease;
+    }
+
+    .project:hover img {
+      transform: scale(1.03);
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 25px;
+      background: linear-gradient(transparent, rgba(0,0,0,.9));
+    }
+
+    .project-info h3 {
+      font-size: 26px;
+    }
+
+    .project-info p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    /* CTA */
+
+    .cta {
+      background: #FFD400;
+      color: black;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(50px, 9vw, 100px);
+      line-height: .9;
+      max-width: 950px;
+      letter-spacing: -4px;
+    }
+
+    .cta a {
+      margin-top: 35px;
+      display: inline-block;
+      background: black;
+      color: white;
+      padding: 16px 25px;
+      border-radius: 50px;
+      width: fit-content;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 40px 6%;
+      display: flex;
+      justify-content: space-between;
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 18px 5%;
+      }
+
+      .hero {
+        padding: 130px 5% 55px;
+      }
+
+      h1 {
+        letter-spacing: -2.5px;
+      }
+
+      section {
+        padding: 70px 5%;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        height: 480px;
+      }
+
+      .cta {
+        min-height: 450px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">ROKKA<span>MEDIA</span></div>
+
+  <a href="#contact" class="nav-button">
+    LET'S TALK
+  </a>
+</nav>
+
+
+<section class="hero">
+
+  <div class="eyebrow">
+    HOSPITALITY CONTENT STUDIO
+  </div>
+
+  <h1>
+    CONTENT THAT MAKES PEOPLE HUNGRY.
+  </h1>
+
+  <p>
+    Social-first photo and video content for restaurants,
+    bars and hospitality brands that want to stand out.
+  </p>
+
+  <div class="buttons">
+
+    <a href="#work" class="button-primary">
+      View our work
+    </a>
+
+    <a href="#contact" class="button-secondary">
+      Book a free call
+    </a>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-label">
+    WHAT WE DO
+  </div>
+
+  <h2 class="big-copy">
+    Your food looks good. Your content should too.
+  </h2>
+
+  <div class="services">
+
+    <div class="service">
+      <div class="service-number">01</div>
+      <div>
+        <h3>Social Content</h3>
+        <p>
+          Short-form Reels and TikToks designed specifically
+          for restaurants, bars and hospitality brands.
+        </p>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-number">02</div>
+      <div>
+        <h3>Photography</h3>
+        <p>
+          Food, drinks, interiors and lifestyle photography
+          created to make your brand look its best.
+        </p>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-number">03</div>
+      <div>
+        <h3>Video Production</h3>
+        <p>
+          Cinematic promotional videos and social campaigns
+          built around your venue.
+        </p>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-number">04</div>
+      <div>
+        <h3>Content Days</h3>
+        <p>
+          We visit your venue and create a bank of content
+          ready for you to use throughout the month.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="work">
+
+  <div class="section-label">
+    SELECTED WORK
+  </div>
+
+  <h2 class="big-copy">
+    Made for the scroll.
+  </h2>
+
+  <div class="work-grid">
+
+    <div class="project">
+
+      <img
+        src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80"
+        alt="Restaurant content">
+
+      <div class="project-info">
+        <h3>Hospitality Content</h3>
+        <p>Food • Photography • Social</p>
+      </div>
+
+    </div>
+
+    <div class="project">
+
+      <img
+        src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80"
+        alt="Food content">
+
+      <div class="project-info">
+        <h3>Food & Drink</h3>
+        <p>Reels • Video • Photography</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="cta" id="contact">
+
+  <div class="section-label" style="color:black;">
+    LET'S CREATE
+  </div>
+
+  <h2>
+    MAKE YOUR VENUE WORTH STOPPING FOR.
+  </h2>
+
+  <a href="mailto:hello@rokkamedia.com">
+    Start a conversation →
+  </a>
+
+</section>
+
+
+<footer>
+
+  <div>
+    © 2026 RokkaMedia
+  </div>
+
+  <div>
+    Hospitality Content Creation
+  </div>
+
+</footer>
+
+</body>
+</html>
