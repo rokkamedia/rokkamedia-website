@@ -56,6 +56,7 @@ transition:.4s ease;
 nav.scrolled{
 background:rgba(7,7,7,.78);
 backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
 border-bottom:1px solid rgba(255,255,255,.06);
 }
 
@@ -166,9 +167,15 @@ border:1px solid rgba(255,255,255,.4);
 padding:15px 22px;
 border-radius:100px;
 backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+transition:.3s ease;
 }
 
-/* SECTIONS */
+.button-secondary:hover{
+background:rgba(255,255,255,.1);
+}
+
+/* GENERAL SECTIONS */
 
 section.content{
 padding:110px 5%;
@@ -280,6 +287,7 @@ z-index:3;
 background:rgba(0,0,0,.62);
 border:1px solid rgba(255,255,255,.12);
 backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
 padding:11px 15px;
 border-radius:100px;
 font-size:12px;
@@ -321,7 +329,7 @@ height:570px;
 margin-top:100px;
 }
 
-/* STATEMENT */
+/* YELLOW STATEMENT */
 
 .statement{
 background:#FFD400;
@@ -394,7 +402,7 @@ font-size:14px;
 line-height:1.6;
 }
 
-/* CTA */
+/* CONTACT */
 
 .contact{
 padding:140px 5%;
@@ -448,6 +456,54 @@ transition:.3s ease;
 
 .contact-button:hover{
 transform:translateY(-3px);
+}
+
+/* WHATSAPP BUTTON */
+
+.whatsapp-button{
+position:fixed;
+right:22px;
+bottom:22px;
+z-index:9999;
+
+display:flex;
+align-items:center;
+gap:9px;
+
+background:#FFD400;
+color:#000;
+
+padding:14px 19px;
+border-radius:100px;
+
+font-size:13px;
+font-weight:800;
+
+box-shadow:0 10px 35px rgba(0,0,0,.35);
+
+transition:
+transform .3s ease,
+box-shadow .3s ease;
+}
+
+.whatsapp-button:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 40px rgba(0,0,0,.5);
+}
+
+.whatsapp-icon{
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:20px;
+height:20px;
+
+border-radius:50%;
+background:#000;
+color:#FFD400;
+
+font-size:11px;
 }
 
 /* FOOTER */
@@ -543,9 +599,17 @@ grid-template-columns:1fr;
 min-height:560px;
 }
 
+.whatsapp-button{
+right:15px;
+bottom:15px;
+padding:13px 17px;
+font-size:12px;
+}
+
 footer{
 flex-direction:column;
 gap:8px;
+padding-bottom:85px;
 }
 
 }
@@ -564,13 +628,18 @@ transition:none!important;
 
 <body>
 
+<!-- NAV -->
+
 <nav>
 
 <a href="#" class="logo">
 <img src="ROKKA.png" alt="RokkaMedia">
 </a>
 
-<a href="#contact" class="nav-button">
+<a
+href="mailto:info@rokkamedia.com?subject=RokkaMedia%20Enquiry"
+class="nav-button"
+>
 LET'S TALK
 </a>
 
@@ -594,11 +663,13 @@ HOSPITALITY CONTENT STUDIO
 </div>
 
 <div class="hero-title-mask">
+
 <h1>
 CREATE.<br>
 CAPTURE.<br>
 <span class="yellow">ELEVATE.</span>
 </h1>
+
 </div>
 
 <p>
@@ -613,8 +684,11 @@ actually stop scrolling for.
 View our work
 </a>
 
-<a href="#contact" class="button-secondary">
-Book a free call
+<a
+href="mailto:info@rokkamedia.com?subject=RokkaMedia%20Enquiry"
+class="button-secondary"
+>
+Let's talk
 </a>
 
 </div>
@@ -628,15 +702,17 @@ Book a free call
 
 <section class="content">
 
-<div class="section-label reveal-label">
+<div class="section-label">
 WHAT WE DO
 </div>
 
 <div class="title-mask">
+
 <h2 class="big-copy reveal-title">
 Your food looks good.<br>
 Your content should too.
 </h2>
+
 </div>
 
 <p class="body-copy reveal-copy">
@@ -645,30 +721,74 @@ hospitality brands — designed specifically for the way
 people discover restaurants, bars and venues today.
 </p>
 
+
 <div class="services">
 
 <div class="service">
-<div class="service-number">01</div>
-<h3>Short-form Content</h3>
-<p>Reels, TikToks and social-first video designed around your brand.</p>
+
+<div class="service-number">
+01
 </div>
 
-<div class="service">
-<div class="service-number">02</div>
-<h3>Photography</h3>
-<p>Food, drinks, interiors and lifestyle photography created to make your venue stand out.</p>
+<h3>
+Short-form Content
+</h3>
+
+<p>
+Reels, TikToks and social-first video designed around your brand.
+</p>
+
 </div>
 
-<div class="service">
-<div class="service-number">03</div>
-<h3>Video Production</h3>
-<p>Cinematic promotional videos and social campaigns built around your venue.</p>
-</div>
 
 <div class="service">
-<div class="service-number">04</div>
-<h3>Content Days</h3>
-<p>One shoot. A bank of polished content ready to use throughout the month.</p>
+
+<div class="service-number">
+02
+</div>
+
+<h3>
+Photography
+</h3>
+
+<p>
+Food, drinks, interiors and lifestyle photography created to make your venue stand out.
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="service-number">
+03
+</div>
+
+<h3>
+Video Production
+</h3>
+
+<p>
+Cinematic promotional videos and social campaigns built around your venue.
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="service-number">
+04
+</div>
+
+<h3>
+Content Days
+</h3>
+
+<p>
+One shoot. A bank of polished content ready to use throughout the month.
+</p>
+
 </div>
 
 </div>
@@ -689,9 +809,11 @@ SELECTED WORK
 </div>
 
 <div class="title-mask">
+
 <h2 class="big-copy reveal-title">
 Made for<br>the scroll.
 </h2>
+
 </div>
 
 </div>
@@ -706,7 +828,10 @@ the food, atmosphere and experience behind the venue.
 
 <div class="portfolio-main portfolio-item">
 
-<img src="RK1.png" alt="RokkaMedia food photography">
+<img
+src="RK1.png"
+alt="RokkaMedia food photography"
+>
 
 <div class="image-label">
 Food Photography
@@ -719,7 +844,10 @@ Food Photography
 
 <div class="portfolio-card portfolio-item">
 
-<img src="RK4.png" alt="RokkaMedia hospitality photography">
+<img
+src="RK4.png"
+alt="RokkaMedia hospitality photography"
+>
 
 <div class="image-label">
 Hospitality
@@ -730,7 +858,10 @@ Hospitality
 
 <div class="portfolio-card offset portfolio-item">
 
-<img src="RK5.png" alt="RokkaMedia social content">
+<img
+src="RK5.png"
+alt="RokkaMedia social content"
+>
 
 <div class="image-label">
 Social Content
@@ -745,7 +876,10 @@ Social Content
 
 <div class="portfolio-card portfolio-item">
 
-<img src="RK2.png" alt="RokkaMedia photography">
+<img
+src="RK2.png"
+alt="RokkaMedia photography"
+>
 
 <div class="image-label">
 Photography
@@ -756,7 +890,10 @@ Photography
 
 <div class="portfolio-card portfolio-item">
 
-<img src="RK7.png" alt="RokkaMedia food and drink content">
+<img
+src="RK7.png"
+alt="RokkaMedia food and drink content"
+>
 
 <div class="image-label">
 Food & Drink
@@ -780,8 +917,8 @@ ROKKAMEDIA
 </div>
 
 <h2 class="statement-title">
-CONTENT THAT MAKES
-PEOPLE <span>HUNGRY.</span>
+CONTENT THAT MAKES<br>
+PEOPLE HUNGRY.
 </h2>
 
 <p class="statement-copy">
@@ -794,7 +931,7 @@ the food, atmosphere and experience behind your brand.
 </section>
 
 
-<!-- PROCESS -->
+<!-- HOW IT WORKS -->
 
 <section class="content">
 
@@ -803,35 +940,82 @@ HOW IT WORKS
 </div>
 
 <div class="title-mask">
+
 <h2 class="big-copy reveal-title">
-Simple from<br>shoot to scroll.
+Simple from<br>
+shoot to scroll.
 </h2>
+
 </div>
+
 
 <div class="process-grid">
 
 <div class="process-card">
-<span>01</span>
-<h3>Let's Talk</h3>
-<p>Tell us about your venue, your brand and what you want to achieve.</p>
+
+<span>
+01
+</span>
+
+<h3>
+Let's Talk
+</h3>
+
+<p>
+Tell us about your venue, your brand and what you want to achieve.
+</p>
+
 </div>
 
-<div class="process-card">
-<span>02</span>
-<h3>We Shoot</h3>
-<p>We come to your venue and capture the food, people and atmosphere.</p>
-</div>
 
 <div class="process-card">
-<span>03</span>
-<h3>We Create</h3>
-<p>Your content is professionally edited and optimised for social.</p>
+
+<span>
+02
+</span>
+
+<h3>
+We Shoot
+</h3>
+
+<p>
+We come to your venue and capture the food, people and atmosphere.
+</p>
+
 </div>
 
+
 <div class="process-card">
-<span>04</span>
-<h3>We Post</h3>
-<p>We get your content live and your brand looking its best across social.</p>
+
+<span>
+03
+</span>
+
+<h3>
+We Create
+</h3>
+
+<p>
+Your content is professionally edited and optimised for social.
+</p>
+
+</div>
+
+
+<div class="process-card">
+
+<span>
+04
+</span>
+
+<h3>
+We Post
+</h3>
+
+<p>
+We get your content live and your brand looking its best across social.
+</p>
+
 </div>
 
 </div>
@@ -854,7 +1038,7 @@ LET'S CREATE
 </div>
 
 <h2>
-READY TO MAKE YOUR
+READY TO MAKE YOUR<br>
 VENUE STAND OUT?
 </h2>
 
@@ -863,14 +1047,19 @@ Whether you need a content day, photography or short-form
 video, let's create something worth stopping for.
 </p>
 
-<a href="mailto:hello@rokkamedia.com" class="contact-button">
-Book a free call →
+<a
+href="mailto:info@rokkamedia.com?subject=RokkaMedia%20Enquiry"
+class="contact-button"
+>
+LET'S TALK →
 </a>
 
 </div>
 
 </section>
 
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -883,6 +1072,25 @@ Create. Capture. Elevate.
 </div>
 
 </footer>
+
+
+<!-- WHATSAPP -->
+
+<a
+href="https://wa.me/447345658962?text=Hi%20RokkaMedia%2C%20I%27m%20interested%20in%20content%20for%20my%20business%20and%20would%20like%20to%20find%20out%20more."
+class="whatsapp-button"
+target="_blank"
+rel="noopener noreferrer"
+aria-label="Contact RokkaMedia on WhatsApp"
+>
+
+<span class="whatsapp-icon">
+✦
+</span>
+
+WhatsApp us
+
+</a>
 
 
 <script>
@@ -900,9 +1108,13 @@ window.addEventListener("scroll",()=>{
 const nav=document.querySelector("nav");
 
 if(window.scrollY>70){
+
 nav.classList.add("scrolled");
+
 }else{
+
 nav.classList.remove("scrolled");
+
 }
 
 });
@@ -918,30 +1130,38 @@ const heroTimeline=gsap.timeline();
 heroTimeline
 
 .from(".hero h1",{
+
 yPercent:105,
 duration:1.15,
 ease:"power4.out"
+
 })
 
 .from(".eyebrow",{
+
 opacity:0,
 y:12,
 duration:.65,
 ease:"power3.out"
+
 },"-=.65")
 
 .from(".hero p",{
+
 opacity:0,
 y:18,
 duration:.75,
 ease:"power3.out"
+
 },"-=.45")
 
 .from(".buttons",{
+
 opacity:0,
 y:15,
 duration:.7,
 ease:"power3.out"
+
 },"-=.5");
 
 
@@ -951,14 +1171,15 @@ gsap.to(".hero-video",{
 
 yPercent:5,
 scale:1,
-
 ease:"none",
 
 scrollTrigger:{
+
 trigger:".hero",
 start:"top top",
 end:"bottom top",
 scrub:1.5
+
 }
 
 });
@@ -968,20 +1189,21 @@ gsap.to(".hero-content",{
 
 y:30,
 opacity:.45,
-
 ease:"none",
 
 scrollTrigger:{
+
 trigger:".hero",
 start:"45% top",
 end:"bottom top",
 scrub:1.4
+
 }
 
 });
 
 
-/* HEADLINE MASK REVEALS */
+/* HEADLINE REVEALS */
 
 gsap.utils.toArray(".reveal-title").forEach(title=>{
 
@@ -992,9 +1214,11 @@ duration:1.05,
 ease:"power4.out",
 
 scrollTrigger:{
+
 trigger:title,
 start:"top 88%",
 once:true
+
 }
 
 });
@@ -1002,7 +1226,7 @@ once:true
 });
 
 
-/* SMALL COPY REVEALS */
+/* COPY REVEALS */
 
 gsap.utils.toArray(".reveal-copy").forEach(copy=>{
 
@@ -1014,9 +1238,11 @@ duration:.9,
 ease:"power3.out",
 
 scrollTrigger:{
+
 trigger:copy,
 start:"top 90%",
 once:true
+
 }
 
 });
@@ -1037,9 +1263,11 @@ delay:index*.04,
 ease:"power3.out",
 
 scrollTrigger:{
+
 trigger:service,
 start:"top 92%",
 once:true
+
 }
 
 });
@@ -1047,7 +1275,7 @@ once:true
 });
 
 
-/* PORTFOLIO REVEAL */
+/* PORTFOLIO */
 
 gsap.utils.toArray(".portfolio-item").forEach(item=>{
 
@@ -1060,9 +1288,11 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
+
 trigger:item,
 start:"top 90%",
 once:true
+
 }
 
 });
@@ -1070,21 +1300,22 @@ once:true
 });
 
 
-/* LIGHT IMAGE PARALLAX */
+/* IMAGE PARALLAX */
 
 gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 
 gsap.to(image,{
 
 yPercent:7,
-
 ease:"none",
 
 scrollTrigger:{
+
 trigger:image.parentElement,
 start:"top bottom",
 end:"bottom top",
 scrub:1.8
+
 }
 
 });
@@ -1102,9 +1333,11 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
+
 trigger:".statement",
 start:"top 72%",
 once:true
+
 }
 
 });
@@ -1123,9 +1356,11 @@ delay:index*.07,
 ease:"power3.out",
 
 scrollTrigger:{
+
 trigger:card,
 start:"top 90%",
 once:true
+
 }
 
 });
@@ -1143,27 +1378,30 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
+
 trigger:".contact",
 start:"top 72%",
 once:true
+
 }
 
 });
 
 
-/* BACKGROUND WORD */
+/* BACKGROUND ROKKA */
 
 gsap.to(".contact-bg",{
 
 xPercent:-6,
-
 ease:"none",
 
 scrollTrigger:{
+
 trigger:".contact",
 start:"top bottom",
 end:"bottom top",
 scrub:2
+
 }
 
 });
