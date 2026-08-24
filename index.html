@@ -146,6 +146,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
+will-change:transform,opacity,background;
 }
 
 .intro-logo-wrap{
@@ -164,14 +165,16 @@ filter:none;
 will-change:transform,opacity;
 }
 
-.intro-reveal{
+.intro-line{
 position:absolute;
-inset:0;
-z-index:1;
+left:50%;
+top:50%;
+width:0;
+height:3px;
 background:#070707;
-opacity:0;
-clip-path:circle(0% at 50% 50%);
-will-change:clip-path,opacity;
+transform:translate(-50%,-50%);
+z-index:1;
+will-change:width,height;
 }
 
 body.intro-active{
@@ -1075,7 +1078,7 @@ transition:none!important;
 ========================= -->
 
 <div class="intro-screen" id="introScreen" aria-hidden="true">
-  <div class="intro-reveal" id="introReveal"></div>
+  <div class="intro-line" id="introLine"></div>
   <div class="intro-logo-wrap" id="introLogoWrap">
     <img src="/ROKKA.png?v=3" alt="" class="intro-logo">
   </div>
@@ -1999,8 +2002,8 @@ document.getElementById("introScreen");
 const introLogoWrap =
 document.getElementById("introLogoWrap");
 
-const introReveal =
-document.getElementById("introReveal");
+const introLine =
+document.getElementById("introLine");
 
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
@@ -2038,86 +2041,85 @@ finishIntro();
 }
 });
 
-/* OPTION 6 — LOGO MASK / PORTAL REVEAL */
+/* OPTION 10 — ROKKA SIGNATURE */
 
 gsap.set(introLogoWrap,{
-scale:.94,
-opacity:0
+scale:.97,
+opacity:0,
+y:8
 });
 
-gsap.set(introReveal,{
-opacity:0,
-clipPath:"circle(0% at 50% 50%)"
+gsap.set(introLine,{
+width:0,
+height:3
 });
 
 introTimeline
+
+/* Logo settles in */
 .to(introLogoWrap,{
 scale:1,
 opacity:1,
-duration:.65,
+y:0,
+duration:.62,
 ease:"power3.out"
 })
 
+/* Confident hold */
 .to(introLogoWrap,{
-duration:.48
+duration:.42
 })
 
-.to(introReveal,{
-opacity:1,
-clipPath:"circle(10% at 50% 50%)",
-duration:.26,
-ease:"power2.out"
+/* Thin black signature line shoots across */
+.to(introLine,{
+width:"72%",
+duration:.46,
+ease:"power4.out"
 })
 
+/* Logo fades as the line takes over */
 .to(introLogoWrap,{
-scale:1.16,
-duration:.28,
+opacity:0,
+scale:.985,
+duration:.22,
 ease:"power2.in"
-},"<")
+},"-=.10")
 
-.to(introReveal,{
-clipPath:"circle(82% at 50% 50%)",
-duration:.72,
+/* Line expands vertically into full black screen */
+.to(introLine,{
+width:"110%",
+height:"110%",
+duration:.60,
 ease:"power4.inOut"
 })
 
-.to(introLogoWrap,{
-scale:1.42,
-opacity:0,
-duration:.42,
-ease:"power3.in"
-},"-=.62")
-
-.to(introReveal,{
-clipPath:"circle(150% at 50% 50%)",
-duration:.34,
-ease:"power3.out"
-},"-=.16")
-
+/* Match the screen to black */
 .to(introScreen,{
 background:"#070707",
-duration:.08
-},"-=.08")
+duration:.08,
+ease:"none"
+},"-=.10")
 
+/* Reveal homepage underneath */
 .to(introScreen,{
 opacity:0,
-duration:.30,
+duration:.28,
 ease:"power2.out"
 })
 
 .to("nav",{
 opacity:1,
 y:0,
-duration:.48,
+duration:.46,
 ease:"power3.out"
 },"-=.20")
 
 .to(".hero-content",{
 opacity:1,
 y:0,
-duration:.62,
+duration:.60,
 ease:"power4.out"
-},"-=.40");
+},"-=.38");
 
 }else{
 
