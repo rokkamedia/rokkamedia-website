@@ -2028,29 +2028,70 @@ finishIntro();
 }
 });
 
+/* Premium ~2.3 second brand sequence */
 introTimeline
 .fromTo(
 introLogoWrap,
 {
-scale:.72,
+scale:.35,
 opacity:0,
-rotation:-3
+rotation:-8
 },
 {
-scale:1,
+scale:.88,
 opacity:1,
 rotation:0,
-duration:.42,
-ease:"back.out(1.9)"
+duration:.48,
+ease:"power4.out"
+}
+)
+
+/* First impact */
+.to(
+introLogoWrap,
+{
+scale:1.08,
+duration:.20,
+ease:"back.out(2.4)"
 }
 )
 
 .to(
 introLogoWrap,
 {
-y:-10,
-duration:.13,
+scale:1,
+duration:.18,
 ease:"power2.out"
+}
+)
+
+/* Give the logo a confident hero moment */
+.to(
+introLogoWrap,
+{
+scale:1.035,
+duration:.34,
+ease:"sine.inOut"
+}
+)
+
+.to(
+introLogoWrap,
+{
+scale:1,
+duration:.28,
+ease:"sine.inOut"
+}
+)
+
+/* Tiny cinematic lift before the transition */
+.to(
+introLogoWrap,
+{
+y:-14,
+scale:.96,
+duration:.20,
+ease:"power3.in"
 }
 )
 
@@ -2058,37 +2099,42 @@ ease:"power2.out"
 introLogoWrap,
 {
 y:0,
-duration:.18,
-ease:"bounce.out"
+scale:1.08,
+duration:.20,
+ease:"back.out(2)"
 }
 )
 
+/* Punch the logo through the screen */
 .to(
 introLogoWrap,
 {
-scale:7,
-duration:.42,
-ease:"power4.in"
+scale:9,
+rotation:1.5,
+duration:.52,
+ease:"expo.in"
 },
 "+=.08"
 )
 
+/* Yellow snaps into Rokka black */
 .to(
 introScreen,
 {
 background:"#070707",
-duration:.12,
-ease:"none"
+duration:.16,
+ease:"power2.inOut"
 },
-"-=.10"
+"-=.14"
 )
 
+/* Homepage reveal */
 .to(
 introScreen,
 {
 opacity:0,
-duration:.25,
-ease:"power2.out"
+duration:.30,
+ease:"power3.out"
 }
 )
 
@@ -2097,9 +2143,10 @@ ease:"power2.out"
 {
 opacity:1,
 y:0,
-duration:.45
+duration:.48,
+ease:"power3.out"
 },
-"-=.18"
+"-=.20"
 )
 
 .to(
@@ -2107,9 +2154,10 @@ duration:.45
 {
 opacity:1,
 y:0,
-duration:.55
+duration:.62,
+ease:"power4.out"
 },
-"-=.38"
+"-=.42"
 );
 
 }else{
