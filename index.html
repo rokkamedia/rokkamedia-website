@@ -150,7 +150,7 @@ will-change:opacity,background;
 }
 
 .signature-stage{
-width:min(540px,80vw);
+width:min(520px,78vw);
 position:relative;
 display:flex;
 align-items:center;
@@ -164,39 +164,42 @@ display:block;
 overflow:visible;
 }
 
-.signature-base{
-opacity:0;
-}
-
-.signature-trace{
+.signature-mask-path{
 fill:none;
-stroke:#070707;
+stroke:#fff;
 stroke-linecap:round;
 stroke-linejoin:round;
 }
 
-.signature-text{
-opacity:0;
+.signature-text-mask{
+fill:#fff;
+transform-box:fill-box;
+transform-origin:center;
+}
+
+.signature-image{
+width:100%;
+height:100%;
 }
 
 .signature-pen{
 position:absolute;
-width:10px;
-height:10px;
+width:11px;
+height:11px;
 border-radius:50%;
 background:#070707;
-left:7%;
+left:8%;
 top:58%;
 opacity:0;
 transform:translate(-50%,-50%);
-z-index:5;
+z-index:3;
 will-change:left,top,opacity,transform;
 }
 
 .signature-subline{
 position:absolute;
 left:50%;
-bottom:-30px;
+bottom:-34px;
 transform:translateX(-50%);
 font-size:10px;
 font-weight:800;
@@ -209,13 +212,13 @@ white-space:nowrap;
 @media(max-width:800px){
 
 .signature-stage{
-width:min(450px,86vw);
+width:min(430px,84vw);
 }
 
 .signature-subline{
 font-size:9px;
-letter-spacing:2px;
-bottom:-26px;
+letter-spacing:2.2px;
+bottom:-28px;
 }
 
 }
@@ -1129,66 +1132,29 @@ transition:none!important;
       role="img"
       aria-label="RokkaMedia logo"
     >
+      <defs>
+        <mask id="signatureMask">
+          <rect
+            id="signatureRevealRect"
+            x="0"
+            y="0"
+            width="0"
+            height="793"
+            fill="#fff"
+          />
+        </mask>
+      </defs>
 
-      <!-- Full vector logo, faded in at the end to resolve every detail -->
       <image
-        id="signatureBase"
-        class="signature-base"
+        class="signature-image"
         href="/ROKKA-black.svg"
         x="0"
         y="0"
         width="1983"
         height="793"
         preserveAspectRatio="xMidYMid meet"
+        mask="url(#signatureMask)"
       />
-
-      <!-- Handwriting guide strokes -->
-      <path
-        id="trace1"
-        class="signature-trace"
-        stroke-width="70"
-        d="M 90 445
-           C 200 360, 335 285, 500 215
-           C 690 135, 900 70, 1110 45
-           C 1260 25, 1375 38, 1392 92
-           C 1410 155, 1300 235, 1145 300
-           C 980 370, 800 414, 650 445"
-      />
-
-      <path
-        id="trace2"
-        class="signature-trace"
-        stroke-width="78"
-        d="M 650 210
-           C 600 300, 550 405, 500 520
-           C 460 610, 420 690, 355 704
-           C 315 712, 300 670, 330 618
-           C 380 535, 455 470, 560 445
-           C 640 425, 690 445, 735 480"
-      />
-
-      <path
-        id="trace3"
-        class="signature-trace"
-        stroke-width="70"
-        d="M 715 470
-           C 770 425, 825 420, 865 470
-           C 900 512, 930 540, 975 500
-           C 1020 458, 1060 420, 1110 452
-           C 1150 478, 1160 530, 1212 520
-           C 1265 510, 1300 445, 1355 438
-           C 1410 430, 1450 480, 1490 515"
-      />
-
-      <path
-        id="trace4"
-        class="signature-trace"
-        stroke-width="58"
-        d="M 1485 515
-           C 1585 525, 1685 510, 1765 503
-           C 1835 497, 1890 495, 1940 490"
-      />
-
     </svg>
 
     <div class="signature-pen" id="signaturePen"></div>
@@ -2124,15 +2090,8 @@ document.getElementById("signaturePen");
 const signatureSubline =
 document.getElementById("signatureSubline");
 
-const signatureBase =
-document.getElementById("signatureBase");
-
-const signatureTraces = [
-document.getElementById("trace1"),
-document.getElementById("trace2"),
-document.getElementById("trace3"),
-document.getElementById("trace4")
-];
+const signatureRevealRect =
+document.getElementById("signatureRevealRect");
 
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
@@ -2170,21 +2129,10 @@ finishIntro();
 }
 });
 
-/* TRUE HANDWRITING TRACE INTRO */
+/* FULL-LOGO SIGNATURE WRITE-ON INTRO */
 
-signatureTraces.forEach(path=>{
-
-const length = path.getTotalLength();
-
-gsap.set(path,{
-strokeDasharray:length,
-strokeDashoffset:length
-});
-
-});
-
-gsap.set(signatureBase,{
-opacity:0
+gsap.set(signatureRevealRect,{
+attr:{width:0}
 });
 
 gsap.set(signatureStage,{
@@ -2194,8 +2142,8 @@ scale:.985
 
 gsap.set(signaturePen,{
 opacity:0,
-left:"5%",
-top:"57%"
+left:"2%",
+top:"52%"
 });
 
 gsap.set(signatureSubline,{
@@ -2205,154 +2153,124 @@ y:8
 
 introTimeline
 
-/* Pen touches down */
+/* Pen appears */
 .to(signaturePen,{
 opacity:1,
 scale:1,
-duration:.12,
-ease:"power2.out"
-})
-
-/* Long upper sweep */
-.to("#trace1",{
-strokeDashoffset:0,
-duration:.60,
-ease:"power1.inOut"
-})
-
-.to(signaturePen,{
-left:"69%",
-top:"38%",
-duration:.60,
-ease:"power1.inOut"
-},"<")
-
-/* Return stroke */
-.to("#trace2",{
-strokeDashoffset:0,
-duration:.42,
-ease:"power1.inOut"
-})
-
-.to(signaturePen,{
-left:"37%",
-top:"77%",
-duration:.42,
-ease:"power1.inOut"
-},"<")
-
-/* Lower handwritten wave */
-.to("#trace3",{
-strokeDashoffset:0,
-duration:.42,
-ease:"power1.inOut"
-})
-
-.to(signaturePen,{
-left:"75%",
-top:"63%",
-duration:.42,
-ease:"power1.inOut"
-},"<")
-
-/* Finishing flourish */
-.to("#trace4",{
-strokeDashoffset:0,
-duration:.28,
-ease:"power2.out"
-})
-
-.to(signaturePen,{
-left:"97%",
-top:"61%",
-duration:.28,
-ease:"power2.out"
-},"<")
-
-/* Pen lift */
-.to(signaturePen,{
-x:10,
-y:-10,
-scale:.72,
-duration:.10,
-ease:"power2.out"
-})
-
-.to(signaturePen,{
-opacity:0,
-duration:.08
-},"-=.02")
-
-/* Resolve from hand-drawn guide into the exact SVG logo */
-.to(signatureBase,{
-opacity:1,
-duration:.20,
-ease:"power2.out"
-})
-
-.to(signatureTraces,{
-opacity:0,
 duration:.16,
 ease:"power2.out"
-},"-=.14")
+})
 
-/* Descriptor */
-.to(signatureSubline,{
-opacity:.7,
-y:0,
+/* Entire logo progressively reveals while the pen travels */
+.to(signatureRevealRect,{
+attr:{width:1983},
+duration:1.15,
+ease:"power2.inOut"
+})
+
+.to(signaturePen,{
+left:"96%",
+top:"58%",
+duration:1.15,
+ease:"power2.inOut"
+},"<")
+
+/* Add subtle handwriting motion without hiding any logo */
+.to(signaturePen,{
+top:"46%",
+duration:.18,
+ease:"sine.inOut"
+},"-=.90")
+
+.to(signaturePen,{
+top:"63%",
 duration:.20,
+ease:"sine.inOut"
+},"-=.68")
+
+.to(signaturePen,{
+top:"50%",
+duration:.18,
+ease:"sine.inOut"
+},"-=.46")
+
+.to(signaturePen,{
+top:"58%",
+duration:.18,
+ease:"sine.inOut"
+},"-=.26")
+
+/* Small finishing flick */
+.to(signaturePen,{
+x:14,
+y:-10,
+scale:.72,
+duration:.15,
+ease:"power2.out"
+})
+
+.to(signaturePen,{
+opacity:0,
+duration:.12
+},"-=.03")
+
+/* Descriptor appears after the full logo is complete */
+.to(signatureSubline,{
+opacity:.72,
+y:0,
+duration:.22,
 ease:"power3.out"
 },"-=.02")
 
-/* Short brand hold */
+/* Hold completed logo */
 .to(signatureStage,{
 scale:1,
-duration:.20,
+duration:.22,
 ease:"sine.out"
 })
 
 .to(signatureStage,{
-duration:.20
+duration:.18
 })
 
-/* Smooth transition into site */
+/* Transition into the website */
 .to(signatureSubline,{
 opacity:0,
-duration:.12
+duration:.16
 })
 
 .to(signatureStage,{
-scale:1.035,
+scale:1.045,
 opacity:0,
 duration:.22,
 ease:"power3.in"
-},"-=.02")
+},"-=.04")
 
 .to(introScreen,{
 background:"#070707",
-duration:.20,
+duration:.22,
 ease:"power3.inOut"
-},"-=.14")
+},"-=.15")
 
 .to(introScreen,{
 opacity:0,
-duration:.18,
+duration:.20,
 ease:"power2.out"
 })
 
 .to("nav",{
 opacity:1,
 y:0,
-duration:.38,
+duration:.46,
 ease:"power3.out"
-},"-=.14")
+},"-=.20")
 
 .to(".hero-content",{
 opacity:1,
 y:0,
-duration:.48,
+duration:.60,
 ease:"power4.out"
-},"-=.30");
+},"-=.38");
 
 }else{
 
