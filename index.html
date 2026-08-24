@@ -1134,64 +1134,14 @@ transition:none!important;
     >
       <defs>
         <mask id="signatureMask">
-
-          <!-- Main sweeping signature loop -->
-          <path
-            id="sigPath1"
-            class="signature-mask-path"
-            stroke-width="110"
-            d="M 120 465
-               C 220 360, 390 250, 620 160
-               C 850 70, 1080 10, 1240 42
-               C 1385 72, 1370 188, 1240 272
-               C 1085 370, 895 420, 690 470"
-          />
-
-          <!-- Downstroke / central return -->
-          <path
-            id="sigPath2"
-            class="signature-mask-path"
-            stroke-width="120"
-            d="M 675 205
-               C 610 320, 545 455, 470 605
-               C 435 675, 390 730, 335 705
-               C 305 690, 335 625, 400 555
-               C 505 440, 610 408, 735 438"
-          />
-
-          <!-- Lower signature wave -->
-          <path
-            id="sigPath3"
-            class="signature-mask-path"
-            stroke-width="105"
-            d="M 650 460
-               C 760 430, 790 505, 835 535
-               C 885 570, 950 495, 1020 455
-               C 1080 420, 1095 500, 1145 505
-               C 1210 510, 1260 435, 1320 430
-               C 1385 425, 1390 505, 1460 520"
-          />
-
-          <!-- Long finishing sweep -->
-          <path
-            id="sigPath4"
-            class="signature-mask-path"
-            stroke-width="85"
-            d="M 1440 520
-               C 1575 525, 1695 500, 1800 500
-               C 1870 500, 1910 498, 1935 492"
-          />
-
-          <!-- ROKKA MEDIA block text reveal -->
           <rect
-            id="signatureTextMask"
-            class="signature-text-mask"
-            x="285"
-            y="600"
-            width="1420"
-            height="170"
+            id="signatureRevealRect"
+            x="0"
+            y="0"
+            width="0"
+            height="793"
+            fill="#fff"
           />
-
         </mask>
       </defs>
 
@@ -2140,15 +2090,8 @@ document.getElementById("signaturePen");
 const signatureSubline =
 document.getElementById("signatureSubline");
 
-const signaturePaths = [
-document.getElementById("sigPath1"),
-document.getElementById("sigPath2"),
-document.getElementById("sigPath3"),
-document.getElementById("sigPath4")
-];
-
-const signatureTextMask =
-document.getElementById("signatureTextMask");
+const signatureRevealRect =
+document.getElementById("signatureRevealRect");
 
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
@@ -2186,32 +2129,21 @@ finishIntro();
 }
 });
 
-/* TRUE SIGNATURE-STYLE WRITE-ON INTRO */
+/* FULL-LOGO SIGNATURE WRITE-ON INTRO */
 
-signaturePaths.forEach(path=>{
-
-const length = path.getTotalLength();
-
-gsap.set(path,{
-strokeDasharray:length,
-strokeDashoffset:length
-});
-
-});
-
-gsap.set(signatureTextMask,{
-scaleX:0
+gsap.set(signatureRevealRect,{
+attr:{width:0}
 });
 
 gsap.set(signatureStage,{
 opacity:1,
-scale:.98
+scale:.985
 });
 
 gsap.set(signaturePen,{
 opacity:0,
-left:"8%",
-top:"58%"
+left:"2%",
+top:"52%"
 });
 
 gsap.set(signatureSubline,{
@@ -2229,67 +2161,51 @@ duration:.16,
 ease:"power2.out"
 })
 
-/* Main sweeping signature stroke */
-.to("#sigPath1",{
-strokeDashoffset:0,
-duration:.78,
-ease:"power1.inOut"
+/* Entire logo progressively reveals while the pen travels */
+.to(signatureRevealRect,{
+attr:{width:1983},
+duration:1.15,
+ease:"power2.inOut"
 })
 
 .to(signaturePen,{
-left:"64%",
-top:"20%",
-duration:.78,
-ease:"power1.inOut"
+left:"96%",
+top:"58%",
+duration:1.15,
+ease:"power2.inOut"
 },"<")
 
-/* Signature drops back through the centre */
-.to("#sigPath2",{
-strokeDashoffset:0,
-duration:.52,
-ease:"power1.inOut"
-})
+/* Add subtle handwriting motion without hiding any logo */
+.to(signaturePen,{
+top:"46%",
+duration:.18,
+ease:"sine.inOut"
+},"-=.90")
 
 .to(signaturePen,{
-left:"24%",
-top:"80%",
-duration:.52,
-ease:"power1.inOut"
-},"<")
-
-/* Lower handwritten wave */
-.to("#sigPath3",{
-strokeDashoffset:0,
-duration:.56,
-ease:"power1.inOut"
-})
+top:"63%",
+duration:.20,
+ease:"sine.inOut"
+},"-=.68")
 
 .to(signaturePen,{
-left:"73%",
-top:"62%",
-duration:.56,
-ease:"power1.inOut"
-},"<")
-
-/* Final long flourish */
-.to("#sigPath4",{
-strokeDashoffset:0,
-duration:.48,
-ease:"power2.out"
-})
+top:"50%",
+duration:.18,
+ease:"sine.inOut"
+},"-=.46")
 
 .to(signaturePen,{
-left:"97%",
-top:"61%",
-duration:.48,
-ease:"power2.out"
-},"<")
+top:"58%",
+duration:.18,
+ease:"sine.inOut"
+},"-=.26")
 
-/* Pen lifts */
+/* Small finishing flick */
 .to(signaturePen,{
-y:-12,
-scale:.7,
-duration:.14,
+x:14,
+y:-10,
+scale:.72,
+duration:.15,
 ease:"power2.out"
 })
 
@@ -2298,54 +2214,47 @@ opacity:0,
 duration:.12
 },"-=.03")
 
-/* ROKKA MEDIA lettering appears underneath */
-.to(signatureTextMask,{
-scaleX:1,
-duration:.48,
-ease:"power3.out"
-},"-=.05")
-
-/* Small agency descriptor */
+/* Descriptor appears after the full logo is complete */
 .to(signatureSubline,{
 opacity:.72,
 y:0,
-duration:.32,
+duration:.22,
 ease:"power3.out"
-},"-=.18")
+},"-=.02")
 
-/* Hold the finished identity */
+/* Hold completed logo */
 .to(signatureStage,{
 scale:1,
-duration:.42,
+duration:.22,
 ease:"sine.out"
 })
 
 .to(signatureStage,{
-duration:.34
-})
-
-/* Transition into the live site */
-.to(signatureSubline,{
-opacity:0,
 duration:.18
 })
 
-.to(signatureStage,{
-scale:1.06,
+/* Transition into the website */
+.to(signatureSubline,{
 opacity:0,
-duration:.34,
+duration:.16
+})
+
+.to(signatureStage,{
+scale:1.045,
+opacity:0,
+duration:.22,
 ease:"power3.in"
 },"-=.04")
 
 .to(introScreen,{
 background:"#070707",
-duration:.32,
+duration:.22,
 ease:"power3.inOut"
-},"-=.22")
+},"-=.15")
 
 .to(introScreen,{
 opacity:0,
-duration:.28,
+duration:.20,
 ease:"power2.out"
 })
 
