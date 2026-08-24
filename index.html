@@ -152,8 +152,9 @@ overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-will-change:transform,opacity,clip-path;
-clip-path:inset(0 100% 0 0);
+will-change:transform,opacity;
+position:relative;
+z-index:2;
 }
 
 .intro-logo{
@@ -163,15 +164,14 @@ filter:none;
 will-change:transform,opacity;
 }
 
-.intro-sweep{
+.intro-reveal{
 position:absolute;
-top:-15%;
-left:-35%;
-width:38%;
-height:130%;
+inset:0;
+z-index:1;
 background:#070707;
-transform:skewX(-12deg) translateX(-220%);
-will-change:transform;
+opacity:0;
+clip-path:circle(0% at 50% 50%);
+will-change:clip-path,opacity;
 }
 
 body.intro-active{
@@ -1075,17 +1075,11 @@ transition:none!important;
 ========================= -->
 
 <div class="intro-screen" id="introScreen" aria-hidden="true">
+  <div class="intro-reveal" id="introReveal"></div>
   <div class="intro-logo-wrap" id="introLogoWrap">
-    <img
-      src="/ROKKA.png?v=3"
-      alt=""
-      class="intro-logo"
-    >
+    <img src="/ROKKA.png?v=3" alt="" class="intro-logo">
   </div>
-  <div class="intro-sweep" id="introSweep"></div>
 </div>
-
-
 
 <!-- =========================
      NAVIGATION
@@ -2005,8 +1999,8 @@ document.getElementById("introScreen");
 const introLogoWrap =
 document.getElementById("introLogoWrap");
 
-const introSweep =
-document.getElementById("introSweep");
+const introReveal =
+document.getElementById("introReveal");
 
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
@@ -2044,113 +2038,86 @@ finishIntro();
 }
 });
 
-/* Cinematic wipe brand sequence */
+/* OPTION 6 — LOGO MASK / PORTAL REVEAL */
 
 gsap.set(introLogoWrap,{
-clipPath:"inset(0 100% 0 0)",
-scale:.96,
-opacity:1
+scale:.94,
+opacity:0
 });
 
-gsap.set(introSweep,{
-xPercent:-220
+gsap.set(introReveal,{
+opacity:0,
+clipPath:"circle(0% at 50% 50%)"
 });
 
 introTimeline
-
-/* Reveal the logo cleanly from left to right */
-.to(
-introLogoWrap,
-{
-clipPath:"inset(0 0% 0 0)",
+.to(introLogoWrap,{
 scale:1,
-duration:.72,
-ease:"power4.out"
-}
-)
+opacity:1,
+duration:.65,
+ease:"power3.out"
+})
 
-/* Premium hold */
-.to(
-introLogoWrap,
-{
-scale:1.025,
-duration:.38,
-ease:"sine.inOut"
-}
-)
+.to(introLogoWrap,{
+duration:.48
+})
 
-.to(
-introLogoWrap,
-{
-scale:1,
-duration:.30,
-ease:"sine.inOut"
-}
-)
-
-/* Slight fade before the transition */
-.to(
-introLogoWrap,
-{
-opacity:.72,
-duration:.16,
+.to(introReveal,{
+opacity:1,
+clipPath:"circle(10% at 50% 50%)",
+duration:.26,
 ease:"power2.out"
-}
-)
+})
 
-/* Black diagonal sweep */
-.to(
-introSweep,
-{
-xPercent:520,
+.to(introLogoWrap,{
+scale:1.16,
+duration:.28,
+ease:"power2.in"
+},"<")
+
+.to(introReveal,{
+clipPath:"circle(82% at 50% 50%)",
 duration:.72,
 ease:"power4.inOut"
-},
-"-=.02"
-)
+})
 
-/* Let black fully take over */
-.to(
-introScreen,
-{
-background:"#070707",
-duration:.10,
-ease:"none"
-},
-"-=.28"
-)
-
-/* Fade the intro away into the homepage */
-.to(
-introScreen,
-{
+.to(introLogoWrap,{
+scale:1.42,
 opacity:0,
-duration:.34,
-ease:"power2.out"
-}
-)
+duration:.42,
+ease:"power3.in"
+},"-=.62")
 
-.to(
-"nav",
-{
+.to(introReveal,{
+clipPath:"circle(150% at 50% 50%)",
+duration:.34,
+ease:"power3.out"
+},"-=.16")
+
+.to(introScreen,{
+background:"#070707",
+duration:.08
+},"-=.08")
+
+.to(introScreen,{
+opacity:0,
+duration:.30,
+ease:"power2.out"
+})
+
+.to("nav",{
 opacity:1,
 y:0,
 duration:.48,
 ease:"power3.out"
-},
-"-=.22"
-)
+},"-=.20")
 
-.to(
-".hero-content",
-{
+.to(".hero-content",{
 opacity:1,
 y:0,
 duration:.62,
 ease:"power4.out"
-},
-"-=.42"
-);
+},"-=.40");
 
 }else{
 
