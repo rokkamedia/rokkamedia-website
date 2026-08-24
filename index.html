@@ -132,6 +132,49 @@ width:100%;
 }
 
 
+
+/* =========================
+   ROKKA INTRO
+========================= */
+
+.intro-screen{
+position:fixed;
+inset:0;
+z-index:99999;
+background:#FFD400;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+.intro-logo-wrap{
+display:flex;
+align-items:center;
+justify-content:center;
+will-change:transform,opacity;
+}
+
+.intro-logo{
+width:min(260px,55vw);
+height:auto;
+filter:none;
+will-change:transform;
+}
+
+body.intro-active{
+overflow:hidden;
+}
+
+@media(max-width:800px){
+
+.intro-logo{
+width:min(220px,58vw);
+}
+
+}
+
+
 /* =========================
    NAV
 ========================= */
@@ -1012,7 +1055,23 @@ transition:none!important;
 </head>
 
 
-<body>
+<body class="intro-active">
+
+
+<!-- =========================
+     ROKKA INTRO
+========================= -->
+
+<div class="intro-screen" id="introScreen" aria-hidden="true">
+  <div class="intro-logo-wrap" id="introLogoWrap">
+    <img
+      src="/ROKKA.png?v=3"
+      alt=""
+      class="intro-logo"
+    >
+  </div>
+</div>
+
 
 
 <!-- =========================
@@ -1923,6 +1982,144 @@ const reduceMotion =
 window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
+/* =========================
+   ROKKA INTRO
+========================= */
+
+const introScreen =
+document.getElementById("introScreen");
+
+const introLogoWrap =
+document.getElementById("introLogoWrap");
+
+const hasSeenIntro =
+sessionStorage.getItem("rokkaIntroSeen");
+
+function finishIntro(){
+
+if(!introScreen) return;
+
+introScreen.remove();
+document.body.classList.remove("intro-active");
+
+}
+
+if(!hasSeenIntro && introScreen && !reduceMotion){
+
+gsap.set(".hero-content",{
+opacity:0,
+y:18
+});
+
+gsap.set("nav",{
+opacity:0,
+y:-10
+});
+
+const introTimeline = gsap.timeline({
+defaults:{
+ease:"power3.out"
+},
+onComplete:()=>{
+
+sessionStorage.setItem("rokkaIntroSeen","true");
+finishIntro();
+
+}
+});
+
+introTimeline
+.fromTo(
+introLogoWrap,
+{
+scale:.72,
+opacity:0,
+rotation:-3
+},
+{
+scale:1,
+opacity:1,
+rotation:0,
+duration:.42,
+ease:"back.out(1.9)"
+}
+)
+
+.to(
+introLogoWrap,
+{
+y:-10,
+duration:.13,
+ease:"power2.out"
+}
+)
+
+.to(
+introLogoWrap,
+{
+y:0,
+duration:.18,
+ease:"bounce.out"
+}
+)
+
+.to(
+introLogoWrap,
+{
+scale:7,
+duration:.42,
+ease:"power4.in"
+},
+"+=.08"
+)
+
+.to(
+introScreen,
+{
+background:"#070707",
+duration:.12,
+ease:"none"
+},
+"-=.10"
+)
+
+.to(
+introScreen,
+{
+opacity:0,
+duration:.25,
+ease:"power2.out"
+}
+)
+
+.to(
+"nav",
+{
+opacity:1,
+y:0,
+duration:.45
+},
+"-=.18"
+)
+
+.to(
+".hero-content",
+{
+opacity:1,
+y:0,
+duration:.55
+},
+"-=.38"
+);
+
+}else{
+
+finishIntro();
+
+}
+
+
+
 /* NAV */
 
 window.addEventListener("scroll",()=>{
@@ -1946,6 +2143,8 @@ if(!reduceMotion){
 
 
 /* HERO ENTRANCE */
+
+if(hasSeenIntro){
 
 const heroTimeline=gsap.timeline();
 
@@ -1985,6 +2184,8 @@ duration:.7,
 ease:"power3.out"
 
 },"-=.5");
+
+}
 
 
 /* HERO PARALLAX */
