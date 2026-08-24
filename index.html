@@ -152,13 +152,25 @@ overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-will-change:transform,opacity;
+will-change:transform,opacity,clip-path;
+clip-path:inset(0 100% 0 0);
 }
 
 .intro-logo{
-width:min(260px,55vw);
+width:min(270px,56vw);
 height:auto;
 filter:none;
+will-change:transform,opacity;
+}
+
+.intro-sweep{
+position:absolute;
+top:-15%;
+left:-35%;
+width:38%;
+height:130%;
+background:#070707;
+transform:skewX(-12deg) translateX(-220%);
 will-change:transform;
 }
 
@@ -1070,6 +1082,7 @@ transition:none!important;
       class="intro-logo"
     >
   </div>
+  <div class="intro-sweep" id="introSweep"></div>
 </div>
 
 
@@ -1992,6 +2005,9 @@ document.getElementById("introScreen");
 const introLogoWrap =
 document.getElementById("introLogoWrap");
 
+const introSweep =
+document.getElementById("introSweep");
+
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
 
@@ -2028,80 +2044,88 @@ finishIntro();
 }
 });
 
-/* Smooth premium brand sequence */
+/* Cinematic wipe brand sequence */
+
+gsap.set(introLogoWrap,{
+clipPath:"inset(0 100% 0 0)",
+scale:.96,
+opacity:1
+});
+
+gsap.set(introSweep,{
+xPercent:-220
+});
+
 introTimeline
-.fromTo(
+
+/* Reveal the logo cleanly from left to right */
+.to(
 introLogoWrap,
 {
-scale:.55,
-opacity:0,
-y:30
-},
-{
+clipPath:"inset(0 0% 0 0)",
 scale:1,
-opacity:1,
-y:0,
 duration:.72,
-ease:"back.out(1.7)"
+ease:"power4.out"
 }
 )
 
-/* One soft bounce — no jitter */
+/* Premium hold */
 .to(
 introLogoWrap,
 {
-scale:1.10,
-duration:.22,
-ease:"power2.out"
-}
-)
-
-.to(
-introLogoWrap,
-{
-scale:1,
-duration:.34,
-ease:"elastic.out(1, 0.55)"
-}
-)
-
-/* Brief premium hold */
-.to(
-introLogoWrap,
-{
-scale:1.02,
-duration:.40,
+scale:1.025,
+duration:.38,
 ease:"sine.inOut"
 }
 )
 
-/* Smooth cinematic push forward */
 .to(
 introLogoWrap,
 {
-scale:8,
-duration:.68,
-ease:"power4.in"
-},
-"+=.10"
+scale:1,
+duration:.30,
+ease:"sine.inOut"
+}
 )
 
-/* Transition into the website */
+/* Slight fade before the transition */
+.to(
+introLogoWrap,
+{
+opacity:.72,
+duration:.16,
+ease:"power2.out"
+}
+)
+
+/* Black diagonal sweep */
+.to(
+introSweep,
+{
+xPercent:520,
+duration:.72,
+ease:"power4.inOut"
+},
+"-=.02"
+)
+
+/* Let black fully take over */
 .to(
 introScreen,
 {
 background:"#070707",
-duration:.18,
-ease:"power2.inOut"
+duration:.10,
+ease:"none"
 },
-"-=.16"
+"-=.28"
 )
 
+/* Fade the intro away into the homepage */
 .to(
 introScreen,
 {
 opacity:0,
-duration:.32,
+duration:.34,
 ease:"power2.out"
 }
 )
@@ -2125,7 +2149,7 @@ y:0,
 duration:.62,
 ease:"power4.out"
 },
-"-=.40"
+"-=.42"
 );
 
 }else{
