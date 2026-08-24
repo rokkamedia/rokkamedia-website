@@ -149,50 +149,79 @@ overflow:hidden;
 will-change:opacity,background;
 }
 
-.intro-logo-wrap{
+.signature-stage{
+width:min(520px,78vw);
+position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
-position:relative;
-z-index:2;
-width:min(320px,64vw);
 }
 
-.intro-logo{
+.signature-svg{
 width:100%;
 height:auto;
-filter:none;
-opacity:1;
-clip-path:inset(0 100% 0 0);
-will-change:clip-path,transform,opacity;
+display:block;
+overflow:visible;
 }
 
-.intro-pen{
+.signature-mask-path{
+fill:none;
+stroke:#fff;
+stroke-linecap:round;
+stroke-linejoin:round;
+}
+
+.signature-text-mask{
+fill:#fff;
+transform-box:fill-box;
+transform-origin:center;
+}
+
+.signature-image{
+width:100%;
+height:100%;
+}
+
+.signature-pen{
 position:absolute;
-top:50%;
-left:0;
-width:10px;
-height:10px;
+width:11px;
+height:11px;
 border-radius:50%;
 background:#070707;
-transform:translate(-50%,-50%);
+left:8%;
+top:58%;
 opacity:0;
+transform:translate(-50%,-50%);
 z-index:3;
-will-change:left,opacity,transform;
+will-change:left,top,opacity,transform;
 }
 
-.intro-underline{
+.signature-subline{
 position:absolute;
 left:50%;
-bottom:-20px;
-width:0;
-height:2px;
-background:#070707;
+bottom:-34px;
 transform:translateX(-50%);
-opacity:.9;
-will-change:width,opacity;
+font-size:10px;
+font-weight:800;
+letter-spacing:3px;
+color:#070707;
+opacity:0;
+white-space:nowrap;
 }
 
+@media(max-width:800px){
+
+.signature-stage{
+width:min(430px,84vw);
+}
+
+.signature-subline{
+font-size:9px;
+letter-spacing:2.2px;
+bottom:-28px;
+}
+
+}
 body.intro-active{
 overflow:hidden;
 }
@@ -1094,10 +1123,96 @@ transition:none!important;
 ========================= -->
 
 <div class="intro-screen" id="introScreen" aria-hidden="true">
-  <div class="intro-logo-wrap" id="introLogoWrap">
-    <img src="/ROKKA.png?v=3" alt="" class="intro-logo" id="introLogo">
-    <div class="intro-pen" id="introPen"></div>
-    <div class="intro-underline" id="introUnderline"></div>
+  <div class="signature-stage" id="signatureStage">
+
+    <svg
+      class="signature-svg"
+      id="signatureSvg"
+      viewBox="0 0 1983 793"
+      role="img"
+      aria-label="RokkaMedia logo"
+    >
+      <defs>
+        <mask id="signatureMask">
+
+          <!-- Main sweeping signature loop -->
+          <path
+            id="sigPath1"
+            class="signature-mask-path"
+            stroke-width="110"
+            d="M 120 465
+               C 220 360, 390 250, 620 160
+               C 850 70, 1080 10, 1240 42
+               C 1385 72, 1370 188, 1240 272
+               C 1085 370, 895 420, 690 470"
+          />
+
+          <!-- Downstroke / central return -->
+          <path
+            id="sigPath2"
+            class="signature-mask-path"
+            stroke-width="120"
+            d="M 675 205
+               C 610 320, 545 455, 470 605
+               C 435 675, 390 730, 335 705
+               C 305 690, 335 625, 400 555
+               C 505 440, 610 408, 735 438"
+          />
+
+          <!-- Lower signature wave -->
+          <path
+            id="sigPath3"
+            class="signature-mask-path"
+            stroke-width="105"
+            d="M 650 460
+               C 760 430, 790 505, 835 535
+               C 885 570, 950 495, 1020 455
+               C 1080 420, 1095 500, 1145 505
+               C 1210 510, 1260 435, 1320 430
+               C 1385 425, 1390 505, 1460 520"
+          />
+
+          <!-- Long finishing sweep -->
+          <path
+            id="sigPath4"
+            class="signature-mask-path"
+            stroke-width="85"
+            d="M 1440 520
+               C 1575 525, 1695 500, 1800 500
+               C 1870 500, 1910 498, 1935 492"
+          />
+
+          <!-- ROKKA MEDIA block text reveal -->
+          <rect
+            id="signatureTextMask"
+            class="signature-text-mask"
+            x="285"
+            y="600"
+            width="1420"
+            height="170"
+          />
+
+        </mask>
+      </defs>
+
+      <image
+        class="signature-image"
+        href="/ROKKA-black.svg"
+        x="0"
+        y="0"
+        width="1983"
+        height="793"
+        preserveAspectRatio="xMidYMid meet"
+        mask="url(#signatureMask)"
+      />
+    </svg>
+
+    <div class="signature-pen" id="signaturePen"></div>
+
+    <div class="signature-subline" id="signatureSubline">
+      HOSPITALITY CREATIVE STUDIO
+    </div>
+
   </div>
 </div>
 
@@ -2016,17 +2131,24 @@ window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const introScreen =
 document.getElementById("introScreen");
 
-const introLogoWrap =
-document.getElementById("introLogoWrap");
+const signatureStage =
+document.getElementById("signatureStage");
 
-const introLogo =
-document.getElementById("introLogo");
+const signaturePen =
+document.getElementById("signaturePen");
 
-const introPen =
-document.getElementById("introPen");
+const signatureSubline =
+document.getElementById("signatureSubline");
 
-const introUnderline =
-document.getElementById("introUnderline");
+const signaturePaths = [
+document.getElementById("sigPath1"),
+document.getElementById("sigPath2"),
+document.getElementById("sigPath3"),
+document.getElementById("sigPath4")
+];
+
+const signatureTextMask =
+document.getElementById("signatureTextMask");
 
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
@@ -2064,112 +2186,166 @@ finishIntro();
 }
 });
 
-/* SIGNATURE WRITE-ON INTRO */
+/* TRUE SIGNATURE-STYLE WRITE-ON INTRO */
 
-gsap.set(introLogo,{
-clipPath:"inset(0 100% 0 0)",
-scale:.985,
-opacity:1
+signaturePaths.forEach(path=>{
+
+const length = path.getTotalLength();
+
+gsap.set(path,{
+strokeDasharray:length,
+strokeDashoffset:length
 });
 
-gsap.set(introPen,{
-left:"0%",
+});
+
+gsap.set(signatureTextMask,{
+scaleX:0
+});
+
+gsap.set(signatureStage,{
+opacity:1,
+scale:.98
+});
+
+gsap.set(signaturePen,{
 opacity:0,
-scale:.8
+left:"8%",
+top:"58%"
 });
 
-gsap.set(introUnderline,{
-width:0,
-opacity:0
+gsap.set(signatureSubline,{
+opacity:0,
+y:8
 });
 
 introTimeline
 
 /* Pen appears */
-.to(introPen,{
+.to(signaturePen,{
 opacity:1,
 scale:1,
-duration:.18,
-ease:"power2.out"
-})
-
-/* Signature writes itself on */
-.to(introLogo,{
-clipPath:"inset(0 0% 0 0)",
-duration:1.45,
-ease:"power1.inOut"
-},"<")
-
-.to(introPen,{
-left:"100%",
-duration:1.45,
-ease:"power1.inOut"
-},"<")
-
-/* Little finishing flick */
-.to(introPen,{
-x:12,
-y:-8,
-scale:.75,
-duration:.18,
-ease:"power2.out"
-})
-
-.to(introPen,{
-opacity:0,
 duration:.16,
 ease:"power2.out"
-},"-=.05")
-
-/* Tiny underline flourish */
-.to(introUnderline,{
-width:"42%",
-opacity:1,
-duration:.36,
-ease:"power3.out"
-},"-=.08")
-
-/* Hold the finished signature */
-.to(introLogoWrap,{
-duration:.48
 })
 
-/* Signature gently settles */
-.to(introLogo,{
-scale:1.03,
-duration:.22,
+/* Main sweeping signature stroke */
+.to("#sigPath1",{
+strokeDashoffset:0,
+duration:.78,
+ease:"power1.inOut"
+})
+
+.to(signaturePen,{
+left:"64%",
+top:"20%",
+duration:.78,
+ease:"power1.inOut"
+},"<")
+
+/* Signature drops back through the centre */
+.to("#sigPath2",{
+strokeDashoffset:0,
+duration:.52,
+ease:"power1.inOut"
+})
+
+.to(signaturePen,{
+left:"24%",
+top:"80%",
+duration:.52,
+ease:"power1.inOut"
+},"<")
+
+/* Lower handwritten wave */
+.to("#sigPath3",{
+strokeDashoffset:0,
+duration:.56,
+ease:"power1.inOut"
+})
+
+.to(signaturePen,{
+left:"73%",
+top:"62%",
+duration:.56,
+ease:"power1.inOut"
+},"<")
+
+/* Final long flourish */
+.to("#sigPath4",{
+strokeDashoffset:0,
+duration:.48,
+ease:"power2.out"
+})
+
+.to(signaturePen,{
+left:"97%",
+top:"61%",
+duration:.48,
+ease:"power2.out"
+},"<")
+
+/* Pen lifts */
+.to(signaturePen,{
+y:-12,
+scale:.7,
+duration:.14,
+ease:"power2.out"
+})
+
+.to(signaturePen,{
+opacity:0,
+duration:.12
+},"-=.03")
+
+/* ROKKA MEDIA lettering appears underneath */
+.to(signatureTextMask,{
+scaleX:1,
+duration:.48,
+ease:"power3.out"
+},"-=.05")
+
+/* Small agency descriptor */
+.to(signatureSubline,{
+opacity:.72,
+y:0,
+duration:.32,
+ease:"power3.out"
+},"-=.18")
+
+/* Hold the finished identity */
+.to(signatureStage,{
+scale:1,
+duration:.42,
 ease:"sine.out"
 })
 
-.to(introLogo,{
-scale:1,
-duration:.28,
-ease:"sine.inOut"
+.to(signatureStage,{
+duration:.34
 })
 
-/* Fade to black */
-.to(introUnderline,{
+/* Transition into the live site */
+.to(signatureSubline,{
 opacity:0,
-duration:.16,
-ease:"power2.out"
+duration:.18
 })
+
+.to(signatureStage,{
+scale:1.06,
+opacity:0,
+duration:.34,
+ease:"power3.in"
+},"-=.04")
 
 .to(introScreen,{
 background:"#070707",
-duration:.42,
+duration:.32,
 ease:"power3.inOut"
-})
+},"-=.22")
 
-.to(introLogoWrap,{
-opacity:0,
-duration:.26,
-ease:"power2.in"
-},"-=.30")
-
-/* Reveal homepage */
 .to(introScreen,{
 opacity:0,
-duration:.30,
+duration:.28,
 ease:"power2.out"
 })
 
