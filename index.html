@@ -146,35 +146,51 @@ display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
-will-change:transform,opacity,background;
+will-change:opacity,background;
 }
 
 .intro-logo-wrap{
 display:flex;
 align-items:center;
 justify-content:center;
-will-change:transform,opacity;
 position:relative;
 z-index:2;
+width:min(320px,64vw);
 }
 
 .intro-logo{
-width:min(270px,56vw);
+width:100%;
 height:auto;
 filter:none;
-will-change:transform,opacity;
+opacity:1;
+clip-path:inset(0 100% 0 0);
+will-change:clip-path,transform,opacity;
 }
 
-.intro-line{
+.intro-pen{
 position:absolute;
-left:50%;
 top:50%;
-width:0;
-height:3px;
+left:0;
+width:10px;
+height:10px;
+border-radius:50%;
 background:#070707;
 transform:translate(-50%,-50%);
-z-index:1;
-will-change:width,height;
+opacity:0;
+z-index:3;
+will-change:left,opacity,transform;
+}
+
+.intro-underline{
+position:absolute;
+left:50%;
+bottom:-20px;
+width:0;
+height:2px;
+background:#070707;
+transform:translateX(-50%);
+opacity:.9;
+will-change:width,opacity;
 }
 
 body.intro-active{
@@ -1078,9 +1094,10 @@ transition:none!important;
 ========================= -->
 
 <div class="intro-screen" id="introScreen" aria-hidden="true">
-  <div class="intro-line" id="introLine"></div>
   <div class="intro-logo-wrap" id="introLogoWrap">
-    <img src="/ROKKA.png?v=3" alt="" class="intro-logo">
+    <img src="/ROKKA.png?v=3" alt="" class="intro-logo" id="introLogo">
+    <div class="intro-pen" id="introPen"></div>
+    <div class="intro-underline" id="introUnderline"></div>
   </div>
 </div>
 
@@ -2002,8 +2019,14 @@ document.getElementById("introScreen");
 const introLogoWrap =
 document.getElementById("introLogoWrap");
 
-const introLine =
-document.getElementById("introLine");
+const introLogo =
+document.getElementById("introLogo");
+
+const introPen =
+document.getElementById("introPen");
+
+const introUnderline =
+document.getElementById("introUnderline");
 
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
@@ -2041,69 +2064,112 @@ finishIntro();
 }
 });
 
-/* OPTION 10 — ROKKA SIGNATURE */
+/* SIGNATURE WRITE-ON INTRO */
 
-gsap.set(introLogoWrap,{
-scale:.97,
-opacity:0,
-y:8
+gsap.set(introLogo,{
+clipPath:"inset(0 100% 0 0)",
+scale:.985,
+opacity:1
 });
 
-gsap.set(introLine,{
+gsap.set(introPen,{
+left:"0%",
+opacity:0,
+scale:.8
+});
+
+gsap.set(introUnderline,{
 width:0,
-height:3
+opacity:0
 });
 
 introTimeline
 
-/* Logo settles in */
-.to(introLogoWrap,{
-scale:1,
+/* Pen appears */
+.to(introPen,{
 opacity:1,
-y:0,
-duration:.62,
-ease:"power3.out"
+scale:1,
+duration:.18,
+ease:"power2.out"
 })
 
-/* Confident hold */
-.to(introLogoWrap,{
-duration:.42
+/* Signature writes itself on */
+.to(introLogo,{
+clipPath:"inset(0 0% 0 0)",
+duration:1.45,
+ease:"power1.inOut"
+},"<")
+
+.to(introPen,{
+left:"100%",
+duration:1.45,
+ease:"power1.inOut"
+},"<")
+
+/* Little finishing flick */
+.to(introPen,{
+x:12,
+y:-8,
+scale:.75,
+duration:.18,
+ease:"power2.out"
 })
 
-/* Thin black signature line shoots across */
-.to(introLine,{
-width:"72%",
-duration:.46,
-ease:"power4.out"
-})
-
-/* Logo fades as the line takes over */
-.to(introLogoWrap,{
+.to(introPen,{
 opacity:0,
-scale:.985,
-duration:.22,
-ease:"power2.in"
-},"-=.10")
+duration:.16,
+ease:"power2.out"
+},"-=.05")
 
-/* Line expands vertically into full black screen */
-.to(introLine,{
-width:"110%",
-height:"110%",
-duration:.60,
-ease:"power4.inOut"
+/* Tiny underline flourish */
+.to(introUnderline,{
+width:"42%",
+opacity:1,
+duration:.36,
+ease:"power3.out"
+},"-=.08")
+
+/* Hold the finished signature */
+.to(introLogoWrap,{
+duration:.48
 })
 
-/* Match the screen to black */
+/* Signature gently settles */
+.to(introLogo,{
+scale:1.03,
+duration:.22,
+ease:"sine.out"
+})
+
+.to(introLogo,{
+scale:1,
+duration:.28,
+ease:"sine.inOut"
+})
+
+/* Fade to black */
+.to(introUnderline,{
+opacity:0,
+duration:.16,
+ease:"power2.out"
+})
+
 .to(introScreen,{
 background:"#070707",
-duration:.08,
-ease:"none"
-},"-=.10")
+duration:.42,
+ease:"power3.inOut"
+})
 
-/* Reveal homepage underneath */
+.to(introLogoWrap,{
+opacity:0,
+duration:.26,
+ease:"power2.in"
+},"-=.30")
+
+/* Reveal homepage */
 .to(introScreen,{
 opacity:0,
-duration:.28,
+duration:.30,
 ease:"power2.out"
 })
 
