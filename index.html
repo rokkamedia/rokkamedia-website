@@ -209,6 +209,21 @@ opacity:0;
 white-space:nowrap;
 }
 
+.signature-transition-stroke{
+position:absolute;
+left:-10%;
+top:58%;
+width:0;
+height:4px;
+background:#070707;
+border-radius:999px;
+transform:rotate(-2deg);
+transform-origin:left center;
+opacity:0;
+z-index:4;
+will-change:width,height,opacity,transform;
+}
+
 @media(max-width:800px){
 
 .signature-stage{
@@ -1163,6 +1178,11 @@ transition:none!important;
       HOSPITALITY CREATIVE STUDIO
     </div>
 
+    <div
+      class="signature-transition-stroke"
+      id="signatureTransitionStroke"
+    ></div>
+
   </div>
 </div>
 
@@ -2090,6 +2110,9 @@ document.getElementById("signaturePen");
 const signatureSubline =
 document.getElementById("signatureSubline");
 
+const signatureTransitionStroke =
+document.getElementById("signatureTransitionStroke");
+
 const signatureRevealRect =
 document.getElementById("signatureRevealRect");
 
@@ -2129,7 +2152,7 @@ finishIntro();
 }
 });
 
-/* FULL-LOGO SIGNATURE WRITE-ON INTRO */
+/* SIGNATURE → TRANSITION INTRO */
 
 gsap.set(signatureRevealRect,{
 attr:{width:0}
@@ -2151,126 +2174,128 @@ opacity:0,
 y:8
 });
 
+gsap.set(signatureTransitionStroke,{
+width:0,
+height:4,
+opacity:0,
+scaleX:1
+});
+
 introTimeline
 
 /* Pen appears */
 .to(signaturePen,{
 opacity:1,
 scale:1,
-duration:.16,
+duration:.14,
 ease:"power2.out"
 })
 
-/* Entire logo progressively reveals while the pen travels */
+/* Full logo writes on */
 .to(signatureRevealRect,{
 attr:{width:1983},
-duration:1.15,
+duration:1.08,
 ease:"power2.inOut"
 })
 
 .to(signaturePen,{
 left:"96%",
 top:"58%",
-duration:1.15,
+duration:1.08,
 ease:"power2.inOut"
 },"<")
 
-/* Add subtle handwriting motion without hiding any logo */
+/* Natural pen motion */
 .to(signaturePen,{
-top:"46%",
-duration:.18,
+top:"47%",
+duration:.17,
 ease:"sine.inOut"
-},"-=.90")
+},"-=.82")
 
 .to(signaturePen,{
 top:"63%",
-duration:.20,
-ease:"sine.inOut"
-},"-=.68")
-
-.to(signaturePen,{
-top:"50%",
 duration:.18,
 ease:"sine.inOut"
-},"-=.46")
+},"-=.58")
 
 .to(signaturePen,{
-top:"58%",
-duration:.18,
+top:"52%",
+duration:.17,
 ease:"sine.inOut"
-},"-=.26")
+},"-=.34")
 
-/* Small finishing flick */
+/* Finishing flick becomes the transition */
 .to(signaturePen,{
-x:14,
-y:-10,
+x:12,
+y:-8,
 scale:.72,
-duration:.15,
+duration:.13,
 ease:"power2.out"
 })
 
+.to(signatureTransitionStroke,{
+opacity:1,
+width:"120%",
+duration:.16,
+ease:"power2.out"
+},"-=.06")
+
 .to(signaturePen,{
 opacity:0,
-duration:.12
-},"-=.03")
+duration:.08
+},"<")
 
-/* Descriptor appears after the full logo is complete */
+/* Descriptor flashes in briefly */
 .to(signatureSubline,{
-opacity:.72,
+opacity:.68,
 y:0,
-duration:.22,
+duration:.20,
 ease:"power3.out"
-},"-=.02")
+},"-=.06")
 
-/* Hold completed logo */
+/* The final signature stroke grows into the screen wipe */
+.to(signatureTransitionStroke,{
+height:"130%",
+top:"50%",
+duration:.48,
+ease:"power4.inOut"
+},"+=.16")
+
+/* Fade completed mark while wipe takes over */
 .to(signatureStage,{
-scale:1,
-duration:.22,
-ease:"sine.out"
-})
-
-.to(signatureStage,{
-duration:.18
-})
-
-/* Transition into the website */
-.to(signatureSubline,{
 opacity:0,
-duration:.16
-})
+scale:1.025,
+duration:.24,
+ease:"power2.in"
+},"-=.36")
 
-.to(signatureStage,{
-scale:1.045,
-opacity:0,
-duration:.22,
-ease:"power3.in"
-},"-=.04")
-
+/* Match intro background to the stroke */
 .to(introScreen,{
 background:"#070707",
-duration:.22,
-ease:"power3.inOut"
-},"-=.15")
+duration:.08,
+ease:"none"
+},"-=.10")
 
+/* Reveal the homepage through the wipe */
 .to(introScreen,{
 opacity:0,
-duration:.20,
+duration:.22,
 ease:"power2.out"
 })
 
 .to("nav",{
 opacity:1,
 y:0,
-duration:.46,
+duration:.40,
 ease:"power3.out"
-},"-=.20")
+},"-=.16")
 
 .to(".hero-content",{
 opacity:1,
 y:0,
-duration:.60,
+duration:.52,
 ease:"power4.out"
-},"-=.38");
+},"-=.32");
 
 }else{
 
