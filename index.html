@@ -7,6 +7,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- =========================
+     ROKKAMEDIA ICONS
+========================= -->
+
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Makes saved iPhone website feel more app-like -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="RokkaMedia">
+
+<!-- =========================
      SEO
 ========================= -->
 
@@ -23,6 +35,10 @@ content="RokkaMedia is a London hospitality content studio creating restaurant p
 rel="canonical"
 href="https://www.rokkamedia.com/"
 >
+
+<!-- =========================
+     SOCIAL SHARING / OPEN GRAPH
+========================= -->
 
 <meta property="og:type" content="website">
 
@@ -61,7 +77,9 @@ name="twitter:description"
 content="Photography, video and social-first content for restaurants, bars and hospitality brands."
 >
 
-<!-- STRUCTURED DATA -->
+<!-- =========================
+     STRUCTURED DATA
+========================= -->
 
 <script type="application/ld+json">
 {
@@ -86,7 +104,9 @@ content="Photography, video and social-first content for restaurants, bars and h
 }
 </script>
 
-<!-- ANIMATION LIBRARIES -->
+<!-- =========================
+     ANIMATION LIBRARIES
+========================= -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -200,12 +220,6 @@ align-items:flex-end;
 
 padding:140px 5% 65px;
 }
-
-/*
-IMPORTANT:
-This is the simple hero-video setup from
-the original version.
-*/
 
 .hero-video{
 position:absolute;
@@ -787,7 +801,9 @@ padding-bottom:85px;
 }
 
 
-/* ACCESSIBILITY */
+/* =========================
+   ACCESSIBILITY
+========================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -844,15 +860,6 @@ LET'S TALK
 
 <section class="hero">
 
-
-<!--
-SIMPLE VIDEO SETUP:
-No poster.
-No preload.
-No controls.
-Same basic setup as the first draft.
--->
-
 <video
 class="hero-video"
 autoplay
@@ -873,7 +880,6 @@ type="video/mp4"
 
 
 <div class="hero-content">
-
 
 <div class="eyebrow">
 
@@ -919,7 +925,6 @@ View our work
 
 </div>
 
-
 </div>
 
 </section>
@@ -930,7 +935,6 @@ View our work
 ========================= -->
 
 <section class="content">
-
 
 <div class="section-label">
 
@@ -1039,7 +1043,6 @@ photo and video content for your hospitality brand.
 
 </div>
 
-
 </div>
 
 </section>
@@ -1054,9 +1057,7 @@ class="content work"
 id="work"
 >
 
-
 <div class="work-intro">
-
 
 <div>
 
@@ -1085,7 +1086,6 @@ to capture the food, atmosphere and experience behind each venue.
 
 </p>
 
-
 </div>
 
 
@@ -1105,7 +1105,6 @@ Food Photography
 
 
 <div class="portfolio-pair">
-
 
 <div class="portfolio-card portfolio-item">
 
@@ -1136,12 +1135,10 @@ Social Content
 
 </div>
 
-
 </div>
 
 
 <div class="portfolio-bottom">
-
 
 <div class="portfolio-card portfolio-item">
 
@@ -1172,9 +1169,7 @@ Food & Drink
 
 </div>
 
-
 </div>
-
 
 </section>
 
@@ -1185,9 +1180,7 @@ Food & Drink
 
 <section class="statement">
 
-
 <div class="statement-inner">
-
 
 <div class="section-label">
 
@@ -1214,7 +1207,6 @@ customers a reason to stop scrolling and discover your venue.
 
 </p>
 
-
 </div>
 
 </section>
@@ -1225,7 +1217,6 @@ customers a reason to stop scrolling and discover your venue.
 ========================= -->
 
 <section class="content">
-
 
 <div class="section-label">
 
@@ -1316,7 +1307,6 @@ We get your content live and your hospitality brand looking its best across soci
 
 </div>
 
-
 </div>
 
 </section>
@@ -1331,7 +1321,6 @@ class="contact"
 id="contact"
 >
 
-
 <div class="contact-bg">
 
 ROKKA
@@ -1340,7 +1329,6 @@ ROKKA
 
 
 <div class="contact-inner">
-
 
 <div class="section-label">
 
@@ -1376,7 +1364,6 @@ LET'S TALK →
 
 </a>
 
-
 </div>
 
 </section>
@@ -1411,7 +1398,6 @@ rel="noopener noreferrer"
 aria-label="Contact RokkaMedia on WhatsApp"
 >
 
-
 <svg
 class="whatsapp-logo"
 viewBox="0 0 32 32"
@@ -1424,7 +1410,6 @@ d="M16.04 2.5c-7.45 0-13.5 6.05-13.5 13.5 0 2.38.62 4.7 1.8 6.74L2.43 29.7l7.13-
 />
 
 </svg>
-
 
 <span>
 WhatsApp us
@@ -1439,9 +1424,7 @@ WhatsApp us
 
 <script>
 
-
 gsap.registerPlugin(ScrollTrigger);
-
 
 const reduceMotion =
 window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1472,7 +1455,6 @@ if(!reduceMotion){
 /* HERO ENTRANCE */
 
 const heroTimeline=gsap.timeline();
-
 
 heroTimeline
 
@@ -1624,7 +1606,7 @@ once:true
 });
 
 
-/* PORTFOLIO REVEALS */
+/* PORTFOLIO */
 
 gsap.utils.toArray(".portfolio-item").forEach(item=>{
 
@@ -1649,7 +1631,7 @@ once:true
 });
 
 
-/* PORTFOLIO PARALLAX */
+/* IMAGE PARALLAX */
 
 gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 
@@ -1672,7 +1654,7 @@ scrub:1.8
 });
 
 
-/* YELLOW STATEMENT */
+/* YELLOW SECTION */
 
 gsap.from(".statement-inner",{
 
@@ -1755,9 +1737,7 @@ scrub:2
 
 });
 
-
 }
-
 
 </script>
 
