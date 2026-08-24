@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- =========================
-     ROKKAMEDIA ICONS
-========================= -->
-
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<!-- Makes saved iPhone website feel more app-like -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="RokkaMedia">
-
-<!-- =========================
-     SEO
-========================= -->
 
 <title>Hospitality Content Creation & Restaurant Photography London | RokkaMedia</title>
 
@@ -36,50 +26,15 @@ rel="canonical"
 href="https://www.rokkamedia.com/"
 >
 
-<!-- =========================
-     SOCIAL SHARING / OPEN GRAPH
-========================= -->
-
 <meta property="og:type" content="website">
+<meta property="og:title" content="RokkaMedia | Hospitality Content Creation London">
+<meta property="og:description" content="Restaurant photography, short-form video and social media content for hospitality brands in London.">
+<meta property="og:url" content="https://www.rokkamedia.com/">
+<meta property="og:site_name" content="RokkaMedia">
 
-<meta
-property="og:title"
-content="RokkaMedia | Hospitality Content Creation London"
->
-
-<meta
-property="og:description"
-content="Restaurant photography, short-form video and social media content for hospitality brands in London."
->
-
-<meta
-property="og:url"
-content="https://www.rokkamedia.com/"
->
-
-<meta
-property="og:site_name"
-content="RokkaMedia"
->
-
-<meta
-name="twitter:card"
-content="summary_large_image"
->
-
-<meta
-name="twitter:title"
-content="RokkaMedia | Hospitality Content Creation"
->
-
-<meta
-name="twitter:description"
-content="Photography, video and social-first content for restaurants, bars and hospitality brands."
->
-
-<!-- =========================
-     STRUCTURED DATA
-========================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RokkaMedia | Hospitality Content Creation">
+<meta name="twitter:description" content="Photography, video and social-first content for restaurants, bars and hospitality brands.">
 
 <script type="application/ld+json">
 {
@@ -104,19 +59,10 @@ content="Photography, video and social-first content for restaurants, bars and h
 }
 </script>
 
-<!-- =========================
-     ANIMATION LIBRARIES
-========================= -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-
 <style>
-
-/* =========================
-   GLOBAL
-========================= */
 
 *{
 margin:0;
@@ -146,10 +92,7 @@ display:block;
 width:100%;
 }
 
-
-/* =========================
-   NAVIGATION
-========================= */
+/* NAV */
 
 nav{
 position:fixed;
@@ -157,19 +100,11 @@ top:0;
 left:0;
 width:100%;
 z-index:1000;
-
 padding:18px 5%;
-
 display:flex;
 align-items:center;
 justify-content:space-between;
-
-background:linear-gradient(
-to bottom,
-rgba(0,0,0,.5),
-transparent
-);
-
+background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent);
 transition:.4s ease;
 }
 
@@ -192,11 +127,7 @@ font-weight:700;
 border:1px solid rgba(255,255,255,.45);
 padding:11px 18px;
 border-radius:100px;
-
-transition:
-background .3s ease,
-color .3s ease,
-transform .3s ease;
+transition:.3s ease;
 }
 
 .nav-button:hover{
@@ -205,50 +136,32 @@ color:#000;
 transform:translateY(-2px);
 }
 
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
 min-height:100vh;
 position:relative;
 overflow:hidden;
-
 display:flex;
 align-items:flex-end;
-
 padding:140px 5% 65px;
 }
 
 .hero-video{
 position:absolute;
 inset:0;
-
 width:100%;
 height:108%;
-
 object-fit:cover;
-
 transform:scale(1.03);
 }
 
 .hero-overlay{
 position:absolute;
 inset:0;
-
 background:
-linear-gradient(
-to top,
-rgba(0,0,0,.96) 2%,
-rgba(0,0,0,.50) 48%,
-rgba(0,0,0,.12)
-),
-linear-gradient(
-to right,
-rgba(0,0,0,.42),
-transparent 65%
-);
+linear-gradient(to top,rgba(0,0,0,.96) 2%,rgba(0,0,0,.50) 48%,rgba(0,0,0,.12)),
+linear-gradient(to right,rgba(0,0,0,.42),transparent 65%);
 }
 
 .hero-content{
@@ -302,10 +215,7 @@ color:#000;
 font-weight:800;
 padding:15px 23px;
 border-radius:100px;
-
-transition:
-transform .3s ease,
-background .3s ease;
+transition:.3s ease;
 }
 
 .button-primary:hover{
@@ -313,10 +223,7 @@ transform:translateY(-3px);
 background:#ffe033;
 }
 
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
+/* GENERAL */
 
 section.content{
 padding:110px 5%;
@@ -349,10 +256,7 @@ max-width:700px;
 margin-top:30px;
 }
 
-
-/* =========================
-   SERVICES
-========================= */
+/* SERVICES */
 
 .services{
 margin-top:65px;
@@ -361,10 +265,8 @@ margin-top:65px;
 .service{
 border-top:1px solid #292929;
 padding:30px 0;
-
 display:grid;
 grid-template-columns:60px 1fr 1fr;
-
 gap:20px;
 align-items:start;
 }
@@ -387,10 +289,7 @@ font-size:14px;
 max-width:430px;
 }
 
-
-/* =========================
-   SELECTED WORK
-========================= */
+/* WORK */
 
 .work{
 background:#0c0c0c;
@@ -431,14 +330,10 @@ position:absolute;
 bottom:22px;
 left:22px;
 z-index:3;
-
 background:rgba(0,0,0,.62);
-
 border:1px solid rgba(255,255,255,.12);
-
 backdrop-filter:blur(12px);
 -webkit-backdrop-filter:blur(12px);
-
 padding:11px 15px;
 border-radius:100px;
 font-size:12px;
@@ -480,20 +375,14 @@ height:570px;
 margin-top:100px;
 }
 
-
-/* =========================
-   YELLOW STATEMENT
-========================= */
+/* YELLOW STATEMENT */
 
 .statement{
 background:#FFD400;
 color:#000;
-
 min-height:620px;
-
 display:flex;
 align-items:center;
-
 padding:100px 5%;
 overflow:hidden;
 }
@@ -520,10 +409,7 @@ max-width:650px;
 margin-top:30px;
 }
 
-
-/* =========================
-   PROCESS
-========================= */
+/* PROCESS */
 
 .process-grid{
 display:grid;
@@ -538,10 +424,7 @@ border:1px solid #191919;
 padding:28px;
 border-radius:18px;
 min-height:230px;
-
-transition:
-transform .35s ease,
-border-color .35s ease;
+transition:.35s ease;
 }
 
 .process-card:hover{
@@ -565,105 +448,175 @@ font-size:14px;
 line-height:1.6;
 }
 
+/* ENQUIRY */
 
-/* =========================
-   CONTACT
-========================= */
-
-.contact{
-padding:140px 5%;
-text-align:center;
-position:relative;
-overflow:hidden;
+.enquiry{
+padding:120px 5%;
+background:#0b0b0b;
 }
 
-.contact-bg{
-position:absolute;
-left:50%;
-top:50%;
-
-transform:translate(-50%,-50%);
-
-font-size:clamp(160px,27vw,400px);
-font-weight:900;
-letter-spacing:-20px;
-
-color:rgba(255,255,255,.022);
-
-pointer-events:none;
-}
-
-.contact-inner{
-position:relative;
-z-index:2;
-}
-
-.contact h2{
-font-size:clamp(48px,8vw,95px);
-line-height:.9;
-letter-spacing:-4px;
-max-width:900px;
+.enquiry-wrap{
+display:grid;
+grid-template-columns:.8fr 1.2fr;
+gap:80px;
+align-items:start;
+max-width:1300px;
 margin:auto;
 }
 
-.contact p{
-color:#8d8d8d;
-max-width:600px;
-margin:25px auto;
-line-height:1.7;
+.enquiry-copy{
+position:sticky;
+top:130px;
 }
 
-.contact-button{
-display:inline-block;
+.enquiry-copy h2{
+font-size:clamp(48px,7vw,90px);
+line-height:.9;
+letter-spacing:-4px;
+max-width:650px;
+}
+
+.enquiry-copy p{
+margin-top:25px;
+max-width:480px;
+color:#8d8d8d;
+line-height:1.7;
+font-size:16px;
+}
+
+.enquiry-form{
+background:#111;
+border:1px solid #202020;
+border-radius:24px;
+padding:38px;
+}
+
+.form-group{
+margin-bottom:25px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:9px;
+font-size:12px;
+font-weight:700;
+letter-spacing:.5px;
+}
+
+.form-group input,
+.form-group select{
+width:100%;
+background:#090909;
+color:#fff;
+border:1px solid #2a2a2a;
+border-radius:12px;
+padding:15px 16px;
+font:inherit;
+font-size:15px;
+outline:none;
+transition:.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+border-color:#FFD400;
+}
+
+.form-group select{
+appearance:none;
+-webkit-appearance:none;
+cursor:pointer;
+}
+
+.form-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+}
+
+.required{
+color:#FFD400;
+}
+
+.submit-button{
+width:100%;
+border:0;
 background:#FFD400;
 color:#000;
-
-padding:16px 25px;
-
-font-weight:800;
+padding:17px 24px;
 border-radius:100px;
-margin-top:10px;
-
-transition:
-transform .3s ease,
-background .3s ease;
+font-size:13px;
+font-weight:900;
+cursor:pointer;
+transition:.3s ease;
 }
 
-.contact-button:hover{
-transform:translateY(-3px);
+.submit-button:hover{
+transform:translateY(-2px);
 background:#ffe033;
 }
 
+.submit-button:disabled{
+opacity:.6;
+cursor:not-allowed;
+transform:none;
+}
 
-/* =========================
-   WHATSAPP
-========================= */
+.form-message{
+display:none;
+margin-top:20px;
+padding:17px;
+border-radius:12px;
+font-size:14px;
+line-height:1.5;
+}
+
+.form-message.success{
+display:block;
+background:rgba(255,212,0,.1);
+border:1px solid rgba(255,212,0,.35);
+color:#FFD400;
+}
+
+.form-message.error{
+display:block;
+background:rgba(255,255,255,.06);
+border:1px solid #333;
+color:#ddd;
+}
+
+.whatsapp-alternative{
+margin-top:28px;
+padding-top:25px;
+border-top:1px solid #252525;
+text-align:center;
+color:#8d8d8d;
+font-size:14px;
+}
+
+.whatsapp-alternative a{
+color:#FFD400;
+font-weight:800;
+}
+
+/* FLOATING WHATSAPP */
 
 .whatsapp-button{
 position:fixed;
 right:22px;
 bottom:22px;
 z-index:9999;
-
 display:flex;
 align-items:center;
 gap:10px;
-
 background:#FFD400;
 color:#000;
-
 padding:13px 19px;
 border-radius:100px;
-
 font-size:13px;
 font-weight:800;
-
 box-shadow:0 10px 35px rgba(0,0,0,.35);
-
-transition:
-transform .3s ease,
-box-shadow .3s ease,
-background .3s ease;
+transition:.3s ease;
 }
 
 .whatsapp-logo{
@@ -675,29 +628,20 @@ flex-shrink:0;
 .whatsapp-button:hover{
 transform:translateY(-3px);
 box-shadow:0 14px 40px rgba(0,0,0,.5);
-background:#ffe033;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
 padding:30px 5%;
 border-top:1px solid #222;
-
 display:flex;
 justify-content:space-between;
-
 color:#686868;
 font-size:12px;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -720,7 +664,6 @@ letter-spacing:-3px;
 
 .hero p{
 font-size:15px;
-max-width:520px;
 }
 
 section.content{
@@ -728,8 +671,7 @@ padding:80px 5%;
 }
 
 .big-copy,
-.statement h2,
-.contact h2{
+.statement h2{
 letter-spacing:-2.5px;
 }
 
@@ -780,16 +722,37 @@ grid-template-columns:1fr;
 min-height:560px;
 }
 
+.enquiry{
+padding:85px 5%;
+}
+
+.enquiry-wrap{
+grid-template-columns:1fr;
+gap:45px;
+}
+
+.enquiry-copy{
+position:static;
+}
+
+.enquiry-copy h2{
+letter-spacing:-3px;
+}
+
+.enquiry-form{
+padding:24px;
+}
+
+.form-row{
+grid-template-columns:1fr;
+gap:0;
+}
+
 .whatsapp-button{
 right:15px;
 bottom:15px;
 padding:13px 17px;
 font-size:12px;
-}
-
-.whatsapp-logo{
-width:21px;
-height:21px;
 }
 
 footer{
@@ -799,11 +762,6 @@ padding-bottom:85px;
 }
 
 }
-
-
-/* =========================
-   ACCESSIBILITY
-========================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -818,21 +776,14 @@ transition:none!important;
 
 </head>
 
-
 <body>
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- NAV -->
 
 <nav>
 
-<a
-href="/"
-class="logo"
-aria-label="RokkaMedia home"
->
+<a href="/" class="logo" aria-label="RokkaMedia home">
 
 <img
 src="ROKKA.png"
@@ -841,22 +792,14 @@ alt="RokkaMedia hospitality content studio"
 
 </a>
 
-
-<a
-href="mailto:info@rokkamedia.com?subject=RokkaMedia%20Enquiry"
-class="nav-button"
->
-
+<a href="#enquire" class="nav-button">
 LET'S TALK
-
 </a>
 
 </nav>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -875,33 +818,25 @@ type="video/mp4"
 
 </video>
 
-
 <div class="hero-overlay"></div>
-
 
 <div class="hero-content">
 
 <div class="eyebrow">
-
 LONDON HOSPITALITY CONTENT STUDIO
-
 </div>
-
 
 <div class="hero-title-mask">
 
 <h1>
 
 CREATE.<br>
-
 CAPTURE.<br>
-
 <span class="yellow">ELEVATE.</span>
 
 </h1>
 
 </div>
-
 
 <p>
 
@@ -911,16 +846,10 @@ build their presence and stop the scroll.
 
 </p>
 
-
 <div class="buttons">
 
-<a
-href="#work"
-class="button-primary"
->
-
+<a href="#work" class="button-primary">
 View our work
-
 </a>
 
 </div>
@@ -930,18 +859,13 @@ View our work
 </section>
 
 
-<!-- =========================
-     WHAT WE DO
-========================= -->
+<!-- WHAT WE DO -->
 
 <section class="content">
 
 <div class="section-label">
-
 WHAT WE DO
-
 </div>
-
 
 <div class="title-mask">
 
@@ -953,7 +877,6 @@ Your content should too.
 </h2>
 
 </div>
-
 
 <p class="body-copy reveal-copy">
 
@@ -967,9 +890,7 @@ discover your venue.
 
 </p>
 
-
 <div class="services">
-
 
 <div class="service">
 
@@ -987,7 +908,6 @@ bars and hospitality brands.
 </p>
 
 </div>
-
 
 <div class="service">
 
@@ -1007,7 +927,6 @@ stand out online.
 
 </div>
 
-
 <div class="service">
 
 <div class="service-number">03</div>
@@ -1024,7 +943,6 @@ promotional campaigns and branded content.
 </p>
 
 </div>
-
 
 <div class="service">
 
@@ -1048,14 +966,9 @@ photo and video content for your hospitality brand.
 </section>
 
 
-<!-- =========================
-     SELECTED WORK
-========================= -->
+<!-- SELECTED WORK -->
 
-<section
-class="content work"
-id="work"
->
+<section class="content work" id="work">
 
 <div class="work-intro">
 
@@ -1077,7 +990,6 @@ the scroll.
 </div>
 
 </div>
-
 
 <p>
 
@@ -1174,20 +1086,15 @@ Food & Drink
 </section>
 
 
-<!-- =========================
-     YELLOW STATEMENT
-========================= -->
+<!-- STATEMENT -->
 
 <section class="statement">
 
 <div class="statement-inner">
 
 <div class="section-label">
-
 ROKKAMEDIA
-
 </div>
-
 
 <h2 class="statement-title">
 
@@ -1195,7 +1102,6 @@ CONTENT THAT MAKES<br>
 PEOPLE HUNGRY.
 
 </h2>
-
 
 <p class="statement-copy">
 
@@ -1212,18 +1118,13 @@ customers a reason to stop scrolling and discover your venue.
 </section>
 
 
-<!-- =========================
-     HOW IT WORKS
-========================= -->
+<!-- PROCESS -->
 
 <section class="content">
 
 <div class="section-label">
-
 HOW IT WORKS
-
 </div>
-
 
 <div class="title-mask">
 
@@ -1236,9 +1137,7 @@ shoot to scroll.
 
 </div>
 
-
 <div class="process-grid">
-
 
 <div class="process-card">
 
@@ -1249,9 +1148,7 @@ Let's Talk
 </h3>
 
 <p>
-
 Tell us about your venue, your brand and what you want your content to achieve.
-
 </p>
 
 </div>
@@ -1266,9 +1163,7 @@ We Shoot
 </h3>
 
 <p>
-
 We come to your venue and capture the food, people, atmosphere and experience.
-
 </p>
 
 </div>
@@ -1283,9 +1178,7 @@ We Create
 </h3>
 
 <p>
-
 Your photography and video content is professionally edited and optimised for social.
-
 </p>
 
 </div>
@@ -1300,9 +1193,7 @@ We Post
 </h3>
 
 <p>
-
 We get your content live and your hospitality brand looking its best across social.
-
 </p>
 
 </div>
@@ -1312,66 +1203,221 @@ We get your content live and your hospitality brand looking its best across soci
 </section>
 
 
-<!-- =========================
-     CONTACT
-========================= -->
+<!-- ENQUIRY FORM -->
 
-<section
-class="contact"
-id="contact"
->
+<section class="enquiry" id="enquire">
 
-<div class="contact-bg">
+<div class="enquiry-wrap">
 
-ROKKA
-
-</div>
-
-
-<div class="contact-inner">
+<div class="enquiry-copy">
 
 <div class="section-label">
-
-LET'S CREATE
-
+LET'S TALK
 </div>
 
-
 <h2>
-
-READY TO MAKE YOUR<br>
-VENUE STAND OUT?
-
+LET'S CREATE
+SOMETHING.
 </h2>
-
 
 <p>
 
-Looking for restaurant photography, hospitality video
-or short-form social content in London?
-
-Let's create something worth stopping for.
+Tell us a little about your business and what you're looking for.
+We'll get back to you to discuss how RokkaMedia can help.
 
 </p>
 
+</div>
 
-<a
-href="mailto:info@rokkamedia.com?subject=RokkaMedia%20Enquiry"
-class="contact-button"
+
+<form
+class="enquiry-form"
+id="enquiryForm"
+action="https://formspree.io/f/xzepqlww"
+method="POST"
 >
 
-LET'S TALK →
+<input
+type="hidden"
+name="_subject"
+value="New RokkaMedia Website Enquiry"
+>
 
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label for="name">
+Name <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="name"
+name="name"
+placeholder="Your name"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="business">
+Business <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="business"
+name="business"
+placeholder="Business / venue name"
+required
+>
+
+</div>
+
+</div>
+
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label for="email">
+Email <span class="required">*</span>
+</label>
+
+<input
+type="email"
+id="email"
+name="email"
+placeholder="you@business.com"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="phone">
+Phone number <span class="required">*</span>
+</label>
+
+<input
+type="tel"
+id="phone"
+name="phone"
+placeholder="07..."
+required
+>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="social">
+Instagram / Website
+</label>
+
+<input
+type="text"
+id="social"
+name="instagram_website"
+placeholder="@yourbusiness or website URL"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="service">
+What do you need? <span class="required">*</span>
+</label>
+
+<select
+id="service"
+name="service"
+required
+>
+
+<option value="" disabled selected>
+Select a service
+</option>
+
+<option value="Photography">
+Photography
+</option>
+
+<option value="Video">
+Video
+</option>
+
+<option value="Social Content">
+Social Content
+</option>
+
+<option value="Content Day">
+Content Day
+</option>
+
+<option value="Not sure">
+Not sure
+</option>
+
+</select>
+
+</div>
+
+
+<button
+type="submit"
+class="submit-button"
+id="submitButton"
+>
+
+SEND ENQUIRY →
+
+</button>
+
+
+<div
+class="form-message"
+id="formMessage"
+role="status"
+aria-live="polite"
+></div>
+
+
+<div class="whatsapp-alternative">
+
+Prefer WhatsApp?
+<a
+href="https://wa.me/447345658962?text=Hi%20RokkaMedia%2C%20I%27m%20interested%20in%20content%20for%20my%20business."
+target="_blank"
+rel="noopener noreferrer"
+>
+Chat with us →
 </a>
 
 </div>
 
+
+</form>
+
+</div>
+
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1386,9 +1432,7 @@ Hospitality Content Creation • London
 </footer>
 
 
-<!-- =========================
-     WHATSAPP
-========================= -->
+<!-- FLOATING WHATSAPP -->
 
 <a
 href="https://wa.me/447345658962?text=Hi%20RokkaMedia%2C%20I%27m%20interested%20in%20content%20for%20my%20business%20and%20would%20like%20to%20find%20out%20more."
@@ -1418,10 +1462,6 @@ WhatsApp us
 </a>
 
 
-<!-- =========================
-     ANIMATIONS
-========================= -->
-
 <script>
 
 gsap.registerPlugin(ScrollTrigger);
@@ -1430,20 +1470,16 @@ const reduceMotion =
 window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
-/* NAVIGATION */
+/* NAV */
 
 window.addEventListener("scroll",()=>{
 
 const nav=document.querySelector("nav");
 
 if(window.scrollY>70){
-
 nav.classList.add("scrolled");
-
 }else{
-
 nav.classList.remove("scrolled");
-
 }
 
 });
@@ -1452,49 +1488,39 @@ nav.classList.remove("scrolled");
 if(!reduceMotion){
 
 
-/* HERO ENTRANCE */
+/* HERO */
 
 const heroTimeline=gsap.timeline();
 
 heroTimeline
 
 .from(".hero h1",{
-
 yPercent:105,
 duration:1.15,
 ease:"power4.out"
-
 })
 
 .from(".eyebrow",{
-
 opacity:0,
 y:12,
 duration:.65,
 ease:"power3.out"
-
 },"-=.65")
 
 .from(".hero p",{
-
 opacity:0,
 y:18,
 duration:.75,
 ease:"power3.out"
-
 },"-=.45")
 
 .from(".buttons",{
-
 opacity:0,
 y:15,
 duration:.7,
 ease:"power3.out"
-
 },"-=.5");
 
-
-/* HERO PARALLAX */
 
 gsap.to(".hero-video",{
 
@@ -1503,18 +1529,14 @@ scale:1,
 ease:"none",
 
 scrollTrigger:{
-
 trigger:".hero",
 start:"top top",
 end:"bottom top",
 scrub:1.5
-
 }
 
 });
 
-
-/* HERO CONTENT FADE */
 
 gsap.to(".hero-content",{
 
@@ -1523,18 +1545,16 @@ opacity:.45,
 ease:"none",
 
 scrollTrigger:{
-
 trigger:".hero",
 start:"45% top",
 end:"bottom top",
 scrub:1.4
-
 }
 
 });
 
 
-/* HEADLINE REVEALS */
+/* HEADLINES */
 
 gsap.utils.toArray(".reveal-title").forEach(title=>{
 
@@ -1545,11 +1565,9 @@ duration:1.05,
 ease:"power4.out",
 
 scrollTrigger:{
-
 trigger:title,
 start:"top 88%",
 once:true
-
 }
 
 });
@@ -1557,7 +1575,7 @@ once:true
 });
 
 
-/* COPY REVEALS */
+/* COPY */
 
 gsap.utils.toArray(".reveal-copy").forEach(copy=>{
 
@@ -1569,11 +1587,9 @@ duration:.9,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:copy,
 start:"top 90%",
 once:true
-
 }
 
 });
@@ -1594,11 +1610,9 @@ delay:index*.04,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:service,
 start:"top 92%",
 once:true
-
 }
 
 });
@@ -1619,19 +1633,15 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:item,
 start:"top 90%",
 once:true
-
 }
 
 });
 
 });
 
-
-/* IMAGE PARALLAX */
 
 gsap.utils.toArray(".portfolio-item img").forEach(image=>{
 
@@ -1641,12 +1651,10 @@ yPercent:7,
 ease:"none",
 
 scrollTrigger:{
-
 trigger:image.parentElement,
 start:"top bottom",
 end:"bottom top",
 scrub:1.8
-
 }
 
 });
@@ -1654,7 +1662,7 @@ scrub:1.8
 });
 
 
-/* YELLOW SECTION */
+/* YELLOW */
 
 gsap.from(".statement-inner",{
 
@@ -1664,17 +1672,15 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:".statement",
 start:"top 72%",
 once:true
-
 }
 
 });
 
 
-/* PROCESS CARDS */
+/* PROCESS */
 
 gsap.utils.toArray(".process-card").forEach((card,index)=>{
 
@@ -1687,11 +1693,9 @@ delay:index*.07,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:card,
 start:"top 90%",
 once:true
-
 }
 
 });
@@ -1699,49 +1703,126 @@ once:true
 });
 
 
-/* CONTACT */
+/* ENQUIRY */
 
-gsap.from(".contact-inner",{
+gsap.from(".enquiry-copy",{
 
 opacity:0,
-y:35,
+y:30,
 duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
-
-trigger:".contact",
-start:"top 72%",
+trigger:".enquiry",
+start:"top 75%",
 once:true
-
 }
 
 });
 
 
-/* BACKGROUND ROKKA */
+gsap.from(".enquiry-form",{
 
-gsap.to(".contact-bg",{
-
-xPercent:-6,
-ease:"none",
+opacity:0,
+y:40,
+duration:1,
+delay:.1,
+ease:"power3.out",
 
 scrollTrigger:{
-
-trigger:".contact",
-start:"top bottom",
-end:"bottom top",
-scrub:2
-
+trigger:".enquiry-form",
+start:"top 85%",
+once:true
 }
 
 });
 
 }
+
+
+/* =========================
+   FORMSPREE SUBMISSION
+========================= */
+
+const form =
+document.getElementById("enquiryForm");
+
+const formMessage =
+document.getElementById("formMessage");
+
+const submitButton =
+document.getElementById("submitButton");
+
+
+form.addEventListener("submit", async (event)=>{
+
+event.preventDefault();
+
+submitButton.disabled=true;
+
+submitButton.textContent="SENDING...";
+
+formMessage.className="form-message";
+
+formMessage.textContent="";
+
+
+try{
+
+const response =
+await fetch(form.action,{
+
+method:"POST",
+
+body:new FormData(form),
+
+headers:{
+"Accept":"application/json"
+}
+
+});
+
+
+if(response.ok){
+
+form.reset();
+
+formMessage.className=
+"form-message success";
+
+formMessage.textContent=
+"Thanks! Your enquiry has been sent. We'll be in touch soon.";
+
+submitButton.textContent=
+"ENQUIRY SENT ✓";
+
+}else{
+
+throw new Error("Submission failed");
+
+}
+
+
+}catch(error){
+
+formMessage.className=
+"form-message error";
+
+formMessage.textContent=
+"Something went wrong. Please try again or contact us on WhatsApp.";
+
+submitButton.disabled=false;
+
+submitButton.textContent=
+"SEND ENQUIRY →";
+
+}
+
+});
+
 
 </script>
 
 
 </body>
-
 </html>
