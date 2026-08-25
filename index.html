@@ -21,7 +21,8 @@ name="description"
 content="RokkaMedia is a London hospitality creative studio specialising in restaurant photography, short-form video, social media content and website design for restaurants, bars and venues."
 >
 
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#FFD400">
 
 <link
 rel="canonical"
@@ -51,6 +52,16 @@ property="og:site_name"
 content="RokkaMedia"
 >
 
+<meta
+property="og:image"
+content="https://www.rokkamedia.com/ROKKA.png"
+>
+
+<meta
+property="og:image:alt"
+content="RokkaMedia hospitality creative studio logo"
+>
+
 <!-- TWITTER -->
 <meta
 name="twitter:card"
@@ -67,20 +78,39 @@ name="twitter:description"
 content="Photography, video, social content and website design for hospitality brands."
 >
 
+<meta
+name="twitter:image"
+content="https://www.rokkamedia.com/ROKKA.png"
+>
+
+<meta
+name="twitter:image:alt"
+content="RokkaMedia hospitality creative studio logo"
+>
+
 <!-- STRUCTURED DATA -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://www.rokkamedia.com/#business",
   "name": "RokkaMedia",
   "url": "https://www.rokkamedia.com/",
+  "logo": "https://www.rokkamedia.com/ROKKA.png",
+  "image": "https://www.rokkamedia.com/ROKKA.png",
   "email": "info@rokkamedia.com",
+  "telephone": "+44 7345 658962",
   "description": "London hospitality creative studio specialising in restaurant photography, short-form video, hospitality videography, social media content and website design.",
   "areaServed": {
     "@type": "City",
     "name": "London"
   },
-  "serviceType": [
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "London",
+    "addressCountry": "GB"
+  },
+  "knowsAbout": [
     "Restaurant Photography",
     "Hospitality Photography",
     "Short-form Video Content",
@@ -89,7 +119,66 @@ content="Photography, video, social content and website design for hospitality b
     "Content Days",
     "Hospitality Website Design",
     "Restaurant Website Design"
-  ]
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "RokkaMedia Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Short-form Social Content",
+          "description": "Reels, TikToks and social-first video for restaurants, bars and hospitality brands."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Restaurant Photography",
+          "description": "Food, drinks, interiors and lifestyle photography for hospitality brands."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Hospitality Video Production",
+          "description": "Cinematic restaurant and hospitality videography for social media, campaigns and branded content."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Content Days",
+          "description": "Focused hospitality shoots designed to create a bank of professional photo and video content."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Hospitality Website Design",
+          "description": "Modern, mobile-first websites for restaurants, bars and hospitality brands."
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.rokkamedia.com/#website",
+  "url": "https://www.rokkamedia.com/",
+  "name": "RokkaMedia",
+  "publisher": {
+    "@id": "https://www.rokkamedia.com/#business"
+  }
 }
 </script>
 
