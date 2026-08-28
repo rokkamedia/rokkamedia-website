@@ -717,84 +717,169 @@ background:#0c0c0c;
 }
 
 .work-intro{
-display:flex;
-justify-content:space-between;
-align-items:flex-end;
-gap:40px;
+display:grid;
+grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);
+align-items:end;
+gap:60px;
 margin-bottom:65px;
 }
 
 .work-intro p{
-max-width:440px;
+max-width:520px;
+justify-self:end;
 color:#8d8d8d;
-line-height:1.7;
+line-height:1.75;
+font-size:16px;
 }
 
-.portfolio-main{
-height:min(72vw,780px);
-border-radius:22px;
-overflow:hidden;
+/* Editorial portfolio wall */
+.work-grid{
+display:grid;
+grid-template-columns:repeat(12,minmax(0,1fr));
+grid-auto-flow:dense;
+gap:18px;
+}
+
+.work-card{
 position:relative;
+overflow:hidden;
+border-radius:22px;
+background:#111;
+min-height:360px;
+isolation:isolate;
 }
 
-.portfolio-main img,
-.portfolio-card img{
-height:110%;
+.work-card::after{
+content:"";
+position:absolute;
+inset:0;
+z-index:1;
+background:linear-gradient(
+to top,
+rgba(0,0,0,.58) 0%,
+rgba(0,0,0,.08) 34%,
+rgba(0,0,0,0) 58%
+);
+pointer-events:none;
+opacity:.92;
+}
+
+.work-card img{
+width:100%;
+height:100%;
 object-fit:cover;
-position:absolute;
-top:-5%;
-left:0;
+display:block;
+transition:transform .8s cubic-bezier(.2,.7,.2,1);
 }
 
-.image-label{
+.work-card:hover img{
+transform:scale(1.035);
+}
+
+.work-card-copy{
 position:absolute;
+left:24px;
+right:24px;
 bottom:22px;
-left:22px;
-z-index:3;
-background:rgba(0,0,0,.62);
-border:1px solid rgba(255,255,255,.12);
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
-padding:11px 15px;
-border-radius:100px;
-font-size:12px;
+z-index:2;
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+gap:16px;
 }
 
-.portfolio-pair{
-display:grid;
-grid-template-columns:.8fr 1.2fr;
-gap:18px;
-margin-top:18px;
-align-items:start;
+.work-card-category{
+font-size:11px;
+line-height:1;
+font-weight:700;
+letter-spacing:1.7px;
+text-transform:uppercase;
+color:#FFD400;
 }
 
-.portfolio-card{
-height:650px;
-border-radius:22px;
-overflow:hidden;
-position:relative;
+.work-card-title{
+margin-top:8px;
+font-family:"Archivo",Arial,Helvetica,sans-serif;
+font-variation-settings:"wdth" 94;
+font-size:clamp(20px,2vw,30px);
+font-weight:780;
+letter-spacing:-.8px;
+color:#fff;
 }
 
-.portfolio-card.offset{
-margin-top:100px;
-height:760px;
+.work-card-index{
+font-size:11px;
+font-weight:700;
+letter-spacing:1.5px;
+color:rgba(255,255,255,.62);
+white-space:nowrap;
 }
 
-.portfolio-bottom{
-margin-top:18px;
-display:grid;
-grid-template-columns:1.15fr .85fr;
-gap:18px;
+/* Mixed image sizes — deliberately irregular rather than a basic gallery */
+.work-card.wide{
+grid-column:span 8;
+height:560px;
 }
 
-.portfolio-bottom .portfolio-card:first-child{
-height:700px;
+.work-card.tall{
+grid-column:span 4;
+height:560px;
 }
 
-.portfolio-bottom .portfolio-card:last-child{
-height:570px;
-margin-top:100px;
+.work-card.medium{
+grid-column:span 6;
+height:470px;
 }
+
+.work-card.small{
+grid-column:span 4;
+height:390px;
+}
+
+.work-card.hero-work{
+grid-column:span 8;
+height:610px;
+}
+
+.work-card.bts-work{
+grid-column:span 4;
+height:610px;
+}
+
+.work-card.rk9 img,
+.work-card.rk10 img{
+object-position:center center;
+}
+
+.work-card.bts1 img,
+.work-card.bts2 img{
+object-position:center center;
+}
+
+@media(max-width:1000px){
+
+.work-grid{
+grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.work-card.wide,
+.work-card.tall,
+.work-card.medium,
+.work-card.small,
+.work-card.hero-work,
+.work-card.bts-work{
+grid-column:span 1;
+height:500px;
+}
+
+.work-card.hero-work,
+.work-card.wide{
+grid-column:span 2;
+height:560px;
+}
+
+}
+
 
 
 /* =========================
@@ -1408,29 +1493,40 @@ display:block;
 
 .work-intro p{
 margin-top:25px;
+justify-self:auto;
 }
 
-.portfolio-main{
-height:70vh;
-}
-
-.portfolio-pair,
-.portfolio-bottom{
+.work-grid{
 grid-template-columns:1fr;
-}
-
-.portfolio-card,
-.portfolio-card.offset,
-.portfolio-bottom .portfolio-card:first-child,
-.portfolio-bottom .portfolio-card:last-child{
-height:58vh;
-margin-top:0;
-}
-
-.portfolio-pair,
-.portfolio-bottom{
 gap:14px;
-margin-top:14px;
+}
+
+.work-card.wide,
+.work-card.tall,
+.work-card.medium,
+.work-card.small,
+.work-card.hero-work,
+.work-card.bts-work{
+grid-column:span 1;
+height:68vw;
+min-height:340px;
+max-height:470px;
+}
+
+.work-card.bts-work,
+.work-card.bts2{
+height:118vw;
+max-height:620px;
+}
+
+.work-card-copy{
+left:18px;
+right:18px;
+bottom:17px;
+}
+
+.work-card-title{
+font-size:22px;
 }
 
 .process-grid{
@@ -1829,110 +1925,166 @@ SELECTED WORK
 <div class="title-mask">
 
 <h2 class="big-copy reveal-title">
-
 Made for<br>
 the scroll.
-
 </h2>
 
 </div>
 
 </div>
 
-
 <p>
-
 A selection of restaurant and hospitality content created
 to capture the food, atmosphere and experience behind each venue.
-
 </p>
 
 </div>
 
 
-<div class="portfolio-main portfolio-item">
+<div class="work-grid">
 
+<article class="work-card hero-work portfolio-item">
 <img
 src="/RK1.png"
 alt="Restaurant food photography by RokkaMedia"
 loading="lazy"
 >
-
-<div class="image-label">
-Food Photography
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food</div>
+<div class="work-card-title">Food Photography</div>
 </div>
-
+<div class="work-card-index">01</div>
 </div>
+</article>
 
 
-<div class="portfolio-pair">
+<article class="work-card bts-work bts1 portfolio-item">
+<img
+src="/work-bts-1.jpeg"
+alt="Behind the scenes hospitality content shoot by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Behind the Scenes</div>
+<div class="work-card-title">On Set</div>
+</div>
+<div class="work-card-index">02</div>
+</div>
+</article>
 
 
-<div class="portfolio-card portfolio-item">
+<article class="work-card medium rk10 portfolio-item">
+<img
+src="/work-rk10.jpeg"
+alt="Indian food photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food</div>
+<div class="work-card-title">Styled Food</div>
+</div>
+<div class="work-card-index">03</div>
+</div>
+</article>
 
+
+<article class="work-card medium portfolio-item">
 <img
 src="/RK4.png"
 alt="Hospitality photography by RokkaMedia"
 loading="lazy"
 >
-
-<div class="image-label">
-Hospitality
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Venue</div>
+<div class="work-card-title">Hospitality</div>
 </div>
-
+<div class="work-card-index">04</div>
 </div>
+</article>
 
 
-<div class="portfolio-card offset portfolio-item">
-
+<article class="work-card tall portfolio-item">
 <img
 src="/RK5.png"
 alt="Restaurant social media content by RokkaMedia"
 loading="lazy"
 >
-
-<div class="image-label">
-Social Content
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Social</div>
+<div class="work-card-title">Social Content</div>
 </div>
-
+<div class="work-card-index">05</div>
 </div>
+</article>
 
 
+<article class="work-card wide bts2 portfolio-item">
+<img
+src="/work-bts-2.png"
+alt="Restaurant photography content shoot by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Content Day</div>
+<div class="work-card-title">Behind the Camera</div>
 </div>
+<div class="work-card-index">06</div>
+</div>
+</article>
 
 
-<div class="portfolio-bottom">
+<article class="work-card wide rk9 portfolio-item">
+<img
+src="/work-rk9.jpeg"
+alt="Indian street food photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food & Drink</div>
+<div class="work-card-title">Food Detail</div>
+</div>
+<div class="work-card-index">07</div>
+</div>
+</article>
 
 
-<div class="portfolio-card portfolio-item">
-
+<article class="work-card small portfolio-item">
 <img
 src="/RK2.png"
 alt="Restaurant photography London by RokkaMedia"
 loading="lazy"
 >
-
-<div class="image-label">
-Photography
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Photography</div>
+<div class="work-card-title">Restaurant Content</div>
 </div>
-
+<div class="work-card-index">08</div>
 </div>
+</article>
 
 
-<div class="portfolio-card portfolio-item">
-
+<article class="work-card small portfolio-item">
 <img
 src="/RK7.png"
 alt="Food and drink photography by RokkaMedia"
 loading="lazy"
 >
-
-<div class="image-label">
-Food & Drink
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food & Drink</div>
+<div class="work-card-title">Food & Drink</div>
 </div>
-
+<div class="work-card-index">09</div>
 </div>
-
+</article>
 
 </div>
 
