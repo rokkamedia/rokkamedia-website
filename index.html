@@ -227,7 +227,6 @@ width:100%;
 }
 
 
-
 /* =========================
    ROKKA INTRO
 ========================= */
@@ -317,16 +316,9 @@ bottom:-28px;
 }
 
 }
+
 body.intro-active{
 overflow:hidden;
-}
-
-@media(max-width:800px){
-
-.intro-logo{
-width:min(220px,58vw);
-}
-
 }
 
 
@@ -721,135 +713,6 @@ line-height:1.6;
 
 
 /* =========================
-   WEBSITE DESIGN HIGHLIGHT
-========================= */
-
-.website-highlight{
-padding:120px 5%;
-background:#050505;
-}
-
-.website-highlight-inner{
-max-width:1300px;
-margin:auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-}
-
-.website-highlight-copy h2{
-font-size:clamp(48px,7vw,88px);
-line-height:.9;
-letter-spacing:-4px;
-max-width:720px;
-}
-
-.website-highlight-copy p{
-margin-top:28px;
-color:#969696;
-font-size:17px;
-line-height:1.75;
-max-width:620px;
-}
-
-.website-points{
-margin-top:35px;
-display:grid;
-gap:14px;
-}
-
-.website-point{
-display:flex;
-align-items:center;
-gap:12px;
-color:#d5d5d5;
-font-size:14px;
-}
-
-.website-point span{
-width:8px;
-height:8px;
-background:#FFD400;
-border-radius:50%;
-flex-shrink:0;
-}
-
-.website-visual{
-background:#111;
-border:1px solid #222;
-border-radius:26px;
-padding:20px;
-overflow:hidden;
-}
-
-.website-browser{
-background:#080808;
-border:1px solid #252525;
-border-radius:18px;
-overflow:hidden;
-}
-
-.browser-top{
-height:46px;
-border-bottom:1px solid #202020;
-display:flex;
-align-items:center;
-gap:7px;
-padding:0 15px;
-}
-
-.browser-dot{
-width:8px;
-height:8px;
-border-radius:50%;
-background:#555;
-}
-
-.browser-content{
-padding:35px;
-min-height:420px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-
-.browser-label{
-font-size:10px;
-letter-spacing:2px;
-font-weight:800;
-color:#FFD400;
-margin-bottom:15px;
-}
-
-.browser-content h3{
-font-size:clamp(34px,4vw,56px);
-line-height:.92;
-letter-spacing:-2px;
-}
-
-.browser-content p{
-margin-top:18px;
-color:#777;
-font-size:14px;
-line-height:1.65;
-max-width:420px;
-}
-
-.browser-button{
-display:inline-block;
-margin-top:22px;
-background:#FFD400;
-color:#000;
-font-size:11px;
-font-weight:900;
-padding:12px 16px;
-border-radius:100px;
-align-self:flex-start;
-}
-
-
-/* =========================
    ENQUIRY
 ========================= */
 
@@ -1046,8 +909,19 @@ padding:30px 5%;
 border-top:1px solid #222;
 display:flex;
 justify-content:space-between;
+align-items:center;
+gap:20px;
 color:#686868;
 font-size:12px;
+}
+
+footer a{
+color:#b5b5b5;
+transition:.25s ease;
+}
+
+footer a:hover{
+color:#FFD400;
 }
 
 
@@ -1134,24 +1008,6 @@ grid-template-columns:1fr;
 min-height:560px;
 }
 
-.website-highlight{
-padding:85px 5%;
-}
-
-.website-highlight-inner{
-grid-template-columns:1fr;
-gap:45px;
-}
-
-.website-highlight-copy h2{
-letter-spacing:-3px;
-}
-
-.browser-content{
-min-height:330px;
-padding:25px;
-}
-
 .enquiry{
 padding:85px 5%;
 }
@@ -1187,7 +1043,8 @@ font-size:12px;
 
 footer{
 flex-direction:column;
-gap:8px;
+align-items:flex-start;
+gap:10px;
 padding-bottom:85px;
 }
 
@@ -1218,48 +1075,57 @@ transition:none!important;
 ========================= -->
 
 <div class="intro-screen" id="introScreen" aria-hidden="true">
-  <div class="signature-stage" id="signatureStage">
 
-    <svg
-      class="signature-svg"
-      id="signatureSvg"
-      viewBox="0 0 1983 793"
-      role="img"
-      aria-label="RokkaMedia logo"
-    >
-      <defs>
-        <mask id="signatureMask">
-          <rect
-            id="signatureRevealRect"
-            x="0"
-            y="0"
-            width="0"
-            height="793"
-            fill="#fff"
-          />
-        </mask>
-      </defs>
+<div class="signature-stage" id="signatureStage">
 
-      <image
-        class="signature-image"
-        href="/ROKKA-black.svg"
-        x="0"
-        y="0"
-        width="1983"
-        height="793"
-        preserveAspectRatio="xMidYMid meet"
-        mask="url(#signatureMask)"
-      />
-    </svg>
+<svg
+class="signature-svg"
+id="signatureSvg"
+viewBox="0 0 1983 793"
+role="img"
+aria-label="RokkaMedia logo"
+>
 
-    <div class="signature-pen" id="signaturePen"></div>
+<defs>
 
-    <div class="signature-subline" id="signatureSubline">
-      HOSPITALITY CREATIVE STUDIO
-    </div>
+<mask id="signatureMask">
 
-  </div>
+<rect
+id="signatureRevealRect"
+x="0"
+y="0"
+width="0"
+height="793"
+fill="#fff"
+/>
+
+</mask>
+
+</defs>
+
+<image
+class="signature-image"
+href="/ROKKA-black.svg"
+x="0"
+y="0"
+width="1983"
+height="793"
+preserveAspectRatio="xMidYMid meet"
+mask="url(#signatureMask)"
+/>
+
+</svg>
+
+<div class="signature-pen" id="signaturePen"></div>
+
+<div class="signature-subline" id="signatureSubline">
+HOSPITALITY CREATIVE STUDIO
 </div>
+
+</div>
+
+</div>
+
 
 <!-- =========================
      NAVIGATION
@@ -1746,116 +1612,6 @@ Your content goes live or your new website launches ready to represent your bran
 
 
 <!-- =========================
-     WEBSITE DESIGN HIGHLIGHT
-========================= -->
-
-<section class="website-highlight">
-
-<div class="website-highlight-inner">
-
-
-<div class="website-highlight-copy">
-
-<div class="section-label">
-WEBSITE DESIGN
-</div>
-
-<h2>
-
-YOUR WEBSITE SHOULD
-SELL THE EXPERIENCE.
-
-</h2>
-
-<p>
-
-A restaurant website shouldn't just list opening hours and a menu.
-It should give people a feel for the venue before they even arrive.
-
-We design clean, modern and mobile-first websites for hospitality
-businesses — combining strong visuals, clear calls to action and
-a user experience built around turning visitors into customers.
-
-</p>
-
-
-<div class="website-points">
-
-<div class="website-point">
-<span></span>
-Mobile-first design
-</div>
-
-<div class="website-point">
-<span></span>
-Restaurant & hospitality focused
-</div>
-
-<div class="website-point">
-<span></span>
-Fast, modern and easy to navigate
-</div>
-
-<div class="website-point">
-<span></span>
-Built around enquiries and bookings
-</div>
-
-</div>
-
-</div>
-
-
-<div class="website-visual">
-
-<div class="website-browser">
-
-<div class="browser-top">
-
-<div class="browser-dot"></div>
-<div class="browser-dot"></div>
-<div class="browser-dot"></div>
-
-</div>
-
-<div class="browser-content">
-
-<div class="browser-label">
-HOSPITALITY WEBSITE DESIGN
-</div>
-
-<h3>
-
-LOOK GOOD.<br>
-WORK BETTER.
-
-</h3>
-
-<p>
-
-Modern websites designed to showcase your food,
-venue and brand — while making it easy for customers
-to take the next step.
-
-</p>
-
-<div class="browser-button">
-ENQUIRE NOW →
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =========================
      ENQUIRY FORM
 ========================= -->
 
@@ -2027,9 +1783,7 @@ value=""
 disabled
 selected
 >
-
 Select a service
-
 </option>
 
 <option value="Photography">
@@ -2104,8 +1858,15 @@ Chat with us →
 
 </section>
 
+
 <section class="content" style="padding-top:40px;padding-bottom:40px;">
-  <p style="color:#777;font-size:13px;line-height:1.6;max-width:760px;">Based in South London and working with hospitality brands across London, including Croydon and surrounding areas.</p>
+
+<p style="color:#777;font-size:13px;line-height:1.6;max-width:760px;">
+
+Based in South London and working with hospitality brands across London, including Croydon and surrounding areas.
+
+</p>
+
 </section>
 
 
@@ -2120,7 +1881,21 @@ Chat with us →
 </div>
 
 <div>
-Hospitality Content & Website Design • London
+
+<a href="mailto:info@rokkamedia.com">
+info@rokkamedia.com
+</a>
+
+&nbsp; • &nbsp;
+
+<a
+href="https://www.instagram.com/rokkamedia/"
+target="_blank"
+rel="noopener noreferrer"
+>
+@rokkamedia
+</a>
+
 </div>
 
 </footer>
@@ -2195,14 +1970,17 @@ document.getElementById("signatureRevealRect");
 const hasSeenIntro =
 sessionStorage.getItem("rokkaIntroSeen");
 
+
 function finishIntro(){
 
 if(!introScreen) return;
 
 introScreen.remove();
+
 document.body.classList.remove("intro-active");
 
 }
+
 
 if(!hasSeenIntro && introScreen && !reduceMotion){
 
@@ -2216,19 +1994,23 @@ opacity:0,
 y:-10
 });
 
+
 const introTimeline = gsap.timeline({
+
 defaults:{
 ease:"power3.out"
 },
+
 onComplete:()=>{
 
 sessionStorage.setItem("rokkaIntroSeen","true");
+
 finishIntro();
 
 }
+
 });
 
-/* FULL-LOGO SIGNATURE WRITE-ON INTRO */
 
 gsap.set(signatureRevealRect,{
 attr:{width:0}
@@ -2250,9 +2032,9 @@ opacity:0,
 y:8
 });
 
+
 introTimeline
 
-/* Pen appears */
 .to(signaturePen,{
 opacity:1,
 scale:1,
@@ -2260,7 +2042,6 @@ duration:.16,
 ease:"power2.out"
 })
 
-/* Entire logo progressively reveals while the pen travels */
 .to(signatureRevealRect,{
 attr:{width:1983},
 duration:1.15,
@@ -2274,7 +2055,6 @@ duration:1.15,
 ease:"power2.inOut"
 },"<")
 
-/* Add subtle handwriting motion without hiding any logo */
 .to(signaturePen,{
 top:"46%",
 duration:.18,
@@ -2299,7 +2079,6 @@ duration:.18,
 ease:"sine.inOut"
 },"-=.26")
 
-/* Small finishing flick */
 .to(signaturePen,{
 x:14,
 y:-10,
@@ -2313,7 +2092,6 @@ opacity:0,
 duration:.12
 },"-=.03")
 
-/* Descriptor appears after the full logo is complete */
 .to(signatureSubline,{
 opacity:.72,
 y:0,
@@ -2321,7 +2099,6 @@ duration:.22,
 ease:"power3.out"
 },"-=.02")
 
-/* Hold completed logo */
 .to(signatureStage,{
 scale:1,
 duration:.22,
@@ -2332,7 +2109,6 @@ ease:"sine.out"
 duration:.18
 })
 
-/* Transition into the website */
 .to(signatureSubline,{
 opacity:0,
 duration:.16
@@ -2371,6 +2147,7 @@ duration:.60,
 ease:"power4.out"
 },"-=.38");
 
+
 }else{
 
 finishIntro();
@@ -2378,12 +2155,12 @@ finishIntro();
 }
 
 
-
 /* NAV */
 
 window.addEventListener("scroll",()=>{
 
-const nav=document.querySelector("nav");
+const nav =
+document.querySelector("nav");
 
 if(window.scrollY>70){
 
@@ -2405,43 +2182,36 @@ if(!reduceMotion){
 
 if(hasSeenIntro){
 
-const heroTimeline=gsap.timeline();
+const heroTimeline =
+gsap.timeline();
 
 heroTimeline
 
 .from(".hero h1",{
-
 yPercent:105,
 duration:1.15,
 ease:"power4.out"
-
 })
 
 .from(".eyebrow",{
-
 opacity:0,
 y:12,
 duration:.65,
 ease:"power3.out"
-
 },"-=.65")
 
 .from(".hero p",{
-
 opacity:0,
 y:18,
 duration:.75,
 ease:"power3.out"
-
 },"-=.45")
 
 .from(".buttons",{
-
 opacity:0,
 y:15,
 duration:.7,
 ease:"power3.out"
-
 },"-=.5");
 
 }
@@ -2456,12 +2226,10 @@ scale:1,
 ease:"none",
 
 scrollTrigger:{
-
 trigger:".hero",
 start:"top top",
 end:"bottom top",
 scrub:1.5
-
 }
 
 });
@@ -2476,12 +2244,10 @@ opacity:.45,
 ease:"none",
 
 scrollTrigger:{
-
 trigger:".hero",
 start:"45% top",
 end:"bottom top",
 scrub:1.4
-
 }
 
 });
@@ -2498,11 +2264,9 @@ duration:1.05,
 ease:"power4.out",
 
 scrollTrigger:{
-
 trigger:title,
 start:"top 88%",
 once:true
-
 }
 
 });
@@ -2522,11 +2286,9 @@ duration:.9,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:copy,
 start:"top 90%",
 once:true
-
 }
 
 });
@@ -2547,11 +2309,9 @@ delay:index*.04,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:service,
 start:"top 92%",
 once:true
-
 }
 
 });
@@ -2572,11 +2332,9 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:item,
 start:"top 90%",
 once:true
-
 }
 
 });
@@ -2594,12 +2352,10 @@ yPercent:7,
 ease:"none",
 
 scrollTrigger:{
-
 trigger:image.parentElement,
 start:"top bottom",
 end:"bottom top",
 scrub:1.8
-
 }
 
 });
@@ -2617,11 +2373,9 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:".statement",
 start:"top 72%",
 once:true
-
 }
 
 });
@@ -2640,54 +2394,12 @@ delay:index*.07,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:card,
 start:"top 90%",
 once:true
-
 }
 
 });
-
-});
-
-
-/* WEBSITE SECTION */
-
-gsap.from(".website-highlight-copy",{
-
-opacity:0,
-y:35,
-duration:1,
-ease:"power3.out",
-
-scrollTrigger:{
-
-trigger:".website-highlight",
-start:"top 75%",
-once:true
-
-}
-
-});
-
-
-gsap.from(".website-visual",{
-
-opacity:0,
-y:40,
-scale:.985,
-duration:1,
-delay:.1,
-ease:"power3.out",
-
-scrollTrigger:{
-
-trigger:".website-visual",
-start:"top 85%",
-once:true
-
-}
 
 });
 
@@ -2702,11 +2414,9 @@ duration:1,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:".enquiry",
 start:"top 75%",
 once:true
-
 }
 
 });
@@ -2721,15 +2431,12 @@ delay:.1,
 ease:"power3.out",
 
 scrollTrigger:{
-
 trigger:".enquiry-form",
 start:"top 85%",
 once:true
-
 }
 
 });
-
 
 }
 
@@ -2814,7 +2521,6 @@ submitButton.textContent=
 }
 
 });
-
 
 </script>
 
