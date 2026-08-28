@@ -2605,136 +2605,26 @@ let mobileServiceIndex = 0;
 const mobileCarouselMedia =
 window.matchMedia("(max-width: 800px)");
 
-const MOBILE_AUTOPLAY_DELAY = 4000;
-const MOBILE_RESUME_DELAY = 5000;
+/* Continuous movement speed.
+   Increase this slightly for faster movement,
+   decrease it for slower movement. */
+const MOBILE_CONTINUOUS_SPEED = 0.45;
+const MOBILE_RESUME_DELAY = 1600;
 
-let mobileAutoplayTimer = null;
+let mobileAnimationFrame = null;
 let mobileResumeTimer = null;
+let mobileCarouselPaused = false;
+let mobileContinuousPosition = 0;
 
 function mobileCardStep(){
 if(!mobileTrack || mobileCards.length < 2) return 0;
 return mobileCards[1].offsetLeft - mobileCards[0].offsetLeft;
 }
 
-function setMobileService(index,scroll=true){
+function syncMobileDots(){
 if(!mobileTrack || !mobileCards.length) return;
 
-const total = mobileCards.length;
-
-/* Loop continuously from last → first and first → last */
-mobileServiceIndex = ((index % total) + total) % total;
-
-mobileDots.forEach((dot,i)=>{
-dot.classList.toggle("active",i === mobileServiceIndex);
-});
-
-if(scroll){
-mobileTrack.scrollTo({
-left:mobileCards[mobileServiceIndex].offsetLeft,
-behavior:reduceMotion ? "auto" : "smooth"
-});
-}
-}
-
-function stopMobileAutoplay(){
-clearTimeout(mobileAutoplayTimer);
-mobileAutoplayTimer = null;
-}
-
-function scheduleMobileAutoplay(delay=MOBILE_AUTOPLAY_DELAY){
-
-stopMobileAutoplay();
-
-if(
-reduceMotion ||
-!mobileTrack ||
-!mobileCarouselMedia.matches ||
-document.hidden
-){
-return;
-}
-
-mobileAutoplayTimer = setTimeout(()=>{
-
-setMobileService(mobileServiceIndex + 1);
-
-scheduleMobileAutoplay();
-
-},delay);
-
-}
-
-function pauseThenResumeMobileAutoplay(){
-
-stopMobileAutoplay();
-
-clearTimeout(mobileResumeTimer);
-
-mobileResumeTimer = setTimeout(()=>{
-scheduleMobileAutoplay();
-},MOBILE_RESUME_DELAY);
-
-}
-
-if(mobileTrack){
-
-/* Start automatic carousel on mobile */
-scheduleMobileAutoplay();
-
-
-/* Manual controls still work and reset the autoplay timer */
-
-mobilePrev.addEventListener("click",()=>{
-setMobileService(mobileServiceIndex - 1);
-pauseThenResumeMobileAutoplay();
-});
-
-mobileNext.addEventListener("click",()=>{
-setMobileService(mobileServiceIndex + 1);
-pauseThenResumeMobileAutoplay();
-});
-
-mobileDots.forEach((dot,index)=>{
-dot.addEventListener("click",()=>{
-setMobileService(index);
-pauseThenResumeMobileAutoplay();
-});
-});
-
-
-/* Pause while the visitor is physically interacting with the carousel */
-
-mobileTrack.addEventListener("touchstart",()=>{
-stopMobileAutoplay();
-clearTimeout(mobileResumeTimer);
-},{passive:true});
-
-mobileTrack.addEventListener("touchend",()=>{
-pauseThenResumeMobileAutoplay();
-},{passive:true});
-
-mobileTrack.addEventListener("pointerdown",()=>{
-stopMobileAutoplay();
-clearTimeout(mobileResumeTimer);
-});
-
-mobileTrack.addEventListener("pointerup",()=>{
-pauseThenResumeMobileAutoplay();
-});
-
-
-/* Keep dots synced when somebody manually swipes */
-
-let carouselScrollTimer;
-
-mobileTrack.addEventListener("scroll",()=>{
-
-clearTimeout(carouselScrollTimer);
-
-carouselScrollTimer = setTimeout(()=>{
-
 const step = mobileCardStep();
-
 if(!step) return;
 
 const index =
@@ -2752,46 +2642,260 @@ dot.classList.toggle(
 i === mobileServiceIndex
 );
 });
+}
 
-},80);
+function setMobileService(index,scroll=true){
+if(!mobileTrack || !mobileCards.length) return;
 
-},{passive:true});
+const total = mobileCards.length;
+mobileServiceIndex = ((index % total) + total) % total;
+
+mobileDots.forEach((dot,i)=>{
+dot.classList.toggle("active",i === mobileServiceIndex);
+});
+
+if(scroll){
+mobileTrack.scrollTo({
+left:mobileCards[mobileServiceIndex].offsetLeft,
+behavior:reduceMotion ? "auto" : "smooth"
+});
+
+mobileContinuousPosition =
+mobileCards[mobileServiceIndex].offsetLeft;
+}
+}
+
+function stopContinuousMobileCarousel(){
+if(mobileAnimationFrame){
+cancelAnimationFrame(mobileAnimationFrame);
+mobileAnimationFrame = null;
+}
+}
+
+function continuousMobileCarousel(){
+
+if(
+reduceMotion ||
+!mobileTrack ||
+!mobileCarouselMedia.matches ||
+document.hidden ||
+mobileCarouselPaused
+){
+mobileAnimationFrame = null;
+return;
+}
+
+const maxScroll =
+mobileTrack.scrollWidth - mobileTrack.clientWidth;
+
+if(maxScroll > 0){
+
+mobileContinuousPosition +=
+MOBILE_CONTINUOUS_SPEED;
+
+if(mobileContinuousPosition >= maxScroll){
+mobileContinuousPosition = 0;
+mobileTrack.scrollLeft = 0;
+}else{
+mobileTrack.scrollLeft =
+mobileContinuousPosition;
+}
+
+syncMobileDots();
+}
+
+mobileAnimationFrame =
+requestAnimationFrame(
+continuousMobileCarousel
+);
+}
+
+function startContinuousMobileCarousel(){
+
+stopContinuousMobileCarousel();
+
+if(
+reduceMotion ||
+!mobileTrack ||
+!mobileCarouselMedia.matches ||
+document.hidden ||
+mobileCarouselPaused
+){
+return;
+}
+
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+
+mobileAnimationFrame =
+requestAnimationFrame(
+continuousMobileCarousel
+);
+}
+
+function pauseContinuousCarousel(){
+mobileCarouselPaused = true;
+stopContinuousMobileCarousel();
+clearTimeout(mobileResumeTimer);
+}
+
+function resumeContinuousCarousel(){
+
+clearTimeout(mobileResumeTimer);
+
+mobileResumeTimer =
+setTimeout(()=>{
+
+mobileCarouselPaused = false;
+
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+
+startContinuousMobileCarousel();
+
+},MOBILE_RESUME_DELAY);
+
+}
+
+if(mobileTrack){
+
+/* Starts moving immediately and keeps moving. */
+startContinuousMobileCarousel();
 
 
-/* Stop autoplay when the tab is hidden */
+/* Manual controls remain available. */
 
-document.addEventListener("visibilitychange",()=>{
+mobilePrev.addEventListener("click",()=>{
+pauseContinuousCarousel();
+setMobileService(mobileServiceIndex - 1);
+resumeContinuousCarousel();
+});
+
+mobileNext.addEventListener("click",()=>{
+pauseContinuousCarousel();
+setMobileService(mobileServiceIndex + 1);
+resumeContinuousCarousel();
+});
+
+mobileDots.forEach((dot,index)=>{
+dot.addEventListener("click",()=>{
+pauseContinuousCarousel();
+setMobileService(index);
+resumeContinuousCarousel();
+});
+});
+
+
+/* Pause while the visitor touches/swipes. */
+
+mobileTrack.addEventListener(
+"touchstart",
+pauseContinuousCarousel,
+{passive:true}
+);
+
+mobileTrack.addEventListener(
+"touchend",
+()=>{
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+syncMobileDots();
+resumeContinuousCarousel();
+},
+{passive:true}
+);
+
+mobileTrack.addEventListener(
+"pointerdown",
+pauseContinuousCarousel
+);
+
+mobileTrack.addEventListener(
+"pointerup",
+()=>{
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+syncMobileDots();
+resumeContinuousCarousel();
+}
+);
+
+
+/* Keep dots synced after manual movement. */
+
+let carouselScrollTimer;
+
+mobileTrack.addEventListener(
+"scroll",
+()=>{
+
+if(mobileCarouselPaused){
+
+clearTimeout(
+carouselScrollTimer
+);
+
+carouselScrollTimer =
+setTimeout(()=>{
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+syncMobileDots();
+},60);
+
+}
+
+},
+{passive:true}
+);
+
+
+/* Pause when the browser tab is hidden. */
+
+document.addEventListener(
+"visibilitychange",
+()=>{
 
 if(document.hidden){
 
-stopMobileAutoplay();
+stopContinuousMobileCarousel();
 
-}else{
+}else if(!mobileCarouselPaused){
 
-scheduleMobileAutoplay(1200);
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+
+startContinuousMobileCarousel();
 
 }
 
-});
+}
+);
 
 
-/* Only autoplay while the mobile carousel layout is active */
+/* Only run continuous movement on mobile. */
 
-mobileCarouselMedia.addEventListener("change",event=>{
+mobileCarouselMedia.addEventListener(
+"change",
+event=>{
 
 if(event.matches){
 
-scheduleMobileAutoplay(1200);
+mobileContinuousPosition =
+mobileTrack.scrollLeft;
+
+startContinuousMobileCarousel();
 
 }else{
 
-stopMobileAutoplay();
+stopContinuousMobileCarousel();
 
 }
 
-});
+}
+);
 
 }
+
 
 if(!reduceMotion){
 
