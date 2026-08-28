@@ -2602,6 +2602,15 @@ document.getElementById("mobileServicesNext");
 
 let mobileServiceIndex = 0;
 
+const mobileCarouselMedia =
+window.matchMedia("(max-width: 800px)");
+
+const MOBILE_AUTOPLAY_DELAY = 4000;
+const MOBILE_RESUME_DELAY = 5000;
+
+let mobileAutoplayTimer = null;
+let mobileResumeTimer = null;
+
 function mobileCardStep(){
 if(!mobileTrack || mobileCards.length < 2) return 0;
 return mobileCards[1].offsetLeft - mobileCards[0].offsetLeft;
@@ -2610,7 +2619,10 @@ return mobileCards[1].offsetLeft - mobileCards[0].offsetLeft;
 function setMobileService(index,scroll=true){
 if(!mobileTrack || !mobileCards.length) return;
 
-mobileServiceIndex = Math.max(0,Math.min(index,mobileCards.length-1));
+const total = mobileCards.length;
+
+/* Loop continuously from last → first and first → last */
+mobileServiceIndex = ((index % total) + total) % total;
 
 mobileDots.forEach((dot,i)=>{
 dot.classList.toggle("active",i === mobileServiceIndex);
@@ -2624,34 +2636,160 @@ behavior:reduceMotion ? "auto" : "smooth"
 }
 }
 
+function stopMobileAutoplay(){
+clearTimeout(mobileAutoplayTimer);
+mobileAutoplayTimer = null;
+}
+
+function scheduleMobileAutoplay(delay=MOBILE_AUTOPLAY_DELAY){
+
+stopMobileAutoplay();
+
+if(
+reduceMotion ||
+!mobileTrack ||
+!mobileCarouselMedia.matches ||
+document.hidden
+){
+return;
+}
+
+mobileAutoplayTimer = setTimeout(()=>{
+
+setMobileService(mobileServiceIndex + 1);
+
+scheduleMobileAutoplay();
+
+},delay);
+
+}
+
+function pauseThenResumeMobileAutoplay(){
+
+stopMobileAutoplay();
+
+clearTimeout(mobileResumeTimer);
+
+mobileResumeTimer = setTimeout(()=>{
+scheduleMobileAutoplay();
+},MOBILE_RESUME_DELAY);
+
+}
+
 if(mobileTrack){
 
+/* Start automatic carousel on mobile */
+scheduleMobileAutoplay();
+
+
+/* Manual controls still work and reset the autoplay timer */
+
 mobilePrev.addEventListener("click",()=>{
-setMobileService(mobileServiceIndex-1);
+setMobileService(mobileServiceIndex - 1);
+pauseThenResumeMobileAutoplay();
 });
 
 mobileNext.addEventListener("click",()=>{
-setMobileService(mobileServiceIndex+1);
+setMobileService(mobileServiceIndex + 1);
+pauseThenResumeMobileAutoplay();
 });
 
 mobileDots.forEach((dot,index)=>{
-dot.addEventListener("click",()=>setMobileService(index));
+dot.addEventListener("click",()=>{
+setMobileService(index);
+pauseThenResumeMobileAutoplay();
 });
+});
+
+
+/* Pause while the visitor is physically interacting with the carousel */
+
+mobileTrack.addEventListener("touchstart",()=>{
+stopMobileAutoplay();
+clearTimeout(mobileResumeTimer);
+},{passive:true});
+
+mobileTrack.addEventListener("touchend",()=>{
+pauseThenResumeMobileAutoplay();
+},{passive:true});
+
+mobileTrack.addEventListener("pointerdown",()=>{
+stopMobileAutoplay();
+clearTimeout(mobileResumeTimer);
+});
+
+mobileTrack.addEventListener("pointerup",()=>{
+pauseThenResumeMobileAutoplay();
+});
+
+
+/* Keep dots synced when somebody manually swipes */
 
 let carouselScrollTimer;
 
 mobileTrack.addEventListener("scroll",()=>{
+
 clearTimeout(carouselScrollTimer);
+
 carouselScrollTimer = setTimeout(()=>{
+
 const step = mobileCardStep();
+
 if(!step) return;
-const index = Math.round(mobileTrack.scrollLeft / step);
-mobileServiceIndex = Math.max(0,Math.min(index,mobileCards.length-1));
+
+const index =
+Math.round(mobileTrack.scrollLeft / step);
+
+mobileServiceIndex =
+Math.max(
+0,
+Math.min(index,mobileCards.length-1)
+);
+
 mobileDots.forEach((dot,i)=>{
-dot.classList.toggle("active",i === mobileServiceIndex);
+dot.classList.toggle(
+"active",
+i === mobileServiceIndex
+);
 });
-},60);
+
+},80);
+
 },{passive:true});
+
+
+/* Stop autoplay when the tab is hidden */
+
+document.addEventListener("visibilitychange",()=>{
+
+if(document.hidden){
+
+stopMobileAutoplay();
+
+}else{
+
+scheduleMobileAutoplay(1200);
+
+}
+
+});
+
+
+/* Only autoplay while the mobile carousel layout is active */
+
+mobileCarouselMedia.addEventListener("change",event=>{
+
+if(event.matches){
+
+scheduleMobileAutoplay(1200);
+
+}else{
+
+stopMobileAutoplay();
+
+}
+
+});
 
 }
 
