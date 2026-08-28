@@ -100,7 +100,7 @@ content="RokkaMedia hospitality creative studio logo"
   "image": "https://www.rokkamedia.com/ROKKA.png",
   "email": "info@rokkamedia.com",
   "telephone": "+44 7345 658962",
-  "description": "London hospitality creative studio specialising in restaurant photography, short-form video, hospitality videography, social media content and website design.",
+  "description": "London hospitality creative studio specialising in content creation, hospitality photography, social media management and website design.",
   "areaServed": [
     {"@type":"City","name":"London"},
     {"@type":"City","name":"Croydon"},
@@ -117,11 +117,11 @@ content="RokkaMedia hospitality creative studio logo"
     "https://www.tiktok.com/@rokkamedia"
   ],
   "knowsAbout": [
+    "Hospitality Content Creation",
     "Restaurant Photography",
     "Hospitality Photography",
     "Short-form Video Content",
-    "Hospitality Video Production",
-    "Social Media Content Creation",
+    "Social Media Management",
     "Content Days",
     "Hospitality Website Design",
     "Restaurant Website Design"
@@ -134,24 +134,32 @@ content="RokkaMedia hospitality creative studio logo"
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Short-form Social Content",
-          "description": "Reels, TikToks and social-first video for restaurants, bars and hospitality brands."
+          "name": "Content Creation",
+          "description": "Photography, video and social-first content for restaurants, bars and hospitality brands."
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Restaurant Photography",
-          "description": "Food, drinks, interiors and lifestyle photography for hospitality brands."
+          "name": "Social Media Management",
+          "description": "Content planning, posting and ongoing social media management for hospitality brands."
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Hospitality Video Production",
-          "description": "Cinematic restaurant and hospitality videography for social media, campaigns and branded content."
+          "name": "Hospitality Photography",
+          "description": "Professional food, drink, interior and lifestyle photography for hospitality brands."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Website Design",
+          "description": "Modern, mobile-first websites designed for restaurants, bars and hospitality brands."
         }
       },
       {
@@ -159,15 +167,7 @@ content="RokkaMedia hospitality creative studio logo"
         "itemOffered": {
           "@type": "Service",
           "name": "Content Days",
-          "description": "Focused hospitality shoots designed to create a bank of professional photo and video content."
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Hospitality Website Design",
-          "description": "Modern, mobile-first websites for restaurants, bars and hospitality brands."
+          "description": "Focused hospitality shoots creating a bank of professional photography and video content."
         }
       }
     ]
@@ -258,19 +258,6 @@ display:block;
 overflow:visible;
 }
 
-.signature-mask-path{
-fill:none;
-stroke:#fff;
-stroke-linecap:round;
-stroke-linejoin:round;
-}
-
-.signature-text-mask{
-fill:#fff;
-transform-box:fill-box;
-transform-origin:center;
-}
-
 .signature-image{
 width:100%;
 height:100%;
@@ -301,20 +288,6 @@ letter-spacing:3px;
 color:#070707;
 opacity:0;
 white-space:nowrap;
-}
-
-@media(max-width:800px){
-
-.signature-stage{
-width:min(430px,84vw);
-}
-
-.signature-subline{
-font-size:9px;
-letter-spacing:2.2px;
-bottom:-28px;
-}
-
 }
 
 body.intro-active{
@@ -505,42 +478,195 @@ margin-top:30px;
 
 
 /* =========================
-   SERVICES
+   SERVICES SHOWCASE
 ========================= */
 
-.services{
-margin-top:65px;
+.services-section{
+position:relative;
+overflow:hidden;
 }
 
-.service{
-border-top:1px solid #292929;
-padding:30px 0;
+.services-heading{
+max-width:850px;
+margin-bottom:70px;
+}
+
+.services-heading .body-copy{
+max-width:690px;
+}
+
+.services-showcase{
 display:grid;
-grid-template-columns:60px 1fr 1fr;
-gap:20px;
-align-items:start;
+grid-template-columns:minmax(0,.9fr) minmax(500px,1.1fr);
+gap:55px;
+align-items:stretch;
 }
 
-.service:last-child{
-border-bottom:1px solid #292929;
+
+/* SERVICE MENU */
+
+.services-menu{
+display:flex;
+flex-direction:column;
+border-top:1px solid #282828;
 }
 
-.service-number{
-font-size:12px;
+.service-option{
+appearance:none;
+-webkit-appearance:none;
+width:100%;
+background:none;
+border:0;
+border-bottom:1px solid #282828;
+color:#fff;
+display:grid;
+grid-template-columns:46px 1fr 30px;
+align-items:center;
+gap:15px;
+padding:27px 0;
+cursor:pointer;
+text-align:left;
+font-family:inherit;
+transition:
+color .3s ease,
+padding-left .35s ease,
+border-color .35s ease;
+}
+
+.service-option-number{
+font-size:11px;
+font-weight:700;
 color:#666;
-padding-top:7px;
+transition:.3s ease;
 }
 
-.service h3{
-font-size:27px;
+.service-option-title{
+font-size:clamp(19px,2vw,28px);
+font-weight:700;
 letter-spacing:-1px;
+line-height:1.05;
+transition:.3s ease;
 }
 
-.service p{
-color:#888;
+.service-arrow{
+font-size:24px;
+font-weight:300;
+color:#555;
+transition:
+transform .35s ease,
+color .35s ease;
+}
+
+.service-option:hover,
+.service-option.active{
+color:#FFD400;
+padding-left:10px;
+border-color:#444;
+}
+
+.service-option:hover .service-option-number,
+.service-option.active .service-option-number{
+color:#FFD400;
+}
+
+.service-option:hover .service-arrow,
+.service-option.active .service-arrow{
+color:#FFD400;
+transform:translateX(5px);
+}
+
+
+/* SERVICE VISUAL */
+
+.services-visual{
+position:relative;
+height:620px;
+border-radius:24px;
+overflow:hidden;
+background:#111;
+isolation:isolate;
+}
+
+.service-visual-image{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transform:scale(1.06);
+transition:
+opacity .55s ease,
+transform 1s cubic-bezier(.2,.7,.2,1);
+}
+
+.service-visual-image.active{
+opacity:1;
+transform:scale(1);
+}
+
+.services-visual::after{
+content:"";
+position:absolute;
+inset:0;
+z-index:2;
+background:
+linear-gradient(
+to top,
+rgba(0,0,0,.95) 0%,
+rgba(0,0,0,.55) 38%,
+rgba(0,0,0,.08) 70%
+);
+pointer-events:none;
+}
+
+.service-giant-number{
+position:absolute;
+right:25px;
+top:-35px;
+z-index:3;
+font-size:clamp(120px,15vw,230px);
+font-weight:900;
+letter-spacing:-12px;
+line-height:1;
+color:rgba(255,255,255,.10);
+pointer-events:none;
+user-select:none;
+}
+
+.service-visual-content{
+position:absolute;
+z-index:4;
+left:38px;
+right:38px;
+bottom:38px;
+}
+
+.service-visual-tag{
+color:#FFD400;
+font-size:10px;
+font-weight:800;
+letter-spacing:2.5px;
+margin-bottom:14px;
+}
+
+.service-visual-title{
+font-size:clamp(32px,4vw,52px);
+line-height:.95;
+letter-spacing:-2px;
+max-width:650px;
+}
+
+.service-visual-description{
+margin-top:18px;
+color:#d0d0d0;
+font-size:15px;
 line-height:1.65;
-font-size:14px;
-max-width:430px;
+max-width:570px;
+}
+
+.service-mobile-indicator{
+display:none;
 }
 
 
@@ -929,7 +1055,31 @@ color:#FFD400;
    MOBILE
 ========================= */
 
+@media(max-width:900px){
+
+.services-showcase{
+grid-template-columns:1fr;
+gap:35px;
+}
+
+.services-visual{
+height:560px;
+}
+
+}
+
+
 @media(max-width:800px){
+
+.signature-stage{
+width:min(430px,84vw);
+}
+
+.signature-subline{
+font-size:9px;
+letter-spacing:2.2px;
+bottom:-28px;
+}
 
 nav{
 padding:15px 5%;
@@ -961,13 +1111,77 @@ padding:80px 5%;
 letter-spacing:-2.5px;
 }
 
-.service{
-grid-template-columns:45px 1fr;
+
+/* MOBILE SERVICES */
+
+.services-heading{
+margin-bottom:45px;
 }
 
-.service p{
-grid-column:2;
+.services-showcase{
+display:flex;
+flex-direction:column;
+gap:30px;
 }
+
+.service-option{
+grid-template-columns:35px 1fr 25px;
+padding:22px 0;
+gap:10px;
+}
+
+.service-option:hover{
+padding-left:0;
+}
+
+.service-option.active{
+padding-left:7px;
+}
+
+.service-option-title{
+font-size:20px;
+letter-spacing:-.7px;
+}
+
+.services-visual{
+height:500px;
+border-radius:18px;
+}
+
+.service-giant-number{
+top:-5px;
+right:17px;
+font-size:125px;
+letter-spacing:-7px;
+}
+
+.service-visual-content{
+left:22px;
+right:22px;
+bottom:25px;
+}
+
+.service-visual-title{
+font-size:34px;
+letter-spacing:-1.5px;
+}
+
+.service-visual-description{
+font-size:14px;
+line-height:1.6;
+}
+
+.service-mobile-indicator{
+display:block;
+color:#777;
+font-size:10px;
+letter-spacing:1.8px;
+font-weight:700;
+margin-top:12px;
+}
+
+
+/* WORK */
 
 .work-intro{
 display:block;
@@ -1000,6 +1214,9 @@ gap:14px;
 margin-top:14px;
 }
 
+
+/* PROCESS */
+
 .process-grid{
 grid-template-columns:1fr;
 }
@@ -1007,6 +1224,9 @@ grid-template-columns:1fr;
 .statement{
 min-height:560px;
 }
+
+
+/* ENQUIRY */
 
 .enquiry{
 padding:85px 5%;
@@ -1034,12 +1254,18 @@ grid-template-columns:1fr;
 gap:0;
 }
 
+
+/* WHATSAPP */
+
 .whatsapp-button{
 right:15px;
 bottom:15px;
 padding:13px 17px;
 font-size:12px;
 }
+
+
+/* FOOTER */
 
 footer{
 flex-direction:column;
@@ -1215,7 +1441,9 @@ View our work
      WHAT WE DO
 ========================= -->
 
-<section class="content">
+<section class="content services-section">
+
+<div class="services-heading">
 
 <div class="section-label">
 WHAT WE DO
@@ -1224,130 +1452,230 @@ WHAT WE DO
 <div class="title-mask">
 
 <h2 class="big-copy reveal-title">
-
-Your brand looks good.<br>
-Your digital presence should too.
-
+CREATIVE BUILT<br>
+FOR HOSPITALITY.
 </h2>
 
 </div>
 
 <p class="body-copy reveal-copy">
 
-RokkaMedia is a London hospitality creative studio specialising
-in restaurant photography, short-form video, social media content
-and website design for restaurants, bars and hospitality brands.
-
 From the content people discover on social to the website they
-visit afterwards, we help hospitality businesses build a stronger,
+visit afterwards, we help hospitality brands build a stronger,
 more polished digital presence.
 
 </p>
 
+</div>
 
-<div class="services">
+
+<div class="services-showcase">
 
 
-<div class="service">
+<!-- SERVICE MENU -->
 
-<div class="service-number">
+<div class="services-menu">
+
+
+<button
+class="service-option active"
+type="button"
+data-service="0"
+>
+
+<span class="service-option-number">
+01
+</span>
+
+<span class="service-option-title">
+Content Creation
+</span>
+
+<span class="service-arrow">
+→
+</span>
+
+</button>
+
+
+<button
+class="service-option"
+type="button"
+data-service="1"
+>
+
+<span class="service-option-number">
+02
+</span>
+
+<span class="service-option-title">
+Social Media Management
+</span>
+
+<span class="service-arrow">
+→
+</span>
+
+</button>
+
+
+<button
+class="service-option"
+type="button"
+data-service="2"
+>
+
+<span class="service-option-number">
+03
+</span>
+
+<span class="service-option-title">
+Hospitality Photography
+</span>
+
+<span class="service-arrow">
+→
+</span>
+
+</button>
+
+
+<button
+class="service-option"
+type="button"
+data-service="3"
+>
+
+<span class="service-option-number">
+04
+</span>
+
+<span class="service-option-title">
+Website Design
+</span>
+
+<span class="service-arrow">
+→
+</span>
+
+</button>
+
+
+<button
+class="service-option"
+type="button"
+data-service="4"
+>
+
+<span class="service-option-number">
+05
+</span>
+
+<span class="service-option-title">
+Content Days
+</span>
+
+<span class="service-arrow">
+→
+</span>
+
+</button>
+
+
+<div class="service-mobile-indicator">
+TAP A SERVICE TO EXPLORE
+</div>
+
+</div>
+
+
+<!-- SERVICE VISUAL -->
+
+<div class="services-visual">
+
+
+<img
+class="service-visual-image active"
+src="/RK5.png"
+alt="Hospitality content creation by RokkaMedia"
+data-image="0"
+>
+
+
+<img
+class="service-visual-image"
+src="/RK4.png"
+alt="Hospitality social media management by RokkaMedia"
+data-image="1"
+loading="lazy"
+>
+
+
+<img
+class="service-visual-image"
+src="/RK1.png"
+alt="Hospitality photography by RokkaMedia"
+data-image="2"
+loading="lazy"
+>
+
+
+<img
+class="service-visual-image"
+src="/RK2.png"
+alt="Hospitality website design by RokkaMedia"
+data-image="3"
+loading="lazy"
+>
+
+
+<img
+class="service-visual-image"
+src="/RK7.png"
+alt="Hospitality content days by RokkaMedia"
+data-image="4"
+loading="lazy"
+>
+
+
+<div
+class="service-giant-number"
+id="serviceGiantNumber"
+>
 01
 </div>
 
-<h3>
-Short-form Social Content
+
+<div
+class="service-visual-content"
+id="serviceVisualContent"
+>
+
+<div class="service-visual-tag">
+ROKKAMEDIA SERVICE
+</div>
+
+<h3
+class="service-visual-title"
+id="serviceVisualTitle"
+>
+Content Creation
 </h3>
 
-<p>
+<p
+class="service-visual-description"
+id="serviceVisualDescription"
+>
 
-Reels, TikToks and social-first video created for restaurants,
-bars and hospitality brands.
+Photography, video and social-first content created to showcase
+your food, venue and brand at its best.
 
 </p>
 
 </div>
 
 
-<div class="service">
-
-<div class="service-number">
-02
 </div>
-
-<h3>
-Restaurant Photography
-</h3>
-
-<p>
-
-Restaurant and hospitality photography covering food, drinks,
-interiors and lifestyle imagery — created to make your venue
-stand out online.
-
-</p>
-
-</div>
-
-
-<div class="service">
-
-<div class="service-number">
-03
-</div>
-
-<h3>
-Hospitality Video Production
-</h3>
-
-<p>
-
-Cinematic restaurant and hospitality videography for social media,
-promotional campaigns and branded content.
-
-</p>
-
-</div>
-
-
-<div class="service">
-
-<div class="service-number">
-04
-</div>
-
-<h3>
-Content Days
-</h3>
-
-<p>
-
-One focused shoot designed to create a bank of professional
-photo and video content for your hospitality brand.
-
-</p>
-
-</div>
-
-
-<div class="service">
-
-<div class="service-number">
-05
-</div>
-
-<h3>
-Hospitality Website Design
-</h3>
-
-<p>
-
-Modern, mobile-first websites for restaurants, bars and hospitality
-brands — designed to showcase your venue and turn visitors into enquiries.
-
-</p>
-
-</div>
-
 
 </div>
 
@@ -1540,7 +1868,9 @@ idea to launch.
 
 <div class="process-card">
 
-<span>01</span>
+<span>
+01
+</span>
 
 <h3>
 Let's Talk
@@ -1557,7 +1887,9 @@ Tell us about your venue, your brand and what you want to achieve.
 
 <div class="process-card">
 
-<span>02</span>
+<span>
+02
+</span>
 
 <h3>
 We Create
@@ -1574,7 +1906,9 @@ We capture the content or build the website around your brand and goals.
 
 <div class="process-card">
 
-<span>03</span>
+<span>
+03
+</span>
 
 <h3>
 We Refine
@@ -1591,7 +1925,9 @@ Everything is professionally edited, designed and polished before launch.
 
 <div class="process-card">
 
-<span>04</span>
+<span>
+04
+</span>
 
 <h3>
 We Launch
@@ -1786,16 +2122,16 @@ selected
 Select a service
 </option>
 
-<option value="Photography">
-Photography
+<option value="Content Creation">
+Content Creation
 </option>
 
-<option value="Video">
-Video
+<option value="Social Media Management">
+Social Media Management
 </option>
 
-<option value="Social Content">
-Social Content
+<option value="Hospitality Photography">
+Hospitality Photography
 </option>
 
 <option value="Content Day">
@@ -1859,9 +2195,14 @@ Chat with us →
 </section>
 
 
-<section class="content" style="padding-top:40px;padding-bottom:40px;">
+<section
+class="content"
+style="padding-top:40px;padding-bottom:40px;"
+>
 
-<p style="color:#777;font-size:13px;line-height:1.6;max-width:760px;">
+<p
+style="color:#777;font-size:13px;line-height:1.6;max-width:760px;"
+>
 
 Based in South London and working with hospitality brands across London, including Croydon and surrounding areas.
 
@@ -2155,7 +2496,9 @@ finishIntro();
 }
 
 
-/* NAV */
+/* =========================
+   NAV
+========================= */
 
 window.addEventListener("scroll",()=>{
 
@@ -2175,10 +2518,222 @@ nav.classList.remove("scrolled");
 });
 
 
+/* =========================
+   INTERACTIVE SERVICES
+========================= */
+
+const serviceOptions =
+document.querySelectorAll(".service-option");
+
+const serviceImages =
+document.querySelectorAll(".service-visual-image");
+
+const serviceGiantNumber =
+document.getElementById("serviceGiantNumber");
+
+const serviceVisualTitle =
+document.getElementById("serviceVisualTitle");
+
+const serviceVisualDescription =
+document.getElementById("serviceVisualDescription");
+
+
+const servicesData = [
+
+{
+number:"01",
+title:"Content Creation",
+description:"Photography, video and social-first content created to showcase your food, venue and brand at its best."
+},
+
+{
+number:"02",
+title:"Social Media Management",
+description:"Content planning, posting and ongoing social media management designed to keep your brand consistent, active and engaging."
+},
+
+{
+number:"03",
+title:"Hospitality Photography",
+description:"Professional food, drink, interior and lifestyle photography created specifically for restaurants, bars and hospitality brands."
+},
+
+{
+number:"04",
+title:"Website Design",
+description:"Modern, mobile-first websites designed to showcase your business, strengthen your online presence and turn visitors into customers."
+},
+
+{
+number:"05",
+title:"Content Days",
+description:"One focused shoot producing a bank of professional photography and video content ready to use across your social channels and marketing."
+}
+
+];
+
+
+let activeService = 0;
+
+
+function changeService(index){
+
+if(index === activeService){
+return;
+}
+
+activeService = index;
+
+
+/* ACTIVE MENU */
+
+serviceOptions.forEach((option,i)=>{
+
+option.classList.toggle(
+"active",
+i === index
+);
+
+});
+
+
+/* ACTIVE IMAGE */
+
+serviceImages.forEach((image,i)=>{
+
+image.classList.toggle(
+"active",
+i === index
+);
+
+});
+
+
+const data =
+servicesData[index];
+
+
+if(reduceMotion){
+
+serviceGiantNumber.textContent =
+data.number;
+
+serviceVisualTitle.textContent =
+data.title;
+
+serviceVisualDescription.textContent =
+data.description;
+
+return;
+
+}
+
+
+/* TEXT TRANSITION */
+
+gsap.to(
+[
+serviceGiantNumber,
+serviceVisualTitle,
+serviceVisualDescription
+],
+{
+
+opacity:0,
+y:10,
+duration:.18,
+ease:"power2.in",
+
+onComplete:()=>{
+
+serviceGiantNumber.textContent =
+data.number;
+
+serviceVisualTitle.textContent =
+data.title;
+
+serviceVisualDescription.textContent =
+data.description;
+
+
+gsap.fromTo(
+[
+serviceGiantNumber,
+serviceVisualTitle,
+serviceVisualDescription
+],
+{
+opacity:0,
+y:18
+},
+{
+opacity:1,
+y:0,
+duration:.45,
+stagger:.04,
+ease:"power3.out"
+}
+);
+
+}
+
+});
+
+}
+
+
+/* DESKTOP HOVER */
+
+serviceOptions.forEach((option,index)=>{
+
+option.addEventListener(
+"mouseenter",
+()=>{
+
+if(
+window.matchMedia("(hover:hover)").matches
+){
+
+changeService(index);
+
+}
+
+}
+);
+
+
+/* CLICK / MOBILE */
+
+option.addEventListener(
+"click",
+()=>{
+
+changeService(index);
+
+}
+);
+
+
+/* KEYBOARD */
+
+option.addEventListener(
+"focus",
+()=>{
+
+changeService(index);
+
+}
+);
+
+});
+
+
 if(!reduceMotion){
 
 
-/* HERO ENTRANCE */
+/* =========================
+   HERO ENTRANCE
+========================= */
 
 if(hasSeenIntro){
 
@@ -2296,27 +2851,62 @@ once:true
 });
 
 
-/* SERVICES */
+/* SERVICES MENU */
 
-gsap.utils.toArray(".service").forEach((service,index)=>{
-
-gsap.from(service,{
+gsap.from(".services-menu",{
 
 opacity:0,
-y:22,
-duration:.8,
-delay:index*.04,
+x:-30,
+duration:.9,
 ease:"power3.out",
 
 scrollTrigger:{
-trigger:service,
-start:"top 92%",
+trigger:".services-showcase",
+start:"top 85%",
 once:true
 }
 
 });
 
+
+gsap.from(".services-visual",{
+
+opacity:0,
+x:35,
+scale:.985,
+duration:1.05,
+ease:"power3.out",
+
+scrollTrigger:{
+trigger:".services-showcase",
+start:"top 85%",
+once:true
+}
+
 });
+
+
+gsap.utils.toArray(".service-option").forEach(
+(option,index)=>{
+
+gsap.from(option,{
+
+opacity:0,
+y:15,
+duration:.55,
+delay:index*.06,
+ease:"power3.out",
+
+scrollTrigger:{
+trigger:".services-menu",
+start:"top 88%",
+once:true
+}
+
+});
+
+}
+);
 
 
 /* PORTFOLIO */
@@ -2455,7 +3045,9 @@ const submitButton =
 document.getElementById("submitButton");
 
 
-form.addEventListener("submit", async (event)=>{
+form.addEventListener(
+"submit",
+async (event)=>{
 
 event.preventDefault();
 
@@ -2471,7 +3063,9 @@ formMessage.textContent="";
 try{
 
 const response =
-await fetch(form.action,{
+await fetch(
+form.action,
+{
 
 method:"POST",
 
@@ -2481,7 +3075,8 @@ headers:{
 "Accept":"application/json"
 }
 
-});
+}
+);
 
 
 if(response.ok){
@@ -2500,7 +3095,9 @@ submitButton.textContent=
 
 }else{
 
-throw new Error("Submission failed");
+throw new Error(
+"Submission failed"
+);
 
 }
 
@@ -2520,7 +3117,8 @@ submitButton.textContent=
 
 }
 
-});
+}
+);
 
 </script>
 
