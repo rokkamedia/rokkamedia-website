@@ -1116,28 +1116,24 @@ display:none;
 .mobile-services-carousel{
 display:block;
 position:relative;
+margin-left:-5vw;
 margin-right:-5vw;
+overflow:hidden;
 }
 
 .mobile-services-track{
 display:flex;
 gap:14px;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
-scroll-behavior:smooth;
--webkit-overflow-scrolling:touch;
-padding:2px 14vw 12px 0;
-scrollbar-width:none;
-}
-
-.mobile-services-track::-webkit-scrollbar{
-display:none;
+width:max-content;
+overflow:visible;
+padding:2px 0 12px;
+will-change:transform;
+transform:translate3d(0,0,0);
 }
 
 .mobile-service-card{
-flex:0 0 84vw;
-max-width:430px;
-scroll-snap-align:start;
+flex:0 0 82vw;
+max-width:410px;
 background:#101010;
 border:1px solid #252525;
 border-radius:20px;
@@ -1196,12 +1192,7 @@ line-height:1.65;
 }
 
 .mobile-carousel-controls{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:18px;
-margin-top:20px;
-padding-right:5vw;
+display:none;
 }
 
 .mobile-carousel-arrow{
@@ -2605,274 +2596,228 @@ let mobileServiceIndex = 0;
 const mobileCarouselMedia =
 window.matchMedia("(max-width: 800px)");
 
-/* Continuous movement speed.
-   Increase this slightly for faster movement,
-   decrease it for slower movement. */
-const MOBILE_CONTINUOUS_SPEED = 0.45;
-const MOBILE_RESUME_DELAY = 1600;
+/*
+  Seamless marquee speed in pixels per second.
+  Increase this number to make it move faster.
+*/
+const MOBILE_MARQUEE_SPEED = 58;
 
-let mobileAnimationFrame = null;
-let mobileResumeTimer = null;
-let mobileCarouselPaused = false;
-let mobileContinuousPosition = 0;
+let mobileMarqueeFrame = null;
+let mobileMarqueePaused = false;
+let mobileMarqueeX = 0;
+let mobileMarqueeLastTime = 0;
+let mobileLoopWidth = 0;
+let mobileOriginalCardCount = mobileCards.length;
 
-function mobileCardStep(){
-if(!mobileTrack || mobileCards.length < 2) return 0;
-return mobileCards[1].offsetLeft - mobileCards[0].offsetLeft;
+function prepareMobileMarquee(){
+
+if(
+!mobileTrack ||
+!mobileCards.length ||
+mobileTrack.dataset.marqueeReady === "true"
+){
+return;
 }
 
-function syncMobileDots(){
-if(!mobileTrack || !mobileCards.length) return;
-
-const step = mobileCardStep();
-if(!step) return;
-
-const index =
-Math.round(mobileTrack.scrollLeft / step);
-
-mobileServiceIndex =
-Math.max(
-0,
-Math.min(index,mobileCards.length-1)
-);
-
-mobileDots.forEach((dot,i)=>{
-dot.classList.toggle(
-"active",
-i === mobileServiceIndex
-);
-});
-}
-
-function setMobileService(index,scroll=true){
-if(!mobileTrack || !mobileCards.length) return;
-
-const total = mobileCards.length;
-mobileServiceIndex = ((index % total) + total) % total;
-
-mobileDots.forEach((dot,i)=>{
-dot.classList.toggle("active",i === mobileServiceIndex);
+/* Duplicate the full set once so the loop has no visible jump. */
+mobileCards.forEach(card=>{
+const clone = card.cloneNode(true);
+clone.setAttribute("aria-hidden","true");
+clone.classList.add("mobile-service-clone");
+mobileTrack.appendChild(clone);
 });
 
-if(scroll){
-mobileTrack.scrollTo({
-left:mobileCards[mobileServiceIndex].offsetLeft,
-behavior:reduceMotion ? "auto" : "smooth"
-});
+mobileTrack.dataset.marqueeReady = "true";
 
-mobileContinuousPosition =
-mobileCards[mobileServiceIndex].offsetLeft;
-}
-}
+/*
+  The second set starts exactly after the first set.
+  offsetLeft is more reliable than dividing scrollWidth because
+  it naturally includes the flex gap.
+*/
+const firstClone =
+mobileTrack.querySelector(".mobile-service-clone");
 
-function stopContinuousMobileCarousel(){
-if(mobileAnimationFrame){
-cancelAnimationFrame(mobileAnimationFrame);
-mobileAnimationFrame = null;
-}
+if(firstClone){
+mobileLoopWidth = firstClone.offsetLeft;
 }
 
-function continuousMobileCarousel(){
+}
+
+function measureMobileMarquee(){
+
+if(!mobileTrack) return;
+
+const firstClone =
+mobileTrack.querySelector(".mobile-service-clone");
+
+if(firstClone){
+mobileLoopWidth = firstClone.offsetLeft;
+}
+
+}
+
+function renderMobileMarquee(){
+
+if(!mobileTrack) return;
+
+mobileTrack.style.transform =
+`translate3d(${-mobileMarqueeX}px,0,0)`;
+
+}
+
+function stopMobileMarquee(){
+
+if(mobileMarqueeFrame){
+cancelAnimationFrame(mobileMarqueeFrame);
+mobileMarqueeFrame = null;
+}
+
+mobileMarqueeLastTime = 0;
+
+}
+
+function mobileMarqueeTick(time){
 
 if(
 reduceMotion ||
 !mobileTrack ||
 !mobileCarouselMedia.matches ||
 document.hidden ||
-mobileCarouselPaused
+mobileMarqueePaused
 ){
-mobileAnimationFrame = null;
+mobileMarqueeFrame = null;
+mobileMarqueeLastTime = 0;
 return;
 }
 
-const maxScroll =
-mobileTrack.scrollWidth - mobileTrack.clientWidth;
-
-if(maxScroll > 0){
-
-mobileContinuousPosition +=
-MOBILE_CONTINUOUS_SPEED;
-
-if(mobileContinuousPosition >= maxScroll){
-mobileContinuousPosition = 0;
-mobileTrack.scrollLeft = 0;
-}else{
-mobileTrack.scrollLeft =
-mobileContinuousPosition;
+if(!mobileMarqueeLastTime){
+mobileMarqueeLastTime = time;
 }
 
-syncMobileDots();
+/*
+  Time-based movement rather than "pixels per frame".
+  This keeps the speed consistent on both 60Hz and 120Hz phones.
+*/
+const deltaSeconds =
+Math.min((time - mobileMarqueeLastTime) / 1000, .05);
+
+mobileMarqueeLastTime = time;
+
+mobileMarqueeX +=
+MOBILE_MARQUEE_SPEED * deltaSeconds;
+
+if(mobileLoopWidth > 0){
+
+while(mobileMarqueeX >= mobileLoopWidth){
+mobileMarqueeX -= mobileLoopWidth;
 }
 
-mobileAnimationFrame =
-requestAnimationFrame(
-continuousMobileCarousel
-);
 }
 
-function startContinuousMobileCarousel(){
+renderMobileMarquee();
 
-stopContinuousMobileCarousel();
+mobileMarqueeFrame =
+requestAnimationFrame(mobileMarqueeTick);
+
+}
+
+function startMobileMarquee(){
+
+stopMobileMarquee();
 
 if(
 reduceMotion ||
 !mobileTrack ||
 !mobileCarouselMedia.matches ||
 document.hidden ||
-mobileCarouselPaused
+mobileMarqueePaused
 ){
 return;
 }
 
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
+measureMobileMarquee();
+renderMobileMarquee();
 
-mobileAnimationFrame =
-requestAnimationFrame(
-continuousMobileCarousel
-);
+mobileMarqueeFrame =
+requestAnimationFrame(mobileMarqueeTick);
+
 }
 
-function pauseContinuousCarousel(){
-mobileCarouselPaused = true;
-stopContinuousMobileCarousel();
-clearTimeout(mobileResumeTimer);
+function pauseMobileMarquee(){
+
+mobileMarqueePaused = true;
+stopMobileMarquee();
+
 }
 
-function resumeContinuousCarousel(){
+function resumeMobileMarquee(){
 
-clearTimeout(mobileResumeTimer);
-
-mobileResumeTimer =
-setTimeout(()=>{
-
-mobileCarouselPaused = false;
-
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
-
-startContinuousMobileCarousel();
-
-},MOBILE_RESUME_DELAY);
+mobileMarqueePaused = false;
+startMobileMarquee();
 
 }
 
 if(mobileTrack){
 
-/* Starts moving immediately and keeps moving. */
-startContinuousMobileCarousel();
+prepareMobileMarquee();
 
+/* Re-measure once images/layout have fully settled. */
+window.addEventListener("load",()=>{
+measureMobileMarquee();
+startMobileMarquee();
+},{once:true});
 
-/* Manual controls remain available. */
-
-mobilePrev.addEventListener("click",()=>{
-pauseContinuousCarousel();
-setMobileService(mobileServiceIndex - 1);
-resumeContinuousCarousel();
+requestAnimationFrame(()=>{
+measureMobileMarquee();
+startMobileMarquee();
 });
 
-mobileNext.addEventListener("click",()=>{
-pauseContinuousCarousel();
-setMobileService(mobileServiceIndex + 1);
-resumeContinuousCarousel();
-});
+/*
+  Pause only while the visitor is pressing the carousel.
+  It resumes immediately on release, so the section always feels alive.
+*/
+mobileTrack.addEventListener(
+"pointerdown",
+pauseMobileMarquee
+);
 
-mobileDots.forEach((dot,index)=>{
-dot.addEventListener("click",()=>{
-pauseContinuousCarousel();
-setMobileService(index);
-resumeContinuousCarousel();
-});
-});
-
-
-/* Pause while the visitor touches/swipes. */
+window.addEventListener(
+"pointerup",
+()=>{
+if(mobileCarouselMedia.matches){
+resumeMobileMarquee();
+}
+}
+);
 
 mobileTrack.addEventListener(
 "touchstart",
-pauseContinuousCarousel,
+pauseMobileMarquee,
 {passive:true}
 );
 
 mobileTrack.addEventListener(
 "touchend",
 ()=>{
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
-syncMobileDots();
-resumeContinuousCarousel();
+if(mobileCarouselMedia.matches){
+resumeMobileMarquee();
+}
 },
 {passive:true}
 );
-
-mobileTrack.addEventListener(
-"pointerdown",
-pauseContinuousCarousel
-);
-
-mobileTrack.addEventListener(
-"pointerup",
-()=>{
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
-syncMobileDots();
-resumeContinuousCarousel();
-}
-);
-
-
-/* Keep dots synced after manual movement. */
-
-let carouselScrollTimer;
-
-mobileTrack.addEventListener(
-"scroll",
-()=>{
-
-if(mobileCarouselPaused){
-
-clearTimeout(
-carouselScrollTimer
-);
-
-carouselScrollTimer =
-setTimeout(()=>{
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
-syncMobileDots();
-},60);
-
-}
-
-},
-{passive:true}
-);
-
-
-/* Pause when the browser tab is hidden. */
 
 document.addEventListener(
 "visibilitychange",
 ()=>{
 
 if(document.hidden){
-
-stopContinuousMobileCarousel();
-
-}else if(!mobileCarouselPaused){
-
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
-
-startContinuousMobileCarousel();
-
+stopMobileMarquee();
+}else if(!mobileMarqueePaused){
+startMobileMarquee();
 }
 
 }
 );
-
-
-/* Only run continuous movement on mobile. */
 
 mobileCarouselMedia.addEventListener(
 "change",
@@ -2880,18 +2825,40 @@ event=>{
 
 if(event.matches){
 
-mobileContinuousPosition =
-mobileTrack.scrollLeft;
-
-startContinuousMobileCarousel();
+measureMobileMarquee();
+startMobileMarquee();
 
 }else{
 
-stopContinuousMobileCarousel();
+stopMobileMarquee();
 
+if(mobileTrack){
+mobileTrack.style.transform = "";
 }
 
 }
+
+}
+);
+
+window.addEventListener(
+"resize",
+()=>{
+
+if(mobileCarouselMedia.matches){
+measureMobileMarquee();
+
+/* Keep position inside the new loop length after rotation/resize. */
+if(mobileLoopWidth > 0){
+mobileMarqueeX =
+mobileMarqueeX % mobileLoopWidth;
+}
+
+renderMobileMarquee();
+}
+
+},
+{passive:true}
 );
 
 }
