@@ -2075,6 +2075,202 @@ color:#c1c1c1;
 }
 }
 
+
+/* =========================
+   HOW IT WORKS — TIMELINE
+========================= */
+
+.process-section{
+padding-top:120px;
+padding-bottom:120px;
+}
+
+.process-intro{
+display:grid;
+grid-template-columns:minmax(0,1.15fr) minmax(280px,.7fr);
+align-items:end;
+gap:60px;
+margin-bottom:64px;
+}
+
+.process-intro-copy{
+max-width:480px;
+justify-self:end;
+margin:0;
+color:#858585;
+font-size:15px;
+line-height:1.7;
+}
+
+.process-timeline{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+border-top:1px solid #292929;
+border-bottom:1px solid #292929;
+}
+
+.process-step{
+position:relative;
+min-height:250px;
+padding:30px 28px 34px;
+border-right:1px solid #292929;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
+.process-step:last-child{
+border-right:0;
+}
+
+.process-marker{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.process-number{
+font-family:"Inter",Arial,Helvetica,sans-serif;
+font-size:11px;
+font-weight:800;
+letter-spacing:1.8px;
+color:#FFD400;
+}
+
+.process-dot{
+width:6px;
+height:6px;
+border-radius:50%;
+background:#FFD400;
+opacity:.85;
+}
+
+.process-step-copy h3{
+margin:0 0 12px;
+font-family:"Inter",Arial,Helvetica,sans-serif;
+font-size:clamp(25px,2vw,34px);
+font-weight:700;
+letter-spacing:-.9px;
+color:#f5f5f5;
+}
+
+.process-step-copy p{
+margin:0;
+max-width:270px;
+color:#8f8f8f;
+font-family:"Inter",Arial,Helvetica,sans-serif;
+font-size:13px;
+line-height:1.6;
+}
+
+/* Mobile turns the four-column process into one clean vertical journey */
+@media(max-width:800px){
+
+.process-section{
+padding-top:80px;
+padding-bottom:82px;
+}
+
+.process-intro{
+display:block;
+margin-bottom:38px;
+}
+
+.process-intro .big-copy{
+font-size:clamp(38px,11vw,58px);
+line-height:.94;
+letter-spacing:-1.8px;
+}
+
+.process-intro-copy{
+display:none;
+}
+
+.process-timeline{
+display:block;
+position:relative;
+border:0;
+padding-left:0;
+}
+
+.process-timeline::before{
+content:"";
+position:absolute;
+left:27px;
+top:18px;
+bottom:18px;
+width:1px;
+background:linear-gradient(
+to bottom,
+rgba(255,212,0,.9),
+rgba(255,212,0,.22)
+);
+}
+
+.process-step{
+min-height:0;
+padding:0 0 34px;
+border:0;
+display:grid;
+grid-template-columns:56px minmax(0,1fr);
+gap:18px;
+}
+
+.process-step:last-child{
+padding-bottom:0;
+}
+
+.process-marker{
+position:relative;
+display:flex;
+align-items:flex-start;
+justify-content:center;
+padding-top:3px;
+z-index:2;
+}
+
+.process-number{
+display:flex;
+align-items:center;
+justify-content:center;
+width:42px;
+height:42px;
+border:1px solid rgba(255,212,0,.55);
+border-radius:50%;
+background:#080808;
+font-size:10px;
+letter-spacing:1px;
+}
+
+.process-dot{
+display:none;
+}
+
+.process-step-copy{
+padding:1px 0 30px;
+border-bottom:1px solid #242424;
+}
+
+.process-step:last-child .process-step-copy{
+border-bottom:0;
+padding-bottom:0;
+}
+
+.process-step-copy h3{
+font-size:26px;
+letter-spacing:-.8px;
+margin-bottom:8px;
+}
+
+.process-step-copy p{
+max-width:310px;
+font-size:13px;
+line-height:1.55;
+color:#a0a0a0;
+}
+
+}
+
 </style>
 
 </head>
@@ -2403,94 +2599,78 @@ across the entire digital journey.
      PROCESS
 ========================= -->
 
-<section class="content">
+<section class="content process-section" id="process">
 
-<div class="section-label">
-HOW IT WORKS
-</div>
+<div class="process-intro">
+<div>
+<div class="section-label">HOW IT WORKS</div>
 
 <div class="title-mask">
-
 <h2 class="big-copy reveal-title">
-
 Simple from<br>
 idea to launch.
-
 </h2>
-
+</div>
 </div>
 
-
-<div class="process-grid">
-
-
-<div class="process-card">
-
-<span>01</span>
-
-<h3>
-Let's Talk
-</h3>
-
-<p>
-
-Tell us about your venue, your brand and what you want to achieve.
-
+<p class="process-intro-copy">
+A straightforward process from the first conversation to the finished content or website.
 </p>
-
 </div>
 
 
-<div class="process-card">
+<div class="process-timeline">
 
-<span>02</span>
-
-<h3>
-We Create
-</h3>
-
-<p>
-
-We capture the content or build the website around your brand and goals.
-
-</p>
-
+<article class="process-step">
+<div class="process-marker">
+<span class="process-number">01</span>
+<span class="process-dot"></span>
 </div>
 
+<div class="process-step-copy">
+<h3>Let's Talk</h3>
+<p>Tell us about your venue, brand and goals.</p>
+</div>
+</article>
 
-<div class="process-card">
 
-<span>03</span>
-
-<h3>
-We Refine
-</h3>
-
-<p>
-
-Everything is professionally edited, designed and polished before launch.
-
-</p>
-
+<article class="process-step">
+<div class="process-marker">
+<span class="process-number">02</span>
+<span class="process-dot"></span>
 </div>
 
+<div class="process-step-copy">
+<h3>We Create</h3>
+<p>We shoot the content or build the website around your brand.</p>
+</div>
+</article>
 
-<div class="process-card">
 
-<span>04</span>
-
-<h3>
-We Launch
-</h3>
-
-<p>
-
-Your content goes live or your new website launches ready to represent your brand.
-
-</p>
-
+<article class="process-step">
+<div class="process-marker">
+<span class="process-number">03</span>
+<span class="process-dot"></span>
 </div>
 
+<div class="process-step-copy">
+<h3>We Refine</h3>
+<p>Everything is edited, designed and polished.</p>
+</div>
+</article>
+
+
+<article class="process-step">
+<div class="process-marker">
+<span class="process-number">04</span>
+<span class="process-dot"></span>
+</div>
+
+<div class="process-step-copy">
+<h3>We Launch</h3>
+<p>Your content or website goes live, ready to represent your brand.</p>
+</div>
+</article>
 
 </div>
 
