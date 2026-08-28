@@ -258,6 +258,19 @@ display:block;
 overflow:visible;
 }
 
+.signature-mask-path{
+fill:none;
+stroke:#fff;
+stroke-linecap:round;
+stroke-linejoin:round;
+}
+
+.signature-text-mask{
+fill:#fff;
+transform-box:fill-box;
+transform-origin:center;
+}
+
 .signature-image{
 width:100%;
 height:100%;
@@ -288,6 +301,20 @@ letter-spacing:3px;
 color:#070707;
 opacity:0;
 white-space:nowrap;
+}
+
+@media(max-width:800px){
+
+.signature-stage{
+width:min(430px,84vw);
+}
+
+.signature-subline{
+font-size:9px;
+letter-spacing:2.2px;
+bottom:-28px;
+}
+
 }
 
 body.intro-active{
@@ -478,7 +505,7 @@ margin-top:30px;
 
 
 /* =========================
-   SERVICES SHOWCASE
+   SERVICES
 ========================= */
 
 .services-section{
@@ -495,15 +522,14 @@ margin-bottom:70px;
 max-width:690px;
 }
 
+/* DESKTOP SPLIT-SCREEN SERVICES */
+
 .services-showcase{
 display:grid;
 grid-template-columns:minmax(0,.9fr) minmax(500px,1.1fr);
 gap:55px;
 align-items:stretch;
 }
-
-
-/* SERVICE MENU */
 
 .services-menu{
 display:flex;
@@ -527,10 +553,7 @@ padding:27px 0;
 cursor:pointer;
 text-align:left;
 font-family:inherit;
-transition:
-color .3s ease,
-padding-left .35s ease,
-border-color .35s ease;
+transition:color .3s ease,padding-left .35s ease,border-color .35s ease;
 }
 
 .service-option-number{
@@ -552,31 +575,30 @@ transition:.3s ease;
 font-size:24px;
 font-weight:300;
 color:#555;
-transition:
-transform .35s ease,
-color .35s ease;
+transition:transform .35s ease,color .35s ease;
 }
 
 .service-option:hover,
-.service-option.active{
+.service-option.active,
+.service-option:focus-visible{
 color:#FFD400;
 padding-left:10px;
 border-color:#444;
+outline:none;
 }
 
 .service-option:hover .service-option-number,
-.service-option.active .service-option-number{
+.service-option.active .service-option-number,
+.service-option:focus-visible .service-option-number{
 color:#FFD400;
 }
 
 .service-option:hover .service-arrow,
-.service-option.active .service-arrow{
+.service-option.active .service-arrow,
+.service-option:focus-visible .service-arrow{
 color:#FFD400;
 transform:translateX(5px);
 }
-
-
-/* SERVICE VISUAL */
 
 .services-visual{
 position:relative;
@@ -595,9 +617,7 @@ height:100%;
 object-fit:cover;
 opacity:0;
 transform:scale(1.06);
-transition:
-opacity .55s ease,
-transform 1s cubic-bezier(.2,.7,.2,1);
+transition:opacity .55s ease,transform 1s cubic-bezier(.2,.7,.2,1);
 }
 
 .service-visual-image.active{
@@ -610,13 +630,7 @@ content:"";
 position:absolute;
 inset:0;
 z-index:2;
-background:
-linear-gradient(
-to top,
-rgba(0,0,0,.95) 0%,
-rgba(0,0,0,.55) 38%,
-rgba(0,0,0,.08) 70%
-);
+background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,.08) 70%);
 pointer-events:none;
 }
 
@@ -665,7 +679,9 @@ line-height:1.65;
 max-width:570px;
 }
 
-.service-mobile-indicator{
+/* MOBILE CAROUSEL - hidden on desktop */
+
+.mobile-services-carousel{
 display:none;
 }
 
@@ -1055,31 +1071,7 @@ color:#FFD400;
    MOBILE
 ========================= */
 
-@media(max-width:900px){
-
-.services-showcase{
-grid-template-columns:1fr;
-gap:35px;
-}
-
-.services-visual{
-height:560px;
-}
-
-}
-
-
 @media(max-width:800px){
-
-.signature-stage{
-width:min(430px,84vw);
-}
-
-.signature-subline{
-font-size:9px;
-letter-spacing:2.2px;
-bottom:-28px;
-}
 
 nav{
 padding:15px 5%;
@@ -1111,77 +1103,149 @@ padding:80px 5%;
 letter-spacing:-2.5px;
 }
 
-
-/* MOBILE SERVICES */
+/* MOBILE SERVICES CAROUSEL */
 
 .services-heading{
-margin-bottom:45px;
+margin-bottom:42px;
 }
 
 .services-showcase{
-display:flex;
-flex-direction:column;
-gap:30px;
+display:none;
 }
 
-.service-option{
-grid-template-columns:35px 1fr 25px;
-padding:22px 0;
-gap:10px;
-}
-
-.service-option:hover{
-padding-left:0;
-}
-
-.service-option.active{
-padding-left:7px;
-}
-
-.service-option-title{
-font-size:20px;
-letter-spacing:-.7px;
-}
-
-.services-visual{
-height:500px;
-border-radius:18px;
-}
-
-.service-giant-number{
-top:-5px;
-right:17px;
-font-size:125px;
-letter-spacing:-7px;
-}
-
-.service-visual-content{
-left:22px;
-right:22px;
-bottom:25px;
-}
-
-.service-visual-title{
-font-size:34px;
-letter-spacing:-1.5px;
-}
-
-.service-visual-description{
-font-size:14px;
-line-height:1.6;
-}
-
-.service-mobile-indicator{
+.mobile-services-carousel{
 display:block;
-color:#777;
-font-size:10px;
-letter-spacing:1.8px;
-font-weight:700;
-margin-top:12px;
+position:relative;
+margin-right:-5vw;
 }
 
+.mobile-services-track{
+display:flex;
+gap:14px;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch;
+padding:2px 14vw 12px 0;
+scrollbar-width:none;
+}
 
-/* WORK */
+.mobile-services-track::-webkit-scrollbar{
+display:none;
+}
+
+.mobile-service-card{
+flex:0 0 84vw;
+max-width:430px;
+scroll-snap-align:start;
+background:#101010;
+border:1px solid #252525;
+border-radius:20px;
+overflow:hidden;
+min-height:500px;
+}
+
+.mobile-card-image-wrap{
+height:315px;
+position:relative;
+overflow:hidden;
+background:#151515;
+}
+
+.mobile-card-image-wrap::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.55),transparent 55%);
+pointer-events:none;
+}
+
+.mobile-card-image-wrap img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.mobile-card-number{
+position:absolute;
+z-index:2;
+top:18px;
+left:20px;
+font-size:54px;
+font-weight:900;
+line-height:1;
+letter-spacing:-3px;
+color:#FFD400;
+}
+
+.mobile-card-copy{
+padding:24px 22px 27px;
+}
+
+.mobile-card-copy h3{
+font-size:25px;
+line-height:1.05;
+letter-spacing:-1px;
+}
+
+.mobile-card-copy p{
+margin-top:14px;
+color:#999;
+font-size:14px;
+line-height:1.65;
+}
+
+.mobile-carousel-controls{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:18px;
+margin-top:20px;
+padding-right:5vw;
+}
+
+.mobile-carousel-arrow{
+width:42px;
+height:42px;
+border-radius:50%;
+border:1px solid #333;
+background:#101010;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+flex-shrink:0;
+}
+
+.mobile-carousel-arrow:active{
+background:#FFD400;
+color:#000;
+border-color:#FFD400;
+}
+
+.mobile-carousel-dots{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+flex:1;
+}
+
+.mobile-carousel-dot{
+width:7px;
+height:7px;
+border:0;
+border-radius:50%;
+padding:0;
+background:#4b4b4b;
+transition:.25s ease;
+}
+
+.mobile-carousel-dot.active{
+width:24px;
+border-radius:100px;
+background:#FFD400;
+}
+
 
 .work-intro{
 display:block;
@@ -1214,9 +1278,6 @@ gap:14px;
 margin-top:14px;
 }
 
-
-/* PROCESS */
-
 .process-grid{
 grid-template-columns:1fr;
 }
@@ -1224,9 +1285,6 @@ grid-template-columns:1fr;
 .statement{
 min-height:560px;
 }
-
-
-/* ENQUIRY */
 
 .enquiry{
 padding:85px 5%;
@@ -1254,18 +1312,12 @@ grid-template-columns:1fr;
 gap:0;
 }
 
-
-/* WHATSAPP */
-
 .whatsapp-button{
 right:15px;
 bottom:15px;
 padding:13px 17px;
 font-size:12px;
 }
-
-
-/* FOOTER */
 
 footer{
 flex-direction:column;
@@ -1459,222 +1511,145 @@ FOR HOSPITALITY.
 </div>
 
 <p class="body-copy reveal-copy">
-
-From the content people discover on social to the website they
-visit afterwards, we help hospitality brands build a stronger,
-more polished digital presence.
-
+From the content people discover on social to the website they visit afterwards,
+we help hospitality brands build a stronger, more polished digital presence.
 </p>
 
 </div>
 
-
-<div class="services-showcase">
-
-
-<!-- SERVICE MENU -->
+<!-- DESKTOP SERVICES -->
+<div class="services-showcase" aria-label="RokkaMedia services">
 
 <div class="services-menu">
 
-
-<button
-class="service-option active"
-type="button"
-data-service="0"
->
-
-<span class="service-option-number">
-01
-</span>
-
-<span class="service-option-title">
-Content Creation
-</span>
-
-<span class="service-arrow">
-→
-</span>
-
+<button class="service-option active" type="button" data-service="0">
+<span class="service-option-number">01</span>
+<span class="service-option-title">Content Creation</span>
+<span class="service-arrow">→</span>
 </button>
 
-
-<button
-class="service-option"
-type="button"
-data-service="1"
->
-
-<span class="service-option-number">
-02
-</span>
-
-<span class="service-option-title">
-Social Media Management
-</span>
-
-<span class="service-arrow">
-→
-</span>
-
+<button class="service-option" type="button" data-service="1">
+<span class="service-option-number">02</span>
+<span class="service-option-title">Social Media Management</span>
+<span class="service-arrow">→</span>
 </button>
 
-
-<button
-class="service-option"
-type="button"
-data-service="2"
->
-
-<span class="service-option-number">
-03
-</span>
-
-<span class="service-option-title">
-Hospitality Photography
-</span>
-
-<span class="service-arrow">
-→
-</span>
-
+<button class="service-option" type="button" data-service="2">
+<span class="service-option-number">03</span>
+<span class="service-option-title">Hospitality Photography</span>
+<span class="service-arrow">→</span>
 </button>
 
-
-<button
-class="service-option"
-type="button"
-data-service="3"
->
-
-<span class="service-option-number">
-04
-</span>
-
-<span class="service-option-title">
-Website Design
-</span>
-
-<span class="service-arrow">
-→
-</span>
-
+<button class="service-option" type="button" data-service="3">
+<span class="service-option-number">04</span>
+<span class="service-option-title">Website Design</span>
+<span class="service-arrow">→</span>
 </button>
 
-
-<button
-class="service-option"
-type="button"
-data-service="4"
->
-
-<span class="service-option-number">
-05
-</span>
-
-<span class="service-option-title">
-Content Days
-</span>
-
-<span class="service-arrow">
-→
-</span>
-
+<button class="service-option" type="button" data-service="4">
+<span class="service-option-number">05</span>
+<span class="service-option-title">Content Days</span>
+<span class="service-arrow">→</span>
 </button>
-
-
-<div class="service-mobile-indicator">
-TAP A SERVICE TO EXPLORE
-</div>
 
 </div>
-
-
-<!-- SERVICE VISUAL -->
 
 <div class="services-visual">
 
+<img class="service-visual-image active" src="/RK5.png" alt="Hospitality content creation by RokkaMedia" data-image="0">
+<img class="service-visual-image" src="/RK4.png" alt="Hospitality social media management by RokkaMedia" data-image="1" loading="lazy">
+<img class="service-visual-image" src="/RK1.png" alt="Hospitality photography by RokkaMedia" data-image="2" loading="lazy">
+<img class="service-visual-image" src="/RK2.png" alt="Hospitality website design by RokkaMedia" data-image="3" loading="lazy">
+<img class="service-visual-image" src="/RK7.png" alt="Hospitality content days by RokkaMedia" data-image="4" loading="lazy">
 
-<img
-class="service-visual-image active"
-src="/RK5.png"
-alt="Hospitality content creation by RokkaMedia"
-data-image="0"
->
+<div class="service-giant-number" id="serviceGiantNumber">01</div>
 
-
-<img
-class="service-visual-image"
-src="/RK4.png"
-alt="Hospitality social media management by RokkaMedia"
-data-image="1"
-loading="lazy"
->
-
-
-<img
-class="service-visual-image"
-src="/RK1.png"
-alt="Hospitality photography by RokkaMedia"
-data-image="2"
-loading="lazy"
->
-
-
-<img
-class="service-visual-image"
-src="/RK2.png"
-alt="Hospitality website design by RokkaMedia"
-data-image="3"
-loading="lazy"
->
-
-
-<img
-class="service-visual-image"
-src="/RK7.png"
-alt="Hospitality content days by RokkaMedia"
-data-image="4"
-loading="lazy"
->
-
-
-<div
-class="service-giant-number"
-id="serviceGiantNumber"
->
-01
-</div>
-
-
-<div
-class="service-visual-content"
-id="serviceVisualContent"
->
-
-<div class="service-visual-tag">
-ROKKAMEDIA SERVICE
-</div>
-
-<h3
-class="service-visual-title"
-id="serviceVisualTitle"
->
-Content Creation
-</h3>
-
-<p
-class="service-visual-description"
-id="serviceVisualDescription"
->
-
-Photography, video and social-first content created to showcase
-your food, venue and brand at its best.
-
+<div class="service-visual-content" id="serviceVisualContent">
+<div class="service-visual-tag">ROKKAMEDIA SERVICE</div>
+<h3 class="service-visual-title" id="serviceVisualTitle">Content Creation</h3>
+<p class="service-visual-description" id="serviceVisualDescription">
+Photography, video and social-first content created to showcase your food, venue and brand at its best.
 </p>
+</div>
 
 </div>
 
+</div>
 
+<!-- MOBILE SERVICES CAROUSEL -->
+<div class="mobile-services-carousel" aria-label="RokkaMedia services carousel">
+
+<div class="mobile-services-track" id="mobileServicesTrack">
+
+<article class="mobile-service-card" data-mobile-card="0">
+<div class="mobile-card-image-wrap">
+<img src="/RK5.png" alt="Hospitality content creation by RokkaMedia" loading="lazy">
+<span class="mobile-card-number">01</span>
+</div>
+<div class="mobile-card-copy">
+<h3>Content Creation</h3>
+<p>Photography, video and social-first content created to showcase your food, venue and brand at its best.</p>
+</div>
+</article>
+
+<article class="mobile-service-card" data-mobile-card="1">
+<div class="mobile-card-image-wrap">
+<img src="/RK4.png" alt="Hospitality social media management by RokkaMedia" loading="lazy">
+<span class="mobile-card-number">02</span>
+</div>
+<div class="mobile-card-copy">
+<h3>Social Media Management</h3>
+<p>Content planning, posting and ongoing social media management designed to keep your brand consistent, active and engaging.</p>
+</div>
+</article>
+
+<article class="mobile-service-card" data-mobile-card="2">
+<div class="mobile-card-image-wrap">
+<img src="/RK1.png" alt="Hospitality photography by RokkaMedia" loading="lazy">
+<span class="mobile-card-number">03</span>
+</div>
+<div class="mobile-card-copy">
+<h3>Hospitality Photography</h3>
+<p>Professional food, drink, interior and lifestyle photography created specifically for restaurants, bars and hospitality brands.</p>
+</div>
+</article>
+
+<article class="mobile-service-card" data-mobile-card="3">
+<div class="mobile-card-image-wrap">
+<img src="/RK2.png" alt="Hospitality website design by RokkaMedia" loading="lazy">
+<span class="mobile-card-number">04</span>
+</div>
+<div class="mobile-card-copy">
+<h3>Website Design</h3>
+<p>Modern, mobile-first websites designed to showcase your business, strengthen your online presence and turn visitors into customers.</p>
+</div>
+</article>
+
+<article class="mobile-service-card" data-mobile-card="4">
+<div class="mobile-card-image-wrap">
+<img src="/RK7.png" alt="Hospitality content days by RokkaMedia" loading="lazy">
+<span class="mobile-card-number">05</span>
+</div>
+<div class="mobile-card-copy">
+<h3>Content Days</h3>
+<p>One focused shoot producing a bank of professional photography and video content ready to use across your social channels and marketing.</p>
+</div>
+</article>
+
+</div>
+
+<div class="mobile-carousel-controls">
+<button class="mobile-carousel-arrow" id="mobileServicesPrev" type="button" aria-label="Previous service">←</button>
+
+<div class="mobile-carousel-dots" aria-label="Service carousel position">
+<button class="mobile-carousel-dot active" type="button" data-dot="0" aria-label="Go to service 1"></button>
+<button class="mobile-carousel-dot" type="button" data-dot="1" aria-label="Go to service 2"></button>
+<button class="mobile-carousel-dot" type="button" data-dot="2" aria-label="Go to service 3"></button>
+<button class="mobile-carousel-dot" type="button" data-dot="3" aria-label="Go to service 4"></button>
+<button class="mobile-carousel-dot" type="button" data-dot="4" aria-label="Go to service 5"></button>
+</div>
+
+<button class="mobile-carousel-arrow" id="mobileServicesNext" type="button" aria-label="Next service">→</button>
 </div>
 
 </div>
@@ -1868,9 +1843,7 @@ idea to launch.
 
 <div class="process-card">
 
-<span>
-01
-</span>
+<span>01</span>
 
 <h3>
 Let's Talk
@@ -1887,9 +1860,7 @@ Tell us about your venue, your brand and what you want to achieve.
 
 <div class="process-card">
 
-<span>
-02
-</span>
+<span>02</span>
 
 <h3>
 We Create
@@ -1906,9 +1877,7 @@ We capture the content or build the website around your brand and goals.
 
 <div class="process-card">
 
-<span>
-03
-</span>
+<span>03</span>
 
 <h3>
 We Refine
@@ -1925,9 +1894,7 @@ Everything is professionally edited, designed and polished before launch.
 
 <div class="process-card">
 
-<span>
-04
-</span>
+<span>04</span>
 
 <h3>
 We Launch
@@ -2195,14 +2162,9 @@ Chat with us →
 </section>
 
 
-<section
-class="content"
-style="padding-top:40px;padding-bottom:40px;"
->
+<section class="content" style="padding-top:40px;padding-bottom:40px;">
 
-<p
-style="color:#777;font-size:13px;line-height:1.6;max-width:760px;"
->
+<p style="color:#777;font-size:13px;line-height:1.6;max-width:760px;">
 
 Based in South London and working with hospitality brands across London, including Croydon and surrounding areas.
 
@@ -2496,9 +2458,7 @@ finishIntro();
 }
 
 
-/* =========================
-   NAV
-========================= */
+/* NAV */
 
 window.addEventListener("scroll",()=>{
 
@@ -2519,7 +2479,7 @@ nav.classList.remove("scrolled");
 
 
 /* =========================
-   INTERACTIVE SERVICES
+   INTERACTIVE DESKTOP SERVICES
 ========================= */
 
 const serviceOptions =
@@ -2537,203 +2497,168 @@ document.getElementById("serviceVisualTitle");
 const serviceVisualDescription =
 document.getElementById("serviceVisualDescription");
 
-
 const servicesData = [
-
 {
 number:"01",
 title:"Content Creation",
 description:"Photography, video and social-first content created to showcase your food, venue and brand at its best."
 },
-
 {
 number:"02",
 title:"Social Media Management",
 description:"Content planning, posting and ongoing social media management designed to keep your brand consistent, active and engaging."
 },
-
 {
 number:"03",
 title:"Hospitality Photography",
 description:"Professional food, drink, interior and lifestyle photography created specifically for restaurants, bars and hospitality brands."
 },
-
 {
 number:"04",
 title:"Website Design",
 description:"Modern, mobile-first websites designed to showcase your business, strengthen your online presence and turn visitors into customers."
 },
-
 {
 number:"05",
 title:"Content Days",
 description:"One focused shoot producing a bank of professional photography and video content ready to use across your social channels and marketing."
 }
-
 ];
-
 
 let activeService = 0;
 
-
 function changeService(index){
 
-if(index === activeService){
-return;
-}
-
+if(index === activeService) return;
 activeService = index;
 
-
-/* ACTIVE MENU */
-
 serviceOptions.forEach((option,i)=>{
-
-option.classList.toggle(
-"active",
-i === index
-);
-
+option.classList.toggle("active",i === index);
 });
-
-
-/* ACTIVE IMAGE */
 
 serviceImages.forEach((image,i)=>{
-
-image.classList.toggle(
-"active",
-i === index
-);
-
+image.classList.toggle("active",i === index);
 });
 
-
-const data =
-servicesData[index];
-
+const data = servicesData[index];
 
 if(reduceMotion){
-
-serviceGiantNumber.textContent =
-data.number;
-
-serviceVisualTitle.textContent =
-data.title;
-
-serviceVisualDescription.textContent =
-data.description;
-
+serviceGiantNumber.textContent = data.number;
+serviceVisualTitle.textContent = data.title;
+serviceVisualDescription.textContent = data.description;
 return;
-
 }
 
-
-/* TEXT TRANSITION */
-
-gsap.to(
-[
-serviceGiantNumber,
-serviceVisualTitle,
-serviceVisualDescription
-],
-{
-
+gsap.to([serviceGiantNumber,serviceVisualTitle,serviceVisualDescription],{
 opacity:0,
 y:10,
 duration:.18,
 ease:"power2.in",
-
 onComplete:()=>{
-
-serviceGiantNumber.textContent =
-data.number;
-
-serviceVisualTitle.textContent =
-data.title;
-
-serviceVisualDescription.textContent =
-data.description;
-
+serviceGiantNumber.textContent = data.number;
+serviceVisualTitle.textContent = data.title;
+serviceVisualDescription.textContent = data.description;
 
 gsap.fromTo(
-[
-serviceGiantNumber,
-serviceVisualTitle,
-serviceVisualDescription
-],
-{
-opacity:0,
-y:18
-},
-{
-opacity:1,
-y:0,
-duration:.45,
-stagger:.04,
-ease:"power3.out"
-}
+[serviceGiantNumber,serviceVisualTitle,serviceVisualDescription],
+{opacity:0,y:18},
+{opacity:1,y:0,duration:.45,stagger:.04,ease:"power3.out"}
 );
-
 }
-
 });
 
 }
-
-
-/* DESKTOP HOVER */
 
 serviceOptions.forEach((option,index)=>{
-
-option.addEventListener(
-"mouseenter",
-()=>{
-
-if(
-window.matchMedia("(hover:hover)").matches
-){
-
+option.addEventListener("mouseenter",()=>{
+if(window.matchMedia("(hover:hover)").matches){
 changeService(index);
-
 }
-
-}
-);
-
-
-/* CLICK / MOBILE */
-
-option.addEventListener(
-"click",
-()=>{
-
-changeService(index);
-
-}
-);
-
-
-/* KEYBOARD */
-
-option.addEventListener(
-"focus",
-()=>{
-
-changeService(index);
-
-}
-);
-
 });
 
+option.addEventListener("click",()=>changeService(index));
+option.addEventListener("focus",()=>changeService(index));
+});
+
+
+/* =========================
+   MOBILE SERVICES CAROUSEL
+========================= */
+
+const mobileTrack =
+document.getElementById("mobileServicesTrack");
+
+const mobileCards =
+Array.from(document.querySelectorAll(".mobile-service-card"));
+
+const mobileDots =
+Array.from(document.querySelectorAll(".mobile-carousel-dot"));
+
+const mobilePrev =
+document.getElementById("mobileServicesPrev");
+
+const mobileNext =
+document.getElementById("mobileServicesNext");
+
+let mobileServiceIndex = 0;
+
+function mobileCardStep(){
+if(!mobileTrack || mobileCards.length < 2) return 0;
+return mobileCards[1].offsetLeft - mobileCards[0].offsetLeft;
+}
+
+function setMobileService(index,scroll=true){
+if(!mobileTrack || !mobileCards.length) return;
+
+mobileServiceIndex = Math.max(0,Math.min(index,mobileCards.length-1));
+
+mobileDots.forEach((dot,i)=>{
+dot.classList.toggle("active",i === mobileServiceIndex);
+});
+
+if(scroll){
+mobileTrack.scrollTo({
+left:mobileCards[mobileServiceIndex].offsetLeft,
+behavior:reduceMotion ? "auto" : "smooth"
+});
+}
+}
+
+if(mobileTrack){
+
+mobilePrev.addEventListener("click",()=>{
+setMobileService(mobileServiceIndex-1);
+});
+
+mobileNext.addEventListener("click",()=>{
+setMobileService(mobileServiceIndex+1);
+});
+
+mobileDots.forEach((dot,index)=>{
+dot.addEventListener("click",()=>setMobileService(index));
+});
+
+let carouselScrollTimer;
+
+mobileTrack.addEventListener("scroll",()=>{
+clearTimeout(carouselScrollTimer);
+carouselScrollTimer = setTimeout(()=>{
+const step = mobileCardStep();
+if(!step) return;
+const index = Math.round(mobileTrack.scrollLeft / step);
+mobileServiceIndex = Math.max(0,Math.min(index,mobileCards.length-1));
+mobileDots.forEach((dot,i)=>{
+dot.classList.toggle("active",i === mobileServiceIndex);
+});
+},60);
+},{passive:true});
+
+}
 
 if(!reduceMotion){
 
 
-/* =========================
-   HERO ENTRANCE
-========================= */
+/* HERO ENTRANCE */
 
 if(hasSeenIntro){
 
@@ -2851,62 +2776,49 @@ once:true
 });
 
 
-/* SERVICES MENU */
+/* SERVICES SHOWCASE */
 
 gsap.from(".services-menu",{
-
 opacity:0,
 x:-30,
 duration:.9,
 ease:"power3.out",
-
 scrollTrigger:{
 trigger:".services-showcase",
 start:"top 85%",
 once:true
 }
-
 });
 
-
 gsap.from(".services-visual",{
-
 opacity:0,
 x:35,
 scale:.985,
 duration:1.05,
 ease:"power3.out",
-
 scrollTrigger:{
 trigger:".services-showcase",
 start:"top 85%",
 once:true
 }
-
 });
 
-
-gsap.utils.toArray(".service-option").forEach(
-(option,index)=>{
-
-gsap.from(option,{
-
+gsap.utils.toArray(".mobile-service-card").forEach((card,index)=>{
+gsap.from(card,{
 opacity:0,
-y:15,
-duration:.55,
-delay:index*.06,
+y:22,
+duration:.7,
+delay:index*.04,
 ease:"power3.out",
-
 scrollTrigger:{
-trigger:".services-menu",
-start:"top 88%",
+trigger:".mobile-services-carousel",
+start:"top 90%",
 once:true
 }
-
+});
 });
 
-}
-);
+});
 
 
 /* PORTFOLIO */
@@ -3045,9 +2957,7 @@ const submitButton =
 document.getElementById("submitButton");
 
 
-form.addEventListener(
-"submit",
-async (event)=>{
+form.addEventListener("submit", async (event)=>{
 
 event.preventDefault();
 
@@ -3063,9 +2973,7 @@ formMessage.textContent="";
 try{
 
 const response =
-await fetch(
-form.action,
-{
+await fetch(form.action,{
 
 method:"POST",
 
@@ -3075,8 +2983,7 @@ headers:{
 "Accept":"application/json"
 }
 
-}
-);
+});
 
 
 if(response.ok){
@@ -3095,9 +3002,7 @@ submitButton.textContent=
 
 }else{
 
-throw new Error(
-"Submission failed"
-);
+throw new Error("Submission failed");
 
 }
 
@@ -3117,8 +3022,7 @@ submitButton.textContent=
 
 }
 
-}
-);
+});
 
 </script>
 
