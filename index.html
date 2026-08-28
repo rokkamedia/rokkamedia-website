@@ -1090,6 +1090,65 @@ color:#FFD400;
 
 
 
+
+/* =========================
+   SERVICES — CONTINUOUS CAROUSEL ON ALL SCREENS
+========================= */
+
+.services-showcase{
+display:none !important;
+}
+
+.mobile-services-carousel{
+display:block !important;
+position:relative;
+margin-left:calc(50% - 50vw);
+margin-right:calc(50% - 50vw);
+overflow:hidden;
+}
+
+.mobile-services-track{
+display:flex;
+gap:18px;
+width:max-content;
+overflow:visible;
+padding:4px 0 18px;
+will-change:transform;
+transform:translate3d(0,0,0);
+}
+
+.mobile-service-card{
+flex:0 0 clamp(330px,32vw,470px);
+max-width:none;
+min-height:510px;
+}
+
+.mobile-service-image{
+height:320px;
+}
+
+.mobile-carousel-controls{
+display:none !important;
+}
+
+@media(max-width:800px){
+
+.mobile-services-track{
+gap:14px;
+}
+
+.mobile-service-card{
+flex:0 0 82vw;
+max-width:410px;
+min-height:500px;
+}
+
+.mobile-service-image{
+height:315px;
+}
+
+}
+
 /* =========================
    TYPOGRAPHY
 ========================= */
@@ -2709,14 +2768,15 @@ document.getElementById("mobileServicesNext");
 
 let mobileServiceIndex = 0;
 
+/* Run the services marquee on every screen size. */
 const mobileCarouselMedia =
-window.matchMedia("(max-width: 800px)");
+window.matchMedia("(min-width: 0px)");
 
 /*
   Seamless marquee speed in pixels per second.
   Increase this number to make it move faster.
 */
-const MOBILE_MARQUEE_SPEED = 58;
+const MOBILE_MARQUEE_SPEED = 64;
 
 let mobileMarqueeFrame = null;
 let mobileMarqueePaused = false;
