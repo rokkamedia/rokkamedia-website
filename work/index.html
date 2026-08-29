@@ -1893,145 +1893,94 @@ white-space:nowrap;
 #introScreen, .intro-screen { display:none !important; }
 body { overflow:auto !important; }
 
-/* =========================
-   MOBILE WORK GRID
-   2-column editorial layout
-========================= */
-@media (max-width: 767px){
 
-  .work-page-grid,
-  .portfolio-grid,
-  .work-grid,
-  .work-cards,
-  .portfolio-cards{
+/* =========================
+   MOBILE WORK GRID — FIXED
+   2-column portfolio only
+========================= */
+@media (max-width:767px){
+
+  /* Keep the outer Work section full width — only the actual card grid becomes 2 columns */
+  .work-page-grid{
+    display:block !important;
+    width:100% !important;
+    padding-top:34px !important;
+  }
+
+  .work-page-grid .work-grid{
     display:grid !important;
+    width:100% !important;
     grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     gap:10px !important;
     align-items:stretch !important;
   }
 
-  .work-card,
-  .portfolio-card,
-  .work-item,
-  .project-card{
+  .work-page-grid .work-card,
+  .work-page-grid .work-card.wide,
+  .work-page-grid .work-card.tall,
+  .work-page-grid .work-card.medium,
+  .work-page-grid .work-card.small,
+  .work-page-grid .work-card.hero-work,
+  .work-page-grid .work-card.bts-work,
+  .work-page-grid .work-card:nth-child(n){
     width:100% !important;
     min-width:0 !important;
     height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
     aspect-ratio:4 / 5 !important;
-    grid-column:auto !important;
-    grid-row:auto !important;
+    grid-column:span 1 !important;
     overflow:hidden !important;
-    border-radius:8px !important;
-    position:relative !important;
+    border-radius:10px !important;
   }
 
-  .work-card img,
-  .portfolio-card img,
-  .work-item img,
-  .project-card img{
-    width:100% !important;
-    height:100% !important;
-    object-fit:cover !important;
-    object-position:center !important;
-    display:block !important;
-  }
-
-  /* Make the final odd card span both columns */
-  .work-card:nth-child(9),
-  .portfolio-card:nth-child(9),
-  .work-item:nth-child(9),
-  .project-card:nth-child(9){
+  .work-page-grid .work-card:nth-child(9){
     grid-column:1 / -1 !important;
     aspect-ratio:16 / 9 !important;
   }
 
-  .work-card::after,
-  .portfolio-card::after,
-  .work-item::after,
-  .project-card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
+  .work-page-grid .work-card img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    object-position:center !important;
+  }
+
+  .work-page-grid .work-card::after{
     background:linear-gradient(
       to top,
-      rgba(0,0,0,.68) 0%,
-      rgba(0,0,0,.18) 48%,
-      rgba(0,0,0,.03) 100%
+      rgba(0,0,0,.72) 0%,
+      rgba(0,0,0,.16) 48%,
+      rgba(0,0,0,0) 74%
     ) !important;
+    opacity:1 !important;
   }
 
-  .work-card-content,
-  .portfolio-card-content,
-  .work-item-content,
-  .project-card-content{
-    position:absolute !important;
-    left:10px !important;
-    right:10px !important;
-    bottom:10px !important;
-    z-index:2 !important;
+  .work-page-grid .work-card-copy{
+    left:12px !important;
+    right:12px !important;
+    bottom:12px !important;
   }
 
-  .work-card .category,
-  .portfolio-card .category,
-  .work-item .category,
-  .project-card .category,
-  .work-card .eyebrow,
-  .portfolio-card .eyebrow{
-    font-size:8px !important;
-    letter-spacing:1.2px !important;
+  .work-page-grid .work-card-category{
+    font-size:7px !important;
     line-height:1.15 !important;
-    margin-bottom:4px !important;
+    letter-spacing:1.4px !important;
   }
 
-  .work-card h3,
-  .portfolio-card h3,
-  .work-item h3,
-  .project-card h3{
-    font-size:14px !important;
-    line-height:1.05 !important;
-    letter-spacing:-.35px !important;
+  .work-page-grid .work-card-title{
+    margin-top:4px !important;
+    font-size:clamp(15px,4.4vw,19px) !important;
+    line-height:1 !important;
+    letter-spacing:-.45px !important;
+    overflow-wrap:break-word !important;
   }
 
-  .work-card .index,
-  .portfolio-card .index,
-  .work-item .index,
-  .project-card .index,
-  .work-number,
-  .project-number{
-    font-size:8px !important;
-    opacity:.45 !important;
-  }
-
-  .work-hero,
-  .page-hero,
-  .work-page-hero{
-    padding-left:5vw !important;
-    padding-right:5vw !important;
-  }
-
-  .work-hero h1,
-  .page-hero h1,
-  .work-page-hero h1{
-    font-size:clamp(54px,17vw,86px) !important;
-    line-height:.84 !important;
-    letter-spacing:-3px !important;
-  }
-
-  .work-hero p,
-  .page-hero p,
-  .work-page-hero p{
-    max-width:92% !important;
-    font-size:13px !important;
-    line-height:1.5 !important;
-  }
-
-  .simple-final-cta,
-  .work-final-cta,
-  .project-cta{
-    margin-top:54px !important;
-    padding-top:54px !important;
-    padding-bottom:54px !important;
+  .work-page-grid .work-card-index{
+    right:10px !important;
+    bottom:11px !important;
+    font-size:7px !important;
+    opacity:.4 !important;
   }
 }
 
