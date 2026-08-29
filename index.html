@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="RokkaMedia">
 
 <!-- SEO -->
-<title>Hospitality Content Creation & Website Design London | RokkaMedia</title>
+<title>Our Work | RokkaMedia Hospitality Content London</title>
 
 <meta
 name="description"
@@ -1782,495 +1782,6 @@ white-space:nowrap;
 
 }
 
-
-/* =========================
-   SERVICES — EDITORIAL IMAGE LIST
-========================= */
-
-.services-list-section{
-padding-top:120px;
-padding-bottom:120px;
-}
-
-.services-list-header{
-display:grid;
-grid-template-columns:minmax(0,1.1fr) minmax(280px,.7fr);
-align-items:end;
-gap:60px;
-margin-bottom:58px;
-}
-
-.services-list-header>p{
-max-width:520px;
-justify-self:end;
-color:#8d8d8d;
-font-size:16px;
-line-height:1.75;
-margin:0;
-}
-
-.services-editorial-list{
-border-top:1px solid #292929;
-}
-
-.service-list-row{
-position:relative;
-min-height:142px;
-overflow:hidden;
-border-bottom:1px solid #292929;
-background:#090909;
-isolation:isolate;
-cursor:default;
-outline:none;
-}
-
-.service-list-bg{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-object-position:center;
-opacity:.20;
-transform:scale(1.02);
-transition:
-opacity .45s ease,
-transform .8s cubic-bezier(.2,.7,.2,1);
-z-index:0;
-}
-
-.service-list-overlay{
-position:absolute;
-inset:0;
-z-index:1;
-background:
-linear-gradient(90deg,rgba(7,7,7,.72) 0%,rgba(7,7,7,.30) 48%,rgba(7,7,7,.06) 100%);
-opacity:.30;
-transition:opacity .45s ease;
-}
-
-.service-list-content{
-position:relative;
-z-index:2;
-min-height:142px;
-display:grid;
-grid-template-columns:74px minmax(0,1fr) 46px;
-align-items:center;
-gap:20px;
-padding:26px 6px;
-}
-
-.service-list-number{
-font-size:11px;
-font-weight:800;
-letter-spacing:1.8px;
-color:#6f6f6f;
-transition:color .35s ease;
-}
-
-.service-list-main h3{
-margin:0;
-font-family:"Archivo",Arial,Helvetica,sans-serif;
-font-variation-settings:"wdth" 91;
-font-size:clamp(30px,3.4vw,58px);
-font-weight:820;
-letter-spacing:-1.8px;
-line-height:.95;
-color:#f5f5f5;
-transition:transform .45s cubic-bezier(.2,.7,.2,1),color .35s ease;
-}
-
-.service-list-main p{
-max-width:700px;
-margin:10px 0 0;
-color:#8a8a8a;
-font-size:14px;
-line-height:1.6;
-opacity:0;
-transform:translateY(8px);
-max-height:0;
-overflow:hidden;
-transition:
-opacity .35s ease,
-transform .45s cubic-bezier(.2,.7,.2,1),
-max-height .45s ease,
-color .35s ease;
-}
-
-.service-list-arrow{
-justify-self:end;
-font-size:25px;
-color:#606060;
-transform:translate(-4px,4px);
-transition:transform .4s ease,color .35s ease;
-}
-
-@media(hover:hover) and (pointer:fine){
-
-.service-list-row:hover .service-list-bg,
-.service-list-row:focus-visible .service-list-bg{
-opacity:1;
-transform:scale(1);
-}
-
-.service-list-row:hover .service-list-overlay,
-.service-list-row:focus-visible .service-list-overlay{
-opacity:.38;
-}
-
-.service-list-row:hover .service-list-number,
-.service-list-row:focus-visible .service-list-number{
-color:#FFD400;
-}
-
-.service-list-row:hover .service-list-main h3,
-.service-list-row:focus-visible .service-list-main h3{
-color:#fff;
-transform:translateX(8px);
-}
-
-.service-list-row:hover .service-list-main p,
-.service-list-row:focus-visible .service-list-main p{
-opacity:1;
-transform:translateY(0);
-max-height:80px;
-color:#d4d4d4;
-}
-
-.service-list-row:hover .service-list-arrow,
-.service-list-row:focus-visible .service-list-arrow{
-color:#FFD400;
-transform:translate(0,0);
-}
-
-}
-
-@media(max-width:800px){
-
-.services-list-section{
-padding-top:78px;
-padding-bottom:78px;
-}
-
-.services-list-header{
-display:block;
-margin-bottom:34px;
-}
-
-.services-list-header>p{
-margin-top:24px;
-justify-self:auto;
-font-size:14px;
-}
-
-.services-editorial-list{
-border-top:0;
-display:grid;
-gap:10px;
-}
-
-.service-list-row{
-min-height:126px;
-border:1px solid #242424;
-border-radius:16px;
-}
-
-.service-list-bg{
-opacity:.86;
-transform:none;
-}
-
-.service-list-overlay{
-opacity:1;
-background:
-linear-gradient(90deg,rgba(7,7,7,.78) 0%,rgba(7,7,7,.38) 62%,rgba(7,7,7,.08) 100%);
-}
-
-.service-list-content{
-min-height:126px;
-grid-template-columns:42px minmax(0,1fr) 28px;
-gap:10px;
-padding:20px 18px;
-}
-
-.service-list-number{
-color:#FFD400;
-font-size:10px;
-}
-
-.service-list-main h3{
-font-size:clamp(24px,7vw,34px);
-letter-spacing:-1px;
-}
-
-.service-list-main p{
-display:none;
-}
-
-.service-list-arrow{
-font-size:20px;
-color:#FFD400;
-transform:none;
-}
-
-}
-
-
-/* SERVICES LIST — TYPOGRAPHY + CAPTION UPDATE */
-.service-list-content{
-grid-template-columns:74px minmax(0,1fr);
-}
-
-.service-list-main h3{
-font-family:"Inter",Arial,Helvetica,sans-serif;
-font-variation-settings:normal;
-font-size:clamp(27px,2.7vw,46px);
-font-weight:700;
-letter-spacing:-1.25px;
-line-height:1.02;
-}
-
-.service-list-main p{
-max-width:620px;
-margin:9px 0 0;
-color:#a9a9a9;
-font-family:"Inter",Arial,Helvetica,sans-serif;
-font-size:13px;
-font-weight:400;
-line-height:1.5;
-opacity:1;
-transform:none;
-max-height:60px;
-overflow:visible;
-}
-
-.service-list-row:hover .service-list-main p,
-.service-list-row:focus-visible .service-list-main p{
-opacity:1;
-transform:none;
-max-height:60px;
-color:#dedede;
-}
-
-.service-list-arrow{
-display:none !important;
-}
-
-@media(max-width:800px){
-.service-list-content{
-grid-template-columns:36px minmax(0,1fr);
-gap:12px;
-}
-.service-list-main h3{
-font-size:clamp(21px,5.8vw,29px);
-letter-spacing:-.7px;
-}
-.service-list-main p{
-display:block;
-font-size:11px;
-line-height:1.4;
-margin-top:7px;
-max-width:92%;
-color:#c1c1c1;
-}
-}
-
-
-/* =========================
-   HOW IT WORKS — TIMELINE
-========================= */
-
-.process-section{
-padding-top:120px;
-padding-bottom:120px;
-}
-
-.process-intro{
-display:grid;
-grid-template-columns:minmax(0,1.15fr) minmax(280px,.7fr);
-align-items:end;
-gap:60px;
-margin-bottom:64px;
-}
-
-.process-intro-copy{
-max-width:480px;
-justify-self:end;
-margin:0;
-color:#858585;
-font-size:15px;
-line-height:1.7;
-}
-
-.process-timeline{
-display:grid;
-grid-template-columns:repeat(4,minmax(0,1fr));
-border-top:1px solid #292929;
-border-bottom:1px solid #292929;
-}
-
-.process-step{
-position:relative;
-min-height:250px;
-padding:30px 28px 34px;
-border-right:1px solid #292929;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-}
-
-.process-step:last-child{
-border-right:0;
-}
-
-.process-marker{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.process-number{
-font-family:"Inter",Arial,Helvetica,sans-serif;
-font-size:11px;
-font-weight:800;
-letter-spacing:1.8px;
-color:#FFD400;
-}
-
-.process-dot{
-width:6px;
-height:6px;
-border-radius:50%;
-background:#FFD400;
-opacity:.85;
-}
-
-.process-step-copy h3{
-margin:0 0 12px;
-font-family:"Inter",Arial,Helvetica,sans-serif;
-font-size:clamp(25px,2vw,34px);
-font-weight:700;
-letter-spacing:-.9px;
-color:#f5f5f5;
-}
-
-.process-step-copy p{
-margin:0;
-max-width:270px;
-color:#8f8f8f;
-font-family:"Inter",Arial,Helvetica,sans-serif;
-font-size:13px;
-line-height:1.6;
-}
-
-/* Mobile turns the four-column process into one clean vertical journey */
-@media(max-width:800px){
-
-.process-section{
-padding-top:80px;
-padding-bottom:82px;
-}
-
-.process-intro{
-display:block;
-margin-bottom:38px;
-}
-
-.process-intro .big-copy{
-font-size:clamp(38px,11vw,58px);
-line-height:.94;
-letter-spacing:-1.8px;
-}
-
-.process-intro-copy{
-display:none;
-}
-
-.process-timeline{
-display:block;
-position:relative;
-border:0;
-padding-left:0;
-}
-
-.process-timeline::before{
-content:"";
-position:absolute;
-left:27px;
-top:18px;
-bottom:18px;
-width:1px;
-background:linear-gradient(
-to bottom,
-rgba(255,212,0,.9),
-rgba(255,212,0,.22)
-);
-}
-
-.process-step{
-min-height:0;
-padding:0 0 34px;
-border:0;
-display:grid;
-grid-template-columns:56px minmax(0,1fr);
-gap:18px;
-}
-
-.process-step:last-child{
-padding-bottom:0;
-}
-
-.process-marker{
-position:relative;
-display:flex;
-align-items:flex-start;
-justify-content:center;
-padding-top:3px;
-z-index:2;
-}
-
-.process-number{
-display:flex;
-align-items:center;
-justify-content:center;
-width:42px;
-height:42px;
-border:1px solid rgba(255,212,0,.55);
-border-radius:50%;
-background:#080808;
-font-size:10px;
-letter-spacing:1px;
-}
-
-.process-dot{
-display:none;
-}
-
-.process-step-copy{
-padding:1px 0 30px;
-border-bottom:1px solid #242424;
-}
-
-.process-step:last-child .process-step-copy{
-border-bottom:0;
-padding-bottom:0;
-}
-
-.process-step-copy h3{
-font-size:26px;
-letter-spacing:-.8px;
-margin-bottom:8px;
-}
-
-.process-step-copy p{
-max-width:310px;
-font-size:13px;
-line-height:1.55;
-color:#a0a0a0;
-}
-
-}
-
 </style>
 
 </head>
@@ -2359,345 +1870,181 @@ HOSPITALITY CREATIVE STUDIO
      HERO
 ========================= -->
 
-<section class="hero">
-
-<video
-class="hero-video"
-autoplay
-muted
-loop
-playsinline
->
-
-<source
-src="/annas-thai.mp4"
-type="video/mp4"
->
-
-</video>
-
-<div class="hero-overlay"></div>
-
-<div class="hero-content">
-
-<div class="eyebrow">
-LONDON HOSPITALITY CREATIVE STUDIO
-</div>
-
-<div class="hero-title-mask">
-
-<h1>
-
-CREATE.<br>
-CAPTURE.<br>
-<span class="yellow">ELEVATE.</span>
-
-</h1>
-
-</div>
-
+<section class="internal-hero">
+<div class="section-label">OUR WORK</div>
+<h1>MADE FOR<br><span class="yellow">THE SCROLL.</span></h1>
 <p>
-
-Photography, video, social content and website design for
-hospitality brands that want to stand out, build their
-presence and turn attention into customers.
-
+Restaurant and hospitality content created to capture the food,
+atmosphere and experience behind each venue.
 </p>
-
-<div class="buttons">
-
-<a href="/work" class="button-primary">
-See our work
-</a>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- =========================
-     WHAT WE DO
-========================= -->
-
-<section class="content services-section services-list-section" id="services">
-
-<div class="services-list-header">
-
-<div>
-<div class="section-label">WHAT WE DO</div>
-
-<div class="title-mask">
-<h2 class="big-copy reveal-title">
-Built for<br>
-hospitality.
-</h2>
-</div>
-</div>
-
-<p>
-Creative services designed to help restaurants, bars and hospitality brands
-look stronger, stay consistent and stand out online.
-</p>
-
-</div>
-
-
-<div class="services-editorial-list">
-
-<article class="service-list-row is-active" tabindex="0" data-service="01">
-<img class="service-list-bg" src="/content-creation.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
-<div class="service-list-content">
-<span class="service-list-number">01</span>
-
-<div class="service-list-main">
-<h3>Content Creation</h3>
-<p>Photo and video content built to make your brand stand out.</p>
-</div>
-</div>
-</article>
-
-
-<article class="service-list-row" tabindex="0" data-service="02">
-<img class="service-list-bg" src="/social-media-management.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
-<div class="service-list-content">
-<span class="service-list-number">02</span>
-
-<div class="service-list-main">
-<h3>Social Media Management</h3>
-<p>Planning, posting and managing your social presence.</p>
-</div>
-</div>
-</article>
-
-
-<article class="service-list-row" tabindex="0" data-service="03">
-<img class="service-list-bg" src="/website-design.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
-<div class="service-list-content">
-<span class="service-list-number">03</span>
-
-<div class="service-list-main">
-<h3>Website Design</h3>
-<p>Modern websites designed to showcase your hospitality brand.</p>
-</div>
-</div>
-</article>
-
-
-<article class="service-list-row" tabindex="0" data-service="04">
-<img class="service-list-bg" src="/hospitality-photography.jpg" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
-<div class="service-list-content">
-<span class="service-list-number">04</span>
-
-<div class="service-list-main">
-<h3>Hospitality Photography</h3>
-<p>Professional food, drink and venue photography.</p>
-</div>
-</div>
-</article>
-
-
-<article class="service-list-row" tabindex="0" data-service="05">
-<img class="service-list-bg" src="/content-days.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
-<div class="service-list-content">
-<span class="service-list-number">05</span>
-
-<div class="service-list-main">
-<h3>Content Days</h3>
-<p>One shoot. A bank of content ready for your marketing.</p>
-</div>
-</div>
-</article>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     SELECTED WORK
-========================= -->
-
-<section class="content work" id="work">
+<section class="content work work-page-grid" id="work">
 
 <div class="work-intro">
+
 <div>
-<div class="title-mask">
-<h2 class="big-copy reveal-title">A glimpse of<br>what we create.</h2>
-</div>
-</div>
-<p>
-A few recent frames from restaurant and hospitality projects.
-See the full portfolio for more food, venue, social and behind-the-scenes work.
-</p>
-</div>
-
-<div class="home-work-teaser">
-<a href="/work" aria-label="See food photography portfolio">
-<img src="/RK1.png" alt="Restaurant food photography by RokkaMedia" loading="lazy">
-</a>
-<a href="/work" aria-label="See hospitality portfolio">
-<img src="/RK4.png" alt="Hospitality photography by RokkaMedia" loading="lazy">
-</a>
-<a href="/work" aria-label="See behind the scenes portfolio">
-<img src="/work-bts-1.jpeg" alt="Behind the scenes content shoot by RokkaMedia" loading="lazy">
-</a>
-</div>
-
-<div class="home-work-actions">
-<a class="page-cta" href="/work">SEE OUR WORK →</a>
-</div>
-
-</section>
-
-
-<!-- =========================
-     STATEMENT
-========================= -->
-
-<section class="statement">
-
-<div class="statement-inner">
-
-<div class="section-label">
-ROKKAMEDIA
-</div>
-
-<h2 class="statement-title">
-
-CREATE THE LOOK.<br>
-BUILD THE PRESENCE.
-
-</h2>
-
-<p class="statement-copy">
-
-From content that stops the scroll to websites that give customers
-somewhere worth landing, we help hospitality brands look stronger
-across the entire digital journey.
-
-</p>
 
 </div>
 
-</section>
 
 
-<!-- =========================
-     PROCESS
-========================= -->
+</div>
 
-<section class="content process-section" id="process">
 
-<div class="process-intro">
+<div class="work-grid">
+
+<article class="work-card hero-work portfolio-item">
+<img
+src="/RK1.png"
+alt="Restaurant food photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
 <div>
-<div class="section-label">HOW IT WORKS</div>
-
-<div class="title-mask">
-<h2 class="big-copy reveal-title">
-Simple from<br>
-idea to launch.
-</h2>
+<div class="work-card-category">Food</div>
+<div class="work-card-title">Food Photography</div>
 </div>
-</div>
-
-<p class="process-intro-copy">
-A straightforward process from the first conversation to the finished content or website.
-</p>
-</div>
-
-
-<div class="process-timeline">
-
-<article class="process-step">
-<div class="process-marker">
-<span class="process-number">01</span>
-<span class="process-dot"></span>
-</div>
-
-<div class="process-step-copy">
-<h3>Let's Talk</h3>
-<p>Tell us about your venue, brand and goals.</p>
+<div class="work-card-index">01</div>
 </div>
 </article>
 
 
-<article class="process-step">
-<div class="process-marker">
-<span class="process-number">02</span>
-<span class="process-dot"></span>
+<article class="work-card bts-work bts1 portfolio-item">
+<img
+src="/work-bts-1.jpeg"
+alt="Behind the scenes hospitality content shoot by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Behind the Scenes</div>
+<div class="work-card-title">On Set</div>
 </div>
-
-<div class="process-step-copy">
-<h3>We Create</h3>
-<p>We shoot the content or build the website around your brand.</p>
-</div>
-</article>
-
-
-<article class="process-step">
-<div class="process-marker">
-<span class="process-number">03</span>
-<span class="process-dot"></span>
-</div>
-
-<div class="process-step-copy">
-<h3>We Refine</h3>
-<p>Everything is edited, designed and polished.</p>
+<div class="work-card-index">02</div>
 </div>
 </article>
 
 
-<article class="process-step">
-<div class="process-marker">
-<span class="process-number">04</span>
-<span class="process-dot"></span>
+<article class="work-card medium rk10 portfolio-item">
+<img
+src="/work-rk10.jpeg"
+alt="Indian food photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food</div>
+<div class="work-card-title">Styled Food</div>
 </div>
+<div class="work-card-index">03</div>
+</div>
+</article>
 
-<div class="process-step-copy">
-<h3>We Launch</h3>
-<p>Your content or website goes live, ready to represent your brand.</p>
+
+<article class="work-card medium portfolio-item">
+<img
+src="/RK4.png"
+alt="Hospitality photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Venue</div>
+<div class="work-card-title">Hospitality</div>
+</div>
+<div class="work-card-index">04</div>
+</div>
+</article>
+
+
+<article class="work-card tall portfolio-item">
+<img
+src="/RK5.png"
+alt="Restaurant social media content by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Social</div>
+<div class="work-card-title">Social Content</div>
+</div>
+<div class="work-card-index">05</div>
+</div>
+</article>
+
+
+<article class="work-card wide bts2 portfolio-item">
+<img
+src="/work-bts-2.png"
+alt="Restaurant photography content shoot by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Content Day</div>
+<div class="work-card-title">Behind the Camera</div>
+</div>
+<div class="work-card-index">06</div>
+</div>
+</article>
+
+
+<article class="work-card wide rk9 portfolio-item">
+<img
+src="/work-rk9.jpeg"
+alt="Indian street food photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food & Drink</div>
+<div class="work-card-title">Food Detail</div>
+</div>
+<div class="work-card-index">07</div>
+</div>
+</article>
+
+
+<article class="work-card small portfolio-item">
+<img
+src="/RK2.png"
+alt="Restaurant photography London by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Photography</div>
+<div class="work-card-title">Restaurant Content</div>
+</div>
+<div class="work-card-index">08</div>
+</div>
+</article>
+
+
+<article class="work-card small portfolio-item">
+<img
+src="/RK7.png"
+alt="Food and drink photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food & Drink</div>
+<div class="work-card-title">Food & Drink</div>
+</div>
+<div class="work-card-index">09</div>
 </div>
 </article>
 
 </div>
 
 </section>
-
-
-<!-- =========================
-     ENQUIRY FORM
-========================= -->
 
 <section class="simple-final-cta">
-<div class="section-label">START A PROJECT</div>
-<h2>READY TO CREATE<br><span class="yellow">SOMETHING?</span></h2>
-<p>Tell us about your restaurant, bar or hospitality brand and what you want to create.</p>
-<a class="page-cta" href="/enquire">ENQUIRE →</a>
+<div class="section-label">LIKE WHAT YOU SEE?</div>
+<h2>LET'S CREATE<br><span class="yellow">TOGETHER.</span></h2>
+<a class="page-cta" href="/enquire">START A PROJECT →</a>
 </section>
-
-
-<section class="content" style="padding-top:40px;padding-bottom:40px;">
-
-<p style="color:#777;font-size:13px;line-height:1.6;max-width:760px;">
-
-Based in South London and working with hospitality brands across London, including Croydon and surrounding areas.
-
-</p>
-
-</section>
-
 
 <!-- =========================
      FOOTER
@@ -3136,6 +2483,279 @@ document.getElementById("mobileServicesPrev");
 
 const mobileNext =
 document.getElementById("mobileServicesNext");
+
+let mobileServiceIndex = 0;
+
+/* Run the services marquee on every screen size. */
+const mobileCarouselMedia =
+window.matchMedia("(min-width: 0px)");
+
+/*
+  Seamless marquee speed in pixels per second.
+  Increase this number to make it move faster.
+*/
+const MOBILE_MARQUEE_SPEED = 64;
+
+let mobileMarqueeFrame = null;
+let mobileMarqueePaused = false;
+let mobileMarqueeX = 0;
+let mobileMarqueeLastTime = 0;
+let mobileLoopWidth = 0;
+let mobileOriginalCardCount = mobileCards.length;
+
+function prepareMobileMarquee(){
+
+if(
+!mobileTrack ||
+!mobileCards.length ||
+mobileTrack.dataset.marqueeReady === "true"
+){
+return;
+}
+
+/* Duplicate the full set once so the loop has no visible jump. */
+mobileCards.forEach(card=>{
+const clone = card.cloneNode(true);
+clone.setAttribute("aria-hidden","true");
+clone.classList.add("mobile-service-clone");
+mobileTrack.appendChild(clone);
+});
+
+mobileTrack.dataset.marqueeReady = "true";
+
+/*
+  The second set starts exactly after the first set.
+  offsetLeft is more reliable than dividing scrollWidth because
+  it naturally includes the flex gap.
+*/
+const firstClone =
+mobileTrack.querySelector(".mobile-service-clone");
+
+if(firstClone){
+mobileLoopWidth = firstClone.offsetLeft;
+}
+
+}
+
+function measureMobileMarquee(){
+
+if(!mobileTrack) return;
+
+const firstClone =
+mobileTrack.querySelector(".mobile-service-clone");
+
+if(firstClone){
+mobileLoopWidth = firstClone.offsetLeft;
+}
+
+}
+
+function renderMobileMarquee(){
+
+if(!mobileTrack) return;
+
+mobileTrack.style.transform =
+`translate3d(${-mobileMarqueeX}px,0,0)`;
+
+}
+
+function stopMobileMarquee(){
+
+if(mobileMarqueeFrame){
+cancelAnimationFrame(mobileMarqueeFrame);
+mobileMarqueeFrame = null;
+}
+
+mobileMarqueeLastTime = 0;
+
+}
+
+function mobileMarqueeTick(time){
+
+if(
+reduceMotion ||
+!mobileTrack ||
+!mobileCarouselMedia.matches ||
+document.hidden ||
+mobileMarqueePaused
+){
+mobileMarqueeFrame = null;
+mobileMarqueeLastTime = 0;
+return;
+}
+
+if(!mobileMarqueeLastTime){
+mobileMarqueeLastTime = time;
+}
+
+/*
+  Time-based movement rather than "pixels per frame".
+  This keeps the speed consistent on both 60Hz and 120Hz phones.
+*/
+const deltaSeconds =
+Math.min((time - mobileMarqueeLastTime) / 1000, .05);
+
+mobileMarqueeLastTime = time;
+
+mobileMarqueeX +=
+MOBILE_MARQUEE_SPEED * deltaSeconds;
+
+if(mobileLoopWidth > 0){
+
+while(mobileMarqueeX >= mobileLoopWidth){
+mobileMarqueeX -= mobileLoopWidth;
+}
+
+}
+
+renderMobileMarquee();
+
+mobileMarqueeFrame =
+requestAnimationFrame(mobileMarqueeTick);
+
+}
+
+function startMobileMarquee(){
+
+stopMobileMarquee();
+
+if(
+reduceMotion ||
+!mobileTrack ||
+!mobileCarouselMedia.matches ||
+document.hidden ||
+mobileMarqueePaused
+){
+return;
+}
+
+measureMobileMarquee();
+renderMobileMarquee();
+
+mobileMarqueeFrame =
+requestAnimationFrame(mobileMarqueeTick);
+
+}
+
+function pauseMobileMarquee(){
+
+mobileMarqueePaused = true;
+stopMobileMarquee();
+
+}
+
+function resumeMobileMarquee(){
+
+mobileMarqueePaused = false;
+startMobileMarquee();
+
+}
+
+if(mobileTrack){
+
+prepareMobileMarquee();
+
+/* Re-measure once images/layout have fully settled. */
+window.addEventListener("load",()=>{
+measureMobileMarquee();
+startMobileMarquee();
+},{once:true});
+
+requestAnimationFrame(()=>{
+measureMobileMarquee();
+startMobileMarquee();
+});
+
+/*
+  Pause only while the visitor is pressing the carousel.
+  It resumes immediately on release, so the section always feels alive.
+*/
+mobileTrack.addEventListener(
+"pointerdown",
+pauseMobileMarquee
+);
+
+window.addEventListener(
+"pointerup",
+()=>{
+if(mobileCarouselMedia.matches){
+resumeMobileMarquee();
+}
+}
+);
+
+mobileTrack.addEventListener(
+"touchstart",
+pauseMobileMarquee,
+{passive:true}
+);
+
+mobileTrack.addEventListener(
+"touchend",
+()=>{
+if(mobileCarouselMedia.matches){
+resumeMobileMarquee();
+}
+},
+{passive:true}
+);
+
+document.addEventListener(
+"visibilitychange",
+()=>{
+
+if(document.hidden){
+stopMobileMarquee();
+}else if(!mobileMarqueePaused){
+startMobileMarquee();
+}
+
+}
+);
+
+mobileCarouselMedia.addEventListener(
+"change",
+event=>{
+
+if(event.matches){
+
+measureMobileMarquee();
+startMobileMarquee();
+
+}else{
+
+stopMobileMarquee();
+
+if(mobileTrack){
+mobileTrack.style.transform = "";
+}
+
+}
+
+}
+);
+
+window.addEventListener(
+"resize",
+()=>{
+
+if(mobileCarouselMedia.matches){
+measureMobileMarquee();
+
+/* Keep position inside the new loop length after rotation/resize. */
+if(mobileLoopWidth > 0){
+mobileMarqueeX =
+mobileMarqueeX % mobileLoopWidth;
+}
+
+renderMobileMarquee();
+}
+
+},
+{passive:true}
+);
+
+}
 
 
 if(!reduceMotion){
