@@ -26,7 +26,7 @@ content="RokkaMedia is a London hospitality creative studio specialising in rest
 
 <link
 rel="canonical"
-href="https://www.rokkamedia.com/"
+href="https://www.rokkamedia.com/work"
 >
 
 <!-- OPEN GRAPH -->
@@ -44,7 +44,7 @@ content="Photography, video, social content and website design for restaurants, 
 
 <meta
 property="og:url"
-content="https://www.rokkamedia.com/"
+content="https://www.rokkamedia.com/work"
 >
 
 <meta
@@ -1984,6 +1984,23 @@ body { overflow:auto !important; }
   }
 }
 
+/* New Ozoku portfolio additions */
+.work-page-grid .ozoku-bts img{
+  object-position:center center;
+}
+
+@media(max-width:767px){
+  .work-page-grid .work-card:nth-child(9){
+    grid-column:span 1 !important;
+    aspect-ratio:4 / 5 !important;
+  }
+
+  .work-page-grid .work-card:nth-child(14){
+    grid-column:1 / -1 !important;
+    aspect-ratio:16 / 9 !important;
+  }
+}
+
 </style>
 
 </head>
@@ -2040,7 +2057,6 @@ atmosphere and experience behind each venue.
 
 
 <div class="work-grid">
-
 <article class="work-card hero-work portfolio-item">
 <img
 src="/RK1.png"
@@ -2056,6 +2072,20 @@ loading="lazy"
 </div>
 </article>
 
+<article class="work-card portfolio-item">
+<img
+src="/ozoku-sushi.jpg"
+alt="Sushi photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food Photography</div>
+<div class="work-card-title">Sushi Detail</div>
+</div>
+<div class="work-card-index">02</div>
+</div>
+</article>
 
 <article class="work-card bts-work bts1 portfolio-item">
 <img
@@ -2068,10 +2098,9 @@ loading="lazy"
 <div class="work-card-category">Behind the Scenes</div>
 <div class="work-card-title">On Set</div>
 </div>
-<div class="work-card-index">02</div>
+<div class="work-card-index">03</div>
 </div>
 </article>
-
 
 <article class="work-card medium rk10 portfolio-item">
 <img
@@ -2084,10 +2113,24 @@ loading="lazy"
 <div class="work-card-category">Food</div>
 <div class="work-card-title">Styled Food</div>
 </div>
-<div class="work-card-index">03</div>
+<div class="work-card-index">04</div>
 </div>
 </article>
 
+<article class="work-card portfolio-item ozoku-bts">
+<img
+src="/ozoku-bts.jpg"
+alt="RokkaMedia photographing restaurant food on a hospitality content shoot"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Behind the Scenes</div>
+<div class="work-card-title">Content Shoot</div>
+</div>
+<div class="work-card-index">05</div>
+</div>
+</article>
 
 <article class="work-card medium portfolio-item">
 <img
@@ -2100,10 +2143,24 @@ loading="lazy"
 <div class="work-card-category">Venue</div>
 <div class="work-card-title">Hospitality</div>
 </div>
-<div class="work-card-index">04</div>
+<div class="work-card-index">06</div>
 </div>
 </article>
 
+<article class="work-card portfolio-item">
+<img
+src="/ozoku-salmon.jpg"
+alt="Glazed salmon restaurant photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food Photography</div>
+<div class="work-card-title">Salmon Detail</div>
+</div>
+<div class="work-card-index">07</div>
+</div>
+</article>
 
 <article class="work-card tall portfolio-item">
 <img
@@ -2116,10 +2173,24 @@ loading="lazy"
 <div class="work-card-category">Social</div>
 <div class="work-card-title">Social Content</div>
 </div>
-<div class="work-card-index">05</div>
+<div class="work-card-index">08</div>
 </div>
 </article>
 
+<article class="work-card portfolio-item">
+<img
+src="/ozoku-table.jpg"
+alt="Restaurant food and drink photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food & Drink</div>
+<div class="work-card-title">Table Spread</div>
+</div>
+<div class="work-card-index">09</div>
+</div>
+</article>
 
 <article class="work-card wide bts2 portfolio-item">
 <img
@@ -2132,10 +2203,24 @@ loading="lazy"
 <div class="work-card-category">Content Day</div>
 <div class="work-card-title">Behind the Camera</div>
 </div>
-<div class="work-card-index">06</div>
+<div class="work-card-index">10</div>
 </div>
 </article>
 
+<article class="work-card portfolio-item">
+<img
+src="/ozoku-bite.jpg"
+alt="Restaurant food action photography by RokkaMedia"
+loading="lazy"
+>
+<div class="work-card-copy">
+<div>
+<div class="work-card-category">Food Photography</div>
+<div class="work-card-title">Food in Motion</div>
+</div>
+<div class="work-card-index">11</div>
+</div>
+</article>
 
 <article class="work-card wide rk9 portfolio-item">
 <img
@@ -2148,10 +2233,9 @@ loading="lazy"
 <div class="work-card-category">Food & Drink</div>
 <div class="work-card-title">Food Detail</div>
 </div>
-<div class="work-card-index">07</div>
+<div class="work-card-index">12</div>
 </div>
 </article>
-
 
 <article class="work-card small portfolio-item">
 <img
@@ -2164,10 +2248,9 @@ loading="lazy"
 <div class="work-card-category">Photography</div>
 <div class="work-card-title">Restaurant Content</div>
 </div>
-<div class="work-card-index">08</div>
+<div class="work-card-index">13</div>
 </div>
 </article>
-
 
 <article class="work-card small portfolio-item">
 <img
@@ -2180,7 +2263,7 @@ loading="lazy"
 <div class="work-card-category">Food & Drink</div>
 <div class="work-card-title">Food & Drink</div>
 </div>
-<div class="work-card-index">09</div>
+<div class="work-card-index">14</div>
 </div>
 </article>
 
