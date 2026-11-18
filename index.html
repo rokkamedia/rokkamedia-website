@@ -2523,6 +2523,58 @@ color:#a0a0a0;
 }
 @media(prefers-reduced-motion:reduce){.service-list-row::before{transition:none;}}
 
+
+/* ===== COMPACT TYPOGRAPHY SERVICES — DESKTOP + MOBILE ===== */
+.services-list-section{padding-top:88px;padding-bottom:88px;}
+.services-list-header{margin-bottom:34px;}
+.service-list-content{
+  min-height:104px;
+  grid-template-columns:54px minmax(0,1fr);
+  gap:18px;
+  padding:20px 8px 20px 0;
+  align-items:center;
+}
+.service-list-number{
+  padding-top:0;
+  font-size:clamp(17px,1.65vw,24px);
+  letter-spacing:-.7px;
+}
+.service-list-main h3{
+  font-size:clamp(27px,3.2vw,49px);
+  line-height:1.04;
+  letter-spacing:-.035em;
+}
+.service-list-main p{
+  margin-top:7px;
+  font-size:clamp(12px,.95vw,14px);
+  line-height:1.5;
+}
+@media(max-width:800px){
+  .services-list-section{padding-top:65px;padding-bottom:65px;}
+  .services-list-header{margin-bottom:25px;}
+  .service-list-content{
+    display:grid;
+    grid-template-columns:32px minmax(0,1fr);
+    align-items:start;
+    gap:12px;
+    min-height:0;
+    padding:19px 0 21px;
+  }
+  .service-list-number{margin:3px 0 0;padding:0;font-size:14px;}
+  .service-list-main h3{
+    font-size:clamp(23px,5.7vw,32px);
+    line-height:1.1;
+    letter-spacing:-.025em;
+  }
+  .service-list-main p{
+    display:block;
+    max-width:100%;
+    margin-top:6px;
+    font-size:12px;
+    line-height:1.45;
+  }
+}
+
 </style>
 
 </head>
