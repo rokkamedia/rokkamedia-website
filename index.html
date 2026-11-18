@@ -2593,6 +2593,40 @@ color:#a0a0a0;
 @media(max-width:600px){
  .phone-hero .rokka-bts-background{background-position:76% center;opacity:.34; background-size:auto 100%; -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 82%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 82%,transparent 100%);}
 }
+
+/* Mobile navigation: fit all four links without clipping */
+@media (max-width:800px){
+ nav{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 0;padding:13px 4% 12px;}
+ nav .logo{width:100%;display:flex;justify-content:center;flex:0 0 100%;}
+ nav .logo img{width:108px;height:auto;}
+ nav .site-nav-links,nav .nav-links{width:100%;margin:0;display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;}
+ nav .site-nav-links>a:not(.nav-button),nav .nav-links>a:not(.nav-cta){font-size:clamp(8px,2.35vw,11px);letter-spacing:.2px;white-space:nowrap;}
+ nav .site-nav-links .nav-button,nav .nav-links .nav-cta{font-size:clamp(8px,2.35vw,11px);letter-spacing:.2px;padding:10px 12px;height:auto;min-height:34px;white-space:nowrap;}
+}
+
+/* Mobile: place BTS photo inside the phone stage so it stays visible
+   behind the 3D phone rather than disappearing into the full hero. */
+@media(max-width:600px){
+  .phone-hero .rokka-bts-background{
+    display:none !important;
+  }
+  .phone-hero .phone-stage{
+    isolation:isolate;
+  }
+  .phone-hero .phone-stage::before{
+    content:"";
+    position:absolute;
+    inset:-6% 0 -4%;
+    z-index:-1;
+    pointer-events:none;
+    background:url('/rokka-bts-hero-mobile-visible.jpg') 76% center / cover no-repeat;
+    opacity:.68;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 16%,black 76%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0%,black 16%,black 76%,transparent 100%);
+  }
+  .phone-hero .phone-stage .phone-aura{opacity:.24;}
+}
+
 </style>
 
 </head>
@@ -2671,6 +2705,7 @@ HOSPITALITY CREATIVE STUDIO
 <div class="site-nav-links">
 <a href="/#services">SERVICES</a>
 <a href="/work">OUR WORK</a>
+<a href="/about">ABOUT US</a>
 <a href="/enquire" class="nav-button">ENQUIRE</a>
 </div>
 
