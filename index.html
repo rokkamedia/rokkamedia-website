@@ -2275,6 +2275,10 @@ color:#a0a0a0;
 
 
 /* ===== ROKKA SCROLL-DRIVEN 3D PHONE HERO ===== */
+/* Safari needs the video to remain paintable to decode frames for WebGL. */
+.phone-video-source{position:absolute!important;top:0;left:0;width:2px!important;height:2px!important;opacity:.015;pointer-events:none;z-index:0;object-fit:cover}
+.phone-fallback-poster{height:100%;background:#0b0b0b url('/ROKKA.png') center/contain no-repeat}
+
 /* Natural page scrolling: the phone turns as the hero leaves the viewport. */
 .phone-3d-canvas{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .4s ease}
 .phone-3d-canvas.ready{opacity:1}
@@ -2438,13 +2442,14 @@ HOSPITALITY CREATIVE STUDIO
   </div>
   <div class="phone-stage" aria-label="Rokka Media vertical video showcased on a rotating 3D-style phone">
     <div class="phone-aura" aria-hidden="true"></div>
+    <video id="phoneShowreel" class="phone-video-source" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
+      <source src="/hero-mobile.mp4" type="video/mp4">
+    </video>
     <div class="phone-3d-canvas" id="phone3DCanvas" aria-hidden="true"></div>
     <div class="phone-rotator" id="phoneRotator">
       <div class="phone-face phone-front">
         <div class="phone-screen">
-          <video id="phoneShowreel" autoplay muted loop playsinline preload="metadata" poster="/ROKKA.png" aria-label="Rokka Media video showreel">
-            <source src="/hero-mobile.mp4?v=20261015" type="video/mp4">
-          </video>
+          <div class="phone-fallback-poster" aria-hidden="true"></div>
           <div class="phone-island"></div>
           <div class="phone-screen-glare"></div>
           <div class="phone-home-bar"></div>
@@ -3594,15 +3599,30 @@ submitButton.textContent=
   const edge=extruded(W,H,R,D,metal);phone.add(edge);
   const front=extruded(W-.09,H-.09,R-.04,.016,glass);front.position.z=D/2+.045;phone.add(front);
   const back=extruded(W-.09,H-.09,R-.04,.018,backMat);back.position.z=-D/2-.045;phone.add(back);
-  // Video texture: vertical video plays on an actual 3D surface, not an HTML mockup.
-  const texture=new THREE.VideoTexture(video);
+  // Safari-safe video texture: copy decoded video frames into a canvas.
+  // Unlike VideoTexture on a visibility:hidden video, this keeps updating reliably.
+  const frameCanvas=document.createElement('canvas');
+  frameCanvas.width=540;frameCanvas.height=1120;
+  const ctx=frameCanvas.getContext('2d',{alpha:false});
+  ctx.fillStyle='#080808';ctx.fillRect(0,0,frameCanvas.width,frameCanvas.height);
+  const texture=new THREE.CanvasTexture(frameCanvas);
   texture.colorSpace=THREE.SRGBColorSpace;
   texture.minFilter=THREE.LinearFilter;
   texture.magFilter=THREE.LinearFilter;
-  const screenMat=new THREE.MeshBasicMaterial({map:texture,side:THREE.FrontSide,toneMapped:false});
+  const screenMat=new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide,toneMapped:false});
   const screen=new THREE.Mesh(new THREE.ShapeGeometry(roundedShape(W-.23,H-.24,R-.12),20),screenMat);
-  screen.position.z=D/2+.064;
+  screen.position.z=D/2+.10;
   phone.add(screen);
+  function updateVideoFrame(){
+    if(video.readyState<2 || !video.videoWidth || !video.videoHeight)return;
+    try{
+      const cw=frameCanvas.width,ch=frameCanvas.height;
+      const scale=Math.max(cw/video.videoWidth,ch/video.videoHeight);
+      const dw=video.videoWidth*scale,dh=video.videoHeight*scale;
+      ctx.drawImage(video,(cw-dw)/2,(ch-dh)/2,dw,dh);
+      texture.needsUpdate=true;
+    }catch(e){}
+  }
   const islandMat=new THREE.MeshPhysicalMaterial({color:0x010101,roughness:.12,metalness:.2});
   const island=extruded(.94,.20,.1,.012,islandMat);
   island.position.set(0,H/2-.30,D/2+.09);phone.add(island);
@@ -3674,13 +3694,23 @@ submitButton.textContent=
       .to(state,{angle:-Math.PI*2,tilt:.08,roll:-.07,duration:1.2});
     window.addEventListener('load',()=>ScrollTrigger.refresh(),{once:true});
   }
-  video.play().catch(()=>{});
+  video.muted=true;
+  video.defaultMuted=true;
+  video.setAttribute('muted','');
+  video.setAttribute('playsinline','');
+  const tryPlay=()=>video.play().catch(()=>{});
+  video.addEventListener('loadeddata',()=>{updateVideoFrame();render();tryPlay();});
+  video.addEventListener('playing',()=>{updateVideoFrame();render();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)tryPlay();});
+  window.addEventListener('pointerdown',tryPlay,{passive:true});
+  window.addEventListener('touchstart',tryPlay,{passive:true});
+  tryPlay();
   // Video frames update the WebGL texture while visible.
   let active=true;
   if(window.IntersectionObserver){
     new IntersectionObserver(entries=>{active=entries[0].isIntersecting;},{threshold:0}).observe(stage);
   }
-  function frame(){requestAnimationFrame(frame);if(active)render();}
+  function frame(){requestAnimationFrame(frame);if(active){updateVideoFrame();render();}}
   frame();
 })();
 </script>
