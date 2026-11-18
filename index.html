@@ -2384,20 +2384,44 @@ color:#a0a0a0;
 }
 
 
-/* Oversized signature R watermark — behind all hero content, never clickable. */
+/* Oversized full Rokka signature watermark — behind all hero content, never clickable. */
 .phone-hero{position:relative;overflow:hidden}
 .rokka-r-watermark{position:absolute;z-index:0;pointer-events:none;user-select:none;
-  width:clamp(420px,56vw,960px);height:auto;aspect-ratio:720/793;
-  top:50%;left:51%;transform:translate(-50%,-50%) rotate(-7deg);
+  width:clamp(680px,83vw,1500px);height:auto;aspect-ratio:1983/793;
+  top:52%;left:53%;transform:translate(-50%,-50%) rotate(-4deg);
   opacity:.065;filter:brightness(0) invert(1);overflow:hidden}
 .rokka-r-watermark svg{display:block;width:100%;height:100%;overflow:hidden}
 .phone-hero .phone-hero-glow{z-index:0}
 .phone-hero .hero-content,.phone-hero .phone-stage,.phone-hero .phone-scroll-cue{position:relative;z-index:1}
 @media(max-width:900px){
-  .rokka-r-watermark{width:min(94vw,600px);top:69%;left:50%;opacity:.045;transform:translate(-50%,-50%) rotate(-7deg)}
+  .rokka-r-watermark{width:125vw;top:67%;left:50%;opacity:.045;transform:translate(-50%,-50%) rotate(-4deg)}
 }
 @media(max-width:600px){
-  .rokka-r-watermark{width:105vw;top:72%;opacity:.035}
+  .rokka-r-watermark{width:155vw;top:70%;opacity:.035}
+}
+
+
+/* Bolder, more prominent hero headline — preserves phone and watermark. */
+.phone-hero .hero-content h1{
+  font-family:"Archivo",Arial,Helvetica,sans-serif;
+  font-weight:900;
+  font-stretch:85%;
+  font-size:clamp(68px,7.8vw,126px);
+  line-height:.84;
+  letter-spacing:-.055em;
+  text-wrap:nowrap;
+}
+@media(max-width:1100px) and (min-width:901px){
+  .phone-hero .hero-content h1{font-size:clamp(60px,7.2vw,94px)}
+}
+@media(max-width:900px){
+  .phone-hero .hero-content h1{font-size:clamp(58px,10.3vw,90px);line-height:.87;letter-spacing:-.045em}
+}
+@media(max-width:600px){
+  .phone-hero .hero-content h1{font-size:clamp(45px,12.4vw,73px);line-height:.88;letter-spacing:-.045em}
+}
+@media(max-width:360px){
+  .phone-hero .hero-content h1{font-size:clamp(41px,12vw,45px)}
 }
 
 </style>
@@ -2491,8 +2515,8 @@ HOSPITALITY CREATIVE STUDIO
 <section class="hero phone-hero" id="home">
   <div class="phone-hero-glow" aria-hidden="true"></div>
   <div class="rokka-r-watermark" aria-hidden="true">
-    <!-- Cropped view of the original Rokka signature artwork: only its leading R -->
-    <svg viewBox="0 0 720 793" preserveAspectRatio="xMidYMid meet" focusable="false" aria-hidden="true">
+    <!-- Complete original Rokka signature artwork -->
+    <svg viewBox="0 0 1983 793" preserveAspectRatio="xMidYMid meet" focusable="false" aria-hidden="true">
       <image href="/ROKKA-black.svg" x="0" y="0" width="1983" height="793" preserveAspectRatio="xMidYMid meet" />
     </svg>
   </div>
