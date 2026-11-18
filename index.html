@@ -194,7 +194,7 @@ content="Rokka Media restaurant content creation and website design logo"
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.152.2/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
 
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -2826,6 +2826,7 @@ window.setTimeout(function () {
   if (intro) {
     intro.remove();
     document.body.classList.remove("intro-active");
+if(typeof ScrollTrigger!=="undefined") requestAnimationFrame(()=>ScrollTrigger.refresh());
   }
 }, 4200);
 </script>
@@ -3248,23 +3249,7 @@ scrub:1.5
 });
 
 
-/* HERO CONTENT */
-
-gsap.to(".hero-content",{
-
-y:30,
-opacity:.45,
-ease:"none",
-
-scrollTrigger:{
-trigger:".hero",
-start:"45% top",
-end:"bottom top",
-scrub:1.4
-}
-
-});
-
+/* Hero headline stays visible throughout the pinned phone rotation. */
 
 /* HEADLINES */
 
