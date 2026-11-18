@@ -2604,27 +2604,23 @@ color:#a0a0a0;
  nav .site-nav-links .nav-button,nav .nav-links .nav-cta{font-size:clamp(8px,2.35vw,11px);letter-spacing:.2px;padding:10px 12px;height:auto;min-height:34px;white-space:nowrap;}
 }
 
-/* Mobile: place BTS photo inside the phone stage so it stays visible
-   behind the 3D phone rather than disappearing into the full hero. */
+.mobile-bts-photo{display:none;}
+/* Corrected mobile background: an actual layer, not a negative-z-index pseudo-element. */
 @media(max-width:600px){
-  .phone-hero .rokka-bts-background{
-    display:none !important;
-  }
-  .phone-hero .phone-stage{
-    isolation:isolate;
-  }
-  .phone-hero .phone-stage::before{
-    content:"";
-    position:absolute;
-    inset:-6% 0 -4%;
-    z-index:-1;
-    pointer-events:none;
-    background:url('/rokka-bts-hero-mobile-visible.jpg') 76% center / cover no-repeat;
-    opacity:.68;
-    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 16%,black 76%,transparent 100%);
-    mask-image:linear-gradient(to bottom,transparent 0%,black 16%,black 76%,transparent 100%);
-  }
-  .phone-hero .phone-stage .phone-aura{opacity:.24;}
+ .phone-hero .rokka-bts-background{display:none!important;}
+ .phone-hero .phone-stage{isolation:isolate;}
+ .phone-hero .phone-stage .mobile-bts-photo{
+   display:block!important;position:absolute;inset:-18% -15% -12%;z-index:1;
+   pointer-events:none;
+   background-image:url('/rokka-bts-hero-mobile-visible.jpg');
+   background-size:auto 100%;background-repeat:no-repeat;background-position:72% center;
+   opacity:.72;
+   -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 75%,transparent 100%);
+   mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 75%,transparent 100%);
+ }
+ .phone-hero .phone-stage .phone-aura{opacity:.16;}
+ .phone-hero .phone-stage .phone-3d-canvas{z-index:4;}
+ .phone-hero .phone-stage .phone-rotator{z-index:3;}
 }
 
 </style>
@@ -2731,6 +2727,7 @@ HOSPITALITY CREATIVE STUDIO
     </div>
   </div>
   <div class="phone-stage" aria-label="Rokka Media vertical video showcased on a rotating 3D-style phone">
+    <div class="mobile-bts-photo" aria-hidden="true"></div>
     <div class="mobile-behind-title" aria-hidden="true"><span>CREATE.</span><span>CAPTURE.</span><span>ELEVATE.</span></div>
     <div class="phone-aura" aria-hidden="true"></div>
     <video id="phoneShowreel" class="phone-video-source" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
