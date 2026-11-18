@@ -2455,6 +2455,26 @@ color:#a0a0a0;
   .phone-hero .phone-stage .phone-3d-canvas,.phone-hero .phone-stage .phone-rotator{transform:none!important}
 }
 
+
+/* ===== MOBILE: HEADLINE ABOVE PHONE, CONSULTATION BELOW ===== */
+@media (max-width:600px){
+  .phone-hero{padding-top:96px;gap:0}
+  .phone-hero .hero-content{order:0;text-align:center;padding:0 4%;display:flex;flex-direction:column;align-items:center}
+  .phone-hero .hero-title-mask{position:relative!important;width:100%!important;height:auto!important;padding:0!important;margin:0!important;overflow:visible!important;clip:auto!important;white-space:normal!important;border:0!important}
+  .phone-hero .hero-content h1{font-size:clamp(47px,12.8vw,74px);font-weight:900;line-height:.87;letter-spacing:-.055em;text-align:center;text-wrap:balance;white-space:normal}
+  .phone-hero .eyebrow{font-size:9px;line-height:1.4;margin-bottom:15px;text-align:center}
+  .phone-hero .hero-content p{font-size:13px;line-height:1.5;margin:15px auto 0;max-width:35ch;text-align:center}
+  .phone-hero .phone-stage{order:1;height:clamp(480px,135vw,610px);margin:0;width:100%}
+  .phone-hero .mobile-behind-title{display:none!important}
+  .phone-hero .phone-stage .phone-3d-canvas{transform:none!important}
+  .phone-hero .phone-stage .phone-rotator{transform:rotateY(-23deg) rotateX(7deg) rotateZ(-5deg)}
+  .phone-hero .mobile-hero-actions{order:2;display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:0 6%;margin-top:0}
+  .phone-hero .mobile-hero-actions .consultation-cta{min-height:54px;font-size:13px;font-weight:900;letter-spacing:.01em}
+  .phone-hero .mobile-hero-actions .phone-secondary-button{min-height:44px;font-size:12px}
+  .phone-hero .phone-scroll-cue{display:none}
+}
+@media(max-width:360px){.phone-hero .hero-content h1{font-size:clamp(40px,12.3vw,46px)}}
+
 </style>
 
 </head>
@@ -3818,15 +3838,6 @@ submitButton.textContent=
   window.addEventListener('resize',resize,{passive:true});
   if(window.ResizeObserver)new ResizeObserver(resize).observe(mount);
   mount.classList.add('ready');stage.classList.add('webgl-ready');
-  // Mobile-only lateral reveal: headline remains behind the transparent WebGL canvas.
-  if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
-    gsap.fromTo(stage,{'--mobile-phone-shift':'0px'},{
-      '--mobile-phone-shift':()=>`${-Math.min(75,Math.max(35,window.innerWidth*.17))}px`,
-      ease:'none',
-      scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.45},
-      onUpdate:()=>{if(window.innerWidth>600)stage.style.setProperty('--mobile-phone-shift','0px')}
-    });
-  }
   // A scroll scrub updates the actual 3D mesh rotation.
   if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
     gsap.timeline({defaults:{ease:'none',onUpdate:render},scrollTrigger:{
