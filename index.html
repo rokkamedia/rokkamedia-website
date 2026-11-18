@@ -2271,6 +2271,62 @@ color:#a0a0a0;
 
 }
 
+
+/* ===== ROKKA SCROLL-DRIVEN 3D PHONE HERO ===== */
+.phone-hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);align-items:center;gap:3vw;padding:130px 6% 75px;background:radial-gradient(ellipse at 75% 45%,#222015 0%,#0b0b0b 47%,#070707 78%);isolation:isolate}
+.phone-hero .hero-content{max-width:800px;align-self:center}
+.phone-hero .hero-content h1{font-size:clamp(55px,7.3vw,112px)}
+.phone-hero .hero-content p{max-width:570px}
+.phone-hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 72% 48%,rgba(255,212,0,.10),transparent 44%);pointer-events:none}
+.phone-secondary-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.5);padding:15px 23px;border-radius:100px;font-weight:800;transition:.25s}
+.phone-secondary-button:hover{border-color:#ffd400;color:#ffd400}
+.phone-stage{height:min(73vh,720px);min-height:470px;position:relative;display:flex;align-items:center;justify-content:center;perspective:1300px;transform-style:preserve-3d;z-index:2}
+.phone-aura{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:rgba(255,212,0,.14);filter:blur(85px);pointer-events:none}
+.phone-rotator{--pw:clamp(210px,20vw,310px);--ph:calc(var(--pw) * 2.08);--depth:12px;position:relative;width:var(--pw);height:var(--ph);transform-style:preserve-3d;transform:rotateY(-23deg) rotateX(7deg) rotateZ(-5deg);will-change:transform;filter:drop-shadow(24px 32px 28px rgba(0,0,0,.65))}
+.phone-face{position:absolute;inset:0;border-radius:calc(var(--pw) * .145);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.phone-front{background:linear-gradient(120deg,#9e9e9e,#111 16%,#303030 78%,#d1d1d1);border:3px solid #777;transform:translateZ(calc(var(--depth) / 2));padding:7px;box-shadow:inset 0 0 0 2px #111}
+.phone-screen{position:relative;width:100%;height:100%;border-radius:calc(var(--pw) * .112);background:#111;overflow:hidden}
+.phone-screen video{height:100%;width:100%;object-fit:cover;object-position:center;display:block}
+.phone-island{position:absolute;top:10px;left:50%;transform:translateX(-50%);height:24px;width:31%;border-radius:30px;background:#020202;box-shadow:0 1px 2px #333}
+.phone-screen-glare{position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,rgba(255,255,255,.13),transparent 30%,transparent 72%,rgba(255,255,255,.04))}
+.phone-home-bar{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:35%;height:4px;border-radius:5px;background:rgba(255,255,255,.8)}
+.phone-back{transform:rotateY(180deg) translateZ(calc(var(--depth) / 2));border:3px solid #8a8a8a;background:linear-gradient(120deg,#3c3c3c,#191919 45%,#3b3b3b 90%);box-shadow:inset 0 0 35px #090909}
+.phone-back-mark{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);font-family:Archivo,sans-serif;font-weight:900;font-size:55px;color:#4b4b4b;text-shadow:0 1px 1px #080808}
+.camera-island{position:absolute;top:22px;left:20px;width:110px;height:115px;border-radius:27px;background:linear-gradient(130deg,#4b4b4b,#181818);border:2px solid #606060;box-shadow:0 8px 15px #090909}
+.lens{position:absolute;width:39px;height:39px;border-radius:50%;background:radial-gradient(circle at 45% 48%,#123041 0 12%,#020508 22%,#151515 49%,#656565 55%,#080808 70%);border:2px solid #777}
+.lens-one{left:10px;top:9px}.lens-two{left:10px;bottom:9px}.lens-three{right:9px;top:35px}
+.camera-flash{position:absolute;right:17px;top:11px;width:14px;height:14px;border-radius:50%;background:#f4e8c4}
+.camera-sensor{position:absolute;right:18px;bottom:10px;width:11px;height:11px;border-radius:50%;background:#111}
+.phone-edge{position:absolute;background:linear-gradient(90deg,#171717,#8b8b8b,#222);backface-visibility:hidden}
+.phone-edge-left,.phone-edge-right{top:6%;height:88%;width:var(--depth)}
+.phone-edge-left{left:0;transform-origin:left;transform:rotateY(90deg)}
+.phone-edge-right{right:0;transform-origin:right;transform:rotateY(-90deg)}
+.phone-edge-top,.phone-edge-bottom{left:8%;width:84%;height:var(--depth)}
+.phone-edge-top{top:0;transform-origin:top;transform:rotateX(-90deg)}
+.phone-edge-bottom{bottom:0;transform-origin:bottom;transform:rotateX(90deg)}
+.phone-stage-caption{position:absolute;bottom:4px;color:#777;font-size:10px;font-weight:800;letter-spacing:2.5px;text-align:center}
+.phone-scroll-cue{position:absolute;bottom:23px;left:6%;color:#999;font-size:10px;letter-spacing:2px;font-weight:800;display:flex;gap:14px}
+.phone-scroll-cue span{color:#ffd400;font-size:18px;line-height:10px}
+@media(max-width:900px){
+.phone-hero{grid-template-columns:1fr;gap:0;padding:115px 5% 60px;min-height:100svh}
+.phone-hero .hero-content{order:0}
+.phone-hero .hero-content h1{font-size:clamp(50px,11vw,86px)}
+.phone-hero .hero-content p{font-size:14px;line-height:1.55;margin-top:18px}
+.phone-stage{order:1;height:440px;min-height:0;margin-top:14px}
+.phone-rotator{--pw:190px}
+.phone-stage-caption{bottom:0}
+.phone-scroll-cue{display:none}
+}
+@media(max-width:480px){
+.phone-hero{padding-top:108px}
+.phone-hero .hero-content h1{font-size:clamp(48px,12vw,64px);letter-spacing:-2px}
+.phone-stage{height:360px}
+.phone-rotator{--pw:155px}
+.phone-hero .buttons{margin-top:18px}
+.phone-hero .button-primary,.phone-secondary-button{padding:12px 17px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.phone-rotator{transform:rotateY(-15deg) rotateX(4deg) rotateZ(-3deg)!important}}
+
 </style>
 
 </head>
@@ -2359,69 +2415,47 @@ HOSPITALITY CREATIVE STUDIO
      HERO
 ========================= -->
 
-<section class="hero">
-
-<video
-class="hero-video"
-autoplay
-muted
-loop
-playsinline
-preload="auto"
->
-
-<source
-src="/hero-desktop.mp4?v=20261015"
-type="video/mp4"
-media="(min-width: 801px)"
->
-
-<source
-src="/hero-mobile.mp4?v=20261015"
-type="video/mp4"
-media="(max-width: 800px)"
->
-
-</video>
-
-<div class="hero-overlay"></div>
-
-<div class="hero-content">
-
-<div class="eyebrow">
-LONDON HOSPITALITY CREATIVE STUDIO
-</div>
-
-<div class="hero-title-mask">
-
-<h1>
-
-CREATE.<br>
-CAPTURE.<br>
-<span class="yellow">ELEVATE.</span>
-
-</h1>
-
-</div>
-
-<p>
-
-Photography, video, social content and website design for
-hospitality brands that want to stand out, build their
-presence and turn attention into customers.
-
-</p>
-
-<div class="buttons">
-
-<a href="/work" class="button-primary">
-See our work
-</a>
-
-</div>
-
-</div>
-
+<section class="hero phone-hero" id="home">
+  <div class="phone-hero-glow" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="eyebrow">HOSPITALITY-FIRST DIGITAL CREATIVE AGENCY · LONDON</div>
+    <div class="hero-title-mask">
+      <h1>CREATE.<br>CAPTURE.<br><span class="yellow">ELEVATE.</span></h1>
+    </div>
+    <p>Photography, cinematic video, social media and website design for hospitality brands — and ambitious businesses ready to stand out.</p>
+    <div class="buttons">
+      <a href="/work" class="button-primary">See our work ↗</a>
+      <a href="/enquire" class="phone-secondary-button">Let's talk ↗</a>
+    </div>
+  </div>
+  <div class="phone-stage" aria-label="Rokka Media vertical video showcased on a rotating 3D-style phone">
+    <div class="phone-aura" aria-hidden="true"></div>
+    <div class="phone-rotator" id="phoneRotator">
+      <div class="phone-face phone-front">
+        <div class="phone-screen">
+          <video id="phoneShowreel" autoplay muted loop playsinline preload="metadata" poster="/ROKKA.png" aria-label="Rokka Media video showreel">
+            <source src="/hero-mobile.mp4?v=20261015" type="video/mp4">
+          </video>
+          <div class="phone-island"></div>
+          <div class="phone-screen-glare"></div>
+          <div class="phone-home-bar"></div>
+        </div>
+      </div>
+      <div class="phone-face phone-back">
+        <div class="camera-island">
+          <span class="lens lens-one"></span><span class="lens lens-two"></span><span class="lens lens-three"></span>
+          <span class="camera-flash"></span><span class="camera-sensor"></span>
+        </div>
+        <span class="phone-back-mark">R</span>
+      </div>
+      <div class="phone-edge phone-edge-left"></div>
+      <div class="phone-edge phone-edge-right"></div>
+      <div class="phone-edge phone-edge-top"></div>
+      <div class="phone-edge phone-edge-bottom"></div>
+    </div>
+    <div class="phone-stage-caption">YOUR CONTENT. FRONT AND CENTRE.</div>
+  </div>
+  <div class="phone-scroll-cue" aria-hidden="true">SCROLL TO EXPLORE <span>↓</span></div>
 </section>
 
 
@@ -3516,6 +3550,27 @@ submitButton.textContent=
 });
 
 }
+
+
+/* Scroll-driven phone rotation: pinned hero, reversible with scroll. */
+(function(){
+  const phone = document.getElementById("phoneRotator");
+  const hero = document.querySelector(".phone-hero");
+  if (!phone || !hero || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+  gsap.set(phone,{rotationY:-23,rotationX:7,rotationZ:-5,transformPerspective:1300});
+  const turn = gsap.timeline({defaults:{ease:"none"},scrollTrigger:{
+    trigger:hero,start:"top top",end:()=>"+="+Math.round(window.innerHeight*1.6),
+    scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true
+  }});
+  turn.to(phone,{rotationY:-90,rotationX:4,rotationZ:0,duration:1})
+      .to(phone,{rotationY:-180,rotationX:0,rotationZ:4,duration:1})
+      .to(phone,{rotationY:-360,rotationX:5,rotationZ:-4,duration:1.2});
+  const video=document.getElementById("phoneShowreel");
+  if(video){video.play().catch(()=>{});}
+  window.addEventListener("load",()=>ScrollTrigger.refresh(),{once:true});
+})();
 
 </script>
 
