@@ -2424,6 +2424,37 @@ color:#a0a0a0;
   .phone-hero .hero-content h1{font-size:clamp(41px,12vw,45px)}
 }
 
+
+/* ===== MOBILE CINEMATIC TITLE REVEAL ===== */
+.mobile-behind-title,.mobile-hero-actions{display:none}
+@media(max-width:600px){
+  .phone-hero{display:flex;flex-direction:column;align-items:stretch;padding:100px 0 26px;gap:0;overflow:hidden}
+  .phone-hero .hero-content{padding:0 5%;width:100%;z-index:2}
+  /* Keep the real H1 available to assistive technology. */
+  .phone-hero .hero-title-mask{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  .phone-hero .eyebrow{margin-bottom:12px}
+  .phone-hero .hero-content p{font-size:14px;line-height:1.55;max-width:36ch;margin:0}
+  .phone-hero .hero-content .buttons{display:none}
+  .phone-hero .phone-stage{width:100%;height:clamp(480px,135vw,610px);min-height:0;margin:0;position:relative;isolation:isolate;overflow:visible}
+  .phone-hero .phone-stage .phone-aura{z-index:0;opacity:.65}
+  .mobile-behind-title{display:flex;position:absolute;inset:0;z-index:1;flex-direction:column;justify-content:space-evenly;align-items:center;padding:30px 0 36px;pointer-events:none;overflow:hidden;transform:translateZ(0)}
+  .mobile-behind-title span{font-family:Archivo,Arial,Helvetica,sans-serif;font-size:clamp(62px,18vw,105px);font-weight:900;line-height:.9;letter-spacing:-.065em;color:#fff;white-space:nowrap;text-align:center;text-shadow:0 8px 28px rgba(0,0,0,.25)}
+  .mobile-behind-title span:last-child{color:#ffd400}
+  .phone-hero .phone-stage .phone-3d-canvas{z-index:4;transform:translateX(var(--mobile-phone-shift,0px));will-change:transform}
+  .phone-hero .phone-stage .phone-rotator{z-index:3;transform:translateX(var(--mobile-phone-shift,0px)) rotateY(-23deg) rotateX(7deg) rotateZ(-5deg)}
+  .phone-hero .phone-stage .phone-video-source{z-index:0}
+  .mobile-hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 5%;position:relative;z-index:5;margin-top:0}
+  .mobile-hero-actions a{min-height:50px;display:flex;justify-content:center;align-items:center;padding:12px 10px;text-align:center;font-size:11px;line-height:1.25}
+  .rokka-r-watermark{top:48%;opacity:.035}
+}
+@media(max-width:390px){
+  .mobile-behind-title span{font-size:17.7vw}
+  .mobile-hero-actions{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .phone-hero .phone-stage .phone-3d-canvas,.phone-hero .phone-stage .phone-rotator{transform:none!important}
+}
+
 </style>
 
 </head>
@@ -2532,6 +2563,7 @@ HOSPITALITY CREATIVE STUDIO
     </div>
   </div>
   <div class="phone-stage" aria-label="Rokka Media vertical video showcased on a rotating 3D-style phone">
+    <div class="mobile-behind-title" aria-hidden="true"><span>CREATE.</span><span>CAPTURE.</span><span>ELEVATE.</span></div>
     <div class="phone-aura" aria-hidden="true"></div>
     <video id="phoneShowreel" class="phone-video-source" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
       <source src="/hero-mobile.mp4" type="video/mp4">
@@ -2560,6 +2592,7 @@ HOSPITALITY CREATIVE STUDIO
     </div>
 
   </div>
+  <div class="mobile-hero-actions"><a href="/enquire" class="button-primary consultation-cta">Book your free consultation ↗</a><a href="/work" class="phone-secondary-button">Explore our work ↗</a></div>
   <div class="phone-scroll-cue" aria-hidden="true">SCROLL TO EXPLORE <span>↓</span></div>
 </section>
 
@@ -3785,6 +3818,15 @@ submitButton.textContent=
   window.addEventListener('resize',resize,{passive:true});
   if(window.ResizeObserver)new ResizeObserver(resize).observe(mount);
   mount.classList.add('ready');stage.classList.add('webgl-ready');
+  // Mobile-only lateral reveal: headline remains behind the transparent WebGL canvas.
+  if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+    gsap.fromTo(stage,{'--mobile-phone-shift':'0px'},{
+      '--mobile-phone-shift':()=>`${-Math.min(75,Math.max(35,window.innerWidth*.17))}px`,
+      ease:'none',
+      scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.45},
+      onUpdate:()=>{if(window.innerWidth>600)stage.style.setProperty('--mobile-phone-shift','0px')}
+    });
+  }
   // A scroll scrub updates the actual 3D mesh rotation.
   if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
     gsap.timeline({defaults:{ease:'none',onUpdate:render},scrollTrigger:{
