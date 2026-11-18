@@ -2275,6 +2275,7 @@ color:#a0a0a0;
 
 
 /* ===== ROKKA SCROLL-DRIVEN 3D PHONE HERO ===== */
+/* Natural page scrolling: the phone turns as the hero leaves the viewport. */
 .phone-3d-canvas{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .4s ease}
 .phone-3d-canvas.ready{opacity:1}
 .phone-3d-canvas canvas{display:block;width:100%;height:100%}
@@ -3562,7 +3563,7 @@ submitButton.textContent=
   renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.toneMapping=THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure=1.55;
+  renderer.toneMappingExposure=1.05;
   mount.appendChild(renderer.domElement);
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(33,1,.1,100);
@@ -3587,9 +3588,9 @@ submitButton.textContent=
     geo.translate(0,0,-depth/2);
     return new THREE.Mesh(geo,mat);
   }
-  const metal=new THREE.MeshPhysicalMaterial({color:0x292b30,metalness:1,roughness:.26,clearcoat:1,clearcoatRoughness:.18});
+  const metal=new THREE.MeshPhysicalMaterial({color:0x101115,metalness:.8,roughness:.34,clearcoat:1,clearcoatRoughness:.18});
   const glass=new THREE.MeshPhysicalMaterial({color:0x080a0c,metalness:.35,roughness:.13,clearcoat:1,clearcoatRoughness:.08});
-  const backMat=new THREE.MeshPhysicalMaterial({color:0x26282c,metalness:.52,roughness:.34,clearcoat:.65});
+  const backMat=new THREE.MeshPhysicalMaterial({color:0x090a0d,metalness:.25,roughness:.63,clearcoat:.22});
   const edge=extruded(W,H,R,D,metal);phone.add(edge);
   const front=extruded(W-.09,H-.09,R-.04,.016,glass);front.position.z=D/2+.045;phone.add(front);
   const back=extruded(W-.09,H-.09,R-.04,.018,backMat);back.position.z=-D/2-.045;phone.add(back);
@@ -3605,29 +3606,32 @@ submitButton.textContent=
   const islandMat=new THREE.MeshPhysicalMaterial({color:0x010101,roughness:.12,metalness:.2});
   const island=extruded(.94,.20,.1,.012,islandMat);
   island.position.set(0,H/2-.30,D/2+.09);phone.add(island);
-  // Rear camera plateau, raised lenses with glass and metallic concentric rings.
-  const cameraPlate=extruded(1.42,1.55,.34,.12,metal);
-  cameraPlate.position.set(-.69,H/2-1.02,-D/2-.14);
+  // Wide, near-black camera deck and restrained triple-lens array, based on the supplied reference.
+  // This is a stylised interpretation, not an official Apple CAD model.
+  const deckMat=new THREE.MeshPhysicalMaterial({color:0x090a0d,metalness:.28,roughness:.36,clearcoat:.5});
+  const cameraPlate=extruded(W-.14,1.85,.42,.075,deckMat);
+  cameraPlate.position.set(0,H/2-1.04,-D/2-.11);
   phone.add(cameraPlate);
   function circleCylinder(rad,depth,mat,x,y,z){
-    const m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,depth,48),mat);
+    const m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,depth,64),mat);
     m.rotation.x=Math.PI/2;
     m.position.set(x,y,z);
     phone.add(m);
     return m;
   }
-  const ringMat=new THREE.MeshStandardMaterial({color:0x70747a,metalness:1,roughness:.2});
-  const lensMat=new THREE.MeshPhysicalMaterial({color:0x080d15,metalness:.65,roughness:.06,clearcoat:1});
-  const innerLens=new THREE.MeshPhysicalMaterial({color:0x14283c,metalness:.6,roughness:.08,clearcoat:1});
-  [[-1.08,2.72],[-1.08,1.91],[-.35,2.31]].forEach(([x,y])=>{
-    circleCylinder(.34,.12,ringMat,x,y,-D/2-.28);
-    circleCylinder(.285,.14,lensMat,x,y,-D/2-.36);
-    circleCylinder(.18,.145,innerLens,x,y,-D/2-.45);
-    circleCylinder(.085,.15,lensMat,x,y,-D/2-.53);
+  const ringMat=new THREE.MeshStandardMaterial({color:0x25272c,metalness:.7,roughness:.28});
+  const lensMat=new THREE.MeshPhysicalMaterial({color:0x020408,metalness:.25,roughness:.09,clearcoat:1});
+  const innerLens=new THREE.MeshPhysicalMaterial({color:0x0b1421,metalness:.35,roughness:.08,clearcoat:1});
+  [[-1.00,2.71],[-1.00,1.89],[-.20,2.30]].forEach(([x,y])=>{
+    circleCylinder(.335,.065,ringMat,x,y,-D/2-.20);
+    circleCylinder(.295,.07,lensMat,x,y,-D/2-.255);
+    circleCylinder(.195,.075,innerLens,x,y,-D/2-.305);
+    circleCylinder(.12,.078,lensMat,x,y,-D/2-.347);
+    circleCylinder(.045,.08,new THREE.MeshBasicMaterial({color:0x15283c}),x-.035,y+.035,-D/2-.389);
   });
-  const flashMat=new THREE.MeshBasicMaterial({color:0xf4e6bd});
-  circleCylinder(.105,.02,flashMat,-.35,2.77,-D/2-.25);
-  circleCylinder(.075,.02,islandMat,-.35,1.83,-D/2-.25);
+  const flashMat=new THREE.MeshBasicMaterial({color:0xb5b2a9});
+  circleCylinder(.105,.025,flashMat,.73,2.75,-D/2-.18);
+  circleCylinder(.065,.025,lensMat,.73,2.09,-D/2-.18);
   // Side buttons protrude from the frame.
   const buttonMat=new THREE.MeshStandardMaterial({color:0x64676a,metalness:1,roughness:.3});
   function sideButton(x,y,height){
@@ -3637,10 +3641,10 @@ submitButton.textContent=
   sideButton(-W/2-.05,1.58,.55);
   sideButton(-W/2-.05,.72,.55);
   sideButton(W/2+.05,1.2,.72);
-  const ambient=new THREE.AmbientLight(0xffffff,1.65);scene.add(ambient);
-  const key=new THREE.DirectionalLight(0xffffff,3.1);key.position.set(-5,8,9);scene.add(key);
-  const rim=new THREE.DirectionalLight(0xffd400,2.2);rim.position.set(6,-1,-5);scene.add(rim);
-  const fill=new THREE.DirectionalLight(0xa6b6e0,1.1);fill.position.set(4,1,4);scene.add(fill);
+  const ambient=new THREE.AmbientLight(0xffffff,.85);scene.add(ambient);
+  const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(-5,8,9);scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffd400,.75);rim.position.set(6,-1,-5);scene.add(rim);
+  const fill=new THREE.DirectionalLight(0xa6b6e0,.65);fill.position.set(4,1,4);scene.add(fill);
   const state={angle:-.40,tilt:.10,roll:-.08};
   const render=()=>{
     phone.rotation.set(state.tilt,state.angle,state.roll);
@@ -3662,8 +3666,8 @@ submitButton.textContent=
   // A scroll scrub updates the actual 3D mesh rotation.
   if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
     gsap.timeline({defaults:{ease:'none',onUpdate:render},scrollTrigger:{
-      trigger:hero,start:'top top',end:()=>'+='+Math.round(window.innerHeight*1.6),
-      scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true
+      trigger:hero,start:'top top',end:'bottom top',
+      scrub:.35,invalidateOnRefresh:true
     }})
       .to(state,{angle:-Math.PI/2,tilt:.06,roll:0,duration:1})
       .to(state,{angle:-Math.PI,tilt:0,roll:.05,duration:1})
