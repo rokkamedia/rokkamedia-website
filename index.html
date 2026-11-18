@@ -2288,7 +2288,7 @@ color:#a0a0a0;
 .phone-hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 72% 48%,rgba(255,212,0,.10),transparent 44%);pointer-events:none}
 .phone-secondary-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.5);padding:15px 23px;border-radius:100px;font-weight:800;transition:.25s}
 .phone-secondary-button:hover{border-color:#ffd400;color:#ffd400}
-.phone-stage{height:min(73vh,720px);min-height:470px;position:relative;display:flex;align-items:center;justify-content:center;perspective:1300px;transform-style:preserve-3d;z-index:2}
+.phone-stage{height:min(80vh,790px);min-height:500px;position:relative;display:flex;align-items:center;justify-content:center;perspective:1300px;transform-style:preserve-3d;z-index:2}
 .phone-aura{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:rgba(255,212,0,.14);filter:blur(85px);pointer-events:none}
 .phone-rotator{--pw:clamp(210px,20vw,310px);--ph:calc(var(--pw) * 2.08);--depth:12px;position:relative;width:var(--pw);height:var(--ph);transform-style:preserve-3d;transform:rotateY(-23deg) rotateX(7deg) rotateZ(-5deg);will-change:transform;filter:drop-shadow(24px 32px 28px rgba(0,0,0,.65))}
 .phone-face{position:absolute;inset:0;border-radius:calc(var(--pw) * .145);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
@@ -2320,16 +2320,16 @@ color:#a0a0a0;
 .phone-hero .hero-content{order:0}
 .phone-hero .hero-content h1{font-size:clamp(50px,11vw,86px)}
 .phone-hero .hero-content p{font-size:14px;line-height:1.55;margin-top:18px}
-.phone-stage{order:1;height:440px;min-height:0;margin-top:14px}
-.phone-rotator{--pw:190px}
+.phone-stage{order:1;height:470px;min-height:0;margin-top:14px}
+.phone-rotator{--pw:225px}
 .phone-stage-caption{bottom:0}
 .phone-scroll-cue{display:none}
 }
 @media(max-width:480px){
 .phone-hero{padding-top:108px}
 .phone-hero .hero-content h1{font-size:clamp(48px,12vw,64px);letter-spacing:-2px}
-.phone-stage{height:360px}
-.phone-rotator{--pw:155px}
+.phone-stage{height:390px}
+.phone-rotator{--pw:180px}
 .phone-hero .buttons{margin-top:18px}
 .phone-hero .button-primary,.phone-secondary-button{padding:12px 17px;font-size:12px}
 }
@@ -3654,7 +3654,7 @@ submitButton.textContent=
     const width=mount.clientWidth,height=mount.clientHeight;
     if(!width||!height)return;
     camera.aspect=width/height;
-    camera.position.z=width<450?14.9:width<650?13.8:12.2;
+    camera.position.z=width<450?12.2:width<650?11.1:9.8;
     camera.updateProjectionMatrix();
     renderer.setSize(width,height,false);
     render();
