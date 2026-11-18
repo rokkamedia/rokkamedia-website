@@ -2475,6 +2475,54 @@ color:#a0a0a0;
 }
 @media(max-width:360px){.phone-hero .hero-content h1{font-size:clamp(40px,12.3vw,46px)}}
 
+
+/* ===== ROKKA TYPOGRAPHY-LED SERVICES / NO IMAGES ===== */
+.services-editorial-list{border-top:1px solid #353535;}
+.service-list-row{
+  min-height:unset;overflow:visible;background:transparent;
+  border:0;border-bottom:1px solid #303030;border-radius:0;
+  transition:background .4s ease;
+}
+.service-list-row::before{
+  content:"";position:absolute;bottom:-1px;left:0;width:0;height:2px;
+  background:#FFD400;transition:width .65s cubic-bezier(.2,.7,.2,1);
+}
+.service-list-row:hover::before,.service-list-row:focus-visible::before{width:100%;}
+.service-list-content{
+  min-height:175px;grid-template-columns:90px minmax(0,1fr);
+  gap:24px;padding:32px 12px 32px 0;align-items:start;
+}
+.service-list-number{
+  padding-top:12px;color:#FFD400;font-family:"Archivo",sans-serif;
+  font-size:clamp(24px,3vw,42px);font-weight:850;letter-spacing:-1.5px;
+}
+.service-list-main h3{
+  font-family:"Archivo",Arial,sans-serif;font-variation-settings:"wdth" 88;
+  font-size:clamp(44px,6.5vw,104px);font-weight:850;
+  line-height:.96;letter-spacing:-.055em;color:#f1f1f1;
+  max-width:1050px;transition:color .4s ease,transform .4s ease;
+}
+.service-list-main p{
+  max-width:640px;margin-top:18px;font-family:"Inter",sans-serif;
+  font-size:clamp(13px,1.15vw,16px);line-height:1.6;color:#999;
+  opacity:1;transform:none;max-height:none;overflow:visible;
+}
+.service-list-row:hover .service-list-main h3,
+.service-list-row:focus-visible .service-list-main h3{color:#FFD400;transform:translateX(8px);}
+.service-list-row:hover .service-list-main p,
+.service-list-row:focus-visible .service-list-main p{max-height:none;color:#ccc;}
+.service-list-row:focus-visible{outline:2px solid #FFD400;outline-offset:-2px;}
+@media(max-width:800px){
+  .services-editorial-list{display:block;border-top:1px solid #353535;}
+  .service-list-row{min-height:unset;border:0;border-bottom:1px solid #303030;border-radius:0;}
+  .service-list-content{min-height:0;display:block;padding:29px 0 32px;}
+  .service-list-number{display:block;padding:0;margin-bottom:12px;font-size:21px;}
+  .service-list-main h3{font-size:clamp(35px,9.2vw,64px);letter-spacing:-.055em;line-height:.97;overflow-wrap:break-word;}
+  .service-list-main p{display:block;max-width:95%;margin-top:14px;font-size:13px;line-height:1.6;color:#aaa;max-height:none;}
+  .service-list-row:hover .service-list-main h3{transform:none;}
+}
+@media(prefers-reduced-motion:reduce){.service-list-row::before{transition:none;}}
+
 </style>
 
 </head>
@@ -2647,9 +2695,6 @@ look stronger, stay consistent and stand out online.
 <div class="services-editorial-list">
 
 <article class="service-list-row is-active" tabindex="0" data-service="01">
-<img class="service-list-bg" src="/content-creation.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
 <div class="service-list-content">
 <span class="service-list-number">01</span>
 
@@ -2662,9 +2707,6 @@ look stronger, stay consistent and stand out online.
 
 
 <article class="service-list-row" tabindex="0" data-service="02">
-<img class="service-list-bg" src="/social-media-management.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
 <div class="service-list-content">
 <span class="service-list-number">02</span>
 
@@ -2677,9 +2719,6 @@ look stronger, stay consistent and stand out online.
 
 
 <article class="service-list-row" tabindex="0" data-service="03">
-<img class="service-list-bg" src="/website-design.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
 <div class="service-list-content">
 <span class="service-list-number">03</span>
 
@@ -2692,9 +2731,6 @@ look stronger, stay consistent and stand out online.
 
 
 <article class="service-list-row" tabindex="0" data-service="04">
-<img class="service-list-bg" src="/hospitality-photography.jpg" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
 <div class="service-list-content">
 <span class="service-list-number">04</span>
 
@@ -2707,9 +2743,6 @@ look stronger, stay consistent and stand out online.
 
 
 <article class="service-list-row" tabindex="0" data-service="05">
-<img class="service-list-bg" src="/content-days.png" alt="" aria-hidden="true">
-<div class="service-list-overlay"></div>
-
 <div class="service-list-content">
 <span class="service-list-number">05</span>
 
