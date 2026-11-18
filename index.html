@@ -3610,7 +3610,18 @@ submitButton.textContent=
   texture.minFilter=THREE.LinearFilter;
   texture.magFilter=THREE.LinearFilter;
   const screenMat=new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide,toneMapped:false});
-  const screen=new THREE.Mesh(new THREE.ShapeGeometry(roundedShape(W-.23,H-.24,R-.12),20),screenMat);
+  // ShapeGeometry's default UVs are raw model coordinates (roughly -1.5..1.5,
+  // -3.2..3.2), NOT 0..1. Normalize them so the entire video fills the display.
+  const screenWidth=W-.23,screenHeight=H-.24;
+  const screenGeometry=new THREE.ShapeGeometry(roundedShape(screenWidth,screenHeight,R-.12),20);
+  const positionAttribute=screenGeometry.getAttribute('position');
+  const uvAttribute=screenGeometry.getAttribute('uv');
+  for(let i=0;i<positionAttribute.count;i++){
+    const x=positionAttribute.getX(i), y=positionAttribute.getY(i);
+    uvAttribute.setXY(i,(x+screenWidth/2)/screenWidth,(y+screenHeight/2)/screenHeight);
+  }
+  uvAttribute.needsUpdate=true;
+  const screen=new THREE.Mesh(screenGeometry,screenMat);
   screen.position.z=D/2+.10;
   phone.add(screen);
   function updateVideoFrame(){
