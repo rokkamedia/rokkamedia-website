@@ -2575,6 +2575,24 @@ color:#a0a0a0;
   }
 }
 
+
+/* Subtle real behind-the-scenes photo behind the rotating 3D phone. */
+.phone-hero .rokka-bts-background{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(90deg,rgba(7,7,7,.46),rgba(7,7,7,.12) 55%,rgba(7,7,7,.30)),url('/rokka-bts-hero.jpg');
+  background-size:cover;
+  background-position:center 42%;
+  opacity:.15;
+  -webkit-mask-image:radial-gradient(ellipse 85% 75% at 58% 48%,#000 35%,transparent 100%);
+  mask-image:radial-gradient(ellipse 85% 75% at 58% 48%,#000 35%,transparent 100%);
+}
+.phone-hero .phone-hero-glow{opacity:.48;}
+@media(max-width:900px){
+ .phone-hero .rokka-bts-background{background-position:61% 40%;opacity:.12;}
+}
+@media(max-width:600px){
+ .phone-hero .rokka-bts-background{background-position:63% center;opacity:.105;}
+}
 </style>
 
 </head>
@@ -2665,12 +2683,7 @@ HOSPITALITY CREATIVE STUDIO
 
 <section class="hero phone-hero" id="home">
   <div class="phone-hero-glow" aria-hidden="true"></div>
-  <div class="rokka-r-watermark" aria-hidden="true">
-    <!-- Complete original Rokka signature artwork -->
-    <svg viewBox="0 0 1983 793" preserveAspectRatio="xMidYMid meet" focusable="false" aria-hidden="true">
-      <image href="/ROKKA-black.svg" x="0" y="0" width="1983" height="793" preserveAspectRatio="xMidYMid meet" />
-    </svg>
-  </div>
+  <div class="rokka-bts-background" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="eyebrow">HOSPITALITY-FIRST DIGITAL CREATIVE AGENCY · LONDON</div>
     <div class="hero-title-mask">
@@ -2805,43 +2818,6 @@ look stronger, stay consistent and stand out online.
 </div>
 </article>
 
-</div>
-
-</section>
-
-
-<!-- =========================
-     SELECTED WORK
-========================= -->
-
-<section class="content work" id="work">
-
-<div class="work-intro">
-<div>
-<div class="title-mask">
-<h2 class="big-copy reveal-title">A glimpse of<br>what we create.</h2>
-</div>
-</div>
-<p>
-A few recent frames from restaurant and hospitality projects.
-See the full portfolio for more food, venue, social and behind-the-scenes work.
-</p>
-</div>
-
-<div class="home-work-teaser">
-<a href="/work" aria-label="See food photography portfolio">
-<img src="/RK1.png" alt="Restaurant food photography by RokkaMedia" loading="lazy">
-</a>
-<a href="/work" aria-label="See hospitality portfolio">
-<img src="/RK4.png" alt="Hospitality photography by RokkaMedia" loading="lazy">
-</a>
-<a href="/work" aria-label="See behind the scenes portfolio">
-<img src="/work-bts-1.jpeg" alt="Behind the scenes content shoot by RokkaMedia" loading="lazy">
-</a>
-</div>
-
-<div class="home-work-actions">
-<a class="page-cta" href="/work">SEE OUR WORK →</a>
 </div>
 
 </section>
