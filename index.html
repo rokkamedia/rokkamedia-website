@@ -194,6 +194,8 @@ content="Rokka Media restaurant content creation and website design logo"
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.152.2/three.min.js" defer></script>
+
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -2273,6 +2275,11 @@ color:#a0a0a0;
 
 
 /* ===== ROKKA SCROLL-DRIVEN 3D PHONE HERO ===== */
+.phone-3d-canvas{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .4s ease}
+.phone-3d-canvas.ready{opacity:1}
+.phone-3d-canvas canvas{display:block;width:100%;height:100%}
+.phone-stage.webgl-ready .phone-rotator{visibility:hidden}
+
 .phone-hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);align-items:center;gap:3vw;padding:130px 6% 75px;background:radial-gradient(ellipse at 75% 45%,#222015 0%,#0b0b0b 47%,#070707 78%);isolation:isolate}
 .phone-hero .hero-content{max-width:800px;align-self:center}
 .phone-hero .hero-content h1{font-size:clamp(55px,7.3vw,112px)}
@@ -2430,6 +2437,7 @@ HOSPITALITY CREATIVE STUDIO
   </div>
   <div class="phone-stage" aria-label="Rokka Media vertical video showcased on a rotating 3D-style phone">
     <div class="phone-aura" aria-hidden="true"></div>
+    <div class="phone-3d-canvas" id="phone3DCanvas" aria-hidden="true"></div>
     <div class="phone-rotator" id="phoneRotator">
       <div class="phone-face phone-front">
         <div class="phone-screen">
@@ -3552,26 +3560,140 @@ submitButton.textContent=
 }
 
 
-/* Scroll-driven phone rotation: pinned hero, reversible with scroll. */
+/* Genuine WebGL 3D black-titanium Pro Max-inspired phone, procedural model. */
 (function(){
-  const phone = document.getElementById("phoneRotator");
-  const hero = document.querySelector(".phone-hero");
-  if (!phone || !hero || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced) return;
-  gsap.set(phone,{rotationY:-23,rotationX:7,rotationZ:-5,transformPerspective:1300});
-  const turn = gsap.timeline({defaults:{ease:"none"},scrollTrigger:{
-    trigger:hero,start:"top top",end:()=>"+="+Math.round(window.innerHeight*1.6),
-    scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true
-  }});
-  turn.to(phone,{rotationY:-90,rotationX:4,rotationZ:0,duration:1})
-      .to(phone,{rotationY:-180,rotationX:0,rotationZ:4,duration:1})
-      .to(phone,{rotationY:-360,rotationX:5,rotationZ:-4,duration:1.2});
-  const video=document.getElementById("phoneShowreel");
-  if(video){video.play().catch(()=>{});}
-  window.addEventListener("load",()=>ScrollTrigger.refresh(),{once:true});
+  const mount=document.getElementById('phone3DCanvas');
+  const fallback=document.getElementById('phoneRotator');
+  const stage=document.querySelector('.phone-stage');
+  const hero=document.querySelector('.phone-hero');
+  const video=document.getElementById('phoneShowreel');
+  if(!mount||!stage||!hero||!video) return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Keep the CSS version if WebGL, Three.js, or hardware support is unavailable.
+  if(typeof THREE==='undefined') return;
+  let renderer;
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});}
+  catch(e){return;}
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.55;
+  mount.appendChild(renderer.domElement);
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(33,1,.1,100);
+  camera.position.set(0,0,12.6);
+  const phone=new THREE.Group();
+  scene.add(phone);
+  const W=3.18,H=6.65,D=.29,R=.48;
+  function roundedShape(w,h,r){
+    const x=-w/2,y=-h/2,sh=new THREE.Shape();
+    sh.moveTo(x+r,y);
+    sh.lineTo(x+w-r,y);sh.quadraticCurveTo(x+w,y,x+w,y+r);
+    sh.lineTo(x+w,y+h-r);sh.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    sh.lineTo(x+r,y+h);sh.quadraticCurveTo(x,y+h,x,y+h-r);
+    sh.lineTo(x,y+r);sh.quadraticCurveTo(x,y,x+r,y);
+    return sh;
+  }
+  function extruded(w,h,r,depth,mat){
+    const geo=new THREE.ExtrudeGeometry(roundedShape(w,h,r),{
+      depth:depth,bevelEnabled:true,bevelThickness:.032,bevelSize:.035,
+      bevelSegments:4,curveSegments:10,steps:1
+    });
+    geo.translate(0,0,-depth/2);
+    return new THREE.Mesh(geo,mat);
+  }
+  const metal=new THREE.MeshPhysicalMaterial({color:0x292b30,metalness:1,roughness:.26,clearcoat:1,clearcoatRoughness:.18});
+  const glass=new THREE.MeshPhysicalMaterial({color:0x080a0c,metalness:.35,roughness:.13,clearcoat:1,clearcoatRoughness:.08});
+  const backMat=new THREE.MeshPhysicalMaterial({color:0x26282c,metalness:.52,roughness:.34,clearcoat:.65});
+  const edge=extruded(W,H,R,D,metal);phone.add(edge);
+  const front=extruded(W-.09,H-.09,R-.04,.016,glass);front.position.z=D/2+.045;phone.add(front);
+  const back=extruded(W-.09,H-.09,R-.04,.018,backMat);back.position.z=-D/2-.045;phone.add(back);
+  // Video texture: vertical video plays on an actual 3D surface, not an HTML mockup.
+  const texture=new THREE.VideoTexture(video);
+  texture.colorSpace=THREE.SRGBColorSpace;
+  texture.minFilter=THREE.LinearFilter;
+  texture.magFilter=THREE.LinearFilter;
+  const screenMat=new THREE.MeshBasicMaterial({map:texture,side:THREE.FrontSide,toneMapped:false});
+  const screen=new THREE.Mesh(new THREE.ShapeGeometry(roundedShape(W-.23,H-.24,R-.12),20),screenMat);
+  screen.position.z=D/2+.064;
+  phone.add(screen);
+  const islandMat=new THREE.MeshPhysicalMaterial({color:0x010101,roughness:.12,metalness:.2});
+  const island=extruded(.94,.20,.1,.012,islandMat);
+  island.position.set(0,H/2-.30,D/2+.09);phone.add(island);
+  // Rear camera plateau, raised lenses with glass and metallic concentric rings.
+  const cameraPlate=extruded(1.42,1.55,.34,.12,metal);
+  cameraPlate.position.set(-.69,H/2-1.02,-D/2-.14);
+  phone.add(cameraPlate);
+  function circleCylinder(rad,depth,mat,x,y,z){
+    const m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,depth,48),mat);
+    m.rotation.x=Math.PI/2;
+    m.position.set(x,y,z);
+    phone.add(m);
+    return m;
+  }
+  const ringMat=new THREE.MeshStandardMaterial({color:0x70747a,metalness:1,roughness:.2});
+  const lensMat=new THREE.MeshPhysicalMaterial({color:0x080d15,metalness:.65,roughness:.06,clearcoat:1});
+  const innerLens=new THREE.MeshPhysicalMaterial({color:0x14283c,metalness:.6,roughness:.08,clearcoat:1});
+  [[-1.08,2.72],[-1.08,1.91],[-.35,2.31]].forEach(([x,y])=>{
+    circleCylinder(.34,.12,ringMat,x,y,-D/2-.28);
+    circleCylinder(.285,.14,lensMat,x,y,-D/2-.36);
+    circleCylinder(.18,.145,innerLens,x,y,-D/2-.45);
+    circleCylinder(.085,.15,lensMat,x,y,-D/2-.53);
+  });
+  const flashMat=new THREE.MeshBasicMaterial({color:0xf4e6bd});
+  circleCylinder(.105,.02,flashMat,-.35,2.77,-D/2-.25);
+  circleCylinder(.075,.02,islandMat,-.35,1.83,-D/2-.25);
+  // Side buttons protrude from the frame.
+  const buttonMat=new THREE.MeshStandardMaterial({color:0x64676a,metalness:1,roughness:.3});
+  function sideButton(x,y,height){
+    const mesh=new THREE.Mesh(new THREE.BoxGeometry(.07,height,.11),buttonMat);
+    mesh.position.set(x,y,0);phone.add(mesh);
+  }
+  sideButton(-W/2-.05,1.58,.55);
+  sideButton(-W/2-.05,.72,.55);
+  sideButton(W/2+.05,1.2,.72);
+  const ambient=new THREE.AmbientLight(0xffffff,1.65);scene.add(ambient);
+  const key=new THREE.DirectionalLight(0xffffff,3.1);key.position.set(-5,8,9);scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffd400,2.2);rim.position.set(6,-1,-5);scene.add(rim);
+  const fill=new THREE.DirectionalLight(0xa6b6e0,1.1);fill.position.set(4,1,4);scene.add(fill);
+  const state={angle:-.40,tilt:.10,roll:-.08};
+  const render=()=>{
+    phone.rotation.set(state.tilt,state.angle,state.roll);
+    renderer.render(scene,camera);
+  };
+  function resize(){
+    const width=mount.clientWidth,height=mount.clientHeight;
+    if(!width||!height)return;
+    camera.aspect=width/height;
+    camera.position.z=width<450?14.9:width<650?13.8:12.2;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width,height,false);
+    render();
+  }
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  if(window.ResizeObserver)new ResizeObserver(resize).observe(mount);
+  mount.classList.add('ready');stage.classList.add('webgl-ready');
+  // A scroll scrub updates the actual 3D mesh rotation.
+  if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+    gsap.timeline({defaults:{ease:'none',onUpdate:render},scrollTrigger:{
+      trigger:hero,start:'top top',end:()=>'+='+Math.round(window.innerHeight*1.6),
+      scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true
+    }})
+      .to(state,{angle:-Math.PI/2,tilt:.06,roll:0,duration:1})
+      .to(state,{angle:-Math.PI,tilt:0,roll:.05,duration:1})
+      .to(state,{angle:-Math.PI*2,tilt:.08,roll:-.07,duration:1.2});
+    window.addEventListener('load',()=>ScrollTrigger.refresh(),{once:true});
+  }
+  video.play().catch(()=>{});
+  // Video frames update the WebGL texture while visible.
+  let active=true;
+  if(window.IntersectionObserver){
+    new IntersectionObserver(entries=>{active=entries[0].isIntersecting;},{threshold:0}).observe(stage);
+  }
+  function frame(){requestAnimationFrame(frame);if(active)render();}
+  frame();
 })();
-
 </script>
 
 
