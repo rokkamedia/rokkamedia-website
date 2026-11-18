@@ -2628,8 +2628,9 @@ color:#a0a0a0;
     background-repeat:no-repeat;
     opacity:.43;
     filter:brightness(1.08) contrast(1.02);
-    -webkit-mask-image:none;
-    mask-image:none;
+    /* Fade the actual photo layer in from transparent, eliminating its hard top edge. */
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.08) 12%,rgba(0,0,0,.45) 27%,#000 43%,#000 78%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.08) 12%,rgba(0,0,0,.45) 27%,#000 43%,#000 78%,transparent 100%);
   }
   .phone-hero .phone-stage .phone-aura{z-index:2;opacity:.10}
   .phone-hero .phone-stage .phone-3d-canvas{z-index:5}
