@@ -2604,23 +2604,38 @@ color:#a0a0a0;
  nav .site-nav-links .nav-button,nav .nav-links .nav-cta{font-size:clamp(8px,2.35vw,11px);letter-spacing:.2px;padding:10px 12px;height:auto;min-height:34px;white-space:nowrap;}
 }
 
-.mobile-bts-photo{display:none;}
-/* Corrected mobile background: an actual layer, not a negative-z-index pseudo-element. */
+/* MOBILE BTS PHOTO — visible behind the phone in Safari */
+.mobile-bts-photo{display:none}
 @media(max-width:600px){
- .phone-hero .rokka-bts-background{display:none!important;}
- .phone-hero .phone-stage{isolation:isolate;}
- .phone-hero .phone-stage .mobile-bts-photo{
-   display:block!important;position:absolute;inset:-18% -15% -12%;z-index:1;
-   pointer-events:none;
-   background-image:url('/rokka-bts-hero-mobile-visible.jpg');
-   background-size:auto 100%;background-repeat:no-repeat;background-position:72% center;
-   opacity:.72;
-   -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 75%,transparent 100%);
-   mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 75%,transparent 100%);
- }
- .phone-hero .phone-stage .phone-aura{opacity:.16;}
- .phone-hero .phone-stage .phone-3d-canvas{z-index:4;}
- .phone-hero .phone-stage .phone-rotator{z-index:3;}
+  .phone-hero{isolation:isolate;overflow:hidden}
+  .phone-hero .rokka-bts-background{display:none!important}
+  .phone-hero .phone-stage{
+    isolation:isolate;
+    overflow:visible;
+  }
+  .phone-hero .phone-stage .mobile-bts-photo{
+    display:block!important;
+    position:absolute;
+    z-index:1;
+    pointer-events:none;
+    top:1%;
+    bottom:0;
+    left:-8vw;
+    right:-8vw;
+    background-image:linear-gradient(to bottom,rgba(7,7,7,.15),rgba(7,7,7,.06) 50%,#070707 100%),url('/rokka-bts-hero-mobile-visible.jpg');
+    background-size:cover;
+    background-position:83% center;
+    background-repeat:no-repeat;
+    opacity:.9;
+    filter:brightness(1.55) contrast(1.06);
+    -webkit-mask-image:none;
+    mask-image:none;
+  }
+  .phone-hero .phone-stage .phone-aura{z-index:2;opacity:.10}
+  .phone-hero .phone-stage .phone-3d-canvas{z-index:5}
+  .phone-hero .phone-stage .phone-rotator{z-index:4}
+  .phone-hero .hero-content{position:relative;z-index:3}
+  .phone-hero .mobile-hero-actions{position:relative;z-index:6}
 }
 
 </style>
