@@ -1,9 +1,5 @@
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://www.rokkamedia.com/</loc>
-    </url>
-    <url>
-        <loc>https://www.rokkamedia.com/enquire.html</loc>
-    </url>
+  <url><loc>https://www.rokkamedia.com/</loc></url>
+  <url><loc>https://www.rokkamedia.com/enquire.html</loc></url>
+  <url><loc>https://www.rokkamedia.com/content-creation-croydon.html</loc></url>
 </urlset>
