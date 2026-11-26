@@ -2063,6 +2063,8 @@ selected
 Select a service
 </option>
 
+<option value="Free Trial Shoot">Free Trial Shoot</option>
+
 <option value="Content Creation">
 Content Creation
 </option>
@@ -3174,5 +3176,6 @@ form.addEventListener("submit", async event => {
 </script>
 
 
+<script>if(new URLSearchParams(location.search).get("service")==="free-shoot"){document.getElementById("service").value="Free Trial Shoot";}</script>
 </body>
 </html>
