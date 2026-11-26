@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Website Design London | Rokka Media</title><meta name="description" content="Mobile-friendly website design for hospitality and small businesses across London and Croydon."><link rel="canonical" href="https://www.rokkamedia.com/website-design.html"><meta name="robots" content="index, follow"><meta name="theme-color" content="#FFD400"><link rel="icon" href="/favicon.png"><meta property="og:type" content="website"><meta property="og:title" content="Website Design London | Rokka Media"><meta property="og:description" content="Mobile-friendly website design for hospitality and small businesses across London and Croydon."><meta property="og:url" content="https://www.rokkamedia.com/website-design.html"><meta property="og:image" content="https://www.rokkamedia.com/content-creation-croydon.jpg"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Website Design", "url": "https://www.rokkamedia.com/website-design.html", "description": "Mobile-friendly website design for hospitality and small businesses across London and Croydon.", "provider": {"@type": "Organization", "@id": "https://www.rokkamedia.com/#business", "name": "Rokka Media", "url": "https://www.rokkamedia.com/"}, "areaServed": ["Croydon", "South London", "London"]}</script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font:16px/1.65 Arial,sans-serif}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:5px}nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 5%;border-bottom:1px solid #252525}nav img{width:125px}nav div{display:flex;align-items:center;gap:20px;font-size:11px;font-weight:800;letter-spacing:1px}main section{padding:75px 5%}.hero{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;min-height:75vh}.hero img{width:100%;height:clamp(300px,42vw,620px);object-fit:cover;border-radius:22px}.tag{color:#FFD400;font-size:11px;font-weight:800;letter-spacing:2px}h1,h2,h3{line-height:1.05;letter-spacing:-.035em}h1{font-size:clamp(48px,6.8vw,100px);margin:20px 0}h2{font-size:clamp(32px,4vw,58px);margin:15px 0 25px}h3{font-size:24px}p{color:#bdbdbd;max-width:720px}.yellow{color:#FFD400}.cta{display:inline-block;background:#FFD400;color:#070707;font-weight:800;border-radius:100px;padding:13px 23px;margin:10px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.cards article{border:1px solid #333;border-radius:18px;padding:25px;background:#111}.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}video{width:100%;max-height:520px;background:#111;border-radius:20px}.band{background:#111}.logos{display:flex;flex-wrap:wrap;gap:30px;align-items:center}.logos img{width:110px;height:65px;object-fit:contain}details{border-bottom:1px solid #333;padding:18px 0}summary{cursor:pointer;font-weight:700}footer{padding:30px 5%;border-top:1px solid #333;display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:#aaa}@media(max-width:750px){nav img{width:95px}nav div{gap:10px;font-size:10px}main section{padding:48px 5%}.hero,.split,.cards{grid-template-columns:1fr;gap:20px}.hero{min-height:0}.hero img{height:330px}}
+</style><style>.phone-video-source{position:absolute!important;top:0;left:0;width:2px!important;height:2px!important;opacity:.015;pointer-events:none;z-index:0;object-fit:cover}
+.phone-fallback-poster{height:100%;background:#0b0b0b url('/ROKKA.png') center/contain no-repeat}
+
+/* Natural page scrolling: the phone turns as the hero leaves the viewport. */
+.phone-3d-canvas{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .4s ease}
+.phone-3d-canvas.ready{opacity:1}
+.phone-3d-canvas canvas{display:block;width:100%;height:100%}
+.phone-stage.webgl-ready .phone-rotator{visibility:hidden}
+
+.phone-hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);align-items:center;gap:3vw;padding:130px 6% 75px;background:radial-gradient(ellipse at 75% 45%,#222015 0%,#0b0b0b 47%,#070707 78%);isolation:isolate}
+.phone-hero .hero-content{max-width:800px;align-self:center}
+.phone-hero .hero-content h1{font-size:clamp(55px,7.3vw,112px)}
+.phone-hero .hero-content p{max-width:570px}
+.phone-hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 72% 48%,rgba(255,212,0,.10),transparent 44%);pointer-events:none}
+.phone-secondary-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.5);padding:15px 23px;border-radius:100px;font-weight:800;transition:.25s}
+.phone-secondary-button:hover{border-color:#ffd400;color:#ffd400}
+.phone-stage{height:min(80vh,790px);min-height:500px;position:relative;display:flex;align-items:center;justify-content:center;perspective:1300px;transform-style:preserve-3d;z-index:2}
+.phone-aura{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:rgba(255,212,0,.14);filter:blur(85px);pointer-events:none}
+.phone-rotator{--pw:clamp(210px,20vw,310px);--ph:calc(var(--pw) * 2.08);--depth:12px;position:relative;width:var(--pw);height:var(--ph);transform-style:preserve-3d;transform:rotateY(-23deg) rotateX(7deg) rotateZ(-5deg);will-change:transform;filter:drop-shadow(24px 32px 28px rgba(0,0,0,.65))}
+.phone-face{position:absolute;inset:0;border-radius:calc(var(--pw) * .145);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.phone-front{background:linear-gradient(120deg,#9e9e9e,#111 16%,#303030 78%,#d1d1d1);border:3px solid #777;transform:translateZ(calc(var(--depth) / 2));padding:7px;box-shadow:inset 0 0 0 2px #111}
+.phone-screen{position:relative;width:100%;height:100%;border-radius:calc(var(--pw) * .112);background:#111;overflow:hidden}
+.phone-screen video{height:100%;width:100%;object-fit:cover;object-position:center;display:block}
+.phone-island{position:absolute;top:10px;left:50%;transform:translateX(-50%);height:24px;width:31%;border-radius:30px;background:#020202;box-shadow:0 1px 2px #333}
+.phone-screen-glare{position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,rgba(255,255,255,.13),transparent 30%,transparent 72%,rgba(255,255,255,.04))}
+.phone-home-bar{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:35%;height:4px;border-radius:5px;background:rgba(255,255,255,.8)}
+.phone-back{transform:rotateY(180deg) translateZ(calc(var(--depth) / 2));border:3px solid #8a8a8a;background:linear-gradient(120deg,#3c3c3c,#191919 45%,#3b3b3b 90%);box-shadow:inset 0 0 35px #090909}
+.phone-back-mark{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);font-family:Archivo,sans-serif;font-weight:900;font-size:55px;color:#4b4b4b;text-shadow:0 1px 1px #080808}
+.camera-island{position:absolute;top:22px;left:20px;width:110px;height:115px;border-radius:27px;background:linear-gradient(130deg,#4b4b4b,#181818);border:2px solid #606060;box-shadow:0 8px 15px #090909}
+.lens{position:absolute;width:39px;height:39px;border-radius:50%;background:radial-gradient(circle at 45% 48%,#123041 0 12%,#020508 22%,#151515 49%,#656565 55%,#080808 70%);border:2px solid #777}
+.lens-one{left:10px;top:9px}.lens-two{left:10px;bottom:9px}.lens-three{right:9px;top:35px}
+.camera-flash{position:absolute;right:17px;top:11px;width:14px;height:14px;border-radius:50%;background:#f4e8c4}
+.camera-sensor{position:absolute;right:18px;bottom:10px;width:11px;height:11px;border-radius:50%;background:#111}
+.phone-edge{position:absolute;background:linear-gradient(90deg,#171717,#8b8b8b,#222);backface-visibility:hidden}
+.phone-edge-left,.phone-edge-right{top:6%;height:88%;width:var(--depth)}
+.phone-edge-left{left:0;transform-origin:left;transform:rotateY(90deg)}
+.phone-edge-right{right:0;transform-origin:right;transform:rotateY(-90deg)}
+.phone-edge-top,.phone-edge-bottom{left:8%;width:84%;height:var(--depth)}
+.phone-edge-top{top:0;transform-origin:top;transform:rotateX(-90deg)}
+.phone-edge-bottom{bottom:0;transform-origin:bottom;transform:rotateX(90deg)}
+
+.showreel-section .phone-stage{height:650px;min-height:0;min-width:0}.phone-screen video{max-height:none;border-radius:0}.showreel-section .phone-rotator{--pw:clamp(190px,22vw,270px)}.rm-clients{padding:35px 0!important;overflow:hidden;border-block:1px solid #242424}.rm-clients .tag{text-align:center;margin-bottom:24px}.rm-marquee-window{overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}.rm-marquee{display:flex;width:max-content;animation:rmMarquee 35s linear infinite}.rm-marquee:hover{animation-play-state:paused}.rm-client-set{display:flex;align-items:center;gap:60px;padding-right:60px}.rm-logo{width:160px;height:95px;flex-shrink:0}.rm-logo img{width:100%;height:100%;object-fit:contain}@keyframes rmMarquee{to{transform:translateX(-50%)}}@media(max-width:750px){.showreel-section .phone-stage{height:520px}.rm-logo{width:130px;height:78px}.rm-client-set{gap:35px;padding-right:35px}}@media(prefers-reduced-motion:reduce){.rm-marquee{animation:none;width:100%}.rm-client-set{flex-wrap:wrap;justify-content:center;padding:0;gap:20px}.rm-client-set[aria-hidden=true]{display:none}}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script></head><body><nav><a href="/" aria-label="Rokka Media home"><img src="/ROKKA.png?v=3" alt="Rokka Media"></a><div><a href="/#services">SERVICES</a><a href="/work">OUR WORK</a><a href="/enquire">ENQUIRE</a></div></nav><main>
+<section class="hero"><div><div class="tag">ROKKA MEDIA · WEBSITE DESIGN</div><h1>DESIGNED TO<span class="yellow"> MAKE AN IMPACT.</span></h1><p>Give your business a digital home that reflects your brand. We design responsive websites that make it easy for customers to discover your services and get in touch. Based in Croydon, working across London and beyond.</p><a class="cta" href="/enquire">Book a free consultation</a></div><img src="/content-creation-croydon.jpg" alt="Behind the scenes of a Rokka Media restaurant photography shoot"></section>
+<section class="band"><div class="tag">WHAT WE BUILD</div><h2>A digital home for your brand.</h2><div class="cards"><article><h3>Responsive design</h3><p>Layouts designed for phones, tablets and desktops.</p></article><article><h3>Brand-led websites</h3><p>Clear messaging, strong visuals and enquiry-focused page design.</p></article><article><h3>Search foundations</h3><p>Page titles, descriptions and a clear site structure to support discoverability.</p></article></div></section>
+<section class="split showreel-section"><div class="phone-stage" aria-label="Rokka Media showreel on a 3D phone">    <div class="phone-aura" aria-hidden="true"></div>
+    <video id="phoneShowreel" class="phone-video-source" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
+      <source src="/hero-mobile.mp4" type="video/mp4">
+    </video>
+    <div class="phone-3d-canvas" id="phone3DCanvas" aria-hidden="true"></div>
+    <div class="phone-rotator" id="phoneRotator">
+      <div class="phone-face phone-front">
+        <div class="phone-screen">
+          <video autoplay muted loop playsinline preload="metadata" poster="/content-creation-croydon.jpg" aria-label="Rokka Media showreel"><source src="/hero-mobile.mp4" type="video/mp4"></video>
+          <div class="phone-island"></div>
+          <div class="phone-screen-glare"></div>
+          <div class="phone-home-bar"></div>
+        </div>
+      </div>
+      <div class="phone-face phone-back">
+        <div class="camera-island">
+          <span class="lens lens-one"></span><span class="lens lens-two"></span><span class="lens lens-three"></span>
+          <span class="camera-flash"></span><span class="camera-sensor"></span>
+        </div>
+        <span class="phone-back-mark">R</span>
+      </div>
+      <div class="phone-edge phone-edge-left"></div>
+      <div class="phone-edge phone-edge-right"></div>
+      <div class="phone-edge phone-edge-top"></div>
+      <div class="phone-edge phone-edge-bottom"></div>
+    </div>
+</div><div><div class="tag">OUR WORK</div><h2>Creative content for your website.</h2><p>Our hospitality showreel illustrates the kind of visual content we can bring to a website project.</p><a class="cta" href="/work">Explore our portfolio</a></div></section>
+<section class="rm-clients" aria-label="Selected clients"><div class="tag">BRANDS WE’VE WORKED WITH</div><div class="rm-marquee-window"><div class="rm-marquee"><div class="rm-client-set"><div class="rm-logo"><img src="/the-ravensbury.png?v=2" alt="The Ravensbury" loading="lazy"></div><div class="rm-logo"><img src="/all-bar-one.png?v=2" alt="All Bar One" loading="lazy"></div><div class="rm-logo"><img src="/yama.png?v=2" alt="Yama" loading="lazy"></div><div class="rm-logo"><img src="/love-a-slice.png?v=2" alt="Love A Slice" loading="lazy"></div><div class="rm-logo"><img src="/las-lounge.png?v=2" alt="LAS Lounge" loading="lazy"></div><div class="rm-logo"><img src="/annas-thai.png?v=2" alt="Anna’s Thai" loading="lazy"></div><div class="rm-logo"><img src="/the-grange.png?v=2" alt="The Grange" loading="lazy"></div><div class="rm-logo"><img src="/icon-kitchens.png?v=2" alt="Icon Kitchens" loading="lazy"></div><div class="rm-logo"><img src="/frames-sports-bar.png?v=2" alt="Frames Sports Bar" loading="lazy"></div></div><div class="rm-client-set" aria-hidden="true"><div class="rm-logo"><img src="/the-ravensbury.png?v=2" alt="The Ravensbury" loading="lazy"></div><div class="rm-logo"><img src="/all-bar-one.png?v=2" alt="All Bar One" loading="lazy"></div><div class="rm-logo"><img src="/yama.png?v=2" alt="Yama" loading="lazy"></div><div class="rm-logo"><img src="/love-a-slice.png?v=2" alt="Love A Slice" loading="lazy"></div><div class="rm-logo"><img src="/las-lounge.png?v=2" alt="LAS Lounge" loading="lazy"></div><div class="rm-logo"><img src="/annas-thai.png?v=2" alt="Anna’s Thai" loading="lazy"></div><div class="rm-logo"><img src="/the-grange.png?v=2" alt="The Grange" loading="lazy"></div><div class="rm-logo"><img src="/icon-kitchens.png?v=2" alt="Icon Kitchens" loading="lazy"></div><div class="rm-logo"><img src="/frames-sports-bar.png?v=2" alt="Frames Sports Bar" loading="lazy"></div></div></div></div></section>
+<section><div class="tag">HOW IT WORKS</div><h2>From concept to launch.</h2><div class="cards"><article><h3>01. Discover</h3><p>Agree your goals, pages and requirements.</p></article><article><h3>02. Design and build</h3><p>Develop the agreed layout and content for review.</p></article><article><h3>03. Launch</h3><p>Review the site and agree hosting and launch arrangements.</p></article></div></section>
+<section class="band"><h2>Website Design FAQs</h2><details><summary>Can you redesign an existing website?</summary><p>Yes, we can discuss a refresh or a new build.</p></details><details><summary>Will my website work on mobile?</summary><p>Responsive layouts are part of our approach.</p></details><details><summary>Is hosting included?</summary><p>Hosting, domain costs and ongoing maintenance are agreed separately in your quote.</p></details><details><summary>Can you guarantee Google rankings?</summary><p>No. We can implement SEO foundations, but rankings depend on many factors.</p></details></section>
+<section><div class="tag">LET’S WORK TOGETHER</div><h2>Ready to make<br><span class="yellow">an impact?</span></h2><p>Tell us about your business and we’ll discuss a tailored approach.</p><a class="cta" href="/enquire">Book a free consultation</a><p><a href="/#services" style="text-decoration:underline">Explore all Rokka Media services</a></p></section></main><footer><span>© 2026 Rokka Media</span><a href="mailto:info@rokkamedia.com">info@rokkamedia.com</a><a href="https://www.instagram.com/rokkamedia/">Instagram</a><a href="https://wa.me/447345658962">WhatsApp</a></footer><!-- Rokka Media advertising consent and Meta Pixel -->
+<style>
+#rmCookie{position:fixed;bottom:78px;left:16px;width:min(420px,calc(100% - 32px));z-index:99990;background:#111;color:#fff;border:1px solid #444;border-radius:18px;padding:20px;box-shadow:0 12px 40px #0008;font:14px/1.5 Inter,Arial,sans-serif}#rmCookie[hidden]{display:none}#rmCookie h2{font-size:20px;color:#FFD400;margin:0 0 8px}#rmCookie p{margin:0 0 14px;color:#ddd}#rmCookie .rm-cookie-actions{display:flex;gap:10px;flex-wrap:wrap}#rmCookie button,#rmCookieSettings{font:700 12px Inter,Arial,sans-serif;cursor:pointer;border:1px solid #FFD400;border-radius:30px;padding:12px 18px;background:#FFD400;color:#000}#rmCookieSettings{background:transparent;color:#FFD400;padding:8px 12px}#rmCookie button{flex:1} 
+</style>
+<section id="rmCookie" aria-label="Advertising cookie preferences" hidden><h2>Your privacy choices</h2><p>With your permission, we use Meta Pixel to measure advertising and website enquiries and personalise ads on Facebook and Instagram. Meta may receive information about your browser and activity. You can reject advertising cookies and still use our website and enquiry form. Change your choice using Cookie settings in the footer.</p><p><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Meta privacy policy</a></p><div class="rm-cookie-actions"><button type="button" id="rmCookieReject">Reject advertising</button><button type="button" id="rmCookieAccept">Accept advertising</button></div></section>
+<script>
+(()=>{
+const key='rmAdvertisingConsentV1', banner=document.getElementById('rmCookie');let choice='',started=false;
+try{choice=localStorage.getItem(key)||''}catch(e){}
+function start(){if(started||choice!=='accept')return;started=true;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('consent','grant');fbq('init','1375343781247549');fbq('set','autoConfig',false,'1375343781247549');fbq('track','PageView');
+if(/\/enquire(?:\.html)?\/?$/.test(location.pathname))fbq('track','ViewContent');}
+window.rmTrack=function(event,custom=false){if(choice==='accept'&&started&&typeof window.fbq==='function')try{fbq(custom?'trackCustom':'track',event)}catch(e){}};
+function setChoice(value){choice=value;try{localStorage.setItem(key,value)}catch(e){}banner.hidden=true;if(value==='accept'){if(started)fbq('consent','grant');else start()}else if(started){fbq('consent','revoke');for(const name of ['_fbp','_fbc']){for(const domain of ['', '; domain='+location.hostname,'; domain=.rokkamedia.com'])document.cookie=name+'=; Max-Age=0; path=/'+domain;}location.reload();}}
+document.getElementById('rmCookieAccept').onclick=()=>setChoice('accept');document.getElementById('rmCookieReject').onclick=()=>setChoice('reject');
+const settings=document.createElement('button');settings.type='button';settings.id='rmCookieSettings';settings.textContent='Cookie settings';settings.onclick=()=>{banner.hidden=false};(document.querySelector('footer')||document.body).append(settings);
+if(choice==='accept')start();else if(choice!=='reject')banner.hidden=false;
+document.addEventListener('click',e=>{if(e.target.closest('.trial-claim'))window.rmTrack('FreeShootClick',true)},true);
+})();
+</script>
+
+<script>window.addEventListener("DOMContentLoaded",()=>{if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);/* Genuine WebGL 3D black-titanium Pro Max-inspired phone, procedural model. */
+(function(){
+  const mount=document.getElementById('phone3DCanvas');
+  const fallback=document.getElementById('phoneRotator');
+  const stage=document.querySelector('.phone-stage');
+  const hero=document.querySelector('.showreel-section');
+  const video=document.getElementById('phoneShowreel');
+  if(!mount||!stage||!hero||!video) return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Keep the CSS version if WebGL, Three.js, or hardware support is unavailable.
+  if(typeof THREE==='undefined') return;
+  let renderer;
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});}
+  catch(e){return;}
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.05;
+  mount.appendChild(renderer.domElement);
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(33,1,.1,100);
+  camera.position.set(0,0,12.6);
+  const phone=new THREE.Group();
+  scene.add(phone);
+  const W=3.18,H=6.65,D=.29,R=.48;
+  function roundedShape(w,h,r){
+    const x=-w/2,y=-h/2,sh=new THREE.Shape();
+    sh.moveTo(x+r,y);
+    sh.lineTo(x+w-r,y);sh.quadraticCurveTo(x+w,y,x+w,y+r);
+    sh.lineTo(x+w,y+h-r);sh.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    sh.lineTo(x+r,y+h);sh.quadraticCurveTo(x,y+h,x,y+h-r);
+    sh.lineTo(x,y+r);sh.quadraticCurveTo(x,y,x+r,y);
+    return sh;
+  }
+  function extruded(w,h,r,depth,mat){
+    const geo=new THREE.ExtrudeGeometry(roundedShape(w,h,r),{
+      depth:depth,bevelEnabled:true,bevelThickness:.032,bevelSize:.035,
+      bevelSegments:4,curveSegments:10,steps:1
+    });
+    geo.translate(0,0,-depth/2);
+    return new THREE.Mesh(geo,mat);
+  }
+  const metal=new THREE.MeshPhysicalMaterial({color:0x101115,metalness:.8,roughness:.34,clearcoat:1,clearcoatRoughness:.18});
+  const glass=new THREE.MeshPhysicalMaterial({color:0x080a0c,metalness:.35,roughness:.13,clearcoat:1,clearcoatRoughness:.08});
+  const backMat=new THREE.MeshPhysicalMaterial({color:0x090a0d,metalness:.25,roughness:.63,clearcoat:.22});
+  const edge=extruded(W,H,R,D,metal);phone.add(edge);
+  const front=extruded(W-.09,H-.09,R-.04,.016,glass);front.position.z=D/2+.045;phone.add(front);
+  const back=extruded(W-.09,H-.09,R-.04,.018,backMat);back.position.z=-D/2-.045;phone.add(back);
+  // Safari-safe video texture: copy decoded video frames into a canvas.
+  // Unlike VideoTexture on a visibility:hidden video, this keeps updating reliably.
+  const frameCanvas=document.createElement('canvas');
+  frameCanvas.width=540;frameCanvas.height=1120;
+  const ctx=frameCanvas.getContext('2d',{alpha:false});
+  ctx.fillStyle='#080808';ctx.fillRect(0,0,frameCanvas.width,frameCanvas.height);
+  const texture=new THREE.CanvasTexture(frameCanvas);
+  texture.colorSpace=THREE.SRGBColorSpace;
+  texture.minFilter=THREE.LinearFilter;
+  texture.magFilter=THREE.LinearFilter;
+  const screenMat=new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide,toneMapped:false});
+  // ShapeGeometry's default UVs are raw model coordinates (roughly -1.5..1.5,
+  // -3.2..3.2), NOT 0..1. Normalize them so the entire video fills the display.
+  const screenWidth=W-.23,screenHeight=H-.24;
+  const screenGeometry=new THREE.ShapeGeometry(roundedShape(screenWidth,screenHeight,R-.12),20);
+  const positionAttribute=screenGeometry.getAttribute('position');
+  const uvAttribute=screenGeometry.getAttribute('uv');
+  for(let i=0;i<positionAttribute.count;i++){
+    const x=positionAttribute.getX(i), y=positionAttribute.getY(i);
+    uvAttribute.setXY(i,(x+screenWidth/2)/screenWidth,(y+screenHeight/2)/screenHeight);
+  }
+  uvAttribute.needsUpdate=true;
+  const screen=new THREE.Mesh(screenGeometry,screenMat);
+  screen.position.z=D/2+.10;
+  phone.add(screen);
+  function updateVideoFrame(){
+    if(video.readyState<2 || !video.videoWidth || !video.videoHeight)return;
+    try{
+      const cw=frameCanvas.width,ch=frameCanvas.height;
+      const scale=Math.max(cw/video.videoWidth,ch/video.videoHeight);
+      const dw=video.videoWidth*scale,dh=video.videoHeight*scale;
+      ctx.drawImage(video,(cw-dw)/2,(ch-dh)/2,dw,dh);
+      texture.needsUpdate=true;
+    }catch(e){}
+  }
+  const islandMat=new THREE.MeshPhysicalMaterial({color:0x010101,roughness:.12,metalness:.2});
+  const island=extruded(.94,.20,.1,.012,islandMat);
+  island.position.set(0,H/2-.30,D/2+.09);phone.add(island);
+  // Wide, near-black camera deck and restrained triple-lens array, based on the supplied reference.
+  // This is a stylised interpretation, not an official Apple CAD model.
+  const deckMat=new THREE.MeshPhysicalMaterial({color:0x090a0d,metalness:.28,roughness:.36,clearcoat:.5});
+  const cameraPlate=extruded(W-.14,1.85,.42,.075,deckMat);
+  cameraPlate.position.set(0,H/2-1.04,-D/2-.11);
+  phone.add(cameraPlate);
+  function circleCylinder(rad,depth,mat,x,y,z){
+    const m=new THREE.Mesh(new THREE.CylinderGeometry(rad,rad,depth,64),mat);
+    m.rotation.x=Math.PI/2;
+    m.position.set(x,y,z);
+    phone.add(m);
+    return m;
+  }
+  const ringMat=new THREE.MeshStandardMaterial({color:0x25272c,metalness:.7,roughness:.28});
+  const lensMat=new THREE.MeshPhysicalMaterial({color:0x020408,metalness:.25,roughness:.09,clearcoat:1});
+  const innerLens=new THREE.MeshPhysicalMaterial({color:0x0b1421,metalness:.35,roughness:.08,clearcoat:1});
+  [[-1.00,2.71],[-1.00,1.89],[-.20,2.30]].forEach(([x,y])=>{
+    circleCylinder(.335,.065,ringMat,x,y,-D/2-.20);
+    circleCylinder(.295,.07,lensMat,x,y,-D/2-.255);
+    circleCylinder(.195,.075,innerLens,x,y,-D/2-.305);
+    circleCylinder(.12,.078,lensMat,x,y,-D/2-.347);
+    circleCylinder(.045,.08,new THREE.MeshBasicMaterial({color:0x15283c}),x-.035,y+.035,-D/2-.389);
+  });
+  const flashMat=new THREE.MeshBasicMaterial({color:0xb5b2a9});
+  circleCylinder(.105,.025,flashMat,.73,2.75,-D/2-.18);
+  circleCylinder(.065,.025,lensMat,.73,2.09,-D/2-.18);
+  // Side buttons protrude from the frame.
+  const buttonMat=new THREE.MeshStandardMaterial({color:0x64676a,metalness:1,roughness:.3});
+  function sideButton(x,y,height){
+    const mesh=new THREE.Mesh(new THREE.BoxGeometry(.07,height,.11),buttonMat);
+    mesh.position.set(x,y,0);phone.add(mesh);
+  }
+  sideButton(-W/2-.05,1.58,.55);
+  sideButton(-W/2-.05,.72,.55);
+  sideButton(W/2+.05,1.2,.72);
+  const ambient=new THREE.AmbientLight(0xffffff,.85);scene.add(ambient);
+  const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(-5,8,9);scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffd400,.75);rim.position.set(6,-1,-5);scene.add(rim);
+  const fill=new THREE.DirectionalLight(0xa6b6e0,.65);fill.position.set(4,1,4);scene.add(fill);
+  const state={angle:-.40,tilt:.10,roll:-.08};
+  const render=()=>{
+    phone.rotation.set(state.tilt,state.angle,state.roll);
+    renderer.render(scene,camera);
+  };
+  function resize(){
+    const width=mount.clientWidth,height=mount.clientHeight;
+    if(!width||!height)return;
+    camera.aspect=width/height;
+    camera.position.z=Math.max(13.2, 7.5/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*Math.min(1,camera.aspect)));
+    camera.updateProjectionMatrix();
+    renderer.setSize(width,height,false);
+    render();
+  }
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  if(window.ResizeObserver)new ResizeObserver(resize).observe(mount);
+  mount.classList.add('ready');stage.classList.add('webgl-ready');const fallbackVideo=fallback.querySelector('video');if(fallbackVideo)fallbackVideo.pause();
+  // A scroll scrub updates the actual 3D mesh rotation.
+  if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+    gsap.timeline({defaults:{ease:'none',onUpdate:render},scrollTrigger:{
+      trigger:hero,start:'top 100%',end:'top 55%',
+      scrub:true,invalidateOnRefresh:true
+    }})
+      .to(state,{angle:-Math.PI/2,tilt:.06,roll:0,duration:1})
+      .to(state,{angle:-Math.PI,tilt:0,roll:.05,duration:1})
+      .to(state,{angle:-Math.PI*2,tilt:0,roll:0,duration:1.2});
+    window.addEventListener('load',()=>ScrollTrigger.refresh(),{once:true});
+  }
+  video.muted=true;
+  video.defaultMuted=true;
+  video.setAttribute('muted','');
+  video.setAttribute('playsinline','');
+  const tryPlay=()=>video.play().catch(()=>{});
+  video.addEventListener('loadeddata',()=>{updateVideoFrame();render();tryPlay();});
+  video.addEventListener('playing',()=>{updateVideoFrame();render();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)tryPlay();});
+  window.addEventListener('pointerdown',tryPlay,{passive:true});
+  window.addEventListener('touchstart',tryPlay,{passive:true});
+  tryPlay();
+  // Video frames update the WebGL texture while visible.
+  let active=true;
+  if(window.IntersectionObserver){
+    new IntersectionObserver(entries=>{active=entries[0].isIntersecting;},{threshold:0}).observe(stage);
+  }
+  function frame(){requestAnimationFrame(frame);if(active){updateVideoFrame();render();}}
+  frame();
+})();});</script></body></html>
