@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, follow"><meta name="theme-color" content="#FFD400"><title>Claim your free shoot | Rokka Media</title><link rel="icon" href="/favicon.png"><style>
+*{box-sizing:border-box}body{margin:0;background:#080808;color:#fff;font:16px/1.55 Arial,Helvetica,sans-serif}a{color:#FFD400}header,main,footer{max-width:1200px;margin:auto;padding:24px clamp(18px,4vw,48px)}header img{width:140px;height:auto} .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,70px);align-items:start} .tag{color:#FFD400;font-size:11px;font-weight:800;letter-spacing:2px}h1{font-size:clamp(44px,6.5vw,88px);line-height:.92;letter-spacing:-.055em;margin:18px 0}h1 span{color:#FFD400}p{color:#ccc} .photo{width:100%;height:clamp(180px,25vw,330px);object-fit:cover;border-radius:18px;margin-top:24px} .terms{font-size:13px;color:#aaa}form{background:#121212;border:1px solid #333;border-radius:22px;padding:clamp(20px,3vw,34px)}h2{font-size:26px;line-height:1.15;margin:0 0 12px}label{display:block;font-size:13px;font-weight:bold;margin:14px 0 6px}input:not([type=hidden]):not([type=checkbox]){width:100%;background:#080808;color:white;border:1px solid #444;border-radius:10px;padding:13px;font:inherit;min-height:48px}input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #FFD400;outline-offset:3px}button{cursor:pointer}#submitButton{background:#FFD400;color:#080808;border:0;border-radius:99px;padding:17px;width:100%;font-weight:900;margin-top:22px}button:disabled{opacity:.6;cursor:wait}.form-message:empty{display:none}.form-message{padding:14px;margin-top:16px;border:1px solid #555;border-radius:10px}.success{color:#FFD400}.error{color:#fff}.brands{margin-top:60px;border-top:1px solid #292929;padding-top:30px}.logos{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center}.logos img{width:90px;height:62px;object-fit:contain}footer{border-top:1px solid #292929;color:#aaa;font-size:13px;display:flex;gap:18px;flex-wrap:wrap;align-items:center} .privacy{font-size:12px;color:#aaa} @media(max-width:760px){header{padding-bottom:8px}.hero{grid-template-columns:1fr;gap:20px}h1{font-size:clamp(43px,11vw,70px)}.photo{display:none}.brands{margin-top:36px}main{padding-top:10px}}
+</style></head><body><header><a href="/" aria-label="Rokka Media homepage"><img src="/ROKKA.png" alt="Rokka Media"></a></header><main><section class="hero"><div><div class="tag">EXCLUSIVELY FOR HOSPITALITY BUSINESSES</div><h1>YOUR FIRST SHOOT.<br><span>ON US.</span></h1><p>Experience professional content creation for your restaurant, pub or bar. Get a complimentary trial shoot and one professionally edited reel.</p><div class="tag">NO PAYMENT. NO COMMITMENT.</div><img class="photo" src="/after.png" alt="Burger photography by Rokka Media"><p class="terms">For new hospitality clients in London and surrounding areas. Up to 30 minutes on-site and one edited reel, subject to availability.</p></div><form id="enquiryForm" action="https://api.web3forms.com/submit" method="post"><h2>Claim your free shoot.</h2><p>Tell us a little about your business and we'll be in touch to arrange your trial.</p><input type="hidden" name="access_key" value="1de3f7af-2816-4181-8b68-3f1b97c62fd4"><input type="hidden" name="from_name" value="RokkaMedia Website"><input type="hidden" name="subject" value="New Rokka Media Free Shoot Enquiry"><input type="hidden" name="service" value="Free Trial Shoot"><input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required><label for="business">Business name *</label><input id="business" name="business" autocomplete="organization" required><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required><label for="phone">Phone number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required><label for="social">Instagram handle (optional)</label><input id="social" name="social"><p class="privacy">We use your details to respond to your enquiry and arrange your shoot. Your form is processed by Web3Forms. Contact info@rokkamedia.com for privacy enquiries.</p><button id="submitButton" type="submit">CLAIM MY FREE SHOOT →</button><div id="formMessage" class="form-message" role="status" aria-live="polite"></div></form></section><section class="brands"><div class="tag" style="text-align:center;margin-bottom:22px">BRANDS WE’VE WORKED WITH</div><div class="logos"><img src="/all-bar-one.png" alt="All Bar One" loading="lazy"><img src="/annas-thai.png" alt="Annas Thai" loading="lazy"><img src="/frames-sports-bar.png" alt="Frames Sports Bar" loading="lazy"><img src="/icon-kitchens.png" alt="Icon Kitchens" loading="lazy"><img src="/las-lounge.png" alt="Las Lounge" loading="lazy"><img src="/love-a-slice.png" alt="Love A Slice" loading="lazy"><img src="/the-grange.png" alt="The Grange" loading="lazy"><img src="/the-ravensbury.png" alt="The Ravensbury" loading="lazy"><img src="/yama.png" alt="Yama" loading="lazy"></div></section></main><footer><span>© Rokka Media</span><a href="/">Visit our website</a><a href="mailto:info@rokkamedia.com">Contact us</a></footer><script>
+/* Web3Forms — independent of animation scripts */
+(() => {
+const form = document.getElementById("enquiryForm");
+const message = document.getElementById("formMessage");
+const button = document.getElementById("submitButton");
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  if (button.disabled) return;
+  button.disabled = true;
+  button.classList.add("is-sending");
+  button.textContent = "SENDING...";
+  form.setAttribute("aria-busy", "true");
+  message.className = "form-message";
+  message.textContent = "";
+  try {
+    const response = await fetch(form.action, {
+      method: "POST", body: new FormData(form), headers: {Accept: "application/json"}
+    });
+    const result = await response.json();
+    if (!response.ok || result.success !== true) throw new Error("Submission failed");
+    if (window.rmTrack) window.rmTrack("Lead");
+    form.reset();
+    message.className = "form-message success";
+    const heading = document.createElement("strong");
+    heading.textContent = "You're one step closer.";
+    message.append(heading, document.createElement("br"), document.createTextNode("Thanks for reaching out to Rokka Media! Your enquiry has been received. We'll be in touch soon to discuss how we can bring your vision to life."));
+  } catch (error) {
+    message.className = "form-message error";
+    message.textContent = "We couldn't confirm your enquiry was sent. Please try again or contact us on WhatsApp.";
+  } finally {
+    button.disabled = false;
+    button.classList.remove("is-sending");
+    button.textContent = "CLAIM MY FREE SHOOT →";
+    form.removeAttribute("aria-busy");
+  }
+});
+})();
+</script>
+
+
+<style>
+#rmCookie{position:fixed;bottom:78px;left:16px;width:min(420px,calc(100% - 32px));z-index:99990;background:#111;color:#fff;border:1px solid #444;border-radius:18px;padding:20px;box-shadow:0 12px 40px #0008;font:14px/1.5 Inter,Arial,sans-serif}#rmCookie[hidden]{display:none}#rmCookie h2{font-size:20px;color:#FFD400;margin:0 0 8px}#rmCookie p{margin:0 0 14px;color:#ddd}#rmCookie .rm-cookie-actions{display:flex;gap:10px;flex-wrap:wrap}#rmCookie button,#rmCookieSettings{font:700 12px Inter,Arial,sans-serif;cursor:pointer;border:1px solid #FFD400;border-radius:30px;padding:12px 18px;background:#FFD400;color:#000}#rmCookieSettings{background:transparent;color:#FFD400;padding:8px 12px}#rmCookie button{flex:1} 
+</style>
+<section id="rmCookie" aria-label="Advertising cookie preferences" hidden><h2>Your privacy choices</h2><p>With your permission, we use Meta Pixel to measure advertising and website enquiries and personalise ads on Facebook and Instagram. Meta may receive information about your browser and activity. You can reject advertising cookies and still use our website and enquiry form. Change your choice using Cookie settings in the footer.</p><p><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Meta privacy policy</a></p><div class="rm-cookie-actions"><button type="button" id="rmCookieReject">Reject advertising</button><button type="button" id="rmCookieAccept">Accept advertising</button></div></section>
+<script>
+(()=>{
+const key='rmAdvertisingConsentV1', banner=document.getElementById('rmCookie');let choice='',started=false;
+try{choice=localStorage.getItem(key)||''}catch(e){}
+function start(){if(started||choice!=='accept')return;started=true;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('consent','grant');fbq('init','1375343781247549');fbq('set','autoConfig',false,'1375343781247549');fbq('track','PageView');
+fbq('track','ViewContent');}
+window.rmTrack=function(event,custom=false){if(choice==='accept'&&started&&typeof window.fbq==='function')try{fbq(custom?'trackCustom':'track',event)}catch(e){}};
+function setChoice(value){choice=value;try{localStorage.setItem(key,value)}catch(e){}banner.hidden=true;if(value==='accept'){if(started)fbq('consent','grant');else start()}else if(started){fbq('consent','revoke');for(const name of ['_fbp','_fbc']){for(const domain of ['', '; domain='+location.hostname,'; domain=.rokkamedia.com'])document.cookie=name+'=; Max-Age=0; path=/'+domain;}location.reload();}}
+document.getElementById('rmCookieAccept').onclick=()=>setChoice('accept');document.getElementById('rmCookieReject').onclick=()=>setChoice('reject');
+const settings=document.createElement('button');settings.type='button';settings.id='rmCookieSettings';settings.textContent='Cookie settings';settings.onclick=()=>{banner.hidden=false};(document.querySelector('footer')||document.body).append(settings);
+if(choice==='accept')start();else if(choice!=='reject')banner.hidden=false;
+document.addEventListener('click',e=>{if(e.target.closest('.trial-claim'))window.rmTrack('FreeShootClick',true)},true);
+})();
+</script>
+
+</body></html>
