@@ -3952,5 +3952,28 @@ submitButton.textContent=
 <script>
 (()=>{const d=document.getElementById('rmTrial'),key='rokkaTrialSeenUntil';let seen=0;try{seen=Number(localStorage.getItem(key)||0)}catch(e){}if(seen>Date.now())return;function mark(){try{localStorage.setItem(key,String(Date.now()+7*86400000))}catch(e){}}function close(){if(d.open)d.close()}d.querySelector('.trial-close').addEventListener('click',close);d.querySelector('.trial-later').addEventListener('click',close);d.querySelector('.trial-claim').addEventListener('click',mark);d.addEventListener('close',()=>{document.body.classList.remove('rm-trial-open');mark()});d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()});function schedule(){setTimeout(()=>{if(typeof d.showModal!=='function')return;d.showModal();document.body.classList.add('rm-trial-open');mark()},5000)}if(document.getElementById('introScreen')){const observer=new MutationObserver(()=>{if(!document.getElementById('introScreen')){observer.disconnect();schedule()}});observer.observe(document.body,{childList:true,subtree:true})}else schedule()})();
 </script>
+
+<!-- Rokka Media advertising consent and Meta Pixel -->
+<style>
+#rmCookie{position:fixed;bottom:78px;left:16px;width:min(420px,calc(100% - 32px));z-index:99990;background:#111;color:#fff;border:1px solid #444;border-radius:18px;padding:20px;box-shadow:0 12px 40px #0008;font:14px/1.5 Inter,Arial,sans-serif}#rmCookie[hidden]{display:none}#rmCookie h2{font-size:20px;color:#FFD400;margin:0 0 8px}#rmCookie p{margin:0 0 14px;color:#ddd}#rmCookie .rm-cookie-actions{display:flex;gap:10px;flex-wrap:wrap}#rmCookie button,#rmCookieSettings{font:700 12px Inter,Arial,sans-serif;cursor:pointer;border:1px solid #FFD400;border-radius:30px;padding:12px 18px;background:#FFD400;color:#000}#rmCookieSettings{background:transparent;color:#FFD400;padding:8px 12px}#rmCookie button{flex:1} 
+</style>
+<section id="rmCookie" aria-label="Advertising cookie preferences" hidden><h2>Your privacy choices</h2><p>With your permission, we use Meta Pixel to measure advertising and website enquiries and personalise ads on Facebook and Instagram. Meta may receive information about your browser and activity. You can reject advertising cookies and still use our website and enquiry form. Change your choice using Cookie settings in the footer.</p><p><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Meta privacy policy</a></p><div class="rm-cookie-actions"><button type="button" id="rmCookieReject">Reject advertising</button><button type="button" id="rmCookieAccept">Accept advertising</button></div></section>
+<script>
+(()=>{
+const key='rmAdvertisingConsentV1', banner=document.getElementById('rmCookie');let choice='',started=false;
+try{choice=localStorage.getItem(key)||''}catch(e){}
+function start(){if(started||choice!=='accept')return;started=true;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('consent','grant');fbq('init','1375343781247549');fbq('set','autoConfig',false,'1375343781247549');fbq('track','PageView');
+if(/\/enquire(?:\.html)?\/?$/.test(location.pathname))fbq('track','ViewContent');}
+window.rmTrack=function(event,custom=false){if(choice==='accept'&&started&&typeof window.fbq==='function')try{fbq(custom?'trackCustom':'track',event)}catch(e){}};
+function setChoice(value){choice=value;try{localStorage.setItem(key,value)}catch(e){}banner.hidden=true;if(value==='accept'){if(started)fbq('consent','grant');else start()}else if(started){fbq('consent','revoke');for(const name of ['_fbp','_fbc']){for(const domain of ['', '; domain='+location.hostname,'; domain=.rokkamedia.com'])document.cookie=name+'=; Max-Age=0; path=/'+domain;}location.reload();}}
+document.getElementById('rmCookieAccept').onclick=()=>setChoice('accept');document.getElementById('rmCookieReject').onclick=()=>setChoice('reject');
+const settings=document.createElement('button');settings.type='button';settings.id='rmCookieSettings';settings.textContent='Cookie settings';settings.onclick=()=>{banner.hidden=false};(document.querySelector('footer')||document.body).append(settings);
+if(choice==='accept')start();else if(choice!=='reject')banner.hidden=false;
+document.addEventListener('click',e=>{if(e.target.closest('.trial-claim'))window.rmTrack('FreeShootClick',true)},true);
+})();
+</script>
+
 </body>
 </html>
