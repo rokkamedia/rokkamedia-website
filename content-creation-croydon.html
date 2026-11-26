@@ -233,7 +233,7 @@ document.addEventListener('click',e=>{if(e.target.closest('.trial-claim'))window
     const width=mount.clientWidth,height=mount.clientHeight;
     if(!width||!height)return;
     camera.aspect=width/height;
-    camera.position.z=width<450?12.2:width<650?11.1:9.8;
+    camera.position.z=Math.max(13.2, 7.5/(2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*Math.min(1,camera.aspect)));
     camera.updateProjectionMatrix();
     renderer.setSize(width,height,false);
     render();
@@ -245,12 +245,12 @@ document.addEventListener('click',e=>{if(e.target.closest('.trial-claim'))window
   // A scroll scrub updates the actual 3D mesh rotation.
   if(!reduced&&typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
     gsap.timeline({defaults:{ease:'none',onUpdate:render},scrollTrigger:{
-      trigger:hero,start:'top 85%',end:'bottom 15%',
-      scrub:.35,invalidateOnRefresh:true
+      trigger:hero,start:'top 100%',end:'top 55%',
+      scrub:true,invalidateOnRefresh:true
     }})
       .to(state,{angle:-Math.PI/2,tilt:.06,roll:0,duration:1})
       .to(state,{angle:-Math.PI,tilt:0,roll:.05,duration:1})
-      .to(state,{angle:-Math.PI*2,tilt:.08,roll:-.07,duration:1.2});
+      .to(state,{angle:-Math.PI*2,tilt:0,roll:0,duration:1.2});
     window.addEventListener('load',()=>ScrollTrigger.refresh(),{once:true});
   }
   video.muted=true;
